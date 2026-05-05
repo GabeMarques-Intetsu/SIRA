@@ -1,0 +1,17 @@
+{
+  "name": "sira-sistema-de-reserva-salas-e-equipamentos",
+  "version": "1.0.0",
+  "description": "Projeto-de-PWEB2-ER",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write .",
+    "check-format": "prettier --check .",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^3.8.3"
+  }
+}
