@@ -148,6 +148,11 @@ function renderSignup() {
           const email = document.getElementById('signupEmail').value;
           const role = document.getElementById('signupRole').value;
 
+          if (!name || !email) {
+            alert('Preencha nome e e-mail.');
+            return;
+          }
+
           let signups = [];
           try {
             signups = JSON.parse(localStorage.getItem('sira:signups') || '[]');
