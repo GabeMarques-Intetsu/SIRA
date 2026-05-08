@@ -19,7 +19,7 @@ import { renderNovaReserva } from './modules/novaReserva.js';
 
 import { tryRestoreSession, login, CURRENT_USER } from './data/store.js';
 
-// [Apresentação] Roteador Funcional (Dispatcher): Mapeamos strings para funções de renderização.
+// [Apresentação] Roteador Funcional (Dispatcher)
 const PAGE_RENDERERS = {
   dashboard: renderDashboard,
   calendario: renderCalendar,
@@ -76,12 +76,10 @@ function bootstrap() {
   const app = document.getElementById('app');
   app.innerHTML = '';
 
-  // ── Montagem do Shell (Main UI Wrapper) ──
   const shell = el('div', { class: 'sira-shell' });
   const sidebarContainer = document.createElement('div');
   const main = el('div', { class: 'main' });
 
-  // PageContainer: Onde a mágica do SPA acontece
   const pageContainer = el('div', {
     class: 'page active',
     style: {
@@ -94,35 +92,38 @@ function bootstrap() {
 
   main.appendChild(pageContainer);
 
-  // [Apresentação] Função de Navegação Centralizada com Middleware de Segurança
+  // ── T-08.2: OVERLAY DE FECHAMENTO (Parte 1: Criação) ──
+  // [Apresentação] Criamos um elemento de fundo que escurece a tela no mobile.
+  // Ao clicar nele, removemos a classe 'open' tanto da sidebar quanto do próprio overlay.
+  const overlay = el('div', { class: 'sidebar-overlay' });
+  overlay.addEventListener('click', () => {
+    sidebarContainer.querySelector('.sidebar')?.classList.remove('open');
+    overlay.classList.remove('open');
+  });
+  document.body.appendChild(overlay);
+
   function navigate(pageName) {
     if (!CURRENT_USER) return;
 
-    // ── T-07.4: BLOQUEIO DE ACESSO POR PERFIL (RBAC) ──
     const isAdmin = CURRENT_USER.role === 'admin';
     const allowedForUser = ['reservas', 'calendario', 'novaReserva'];
 
     if (!isAdmin && !allowedForUser.includes(pageName)) {
-      console.warn(`Acesso negado à rota: ${pageName}. Redirecionando...`);
       pageName = 'calendario';
     }
 
     const renderer = PAGE_RENDERERS[pageName];
     if (!renderer) return;
 
-    // ── T-07.2: ATUALIZAÇÃO DA URL (History API) ──
     if (window.location.pathname !== `/${pageName}`) {
       window.history.pushState({}, '', `/${pageName}`);
     }
 
-    // Renderização do novo conteúdo
     pageContainer.innerHTML = '';
     renderer(pageContainer);
   }
 
-  // ── T-08.1: INJETAR BOTÃO HAMBÚRGUER DINÂMICO ──
-  // [Apresentação] O MutationObserver monitora o pageContainer. Sempre que o conteúdo mudar,
-  // verificamos se a página renderizada possui uma .topbar para injetar o botão de menu mobile.
+  // ── T-08.1 e T-08.2: BOTÃO HAMBÚRGUER E ABERTURA DO OVERLAY ──
   const topbarObserver = new MutationObserver(() => {
     const topbar = pageContainer.querySelector('.topbar');
     if (topbar && !topbar.querySelector('.hamburger')) {
@@ -132,7 +133,8 @@ function bootstrap() {
           class: 'hamburger',
           onClick: () => {
             sidebarContainer.querySelector('.sidebar')?.classList.add('open');
-            document.querySelector('.sidebar-overlay')?.classList.add('open');
+            // T-08.2: Faz o overlay aparecer quando o menu abre
+            overlay.classList.add('open');
           },
         },
         el('span', {}),
@@ -142,7 +144,6 @@ function bootstrap() {
   });
   topbarObserver.observe(pageContainer, { childList: true, subtree: true });
 
-  // Inicializa o Sidebar injetando a função de navegação
   createSidebar(sidebarContainer, CURRENT_USER, navigate, () => {
     const isDark = document.documentElement.classList.toggle('dark');
     localStorage.setItem('sira-theme', isDark ? 'dark' : 'light');
@@ -154,14 +155,12 @@ function bootstrap() {
 
   initModalListeners();
 
-  // ── T-07.3: ESCUTADOR DE HISTÓRICO (Popstate) ──
   window.addEventListener('popstate', () => {
     let path = window.location.pathname.replace(/^\//, '');
     if (!path || !PAGE_RENDERERS[path]) path = 'calendario';
     navigate(path);
   });
 
-  // Deep Linking: Render inicial baseado na URL atual
   let initialPage = window.location.pathname.replace(/^\//, '');
   if (!PAGE_RENDERERS[initialPage]) initialPage = 'calendario';
 
