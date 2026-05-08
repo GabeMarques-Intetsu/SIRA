@@ -8,7 +8,7 @@ import {
   getNotifications,
 } from '../data/store.js';
 
-// Array declarativo: centraliza as páginas. Para adicionar/remover rotas no futuro, basta mexer aqui.
+// Array declarativo: centraliza as páginas.
 const NAV_ITEMS = [
   {
     page: 'dashboard',
@@ -28,7 +28,6 @@ const NAV_ITEMS = [
     label: 'Minhas Reservas',
     icon: svgReserv,
     section: 'RESERVAS',
-    // Conta as reservas não lidas do usuário
     badge: () =>
       getReservations().filter((r) => r.requester === 'Diego Pessoa' && !r.read)
         .length,
@@ -38,7 +37,6 @@ const NAV_ITEMS = [
     label: 'Aprovações',
     icon: svgApproval,
     section: null,
-    // Conta as aprovações pendentes
     badge: () => getApprovals().filter((a) => !a.read).length,
   },
   {
@@ -53,13 +51,11 @@ const NAV_ITEMS = [
     label: 'Notificações',
     icon: svgBell,
     section: null,
-    // Conta as notificações gerais não lidas
     badge: () => getNotifications().filter((n) => !n.read).length,
     roles: ['admin'],
   },
 ];
 
-// Componente de UI puro: recebe dados e callbacks, não gerencia estado próprio.
 export function createSidebar(
   container,
   currentUser,
@@ -79,20 +75,16 @@ export function createSidebar(
   );
 
   // ── Controle de Acesso (RBAC) ──
-  // Filtra as rotas visíveis baseadas no cargo (role) do usuário
   const isAdmin = currentUser.role === 'admin';
   const userItems = NAV_ITEMS.filter((item) => {
-    if (isAdmin) return true; // Admin vê tudo
-    // Professor/Coordenador vê apenas o básico:
+    if (isAdmin) return true;
     return ['reservas', 'calendario', 'novaReserva'].includes(item.page);
   });
 
   // ── Renderização dos Botões ──
   let currentSection = null;
 
-  // Itera sobre o array filtrado
   userItems.forEach((item) => {
-    // Cria cabeçalho de seção (ex: "ADMINISTRAÇÃO")
     if (item.section !== currentSection) {
       currentSection = item.section;
       if (item.section) {
@@ -102,7 +94,6 @@ export function createSidebar(
       }
     }
 
-    // Delega a ação de navegação para quem chamou a sidebar (onNavigate)
     const navItem = el(
       'button',
       {
@@ -120,22 +111,16 @@ export function createSidebar(
       item.label,
     );
 
-    // Renderiza o badge ao lado do label se a função existir
     if (item.badge) {
       const badgeVal =
         typeof item.badge === 'function' ? item.badge() : item.badge;
       const displayVal = badgeVal > 0 ? badgeVal : '';
-
-      // Cria o elemento visual da bolinha vermelha
       const badgeEl = el(
         'span',
         { class: 'notif-badge', id: `badge-${item.page}` },
         displayVal,
       );
-
-      // Esconde o badge se a contagem for zero
       if (!displayVal) badgeEl.style.display = 'none';
-
       navItem.appendChild(badgeEl);
     }
 
@@ -145,7 +130,6 @@ export function createSidebar(
   // ── Rodapé fixo ──
   const bottom = el('div', { class: 'sidebar-bottom' });
 
-  // Aciona a troca de tema via callback
   const toggleBtn = el('div', { class: 'dark-toggle', onClick: onToggleDark });
   const toggleRow = el(
     'div',
@@ -165,7 +149,6 @@ export function createSidebar(
     toggleBtn,
   );
 
-  // Exibe dados do usuário logado injetados via prop 'currentUser'
   const userPill = el(
     'div',
     { class: 'user-pill' },
@@ -189,7 +172,6 @@ export function createSidebar(
           color: 'var(--text-secondary)',
         },
         onClick: () => {
-          // Lazy Loading: só importa a store e carrega o script de logout se o usuário de fato clicar em sair.
           import('../data/store.js').then((m) => {
             m.logout();
             location.reload();
@@ -204,12 +186,30 @@ export function createSidebar(
   bottom.appendChild(userPill);
   sidebar.appendChild(bottom);
 
-  // Single DOM Append: Injeta tudo de uma vez na tela para melhor performance.
   container.appendChild(sidebar);
+
+  // [Apresentação] Expondo API global para que outros módulos (como o de Reservas)
+  // possam disparar a atualização dos badges sem precisar recriar a sidebar.
+  window.updateSidebarBadges = () => {
+    NAV_ITEMS.forEach((item) => {
+      if (item.badge) {
+        const badgeEl = document.getElementById(`badge-${item.page}`);
+        if (badgeEl) {
+          const badgeVal =
+            typeof item.badge === 'function' ? item.badge() : item.badge;
+          if (badgeVal > 0) {
+            badgeEl.textContent = badgeVal;
+            badgeEl.style.display = '';
+          } else {
+            badgeEl.style.display = 'none';
+          }
+        }
+      }
+    });
+  };
 }
 
 // ── Factory de SVGs ────────────────────────────────────────
-// Gera os ícones direto no DOM. Evita requisições HTTP extras e permite herdar a cor do texto (útil pro Dark Mode).
 function svgDashboard() {
   return makeSvg(
     '<rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/>',
