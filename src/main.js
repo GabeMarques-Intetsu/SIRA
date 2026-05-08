@@ -7,7 +7,7 @@ import { el, render } from './utils/dom.js';
 import { createSidebar } from './components/sidebar.js';
 import { initModalListeners } from './components/modal.js';
 
-// [Apresentação] Importação modular das páginas.
+// [Apresentação] Importação modular das páginas (View Layer)
 import { renderDashboard } from './modules/dashboard.js';
 import { renderCalendar } from './modules/calendar.js';
 import { renderReservations } from './modules/reservations.js';
@@ -19,7 +19,7 @@ import { renderNovaReserva } from './modules/novaReserva.js';
 
 import { tryRestoreSession, login, CURRENT_USER } from './data/store.js';
 
-// [Apresentação] Roteador Funcional: Mapeamos o nome da rota para sua função de render.
+// [Apresentação] Roteador Funcional (Dispatcher): Mapeamos strings para funções de renderização.
 const PAGE_RENDERERS = {
   dashboard: renderDashboard,
   calendario: renderCalendar,
@@ -31,7 +31,7 @@ const PAGE_RENDERERS = {
   novaReserva: renderNovaReserva,
 };
 
-// ── Telas de Autenticação ──
+// ── Funções de Autenticação ──
 function renderLogin() {
   const app = document.getElementById('app');
   app.innerHTML = '';
@@ -76,10 +76,12 @@ function bootstrap() {
   const app = document.getElementById('app');
   app.innerHTML = '';
 
+  // ── Montagem do Shell (Main UI Wrapper) ──
   const shell = el('div', { class: 'sira-shell' });
   const sidebarContainer = document.createElement('div');
   const main = el('div', { class: 'main' });
 
+  // PageContainer: Onde a mágica do SPA acontece
   const pageContainer = el('div', {
     class: 'page active',
     style: {
@@ -92,18 +94,34 @@ function bootstrap() {
 
   main.appendChild(pageContainer);
 
+  // [Apresentação] Função de Navegação Centralizada com Middleware de Segurança
   function navigate(pageName) {
+    if (!CURRENT_USER) return;
+
+    // ── T-07.4: BLOQUEIO DE ACESSO POR PERFIL (RBAC) ──
+    const isAdmin = CURRENT_USER.role === 'admin';
+    const allowedForUser = ['reservas', 'calendario', 'novaReserva'];
+
+    // Se o usuário não for admin e tentar acessar rota restrita, redireciona para o calendário.
+    if (!isAdmin && !allowedForUser.includes(pageName)) {
+      console.warn(`Acesso negado à rota: ${pageName}. Redirecionando...`);
+      pageName = 'calendario';
+    }
+
     const renderer = PAGE_RENDERERS[pageName];
     if (!renderer) return;
 
+    // ── T-07.2: ATUALIZAÇÃO DA URL (History API) ──
     if (window.location.pathname !== `/${pageName}`) {
       window.history.pushState({}, '', `/${pageName}`);
     }
 
+    // Renderização do novo conteúdo
     pageContainer.innerHTML = '';
     renderer(pageContainer);
   }
 
+  // Inicializa o Sidebar injetando a função de navegação
   createSidebar(sidebarContainer, CURRENT_USER, navigate, () => {
     const isDark = document.documentElement.classList.toggle('dark');
     localStorage.setItem('sira-theme', isDark ? 'dark' : 'light');
@@ -115,15 +133,14 @@ function bootstrap() {
 
   initModalListeners();
 
-  // ── T-07.3: ESCUTADOR DE HISTÓRICO ──
-  // [Apresentação] Reage aos botões de Voltar/Avançar do navegador.
+  // ── T-07.3: ESCUTADOR DE HISTÓRICO (Popstate) ──
   window.addEventListener('popstate', () => {
     let path = window.location.pathname.replace(/^\//, '');
     if (!path || !PAGE_RENDERERS[path]) path = 'calendario';
     navigate(path);
   });
 
-  // [Apresentação] Deep Linking: identifica a página inicial pela URL.
+  // Deep Linking: Render inicial baseado na URL atual
   let initialPage = window.location.pathname.replace(/^\//, '');
   if (!PAGE_RENDERERS[initialPage]) initialPage = 'calendario';
 
