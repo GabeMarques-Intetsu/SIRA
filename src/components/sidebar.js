@@ -52,10 +52,20 @@ export function createSidebar(
     ),
   );
 
+  // ── Controle de Acesso (RBAC) ──
+  // Filtra as rotas visíveis baseadas no cargo (role) do usuário
+  const isAdmin = currentUser.role === 'admin';
+  const userItems = NAV_ITEMS.filter((item) => {
+    if (isAdmin) return true; // Admin vê tudo
+    // Professor/Coordenador vê apenas o básico:
+    return ['reservas', 'calendario', 'novaReserva'].includes(item.page);
+  });
+
   // ── Renderização dos Botões ──
   let currentSection = null;
 
-  NAV_ITEMS.forEach((item) => {
+  // Itera sobre o array filtrado
+  userItems.forEach((item) => {
     // Cria cabeçalho de seção (ex: "ADMINISTRAÇÃO")
     if (item.section !== currentSection) {
       currentSection = item.section;
@@ -86,8 +96,6 @@ export function createSidebar(
 
     sidebar.appendChild(navItem);
   });
-
-  // ... (após o loop NAV_ITEMS.forEach) ...
 
   // ── Rodapé fixo ──
   const bottom = el('div', { class: 'sidebar-bottom' });
@@ -150,10 +158,6 @@ export function createSidebar(
   bottom.appendChild(toggleRow);
   bottom.appendChild(userPill);
   sidebar.appendChild(bottom);
-
-  // container.appendChild(sidebar); // Linha que já existia
-
-  // O bottom será adicionado no próximo commit
 
   // Single DOM Append: Injeta tudo de uma vez na tela para melhor performance.
   container.appendChild(sidebar);
