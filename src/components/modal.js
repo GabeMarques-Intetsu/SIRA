@@ -81,5 +81,11 @@ export function createModal({ id, title, body, actions }) {
  * Inicializa listeners globais de modal (Escape key).
  */
 export function initModalListeners() {
-  // A lógica será implementada na Task T-25.2
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document
+        .querySelectorAll('.modal-bg.open')
+        .forEach((m) => m.classList.remove('open'));
+    }
+  });
 }
