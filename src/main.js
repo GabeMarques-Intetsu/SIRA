@@ -31,6 +31,22 @@ const PAGE_RENDERERS = {
   novaReserva: renderNovaReserva,
 };
 
+// ── T-08.3: ADICIONA DATA-LABEL NAS CÉLULAS PARA RESPONSIVIDADE MOBILE ──
+// [Apresentação] Esta função percorre as tabelas e injeta o texto do cabeçalho em cada célula.
+// Isso permite que o CSS transforme a tabela em "cards" no celular usando pseudo-elementos.
+function addTableLabels(container) {
+  container.querySelectorAll('table').forEach((table) => {
+    const headers = [...table.querySelectorAll('thead th')].map((th) =>
+      th.textContent.trim(),
+    );
+    table.querySelectorAll('tbody tr').forEach((tr) => {
+      [...tr.querySelectorAll('td')].forEach((td, i) => {
+        if (headers[i]) td.setAttribute('data-label', headers[i]);
+      });
+    });
+  });
+}
+
 // ── Funções de Autenticação ──
 function renderLogin() {
   const app = document.getElementById('app');
@@ -76,12 +92,10 @@ function bootstrap() {
   const app = document.getElementById('app');
   app.innerHTML = '';
 
-  // ── Montagem do Shell (Main UI Wrapper) ──
   const shell = el('div', { class: 'sira-shell' });
   const sidebarContainer = document.createElement('div');
   const main = el('div', { class: 'main' });
 
-  // PageContainer: Onde a mágica do SPA acontece
   const pageContainer = el('div', {
     class: 'page active',
     style: {
@@ -94,34 +108,59 @@ function bootstrap() {
 
   main.appendChild(pageContainer);
 
-  // [Apresentação] Função de Navegação Centralizada com Middleware de Segurança
+  // ── T-08.2: OVERLAY DE FECHAMENTO ──
+  const overlay = el('div', { class: 'sidebar-overlay' });
+  overlay.addEventListener('click', () => {
+    sidebarContainer.querySelector('.sidebar')?.classList.remove('open');
+    overlay.classList.remove('open');
+  });
+  document.body.appendChild(overlay);
+
+  // [Apresentação] Função de Navegação Centralizada com Camada de Segurança e Mobile Labels
   function navigate(pageName) {
     if (!CURRENT_USER) return;
 
-    // ── T-07.4: BLOQUEIO DE ACESSO POR PERFIL (RBAC) ──
     const isAdmin = CURRENT_USER.role === 'admin';
     const allowedForUser = ['reservas', 'calendario', 'novaReserva'];
 
-    // Se o usuário não for admin e tentar acessar rota restrita, redireciona para o calendário.
     if (!isAdmin && !allowedForUser.includes(pageName)) {
-      console.warn(`Acesso negado à rota: ${pageName}. Redirecionando...`);
       pageName = 'calendario';
     }
 
     const renderer = PAGE_RENDERERS[pageName];
     if (!renderer) return;
 
-    // ── T-07.2: ATUALIZAÇÃO DA URL (History API) ──
     if (window.location.pathname !== `/${pageName}`) {
       window.history.pushState({}, '', `/${pageName}`);
     }
 
-    // Renderização do novo conteúdo
     pageContainer.innerHTML = '';
     renderer(pageContainer);
+
+    // T-08.3: Aplica labels de acessibilidade/responsividade nas tabelas da nova página
+    addTableLabels(pageContainer);
   }
 
-  // Inicializa o Sidebar injetando a função de navegação
+  // ── T-08.1: INJETAR BOTÃO HAMBÚRGUER DINÂMICO ──
+  const topbarObserver = new MutationObserver(() => {
+    const topbar = pageContainer.querySelector('.topbar');
+    if (topbar && !topbar.querySelector('.hamburger')) {
+      const hbtn = el(
+        'button',
+        {
+          class: 'hamburger',
+          onClick: () => {
+            sidebarContainer.querySelector('.sidebar')?.classList.add('open');
+            overlay.classList.add('open');
+          },
+        },
+        el('span', {}),
+      );
+      topbar.prepend(hbtn);
+    }
+  });
+  topbarObserver.observe(pageContainer, { childList: true, subtree: true });
+
   createSidebar(sidebarContainer, CURRENT_USER, navigate, () => {
     const isDark = document.documentElement.classList.toggle('dark');
     localStorage.setItem('sira-theme', isDark ? 'dark' : 'light');
@@ -133,14 +172,12 @@ function bootstrap() {
 
   initModalListeners();
 
-  // ── T-07.3: ESCUTADOR DE HISTÓRICO (Popstate) ──
   window.addEventListener('popstate', () => {
     let path = window.location.pathname.replace(/^\//, '');
     if (!path || !PAGE_RENDERERS[path]) path = 'calendario';
     navigate(path);
   });
 
-  // Deep Linking: Render inicial baseado na URL atual
   let initialPage = window.location.pathname.replace(/^\//, '');
   if (!PAGE_RENDERERS[initialPage]) initialPage = 'calendario';
 
