@@ -11,10 +11,22 @@ export function renderReservations(page) {
   const tbody = document.createElement("tbody");
   refreshTable(tbody);
 
+  const searchInput = el("input", {
+    type: "text",
+    placeholder: "Buscar reserva...",
+  });
+  searchInput.addEventListener("input", (e) => {
+    searchQuery = e.target.value;
+    refreshTable(tbody);
+  });
+
+  const searchBox = el("div", { class: "search-box" }, searchIcon(), searchInput);
+
   const topbar = el(
     "div",
     { class: "topbar" },
     el("span", { class: "topbar-title" }, "Minhas Reservas"),
+    searchBox,
   );
 
   const FILTERS = [
@@ -118,4 +130,16 @@ function buildRow(r, tbody) {
     badge(statusLabel, statusBadge(r.status)),
     actionsCell,
   ]);
+}
+
+function searchIcon() {
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("width", "13");
+  svg.setAttribute("height", "13");
+  svg.setAttribute("viewBox", "0 0 16 16");
+  svg.setAttribute("fill", "none");
+  svg.setAttribute("stroke", "currentColor");
+  svg.setAttribute("stroke-width", "1.5");
+  svg.innerHTML = '<circle cx="7" cy="7" r="5"/><path d="M11 11l3 3"/>';
+  return svg;
 }
