@@ -17,6 +17,32 @@ export function renderReservations(page) {
     el("span", { class: "topbar-title" }, "Minhas Reservas"),
   );
 
+  const FILTERS = [
+    { key: "all", label: "Todas" },
+    { key: "pending", label: "Pendentes" },
+    { key: "approved", label: "Aprovadas" },
+    { key: "rejected", label: "Recusadas" },
+  ];
+
+  const chips = FILTERS.map((f) => {
+    const chip = el(
+      "div",
+      { class: `filter-chip${f.key === "all" ? " active" : ""}` },
+      f.label,
+    );
+    chip.addEventListener("click", () => {
+      document
+        .querySelectorAll(".filter-chip")
+        .forEach((c) => c.classList.remove("active"));
+      chip.classList.add("active");
+      activeFilter = f.key;
+      refreshTable(tbody);
+    });
+    return chip;
+  });
+
+  const filterRow = el("div", { class: "filter-row" }, ...chips);
+
   const table = el(
     "div",
     { class: "table-wrap" },
@@ -41,7 +67,7 @@ export function renderReservations(page) {
     ),
   );
 
-  const content = el("div", { class: "content" }, table);
+  const content = el("div", { class: "content" }, filterRow, table);
   render(page, topbar, content);
 }
 
