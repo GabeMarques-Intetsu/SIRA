@@ -10,6 +10,9 @@ import { useEffect, useState } from "react";
  */
 export function useMounted(): boolean {
   const [mounted, setMounted] = useState(false);
-
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- mount-gate intencional: roda uma vez, no cliente, para liberar leituras browser-only (tema/matchMedia) sem mismatch de hidratação.
+    setMounted(true);
+  }, []);
   return mounted;
 }
