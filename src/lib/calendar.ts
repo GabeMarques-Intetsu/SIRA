@@ -127,3 +127,38 @@ export function getWeekDays(
     };
   });
 }
+
+/** Faixas horárias da grade: 07:00, 08:00 … 18:00 (12 faixas até 19h) — CA01. */
+export function getHourSlots(): number[] {
+  return Array.from(
+    { length: LAST_HOUR - FIRST_HOUR },
+    (_, i) => FIRST_HOUR + i,
+  );
+}
+
+/** `13 – 19 Janeiro` (mesmo mês) ou `30 Jan – 5 Fev` (vira o mês). */
+export function formatWeekRange(weekStart: Date): string {
+  const end = addDays(weekStart, 6);
+  const startMonth = MONTH_LABELS[weekStart.getUTCMonth()];
+  const endMonth = MONTH_LABELS[end.getUTCMonth()];
+  if (weekStart.getUTCMonth() === end.getUTCMonth()) {
+    return `${weekStart.getUTCDate()} – ${end.getUTCDate()} ${startMonth}`;
+  }
+  return `${weekStart.getUTCDate()} ${startMonth.slice(0, 3)} – ${end.getUTCDate()} ${endMonth.slice(0, 3)}`;
+}
+
+/** true se as duas datas pertencem à mesma semana (SEG→DOM). */
+export function isSameWeek(a: Date, b: Date): boolean {
+  return toIso(startOfWeek(a)) === toIso(startOfWeek(b));
+}
+
+/** Converte `HH:MM[:SS]` para horas decimais (ex.: "08:30" → 8.5). */
+export function timeToHours(time: string): number {
+  const [h, m] = time.split(":");
+  return Number(h) + Number(m ?? 0) / 60;
+}
+
+/** `HH:MM` a partir de `HH:MM:SS` (corta os segundos do Postgres `time`). */
+export function formatTime(time: string): string {
+  return time.slice(0, 5);
+}
