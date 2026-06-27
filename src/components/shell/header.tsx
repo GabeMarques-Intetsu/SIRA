@@ -43,7 +43,31 @@ export function Header({
 
   return (
     <header className="bg-surface/95 border-outline-variant gap-md px-md py-md md:px-margin-desktop sticky top-0 z-20 flex items-center border-b backdrop-blur">
-      {/* O conteúdo do header será adicionado nos próximos commits */}
+      {/* Mobile: abre o drawer */}
+      <button
+        type="button"
+        onClick={onOpenMenu}
+        className="touch-target text-on-surface-variant hover:bg-surface-container rounded-full md:hidden"
+        aria-label="Abrir menu de navegação"
+      >
+        <span className="material-symbols-outlined">menu</span>
+      </button>
+
+      {/* Desktop: recolhe/expande a sidebar fixa (BUG 3) */}
+      <button
+        type="button"
+        onClick={onToggleSidebar}
+        aria-expanded={!sidebarCollapsed}
+        aria-controls={sidebarId}
+        className="touch-target text-on-surface-variant hover:bg-surface-container hidden rounded-full md:inline-flex"
+        aria-label={sidebarCollapsed ? "Expandir menu" : "Recolher menu"}
+      >
+        <span className="material-symbols-outlined">menu</span>
+      </button>
+
+      <div className="flex-1">
+        <h1 className="text-headline-sm text-on-surface">SIRA</h1>
+      </div>
     </header>
   );
 }
