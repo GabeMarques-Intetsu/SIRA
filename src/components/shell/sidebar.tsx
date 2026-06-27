@@ -79,7 +79,11 @@ export function Sidebar({ items, badges = {}, onNavigate }: SidebarProps) {
           );
         })}
       </nav>
-      {/* Rodapé será adicionado no próximo passo */}
+
+      {/* Rodapé */}
+      <div className="border-outline-variant gap-xs pt-md mt-auto flex flex-col border-t">
+        <LogoutButton />
+      </div>
     </div>
   );
 }
