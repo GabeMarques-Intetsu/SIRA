@@ -26,9 +26,22 @@ export interface UiState {
   setSidebarCollapsed: (collapsed: boolean) => void;
 }
 
-export const useUiStore = create<UiState>()((set) => ({
-  sidebarCollapsed: false,
-  toggleSidebar: () =>
-    set((state) => ({ sidebarCollapsed: !state.sidebarCollapsed })),
-  setSidebarCollapsed: (collapsed) => set({ sidebarCollapsed: collapsed }),
-}));
+export const useUiStore = create<UiState>()(
+  persist(
+    (set) => ({
+      sidebarCollapsed: false,
+      toggleSidebar: () =>
+        set((state) => ({ sidebarCollapsed: !state.sidebarCollapsed })),
+      setSidebarCollapsed: (collapsed) => set({ sidebarCollapsed: collapsed }),
+    }),
+    {
+      name: "sira:sidebar-collapsed",
+      storage: createJSONStorage(() => localStorage),
+      // Só persistimos a preferência — ações não vão para o storage.
+      partialize: (state) => ({ sidebarCollapsed: state.sidebarCollapsed }),
+      // SSR-safe: não reidrata no servidor nem no primeiro render do cliente;
+      // o AppShell chama `rehydrate()` uma vez após montar, evitando flash/CLS.
+      skipHydration: true,
+    },
+  ),
+);
