@@ -25,3 +25,10 @@ export interface UiState {
   /** Define o colapso explicitamente. */
   setSidebarCollapsed: (collapsed: boolean) => void;
 }
+
+export const useUiStore = create<UiState>()((set) => ({
+  sidebarCollapsed: false,
+  toggleSidebar: () =>
+    set((state) => ({ sidebarCollapsed: !state.sidebarCollapsed })),
+  setSidebarCollapsed: (collapsed) => set({ sidebarCollapsed: collapsed }),
+}));
