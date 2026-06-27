@@ -36,3 +36,13 @@ export interface CalendarEvent {
   /** `08:00 – 10:00` (horário real da reserva, não recortado). */
   timeLabel: string;
 }
+
+/** Nome do recurso da reserva (sala ou equipamento), com fallback seguro. */
+export function resourceName(row: ReservationRow): string {
+  return row.rooms?.name ?? row.equipment?.name ?? "Recurso indisponível";
+}
+
+/** Bloco do recurso (para o filtro de bloco — CA09). */
+export function resourceBlock(row: ReservationRow): string | null {
+  return row.rooms?.block ?? row.equipment?.block ?? null;
+}
