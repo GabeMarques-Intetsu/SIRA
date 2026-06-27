@@ -96,6 +96,10 @@ export function Header({
             : "Sem notificações não lidas"}
         </span>
       </Link>
+
+      <ThemeToggle />
+
+      <UserMenu fullName={fullName} initials={initials} />
     </header>
   );
 }
