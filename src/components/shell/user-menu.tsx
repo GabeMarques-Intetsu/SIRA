@@ -52,7 +52,11 @@ export function UserMenu({ fullName, initials }: UserMenuProps) {
         </>
       }
     >
-      {/* Os itens internos do dropdown entram no próximo commit */}
+      <DropdownItemLink href="/configuracoes" icon="settings">
+        Configurações
+      </DropdownItemLink>
+      <DropdownSeparator />
+      <LogoutMenuItem />
     </DropdownMenu>
   );
 }
