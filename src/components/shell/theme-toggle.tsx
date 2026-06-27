@@ -28,7 +28,28 @@ export function ThemeToggle() {
       aria-label="Tema da interface"
       className="bg-surface-container gap-xs p-xs flex items-center rounded-full"
     >
-      {/* Os botões serão adicionados no próximo commit */}
+      {OPTIONS.map((opt) => {
+        const active = current === opt.value;
+        return (
+          <button
+            key={opt.value}
+            type="button"
+            role="radio"
+            aria-checked={active}
+            aria-label={`Tema ${opt.label}`}
+            onClick={() => setTheme(opt.value)}
+            className={`touch-target rounded-full transition-colors ${
+              active
+                ? "bg-primary text-on-primary"
+                : "text-on-surface-variant hover:bg-surface-container-high"
+            }`}
+          >
+            <span className="material-symbols-outlined" aria-hidden="true">
+              {opt.icon}
+            </span>
+          </button>
+        );
+      })}
     </div>
   );
 }
