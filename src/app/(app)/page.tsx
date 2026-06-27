@@ -3,5 +3,6 @@ import { requireProfile } from "@/lib/auth";
 import { homeForRole } from "@/components/shell/nav-config";
 
 export default async function AppIndex() {
-  return null;
+  const profile = await requireProfile();
+  redirect(homeForRole(profile.role));
 }
