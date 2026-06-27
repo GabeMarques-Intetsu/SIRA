@@ -73,3 +73,57 @@ export function parseIso(value: string | undefined | null): Date | null {
   }
   return date;
 }
+
+/** Segunda-feira da semana que contém `date` (semana SEG→DOM, como no mockup). */
+export function startOfWeek(date: Date): Date {
+  const day = date.getUTCDay(); // 0 = domingo
+  // Distância até a segunda-feira anterior (domingo recua 6 dias).
+  const diff = day === 0 ? -6 : 1 - day;
+  const monday = new Date(date);
+  monday.setUTCDate(date.getUTCDate() + diff);
+  return monday;
+}
+
+/** Soma `days` dias a uma Date UTC (retorna nova Date). */
+export function addDays(date: Date, days: number): Date {
+  const result = new Date(date);
+  result.setUTCDate(date.getUTCDate() + days);
+  return result;
+}
+
+/**
+ * Resolve a âncora da semana a partir dos parâmetros de URL (estado na URL):
+ * `date=YYYY-MM-DD` tem prioridade; senão `semana=<offset>` (inteiro) aplica
+ * deslocamento de semanas a partir de hoje; ausente ⇒ semana atual.
+ */
+export function resolveWeekAnchor(
+  params: { date?: string; semana?: string },
+  now: Date = new Date(),
+): Date {
+  const base = todayUtc(now);
+  const explicit = parseIso(params.date);
+  if (explicit) return startOfWeek(explicit);
+
+  const offset = Number.parseInt(params.semana ?? "", 10);
+  const safeOffset = Number.isFinite(offset) ? offset : 0;
+  return startOfWeek(addDays(base, safeOffset * 7));
+}
+
+/** Os 7 dias (SEG→DOM) da semana que começa em `weekStart`. */
+export function getWeekDays(
+  weekStart: Date,
+  now: Date = new Date(),
+): WeekDay[] {
+  const todayIso = toIso(todayUtc(now));
+  return Array.from({ length: 7 }, (_, i) => {
+    const d = addDays(weekStart, i);
+    const dow = d.getUTCDay();
+    return {
+      iso: toIso(d),
+      dayOfMonth: d.getUTCDate(),
+      weekdayLabel: WEEKDAY_LABELS[dow],
+      isWeekend: dow === 0 || dow === 6,
+      isToday: toIso(d) === todayIso,
+    };
+  });
+}
