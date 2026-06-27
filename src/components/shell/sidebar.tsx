@@ -19,7 +19,24 @@ export function Sidebar({ items, badges = {}, onNavigate }: SidebarProps) {
 
   return (
     <div className="bg-surface-container-low gap-md px-md py-lg flex h-full w-[264px] flex-col">
-      {/* O conteúdo da sidebar (branding, nav, footer) entrará nos próximos commits */}
+      {/* Branding */}
+      <div className="gap-sm px-sm flex items-center">
+        <div className="bg-primary flex h-10 w-10 items-center justify-center rounded-lg">
+          <span
+            className="material-symbols-outlined text-on-primary"
+            aria-hidden="true"
+          >
+            domain
+          </span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-headline-sm text-on-surface leading-none">
+            SIRA
+          </span>
+          <span className="text-label-sm text-on-surface-variant">IFPB</span>
+        </div>
+      </div>
+      {/* Navegação e rodapé serão adicionados nos próximos commits */}
     </div>
   );
 }
