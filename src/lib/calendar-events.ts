@@ -1,0 +1,38 @@
+/**
+ * Mapeamento reserva → evento posicionável na grade semanal (F-13 · CA02/CA03).
+ */
+import type { Enums } from "@/lib/supabase/database.types";
+import { FIRST_HOUR, LAST_HOUR, timeToHours } from "@/lib/calendar";
+
+export type ReservationStatus = Enums<"reservation_status">;
+export type ResourceKind = Enums<"resource_kind">;
+
+/** Linha de reserva com os nomes do recurso já resolvidos via join. */
+export interface ReservationRow {
+  id: string;
+  reservation_date: string;
+  start_time: string;
+  end_time: string;
+  status: ReservationStatus;
+  resource_kind: ResourceKind;
+  purpose: string | null;
+  rooms: { name: string; block: string | null } | null;
+  equipment: { name: string; block: string | null } | null;
+  profiles: { full_name: string } | null;
+}
+
+export interface CalendarEvent {
+  id: string;
+  /** Coluna 0–6 (SEG→DOM). */
+  dayIndex: number;
+  /** Faixa de início (0 = 07h) já recortada ao intervalo visível. */
+  slotIndex: number;
+  /** Quantas faixas o evento ocupa (mínimo 1). */
+  span: number;
+  resourceName: string;
+  authorName: string;
+  status: ReservationStatus;
+  resourceKind: ResourceKind;
+  /** `08:00 – 10:00` (horário real da reserva, não recortado). */
+  timeLabel: string;
+}
