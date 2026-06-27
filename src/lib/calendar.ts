@@ -40,3 +40,36 @@ const MONTH_LABELS = [
   "Novembro",
   "Dezembro",
 ];
+
+/** Constrói uma Date em UTC a partir dos componentes Y-M-D (mês 0-based). */
+function utcDate(year: number, monthIndex: number, day: number): Date {
+  return new Date(Date.UTC(year, monthIndex, day));
+}
+
+/** Hoje, normalizado para meia-noite UTC. */
+export function todayUtc(now: Date = new Date()): Date {
+  return utcDate(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+}
+
+/** Formata uma Date (UTC) como `YYYY-MM-DD`. */
+export function toIso(date: Date): string {
+  return date.toISOString().slice(0, 10);
+}
+
+/** Parseia `YYYY-MM-DD` para uma Date em meia-noite UTC (ou null se inválida). */
+export function parseIso(value: string | undefined | null): Date | null {
+  if (!value) return null;
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+  if (!match) return null;
+  const [, y, m, d] = match;
+  const date = utcDate(Number(y), Number(m) - 1, Number(d));
+  // Rejeita datas que "transbordam" (ex.: 2025-02-30 viraria março).
+  if (
+    date.getUTCFullYear() !== Number(y) ||
+    date.getUTCMonth() !== Number(m) - 1 ||
+    date.getUTCDate() !== Number(d)
+  ) {
+    return null;
+  }
+  return date;
+}
