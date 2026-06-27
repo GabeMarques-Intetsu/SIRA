@@ -44,3 +44,36 @@ test("evento multi-hora ocupa as faixas correspondentes", () => {
   assert.equal(ev.slotIndex, 7); // 14h = faixa 7 (07h = 0)
   assert.equal(ev.span, 2);
 });
+
+test("usa nome do equipamento quando não é sala", () => {
+  const [ev] = reservationsToEvents(
+    [
+      row({
+        resource_kind: "equipment",
+        rooms: null,
+        equipment: { name: "Projetor X", block: "C" },
+      }),
+    ],
+    WEEK,
+  );
+  assert.equal(ev.resourceName, "Projetor X");
+  assert.equal(ev.resourceKind, "equipment");
+});
+
+test("descarta reserva fora da semana visível", () => {
+  const events = reservationsToEvents(
+    [row({ reservation_date: "2025-02-01" })],
+    WEEK,
+  );
+  assert.equal(events.length, 0);
+});
+
+test("recorta reserva que ultrapassa o intervalo visível", () => {
+  // 18h–21h deve recortar para terminar às 19h (1 faixa).
+  const [ev] = reservationsToEvents(
+    [row({ start_time: "18:00:00", end_time: "21:00:00" })],
+    WEEK,
+  );
+  assert.equal(ev.slotIndex, 11); // 18h
+  assert.equal(ev.span, 1);
+});
