@@ -10,6 +10,9 @@ export default function Loading() {
       aria-live="polite"
     >
       <span className="sr-only">Carregando…</span>
+      
+      {/* Título */}
+      <div className="bg-surface-container-high h-8 w-64 rounded-lg" />
     </div>
   );
 }
