@@ -65,3 +65,13 @@ export const NAV_ITEMS: NavItem[] = [
     badgeKey: "approvals",
   },
 ];
+
+/** Itens visíveis para um dado perfil, na ordem de `NAV_ITEMS`. */
+export function navItemsForRole(role: Role): NavItem[] {
+  return NAV_ITEMS.filter((item) => item.roles.includes(role));
+}
+
+/** Tela inicial por perfil (F-01 CA07). */
+export function homeForRole(role: Role): string {
+  return role === "admin" ? "/painel" : "/calendario";
+}
