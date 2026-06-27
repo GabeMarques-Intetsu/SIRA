@@ -21,6 +21,9 @@ export default function Loading() {
         <div className="bg-surface-container-high h-24 rounded-xl" />
         <div className="bg-surface-container-high h-24 rounded-xl" />
       </div>
+
+      {/* Bloco de conteúdo */}
+      <div className="bg-surface-container-high h-64 rounded-xl" />
     </div>
   );
 }
