@@ -13,7 +13,7 @@ export default async function AppLayout({
   const items = navItemsForRole(profile.role);
   const isAdmin = profile.role === "admin";
 
-  const [unread, approvals] = await Promise.all([
+  const [unread, approvals, prefsRes] = await Promise.all([
     supabase
       .from("notifications")
       .select("id", { count: "exact", head: true })
@@ -25,19 +25,31 @@ export default async function AppLayout({
           .select("id", { count: "exact", head: true })
           .eq("status", "pending")
       : null,
+    supabase
+      .from("user_preferences")
+      .select("density, reduce_motion")
+      .eq("user_id", profile.id)
+      .maybeSingle(),
   ]);
 
   const notifications = unread.count ?? 0;
   const approvalsCount = approvals?.count ?? 0;
+  const density = prefsRes.data?.density ?? "comfortable";
+  const reduceMotion = prefsRes.data?.reduce_motion ?? false;
 
   return (
-    <AppShell 
-      fullName={profile.full_name} 
-      items={items}
-      notificationCount={notifications}
-      badges={{ notifications, approvals: approvalsCount }}
+    <div
+      data-density={density}
+      className={reduceMotion ? "reduce-motion contents" : "contents"}
     >
-      {children}
-    </AppShell>
+      <AppShell
+        fullName={profile.full_name}
+        items={items}
+        notificationCount={notifications}
+        badges={{ notifications, approvals: approvalsCount }}
+      >
+        {children}
+      </AppShell>
+    </div>
   );
 }
