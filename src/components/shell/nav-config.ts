@@ -47,4 +47,21 @@ export const NAV_ITEMS: NavItem[] = [
     roles: ["professor", "admin"],
     badgeKey: "notifications",
   },
+  // Admin
+  { href: "/painel", label: "Painel", icon: "dashboard", roles: ["admin"] },
+  { href: "/salas", label: "Salas", icon: "meeting_room", roles: ["admin"] },
+  {
+    href: "/equipamentos",
+    label: "Equipamentos",
+    icon: "videocam",
+    roles: ["admin"],
+  },
+  { href: "/usuarios", label: "Usuários", icon: "group", roles: ["admin"] },
+  {
+    href: "/aprovacoes",
+    label: "Aprovações",
+    icon: "fact_check",
+    roles: ["admin"],
+    badgeKey: "approvals",
+  },
 ];
