@@ -40,3 +40,30 @@ test("addDays não muta a data original", () => {
   assert.equal(toIso(base), "2025-01-13");
   assert.equal(toIso(later), "2025-01-20");
 });
+import { getWeekDays, isSameWeek, startOfWeek } from "../src/lib/calendar.ts";
+
+// CA01 — 7 dias começando na segunda-feira.
+test("getWeekDays retorna 7 dias SEG→DOM", () => {
+  const week = startOfWeek(parseIso("2025-01-15")!); // quarta
+  const days = getWeekDays(week, new Date("2025-01-15T12:00:00Z"));
+  assert.equal(days.length, 7);
+  assert.equal(days[0].iso, "2025-01-13"); // segunda
+  assert.equal(days[0].weekdayLabel, "SEG");
+  assert.equal(days[6].iso, "2025-01-19"); // domingo
+  assert.equal(days[6].weekdayLabel, "DOM");
+  assert.equal(days[6].isWeekend, true);
+  assert.equal(days[5].isWeekend, true); // sábado
+  assert.equal(days[0].isWeekend, false);
+});
+
+test("startOfWeek de um domingo recua para a segunda anterior", () => {
+  const sunday = parseIso("2025-01-19")!;
+  assert.equal(toIso(startOfWeek(sunday)), "2025-01-13");
+});
+
+// CA05 — identificar se a semana exibida é a atual
+test("isSameWeek detecta a semana atual", () => {
+  const now = parseIso("2025-01-15")!;
+  assert.equal(isSameWeek(now, parseIso("2025-01-13")!), true);
+  assert.equal(isSameWeek(now, parseIso("2025-01-20")!), false);
+});
