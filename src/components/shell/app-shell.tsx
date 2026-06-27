@@ -51,7 +51,7 @@ export function AppShell({
         Pular para o conteúdo
       </a>
 
-      {/* Sidebar fixa (desktop) — recolhe para largura 0 quando colapsada. */}
+      {/* Sidebar fixa (desktop) */}
       <aside
         id={SIDEBAR_ID}
         aria-hidden={sidebarCollapsed || undefined}
@@ -86,7 +86,23 @@ export function AppShell({
         </div>
       )}
 
-      {/* O main content e header serão adicionados no próximo passo */}
+      {/* Header e Conteúdo Principal */}
+      <div className="flex min-w-0 flex-1 flex-col">
+        <Header
+          fullName={fullName}
+          notificationCount={notificationCount}
+          onOpenMenu={() => setDrawerOpen(true)}
+          onToggleSidebar={toggleSidebar}
+          sidebarCollapsed={sidebarCollapsed}
+          sidebarId={SIDEBAR_ID}
+        />
+        <main
+          id="main-content"
+          className="p-md md:p-margin-desktop flex-1 overflow-y-auto"
+        >
+          {children}
+        </main>
+      </div>
     </div>
   );
 }
