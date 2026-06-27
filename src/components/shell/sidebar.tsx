@@ -36,7 +36,50 @@ export function Sidebar({ items, badges = {}, onNavigate }: SidebarProps) {
           <span className="text-label-sm text-on-surface-variant">IFPB</span>
         </div>
       </div>
-      {/* Navegação e rodapé serão adicionados nos próximos commits */}
+
+      <nav
+        aria-label="Navegação principal"
+        className="gap-xs flex flex-1 flex-col overflow-y-auto"
+      >
+        {items.map((item) => {
+          const active =
+            pathname === item.href || pathname.startsWith(`${item.href}/`);
+          const badge = item.badgeKey ? badges[item.badgeKey] : undefined;
+
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={onNavigate}
+              aria-current={active ? "page" : undefined}
+              className={`text-label-md gap-md px-md py-sm flex items-center justify-between rounded-lg transition-all ${
+                active
+                  ? "bg-secondary-container text-on-secondary-container font-bold"
+                  : "text-on-surface-variant hover:bg-surface-container-highest"
+              }`}
+            >
+              <span className="gap-md flex items-center">
+                <span
+                  className="material-symbols-outlined"
+                  aria-hidden="true"
+                  style={
+                    active ? { fontVariationSettings: "'FILL' 1" } : undefined
+                  }
+                >
+                  {item.icon}
+                </span>
+                <span>{item.label}</span>
+              </span>
+              {badge !== undefined && badge > 0 && (
+                <span className="bg-error text-on-error text-label-sm rounded-full px-2 py-0.5">
+                  {badge}
+                </span>
+              )}
+            </Link>
+          );
+        })}
+      </nav>
+      {/* Rodapé será adicionado no próximo passo */}
     </div>
   );
 }
