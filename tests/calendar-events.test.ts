@@ -77,3 +77,10 @@ test("recorta reserva que ultrapassa o intervalo visível", () => {
   assert.equal(ev.slotIndex, 11); // 18h
   assert.equal(ev.span, 1);
 });
+
+test("status é preservado para colorização (CA03)", () => {
+  const [pending] = reservationsToEvents([row({ status: "pending" })], WEEK);
+  const [rejected] = reservationsToEvents([row({ status: "rejected" })], WEEK);
+  assert.equal(pending.status, "pending");
+  assert.equal(rejected.status, "rejected");
+});
