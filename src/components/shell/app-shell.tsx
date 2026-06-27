@@ -62,7 +62,31 @@ export function AppShell({
         <Sidebar items={items} badges={badges} />
       </aside>
 
-      {/* O resto do layout virá nos próximos passos */}
+      {/* Drawer mobile */}
+      {drawerOpen && (
+        <div className="fixed inset-0 z-40 md:hidden">
+          <button
+            type="button"
+            aria-label="Fechar menu"
+            className="absolute inset-0 bg-black/40"
+            onClick={() => setDrawerOpen(false)}
+          />
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menu de navegação"
+            className="border-outline-variant absolute inset-y-0 left-0 border-r shadow-lg"
+          >
+            <Sidebar
+              items={items}
+              badges={badges}
+              onNavigate={() => setDrawerOpen(false)}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* O main content e header serão adicionados no próximo passo */}
     </div>
   );
 }
