@@ -68,6 +68,34 @@ export function Header({
       <div className="flex-1">
         <h1 className="text-headline-sm text-on-surface">SIRA</h1>
       </div>
+
+      <Link
+        href="/notificacoes"
+        className="touch-target text-on-surface-variant hover:bg-surface-container relative flex items-center justify-center rounded-full"
+        aria-label={
+          notificationCount > 0
+            ? `Notificações (${notificationCount} não lidas)`
+            : "Notificações"
+        }
+      >
+        <span className="material-symbols-outlined" aria-hidden="true">
+          notifications
+        </span>
+        {notificationCount > 0 && (
+          <span
+            className="bg-error text-on-error absolute top-1 right-1 flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[10px] font-bold"
+            aria-hidden="true"
+          >
+            {notificationCount}
+          </span>
+        )}
+        {/* Anúncio do contador para leitores de tela (aria-live) sem poluir o ícone. */}
+        <span className="sr-only" aria-live="polite">
+          {notificationCount > 0
+            ? `${notificationCount} notificações não lidas`
+            : "Sem notificações não lidas"}
+        </span>
+      </Link>
     </header>
   );
 }
