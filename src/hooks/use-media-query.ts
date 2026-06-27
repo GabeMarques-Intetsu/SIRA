@@ -13,8 +13,11 @@ export function useMediaQuery(query: string): boolean {
 
   useEffect(() => {
     if (typeof window === "undefined" || !window.matchMedia) return;
-    
-    // O listener será implementado na próxima etapa
+    const mql = window.matchMedia(query);
+    const onChange = () => setMatches(mql.matches);
+    onChange(); // sincroniza o valor inicial no cliente
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
   }, [query]);
 
   return matches;
