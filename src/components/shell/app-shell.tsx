@@ -47,7 +47,22 @@ export function AppShell({
 
   return (
     <div className="flex min-h-screen w-full">
-      {/* O layout estrutural vem no próximo commit */}
+      <a href="#main-content" className="skip-link">
+        Pular para o conteúdo
+      </a>
+
+      {/* Sidebar fixa (desktop) — recolhe para largura 0 quando colapsada. */}
+      <aside
+        id={SIDEBAR_ID}
+        aria-hidden={sidebarCollapsed || undefined}
+        className={`border-outline-variant hidden flex-shrink-0 overflow-hidden border-r transition-[width] duration-200 ease-out md:flex ${
+          sidebarCollapsed ? "md:w-0 md:border-r-0" : "md:w-[264px]"
+        }`}
+      >
+        <Sidebar items={items} badges={badges} />
+      </aside>
+
+      {/* O resto do layout virá nos próximos passos */}
     </div>
   );
 }
