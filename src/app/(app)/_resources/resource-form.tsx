@@ -14,7 +14,15 @@
  * campo, Esc fecha, foco preso entre focáveis, labels associadas, erros com
  * `aria-invalid` + `aria-describedby` (cabeados pelo form.tsx). Alvo ≥44px.
  */
-import { useEffect, useId, useRef, useState, useTransition } from "react";
+import {
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  useTransition,
+  type ReactNode,
+} from "react";
+import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -128,54 +136,61 @@ export function ResourceForm({
       : "Novo equipamento";
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center">
-      <button
-        type="button"
-        aria-label="Fechar"
-        tabIndex={-1}
-        className="absolute inset-0 bg-black/40"
-        onClick={onClose}
-      />
-      <div
-        ref={dialogRef}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby={titleId}
-        className="bg-surface-container-lowest border-outline-variant p-lg gap-md relative flex max-h-[90vh] w-full max-w-[34rem] flex-col overflow-y-auto rounded-t-xl border shadow-lg sm:rounded-xl"
-      >
-        <div className="flex items-start justify-between">
-          <h2 id={titleId} className="text-headline-sm text-on-surface">
-            {heading}
-          </h2>
-          <button
-            type="button"
-            onClick={onClose}
-            className="touch-target text-on-surface-variant hover:bg-surface-container rounded-full"
-            aria-label="Fechar"
-          >
-            <span className="material-symbols-outlined" aria-hidden="true">
-              close
-            </span>
-          </button>
-        </div>
+    <ResourceModalPortal>
+      <div className="fixed inset-0 isolate z-[100] flex items-end justify-center sm:items-center">
+        <button
+          type="button"
+          aria-label="Fechar"
+          tabIndex={-1}
+          className="absolute inset-0 z-0 bg-black/50"
+          onClick={onClose}
+        />
+        <div
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={titleId}
+          className="bg-surface-container-lowest border-outline-variant p-lg gap-md relative z-10 flex max-h-[90vh] w-full max-w-[34rem] flex-col overflow-y-auto rounded-t-xl border shadow-lg sm:rounded-xl"
+        >
+          <div className="flex items-start justify-between">
+            <h2 id={titleId} className="text-headline-sm text-on-surface">
+              {heading}
+            </h2>
+            <button
+              type="button"
+              onClick={onClose}
+              className="touch-target text-on-surface-variant hover:bg-surface-container rounded-full"
+              aria-label="Fechar"
+            >
+              <span className="material-symbols-outlined" aria-hidden="true">
+                close
+              </span>
+            </button>
+          </div>
 
-        {isRoom ? (
-          <RoomFields
-            room={room}
-            statusOptions={STATUS_OPTIONS}
-            onClose={onClose}
-          />
-        ) : (
-          <EquipmentFields
-            equipment={equipment}
-            rooms={rooms}
-            statusOptions={STATUS_OPTIONS}
-            onClose={onClose}
-          />
-        )}
+          {isRoom ? (
+            <RoomFields
+              room={room}
+              statusOptions={STATUS_OPTIONS}
+              onClose={onClose}
+            />
+          ) : (
+            <EquipmentFields
+              equipment={equipment}
+              rooms={rooms}
+              statusOptions={STATUS_OPTIONS}
+              onClose={onClose}
+            />
+          )}
+        </div>
       </div>
-    </div>
+    </ResourceModalPortal>
   );
+}
+
+export function ResourceModalPortal({ children }: { children: ReactNode }) {
+  if (typeof document === "undefined") return null;
+  return createPortal(children, document.body);
 }
 
 // ─────────────────────────────── Sala (F-24) ────────────────────────────────

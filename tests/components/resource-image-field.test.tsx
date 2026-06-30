@@ -49,6 +49,7 @@ function makeFile(name: string, type: string, size: number): File {
 }
 
 beforeEach(() => {
+  process.env.NEXT_PUBLIC_SUPABASE_URL = "https://proj.supabase.co";
   // jsdom não implementa objectURL — stub determinístico p/ o preview.
   let n = 0;
   globalThis.URL.createObjectURL = vi.fn(() => `blob:mock-${++n}`);

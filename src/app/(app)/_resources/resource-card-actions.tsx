@@ -19,7 +19,7 @@ import {
   DropdownMenu,
   DropdownSeparator,
 } from "@/components/ui/dropdown-menu";
-import { ResourceForm } from "./resource-form";
+import { ResourceForm, ResourceModalPortal } from "./resource-form";
 import {
   deleteEquipmentAction,
   deleteRoomAction,
@@ -201,59 +201,61 @@ function ConfirmDelete({
   }, [onCancel]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center">
-      <button
-        type="button"
-        aria-label="Cancelar"
-        tabIndex={-1}
-        className="absolute inset-0 bg-black/40"
-        onClick={onCancel}
-      />
-      <div
-        role="alertdialog"
-        aria-modal="true"
-        aria-labelledby="confirm-delete-title"
-        className="bg-surface-container-lowest border-outline-variant p-lg gap-md relative flex w-full max-w-[28rem] flex-col rounded-t-xl border shadow-lg sm:rounded-xl"
-      >
-        <h2
-          id="confirm-delete-title"
-          className="text-headline-sm text-on-surface"
+    <ResourceModalPortal>
+      <div className="fixed inset-0 isolate z-[100] flex items-end justify-center sm:items-center">
+        <button
+          type="button"
+          aria-label="Cancelar"
+          tabIndex={-1}
+          className="absolute inset-0 z-0 bg-black/50"
+          onClick={onCancel}
+        />
+        <div
+          role="alertdialog"
+          aria-modal="true"
+          aria-labelledby="confirm-delete-title"
+          className="bg-surface-container-lowest border-outline-variant p-lg gap-md relative z-10 flex w-full max-w-[28rem] flex-col rounded-t-xl border shadow-lg sm:rounded-xl"
         >
-          Excluir {isRoom ? "sala" : "equipamento"}?
-        </h2>
-        <p className="text-body-md text-on-surface-variant">
-          Esta ação remove <strong className="text-on-surface">{name}</strong>{" "}
-          do catálogo. {isRoom ? "A sala" : "O equipamento"} com reservas
-          futuras não pode ser excluíd{isRoom ? "a" : "o"} — nesse caso, inative
-          em vez de excluir.
-        </p>
-        <div className="gap-sm flex justify-end">
-          <button
-            ref={cancelRef}
-            type="button"
-            onClick={onCancel}
-            disabled={isPending}
-            className="px-md border-outline-variant text-on-surface hover:bg-surface-container-high text-label-md rounded-lg border py-2 disabled:opacity-60"
+          <h2
+            id="confirm-delete-title"
+            className="text-headline-sm text-on-surface"
           >
-            Cancelar
-          </button>
-          <button
-            type="button"
-            onClick={onConfirm}
-            disabled={isPending}
-            className="px-md bg-error text-on-error text-label-md gap-xs flex items-center rounded-lg py-2 disabled:opacity-60"
-          >
-            <span
-              className="material-symbols-outlined"
-              style={{ fontSize: 18 }}
-              aria-hidden="true"
+            Excluir {isRoom ? "sala" : "equipamento"}?
+          </h2>
+          <p className="text-body-md text-on-surface-variant">
+            Esta ação remove <strong className="text-on-surface">{name}</strong>{" "}
+            do catálogo. {isRoom ? "A sala" : "O equipamento"} com reservas
+            futuras não pode ser excluíd{isRoom ? "a" : "o"} — nesse caso,
+            inative em vez de excluir.
+          </p>
+          <div className="gap-sm flex justify-end">
+            <button
+              ref={cancelRef}
+              type="button"
+              onClick={onCancel}
+              disabled={isPending}
+              className="px-md border-outline-variant text-on-surface hover:bg-surface-container-high text-label-md rounded-lg border py-2 disabled:opacity-60"
             >
-              delete
-            </span>
-            {isPending ? "Excluindo…" : "Confirmar exclusão"}
-          </button>
+              Cancelar
+            </button>
+            <button
+              type="button"
+              onClick={onConfirm}
+              disabled={isPending}
+              className="px-md bg-error text-on-error text-label-md gap-xs flex items-center rounded-lg py-2 disabled:opacity-60"
+            >
+              <span
+                className="material-symbols-outlined"
+                style={{ fontSize: 18 }}
+                aria-hidden="true"
+              >
+                delete
+              </span>
+              {isPending ? "Excluindo…" : "Confirmar exclusão"}
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </ResourceModalPortal>
   );
 }
