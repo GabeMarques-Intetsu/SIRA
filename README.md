@@ -7,32 +7,36 @@ como projeto integrado das disciplinas:
 - **Engenharia de Requisitos de Software** (levantamento, especificação e
   validação dos requisitos)
 
-> Status: **sprint 1 concluída — 25 / 25 user stories entregues**.
-> A primeira sprint é em **JavaScript puro (ES Modules)** servido pelo Vite;
-> a segunda sprint migra a camada de apresentação para **React**.
+> Status: **Sprint 1 concluída (25/25 user stories) · Sprint 2 (migração) implementada**.
+> A **Sprint 1** foi um protótipo em **JavaScript puro (ES Modules) + Vite**
+> (preservado em [`legacy/`](legacy/) para histórico); a **Sprint 2** migrou o
+> produto para **Next.js (App Router) + TypeScript + Supabase** — fase atual.
 
 ---
 
 ## 📦 Stack
 
-| Camada               | Ferramenta                                                                                             | Versão               |
-| -------------------- | ------------------------------------------------------------------------------------------------------ | -------------------- |
-| Bundler / dev server | [Vite](https://vitejs.dev/)                                                                            | `^8.0.10`            |
-| Linguagem (sprint 1) | JavaScript (ES Modules)                                                                                | ES Latest            |
-| UI (sprint 2)        | React                                                                                                  | _previsto_           |
-| Lint                 | [ESLint](https://eslint.org/) (flat config)                                                            | `^9.39.4`            |
-| Formatação           | [Prettier](https://prettier.io/)                                                                       | `^3.8.3`             |
-| Git hooks            | [Husky](https://typicode.github.io/husky/) + [lint-staged](https://github.com/lint-staged/lint-staged) | `^9.1.7` / `^15.5.2` |
-| CI / Deploy          | GitHub Actions + GitHub Pages                                                                          | —                    |
+| Camada                  | Ferramenta                                                                                                                                                                                                          | Versão                              |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| Framework / dev server  | [Next.js](https://nextjs.org/) (App Router, Server Components, Server Actions)                                                                                                                                      | `16.x`                              |
+| Linguagem               | [TypeScript](https://www.typescriptlang.org/) (`strict`)                                                                                                                                                            | `^5`                                |
+| UI                      | [React](https://react.dev/)                                                                                                                                                                                         | `19.x`                              |
+| Estilo                  | [Tailwind CSS v4](https://tailwindcss.com/) + Material Design 3 (tokens)                                                                                                                                            | `^4`                                |
+| Componentes             | [shadcn/ui](https://ui.shadcn.com/) (primitivos [Radix](https://www.radix-ui.com/)) + `next-themes`                                                                                                                 | —                                   |
+| Backend / Auth / DB     | [Supabase](https://supabase.com/) (Postgres + Auth + RLS + RPCs + Storage)                                                                                                                                          | `@supabase/ssr ^0.12` · `js ^2.108` |
+| Formulários / Validação | [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/)                                                                                                                                           | `^7` / `^4`                         |
+| Gerência de estado      | [TanStack Query](https://tanstack.com/query) (servidor) + [Zustand](https://zustand.docs.pmnd.rs/) (UI global) + Context API                                                                                        | `^5` / `^5`                         |
+| Testes                  | `node:test` (unit) · [Vitest](https://vitest.dev/) + [Testing Library](https://testing-library.com/) (componente) · [Cucumber](https://cucumber.io/) (BDD pt-BR) · [Playwright](https://playwright.dev/) (E2E/a11y) | —                                   |
+| Qualidade               | [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/) + [Husky](https://typicode.github.io/husky/) + lint-staged                                                                                         | `^9` / `^3`                         |
+| Deploy                  | [Vercel](https://vercel.com/)                                                                                                                                                                                       | —                                   |
 
 ---
 
 ## ✅ Pré-requisitos
 
-- **Node.js 24 LTS** — fixado em [`.nvmrc`](.nvmrc). O Vite 8 e o Rolldown
-  exigem `^20.19.0 || >=22.12.0`; o projeto adota a LTS atual (24.x) para
-  ficar dentro do range suportado e evitar avisos de `EBADENGINE`.
-- **npm 11+** (já vem bundled com o Node 24).
+- **Node.js 22/24 LTS** — fixado em [`.nvmrc`](.nvmrc). (Na Vercel, use 22.x se a 24 ainda não estiver disponível.)
+- **npm 11+** (já vem bundled com o Node).
+- Uma conta/projeto **Supabase** (Postgres + Auth + Storage).
 - Recomendado: [`nvm`](https://github.com/nvm-sh/nvm) para alternar versões.
 
 ```bash
@@ -48,122 +52,155 @@ nvm use            # ativa a versão correta
 # 1. Instale as dependências (cria node_modules/ e configura o Husky)
 npm install
 
-# 2. Suba o dev server com HMR
+# 2. Configure as variáveis de ambiente (copie o modelo e preencha)
+cp .env.example .env.local
+#    Preencha NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY,
+#    SUPABASE_SERVICE_ROLE_KEY e NEXT_PUBLIC_SITE_URL (ver .env.example).
+
+# 3. Suba o dev server (Next.js + Turbopack, HMR)
 npm run dev
 ```
 
-A aplicação estará disponível em **http://localhost:5173**.
+A aplicação estará disponível em **http://localhost:3000**.
 
 > O script `prepare` do `package.json` roda `husky` automaticamente após o
 > `npm install`, registrando os hooks de pre-commit.
+> O `SUPABASE_SERVICE_ROLE_KEY` é **server-only** (provisionamento de contas) —
+> nunca prefixe com `NEXT_PUBLIC_` nem comite (já está no `.gitignore`).
 
 ---
 
 ## 🛠️ Scripts disponíveis
 
-| Script                 | O que faz                                                               |
-| ---------------------- | ----------------------------------------------------------------------- |
-| `npm run dev`          | Inicia o servidor de desenvolvimento do Vite com HMR                    |
-| `npm run build`        | Gera o build de produção em `dist/`                                     |
-| `npm run preview`      | Serve localmente o build de produção (útil para testar antes do deploy) |
-| `npm run lint`         | Roda o ESLint em `src/` aplicando correções automáticas (`--fix`)       |
-| `npm run lint:check`   | Roda o ESLint sem corrigir (modo verificação para CI)                   |
-| `npm run format`       | Formata todos os arquivos com Prettier                                  |
-| `npm run check-format` | Verifica se os arquivos estão formatados (usado pelo CI)                |
-| `npm run pre-commit`   | Pipeline manual: `lint` + `format`                                      |
-| `npm run prepare`      | Instala os hooks do Husky (executado pelo npm após o `install`)         |
+| Script                   | O que faz                                                                      |
+| ------------------------ | ------------------------------------------------------------------------------ |
+| `npm run dev`            | Inicia o servidor de desenvolvimento do Next.js (Turbopack, HMR) na porta 3000 |
+| `npm run build`          | Gera o build de produção (`.next/`)                                            |
+| `npm run start`          | Serve o build de produção localmente                                           |
+| `npm test`               | Roda unit + componente + BDD em sequência                                      |
+| `npm run test:unit`      | Testes unitários da lógica pura (`src/lib/`) com `node:test`                   |
+| `npm run test:component` | Testes de componente React com **Vitest + Testing Library**                    |
+| `npm run test:bdd`       | Cenários **BDD** (Gherkin pt-BR) com **Cucumber**                              |
+| `npm run test:e2e`       | Testes **E2E** com **Playwright**                                              |
+| `npm run test:a11y`      | Auditoria de **acessibilidade** (Playwright + `@axe-core/playwright`)          |
+| `npm run lint`           | Roda o ESLint                                                                  |
+| `npm run lint:fix`       | ESLint aplicando correções automáticas                                         |
+| `npm run format`         | Formata todos os arquivos com Prettier                                         |
+| `npm run prepare`        | Instala os hooks do Husky (executado pelo npm após o `install`)                |
 
 ---
 
 ## 📁 Estrutura do projeto
 
+O projeto tem **duas fases**, ambas preservadas para histórico:
+
+- **Sprint 2 (atual)** — aplicação em **Next.js + TypeScript + Supabase**.
+- **Sprint 1 (legado)** — protótipo em **Vanilla JS + Vite**, preservado em
+  [`legacy/`](legacy/) (não é mais buildado).
+
+> A estrutura **canônica e detalhada** do código atual vive em [`AGENTS.md`](AGENTS.md).
+
+### Sprint 2 — atual (Next.js + TypeScript + Supabase)
+
 ```
 .
-├── .github/
-│   └── workflows/
-│       ├── ci.yml             # Valida formatação e build em PRs e push em develop
-│       └── deploy.yml         # Publica no GitHub Pages quando uma release é publicada
-├── .husky/
-│   └── pre-commit             # Dispara `npx lint-staged` antes de cada commit
-├── docs/
-│   ├── reports/sprint-1/      # Relatórios consolidados da sprint (épicos, features, sequência ótima)
-│   └── team-tasks/sprint-1/   # PDFs individuais das tarefas de cada membro do time
-├── public/
-│   ├── icons/                 # Ícones SVG usados pela aplicação
-│   └── screenshots/           # Capturas de tela do produto (`Preview-temp.png` etc.)
-├── src/                       # Código-fonte da aplicação
-│   ├── components/
-│   │   ├── modal.js           # API de modais (createModal/openModal/closeModal) + listener global Esc
-│   │   └── sidebar.js         # Sidebar contextual com badges, userPill, logout e toggle de tema
-│   ├── data/
-│   │   ├── logins.json        # Seed do usuário admin
-│   │   ├── seed.json          # Seeds vazios para rooms / reservations / notifications / approvals
-│   │   └── store.js           # Camada de dados: AUTH + persistência por usuário + aprovações cross-user
-│   ├── modules/
-│   │   ├── calendar.js        # Grade semanal 7d × 12h com eventos por status (US-13)
-│   │   └── novaReserva.js     # Formulário de busca de salas + criação de reserva com anti-conflito (US-14/15)
-│   ├── utils/
-│   │   ├── dom.js             # Factories: el, render, btn, badge, tableRow, toast, confirm
-│   │   └── fp.js              # Helpers funcionais: filterByText, computeStats (reduce), initials, statusBadge, etc.
-│   ├── auth.css               # Estilos das telas de login e cadastro
-│   ├── home.css               # Estilos da home, sidebar e calendário (grid responsivo)
-│   ├── main.js                # Entry point — bootstrap, autenticação inline, roteador e drawer mobile
-│   └── style.css              # Estilos globais com CSS Variables e suporte a dark mode
-├── .nvmrc                     # Versão do Node (24 LTS)
-├── .prettierrc                # Regras do Prettier (semi, single quote, trailing comma)
-├── .prettierignore            # Arquivos ignorados pelo Prettier
-├── eslint.config.js           # ESLint flat config + integração com Prettier
-├── index.html                 # Entry point HTML do Vite (carrega /src/main.js como módulo)
-├── vite.config.js             # Configuração do Vite (base condicional via env GITHUB_PAGES)
-├── package.json
-└── package-lock.json
+├── src/
+│   ├── app/                # App Router (RSC). (auth)/ público · (app)/ protegido · actions.ts · loading.tsx
+│   ├── components/         # shell/ (sidebar, header, nav) · ui/ (shadcn/Radix) · providers, theme, vlibras
+│   ├── lib/                # domínio PURO (auth, reservation, holds, approvals…) + supabase/ (client, server, admin, types)
+│   ├── schemas/            # validação Zod compartilhada client+servidor
+│   ├── hooks/              # client hooks reutilizáveis (+ queries/ = TanStack Query)
+│   ├── stores/             # Zustand (ui-store)
+│   └── proxy.ts            # middleware do Next 16 (refresh de sessão + proteção de rota)
+├── supabase/migrations/    # DDL versionada 0001..0008 (schema, RLS, RPCs, Storage, holds)
+├── tests/                  # *.test.ts (node:test) · components/ (Vitest+RTL) · features/ (BDD) · e2e/ (Playwright)
+├── docs/                   # requirements/ · backlog/ · specs/ · planning/adrs/ · runbooks/
+├── public/                 # assets estáticos
+├── PRD.md · AGENTS.md      # produto + convenções de desenvolvimento
+├── .env.example            # contrato de variáveis (Supabase + site URL)
+└── next.config.ts · tsconfig.json · vitest.config.ts · playwright.config.ts · cucumber.cjs
 ```
 
-> **Notas de domínio:**
+### Sprint 1 — legado (Vanilla JS + Vite) · _histórico_
+
+> Entrega original (25/25 user stories), preservada para referência em
+> [`legacy/`](legacy/) — não é mais buildada. A árvore abaixo descreve o layout
+> daquela fase.
+
+```
+legacy/  (era a raiz do projeto na Sprint 1)
+├── .github/workflows/
+│   ├── ci.yml             # Valida formatação e build em PRs e push em develop
+│   └── deploy.yml         # Publicava no GitHub Pages quando uma release era publicada
+├── public/
+│   ├── icons/             # Ícones SVG usados pela aplicação
+│   └── screenshots/       # Capturas de tela do produto
+├── src/
+│   ├── components/
+│   │   ├── modal.js       # API de modais (createModal/openModal/closeModal) + listener global Esc
+│   │   └── sidebar.js     # Sidebar contextual com badges, userPill, logout e toggle de tema
+│   ├── data/
+│   │   ├── logins.json    # Seed do usuário admin
+│   │   ├── seed.json      # Seeds vazios para rooms / reservations / notifications / approvals
+│   │   └── store.js       # Camada de dados: AUTH + persistência por usuário + aprovações cross-user
+│   ├── modules/
+│   │   ├── calendar.js    # Grade semanal 7d × 12h com eventos por status (US-13)
+│   │   └── novaReserva.js # Busca de salas + criação de reserva com anti-conflito (US-14/15)
+│   ├── utils/
+│   │   ├── dom.js         # Factories: el, render, btn, badge, tableRow, toast, confirm
+│   │   └── fp.js          # Helpers funcionais: filterByText, computeStats (reduce), initials, statusBadge…
+│   ├── main.js            # Entry point — bootstrap, autenticação inline, roteador e drawer mobile
+│   └── *.css              # auth.css, home.css, style.css (CSS Variables + dark mode)
+├── index.html             # Entry point HTML do Vite
+└── vite.config.js         # Configuração do Vite (base condicional via env GITHUB_PAGES)
+```
+
+> **Notas de domínio (Sprint 1):**
 >
-> - `src/components/` contém os blocos visuais reutilizáveis (sidebar, modal).
-> - `src/modules/` contém uma página por arquivo — cada `renderX` é registrado em
+> - `src/components/` continha os blocos visuais reutilizáveis (sidebar, modal).
+> - `src/modules/` tinha uma página por arquivo — cada `renderX` era registrado em
 >   `PAGE_RENDERERS` no `main.js` e roteado por URL via `pushState` + `popstate`.
-> - `src/data/store.js` é a única fonte de verdade para LocalStorage, com
+> - `src/data/store.js` era a única fonte de verdade para LocalStorage, com
 >   particionamento por e-mail (`sira_db/<email>/<colecao>.json`) e consolidação
->   automática quando o usuário logado é admin.
+>   automática quando o usuário logado era admin. _(Substituído por Supabase +
+>   RLS na Sprint 2 — ver [ADR-001](docs/planning/adrs/ADR-001-schema-inicial-e-rls-supabase.md).)_
 
 ---
 
 ## 🔄 Pipeline de qualidade
 
-O fluxo de qualidade local + CI funciona assim:
+O fluxo de qualidade funciona assim:
 
 1. **Antes do commit (local):** o hook `pre-commit` do Husky chama
    `npx lint-staged`, que roda ESLint + Prettier **apenas nos arquivos
    alterados** — segundo a configuração `lint-staged` do `package.json`:
-   - `src/**/*.js` → `eslint --fix` + `prettier --write`
-   - `src/**/*.{css,html,json}` → `prettier --write`
-   - `*.{js,json,md,yml}` (raiz) → `prettier --write`
-2. **No CI (PRs e push em `develop`):** o workflow [`ci.yml`](.github/workflows/ci.yml)
-   roda `npm ci`, `npm run check-format` e `npm run build`.
-3. **Em release:** o workflow [`deploy.yml`](.github/workflows/deploy.yml)
-   buildeia e publica em **GitHub Pages**.
+   - `*.{ts,tsx,js,jsx}` → `eslint --fix` + `prettier --write`
+   - `*.{json,css,md}` → `prettier --write`
+2. **Build:** `npm run build` (Next.js) valida tipos (`strict`) e compila as rotas.
+3. **Testes:** `npm test` (unitário + componente + BDD) e Playwright (`test:e2e` / `test:a11y`).
+
+> ⚠️ Os workflows [`ci.yml`](.github/workflows/ci.yml) e
+> [`deploy.yml`](.github/workflows/deploy.yml) em `.github/` são da **Sprint 1**
+> (deploy em GitHub Pages). Na **Sprint 2** o deploy de produção é na **Vercel** —
+> ver a seção [Deploy](#-deploy).
 
 ---
 
 ## 🚢 Deploy
 
-O deploy é **manual via GitHub Releases**: ao publicar uma release, o
-workflow `deploy.yml` roda o build e publica a pasta `dist/` no GitHub
-Pages.
+O deploy é na **Vercel** (Next.js), conectada ao repositório GitHub: cada push
+na branch de produção dispara um build. O passo a passo completo — variáveis de
+ambiente, URLs de autenticação do Supabase e SMTP — está no runbook:
 
-- URL pública: <https://gabemarques-intetsu.github.io/SIRA/>
-- O `vite.config.js` aplica o `base` apenas quando `GITHUB_PAGES=true`
-  (variável injetada pelo step _Build_ do `deploy.yml`). Em
-  desenvolvimento e `npm run preview` locais, a `base` é `/` — sem
-  subpath, sem precisar lembrar de URL especial.
+➡️ **[`docs/runbooks/deploy-vercel.md`](docs/runbooks/deploy-vercel.md)**
 
-> **Pré-condição:** habilite **GitHub Pages → Source: GitHub Actions** nas
-> configurações do repositório.
+Variáveis necessárias (Project Settings → Environment Variables):
+`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`,
+`SUPABASE_SERVICE_ROLE_KEY` (secreta, server-only) e `NEXT_PUBLIC_SITE_URL`.
+Modelo em [`.env.example`](.env.example).
 
-Para disparar um deploy fora de release (ex.: hotfix manual), use
-**Actions → Deploy → Run workflow** (`workflow_dispatch`).
+> Headers de segurança (X-Frame-Options, nosniff, Referrer-Policy,
+> Permissions-Policy) já vêm configurados em `next.config.ts`.
 
 ---
 
@@ -262,29 +299,30 @@ em [`docs/team-tasks/sprint-1/`](docs/team-tasks/sprint-1/).
 | Administração               | Pedro Sales     | 5         | 5      |
 | **Total**                   | —               | **25**    | **25** |
 
-**O que funciona em produção (release `v1.0.x`):**
+> ⚠️ A tabela e os blocos acima refletem a **entrega original em Vanilla JS + Vite**.
+> O projeto foi **migrado para Next.js + TypeScript + Supabase**; a lista abaixo
+> reflete as funcionalidades **atuais**.
 
-- Login institucional + cadastro de professor + sessão persistente em `F5`
-- Sidebar contextual com badges dinâmicos, filtragem por role, logout e
-  toggle de modo escuro com persistência (sobrevive a refresh)
-- Roteamento por URL com `pushState`, `popstate` e middleware de segurança
-  por perfil
-- Drawer mobile com hambúrguer dinâmico e tabelas convertidas em cards
-- Calendário semanal 7d × 12h com eventos coloridos por status
-- Sistema de modais centralizado com fechamento via Escape
-- Persistência por usuário no LocalStorage com consolidação para admin
-- **Nova reserva** com busca anti-conflito e fluxo de aprovação em 1º nível
-- **CRUD completo de reservas pessoais** (listar, filtrar, ver, editar,
-  cancelar, exportar CSV)
-- **Dashboard administrativo** com KPIs em tempo real (reduce de salas
-  e reservas)
-- **Caixa de notificações** com marcação individual e em massa
-- **Fila de aprovações** com decisão (aprovar/recusar) em 1 clique e
-  notificação automática ao solicitante
-- **CRUD de salas** com filtros por status (livre / ocupada / manutenção)
-  e seleção de recursos por checkbox
-- **CRUD de usuários** com perfis professor/admin, busca e remoção
-- **Revisão de solicitações de cadastro** pendentes com aprovar/recusar
+**Funcionalidades implementadas (Next.js + Supabase):**
+
+- **Autenticação institucional** (`@ifpb.edu.br`): login, cadastro com aprovação,
+  logout, recuperação de senha por e-mail, **MFA/TOTP** opcional; sessão via
+  Supabase Auth (verificação local de JWT com `getClaims`).
+- **Proteção de rotas por perfil** (professor/admin) via `proxy.ts` + guards no servidor.
+- **Calendário semanal** 7d × 12h com eventos por status; **Nova Reserva** (wizard
+  com busca anti-conflito e **reserva temporária / _hold_** do recurso durante a solicitação).
+- **CRUD das próprias reservas** (listar, filtrar, ver detalhe, editar, cancelar, exportar CSV).
+- **Painel administrativo** com KPIs (agregação no banco via RPC).
+- **Central de notificações** (marcar individual/todas) com cache via TanStack Query.
+- **Fila de aprovações** (aprovar/recusar com motivo → notificação ao solicitante;
+  bloqueio de auto-aprovação).
+- **Gestão de recursos** — CRUD de **salas e equipamentos**, agora **com upload de imagem**
+  (Supabase Storage) exibida nos cards.
+- **Gestão de usuários** e revisão de solicitações de cadastro (provisionamento via service-role).
+- **Configurações da conta** — perfil, tema (claro/escuro/sistema), densidade,
+  reduzir-animações, preferências de notificação, segurança e zona de risco.
+- **Acessibilidade** (WCAG 2.2 AA, axe 0 violações), **responsividade** (mobile-first)
+  e **VLibras** (tradutor de Libras) em todas as páginas.
 
 ---
 

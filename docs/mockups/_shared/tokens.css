@@ -1,0 +1,246 @@
+/*
+ * SIRA — Design tokens M3 (Material Design 3)
+ * Single source of truth para paleta, tipografia, spacing e raios.
+ * Light + Dark mode via `<html class="light|dark">`.
+ *
+ * Carrega em cada mockup como:
+ *   <link rel="stylesheet" href="./_shared/tokens.css">
+ *
+ * Paleta institucional IFPB (azul primary, verde secondary, marrom tertiary).
+ * Tokens validados WCAG 2.2 AA (contraste ≥4.5:1 texto normal, ≥3:1 texto grande).
+ */
+
+/* ─── Tokens semânticos (CSS custom properties) ─────────────────────────── */
+
+:root,
+html.light {
+  /* Surface family */
+  --color-background: #f8f9ff;
+  --color-surface: #f8f9ff;
+  --color-surface-bright: #f8f9ff;
+  --color-surface-dim: #cbdbf5;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #eff4ff;
+  --color-surface-container: #e5eeff;
+  --color-surface-container-high: #dce9ff;
+  --color-surface-container-highest: #d3e4fe;
+  --color-surface-variant: #d3e4fe;
+  --color-surface-tint: #0060a8;
+
+  /* On-surface family */
+  --color-on-background: #0b1c30;
+  --color-on-surface: #0b1c30;
+  --color-on-surface-variant: #414751;
+  --color-outline: #717783;
+  --color-outline-variant: #c0c7d3;
+
+  /* Primary (Azul IFPB) */
+  --color-primary: #005ea4;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #1777c9;
+  --color-on-primary-container: #fdfcff;
+  --color-primary-fixed: #d2e4ff;
+  --color-on-primary-fixed: #001c38;
+  --color-primary-fixed-dim: #a1c9ff;
+  --color-on-primary-fixed-variant: #004880;
+
+  /* Secondary (Verde — sucesso/positivo) */
+  --color-secondary: #386a0e;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #b5f086;
+  --color-on-secondary-container: #3d6f13;
+  --color-secondary-fixed: #b8f389;
+  --color-on-secondary-fixed: #0c2000;
+  --color-secondary-fixed-dim: #9dd770;
+  --color-on-secondary-fixed-variant: #265100;
+
+  /* Tertiary (Marrom — informacional/destaque neutro) */
+  --color-tertiary: #81511f;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #9e6935;
+  --color-on-tertiary-container: #fffbff;
+  --color-tertiary-fixed: #ffdcc0;
+  --color-on-tertiary-fixed: #2d1600;
+  --color-tertiary-fixed-dim: #fab97e;
+  --color-on-tertiary-fixed-variant: #683c0a;
+
+  /* Error/danger (status, não conta para a paleta ≤3) */
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  /* Inverse (para tooltips/snackbars sobre o tema atual) */
+  --color-inverse-surface: #213145;
+  --color-inverse-on-surface: #eaf1ff;
+  --color-inverse-primary: #a1c9ff;
+
+  /* Sombra (token semântico, não cor) */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md:
+    0 4px 6px -1px rgb(0 0 0 / 0.06), 0 2px 4px -2px rgb(0 0 0 / 0.04);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.06), 0 4px 6px -4px rgb(0 0 0 / 0.04);
+}
+
+/* ─── DARK MODE ─────────────────────────────────────────────────────────── */
+html.dark {
+  /* Surface family (escala invertida + tonalidade frio-noturno) */
+  --color-background: #0b1c30;
+  --color-surface: #0b1c30;
+  --color-surface-bright: #2b3b4d;
+  --color-surface-dim: #0b1c30;
+  --color-surface-container-lowest: #061421;
+  --color-surface-container-low: #131e2c;
+  --color-surface-container: #182532;
+  --color-surface-container-high: #232f3d;
+  --color-surface-container-highest: #2e3a48;
+  --color-surface-variant: #414751;
+  --color-surface-tint: #a1c9ff;
+
+  /* On-surface family (textos claros) */
+  --color-on-background: #dce3ec;
+  --color-on-surface: #dce3ec;
+  --color-on-surface-variant: #c0c7d3;
+  --color-outline: #8b919d;
+  --color-outline-variant: #414751;
+
+  /* Primary (clareado para contraste sobre dark) */
+  --color-primary: #a1c9ff;
+  --color-on-primary: #00325b;
+  --color-primary-container: #004880;
+  --color-on-primary-container: #d2e4ff;
+  --color-primary-fixed: #d2e4ff;
+  --color-on-primary-fixed: #001c38;
+  --color-primary-fixed-dim: #a1c9ff;
+  --color-on-primary-fixed-variant: #004880;
+
+  /* Secondary (verde mais saturado p/ legibilidade) */
+  --color-secondary: #9dd770;
+  --color-on-secondary: #143800;
+  --color-secondary-container: #265100;
+  --color-on-secondary-container: #b8f389;
+  --color-secondary-fixed: #b8f389;
+  --color-on-secondary-fixed: #0c2000;
+  --color-secondary-fixed-dim: #9dd770;
+  --color-on-secondary-fixed-variant: #265100;
+
+  /* Tertiary */
+  --color-tertiary: #fab97e;
+  --color-on-tertiary: #482900;
+  --color-tertiary-container: #683c0a;
+  --color-on-tertiary-container: #ffdcc0;
+  --color-tertiary-fixed: #ffdcc0;
+  --color-on-tertiary-fixed: #2d1600;
+  --color-tertiary-fixed-dim: #fab97e;
+  --color-on-tertiary-fixed-variant: #683c0a;
+
+  /* Error */
+  --color-error: #ffb4ab;
+  --color-on-error: #690005;
+  --color-error-container: #93000a;
+  --color-on-error-container: #ffdad6;
+
+  /* Inverse */
+  --color-inverse-surface: #dce3ec;
+  --color-inverse-on-surface: #213145;
+  --color-inverse-primary: #005ea4;
+
+  /* Sombras um pouco mais fortes no dark */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.35);
+  --shadow-md:
+    0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.25);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.45), 0 4px 6px -4px rgb(0 0 0 / 0.25);
+}
+
+/* ─── Sem flash do tema inicial (FOIT prevention) ───────────────────────── */
+html {
+  color-scheme: light dark;
+}
+html.light {
+  color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
+}
+
+/* Transição suave ao alternar (mas sem afetar foco ou animações) */
+html.theme-ready body,
+html.theme-ready body * {
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease,
+    fill 200ms ease,
+    stroke 200ms ease;
+}
+
+/* ─── Material Symbols base ─────────────────────────────────────────────── */
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Touch-target mínimo 44×44px (Apple HIG + WCAG 2.5.5 AA) ───────────── */
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── Focus ring acessível (WCAG 2.4.7 + 2.4.13 AA) ─────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+/* ─── Skip link (a11y — landmark navigation) ────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  padding: 8px 16px;
+  z-index: 999;
+  text-decoration: none;
+  border-radius: 0 0 0.5rem 0;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* ─── Scrollbar visual (estética + dark mode) ───────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-outline-variant) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--color-outline-variant);
+  border-radius: 4px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--color-outline);
+}

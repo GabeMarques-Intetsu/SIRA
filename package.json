@@ -1,42 +1,74 @@
 {
-  "name": "sira-sistema-de-reserva-salas-e-equipamentos",
-  "version": "1.0.0",
-  "description": "SIRA — Sistema de Reserva de Salas e Equipamentos (Projeto PWEB2)",
+  "name": "next-scaffold",
+  "version": "0.1.0",
   "private": true,
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "lint": "eslint src --fix",
-    "lint:check": "eslint src",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test:unit": "node --test --experimental-strip-types --loader ./tests/loader.mjs 'tests/**/*.test.ts'",
+    "test:component": "vitest run",
+    "test:component:watch": "vitest",
+    "test:bdd": "cucumber-js",
+    "test": "npm run test:unit && npm run test:component && npm run test:bdd",
+    "test:e2e": "playwright test",
+    "test:a11y": "playwright test tests/e2e/a11y.spec.ts",
+    "lint": "eslint",
+    "prepare": "husky",
     "format": "prettier --write .",
-    "check-format": "prettier --check .",
-    "pre-commit": "npm run lint && npm run format",
-    "prepare": "husky"
+    "lint:fix": "eslint --fix"
   },
-  "keywords": [],
-  "author": "Gabriel Marques",
-  "license": "UNLICENSED",
+  "dependencies": {
+    "@hookform/resolvers": "^5.4.0",
+    "@radix-ui/react-dialog": "^1.1.17",
+    "@radix-ui/react-label": "^2.1.10",
+    "@radix-ui/react-slot": "^1.3.0",
+    "@supabase/ssr": "^0.12.0",
+    "@supabase/supabase-js": "^2.108.1",
+    "@tanstack/react-query": "^5.101.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "next": "16.2.9",
+    "next-themes": "^0.4.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-hook-form": "^7.79.0",
+    "server-only": "^0.0.1",
+    "tailwind-merge": "^3.6.0",
+    "zod": "^4.4.3",
+    "zustand": "^5.0.14"
+  },
   "devDependencies": {
-    "@eslint/js": "^9.39.4",
-    "eslint": "^9.39.4",
-    "eslint-config-prettier": "^10.1.8",
-    "globals": "^17.6.0",
+    "@axe-core/playwright": "^4.11.3",
+    "@cucumber/cucumber": "^13.0.0",
+    "@playwright/test": "^1.60.0",
+    "@tailwindcss/postcss": "^4",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^6.0.2",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.9",
     "husky": "^9.1.7",
-    "lint-staged": "^15.5.2",
-    "prettier": "^3.8.3",
-    "vite": "^8.0.10"
+    "jsdom": "^29.1.1",
+    "lint-staged": "^17.0.7",
+    "prettier": "^3.8.4",
+    "prettier-plugin-tailwindcss": "^0.8.0",
+    "tailwindcss": "^4",
+    "tsx": "^4.22.4",
+    "typescript": "^5",
+    "vite-tsconfig-paths": "^6.1.1",
+    "vitest": "^4.1.9"
   },
   "lint-staged": {
-    "src/**/*.js": [
+    "*.{ts,tsx,js,jsx}": [
       "eslint --fix",
       "prettier --write"
     ],
-    "src/**/*.{css,html,json}": [
-      "prettier --write"
-    ],
-    "*.{js,json,md,yml}": [
+    "*.{json,css,md}": [
       "prettier --write"
     ]
   }

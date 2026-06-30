@@ -12,6 +12,13 @@ dist-ssr/
 .env.local
 .env.*.local
 
+# Planilhas do OpenProject (Excel-sync) — guardam o API Token na aba Default/B3.
+# Nunca versionar: o template preenchido contém credencial.
+*.xlsm
+
+# Lock files do LibreOffice/OpenOffice (gerados ao abrir uma planilha/doc)
+.~lock.*#
+
 # Logs
 npm-debug.log*
 yarn-debug.log*
@@ -50,3 +57,11 @@ Thumbs.db
 __pycache__/
 .venv/
 venv/
+
+# Next.js
+/.next/
+/out/
+/build
+next-env.d.ts
+*.tsbuildinfo
+.vercel
