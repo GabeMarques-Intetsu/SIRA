@@ -7,12 +7,14 @@ import {
   canActOn,
   computeKpis,
   dateShort,
+  findConflictingPendingIds,
   parseTab,
   recurrenceLabel,
   relativeTime,
   resourceName,
   statusBadge,
   timeRange,
+  type ApprovalConflictRow,
   type ApprovalRow,
   type ApprovalTab,
 } from "@/lib/approvals";
@@ -32,6 +34,9 @@ const SELECT = `id, reservation_date, start_time, end_time, status, resource_kin
   rooms ( name, block ),
   equipment ( name, block )`;
 
+const CONFLICT_SELECT =
+  "id, reservation_date, start_time, end_time, status, resource_kind, room_id, equipment_id";
+
 /**
  * Fila de Aprovações (F-21/F-22/F-23 · RF-008). Admin-only via `requireAdmin()`
  * (F-21 CA01). Server Component:
@@ -40,8 +45,8 @@ const SELECT = `id, reservation_date, start_time, end_time, status, resource_kin
  * - aplica a busca textual vinda da URL (solicitante/recurso, CA07);
  * - calcula os KPIs (pendentes/decisões de hoje/tempo médio — CA09/CA10) a
  *   partir de `reservations` + `approval_events`;
- * - sinaliza conflito potencial in-queue (mockup 08): mais de uma pendente para
- *   o mesmo recurso+data+horário (heurística leve; ver TODO de conflito real).
+ * - sinaliza conflito real quando uma pendente sobrepõe reserva aprovada do
+ *   mesmo recurso e horário (F-22 CA05/CA07).
  *
  * A lista é HTML do servidor (LCP bom, sem CLS); só as ações Aprovar/Recusar
  * são client islands.
@@ -68,19 +73,21 @@ export default async function AprovacoesPage({
     listQuery = listQuery.eq("status", tab);
   }
 
-  // A lista da aba e os KPIs são INDEPENDENTES (os KPIs agregam todas as
-  // reservas/eventos; a lista é só o recorte da aba) → as duas idas ao banco
-  // em paralelo, sem waterfall (react-best-practices → server-parallel-fetching).
-  const [{ data, error }, kpis] = await Promise.all([
+  // Lista, conflitos e KPIs são independentes; buscamos em paralelo, sem
+  // waterfall (react-best-practices → server-parallel-fetching).
+  const [{ data, error }, conflictRes, kpis] = await Promise.all([
     listQuery,
+    loadConflictRows(supabase),
     loadKpis(supabase),
   ]);
 
   const allRows = error ? [] : ((data ?? []) as unknown as ApprovalRow[]);
   const rows = applySearch(allRows, query);
 
-  // Conflito potencial in-queue: chave recurso+data+horário com >1 pendente.
-  const conflictKeys = buildConflictKeys(allRows);
+  const conflictRows = conflictRes.error
+    ? []
+    : ((conflictRes.data ?? []) as unknown as ApprovalConflictRow[]);
+  const conflictIds = findConflictingPendingIds(conflictRows);
 
   return (
     <div className="gap-lg mx-auto flex w-full max-w-[1280px] flex-col">
@@ -137,9 +144,7 @@ export default async function AprovacoesPage({
               key={row.id}
               row={row}
               adminId={admin.id}
-              hasConflict={
-                row.status === "pending" && conflictKeys.has(conflictKey(row))
-              }
+              hasConflict={row.status === "pending" && conflictIds.has(row.id)}
             />
           ))}
         </section>
@@ -241,8 +246,8 @@ function RequestCard({
                 warning
               </span>
               <span className="text-body-sm text-on-surface">
-                Conflito potencial: outro pedido para o mesmo recurso e horário
-                aguarda decisão.
+                Conflito de horário: já existe reserva aprovada para este
+                recurso no mesmo período.
               </span>
             </div>
           )}
@@ -323,6 +328,15 @@ function EmptyState({
   );
 }
 
+// ─────────────────────────── Dados auxiliares (servidor) ────────────────────
+
+function loadConflictRows(supabase: Awaited<ReturnType<typeof createClient>>) {
+  return supabase
+    .from("reservations")
+    .select(CONFLICT_SELECT)
+    .in("status", ["pending", "approved"]);
+}
+
 // ─────────────────────────── KPIs (servidor) ────────────────────────────────
 
 async function loadKpis(supabase: Awaited<ReturnType<typeof createClient>>) {
@@ -371,33 +385,4 @@ async function loadKpis(supabase: Awaited<ReturnType<typeof createClient>>) {
     rejectedToday,
     samples,
   });
-}
-
-// ─────────────────────────── Conflito in-queue (mockup) ─────────────────────
-
-/** Chave recurso+data+horário p/ detectar pendentes concorrentes. */
-function conflictKey(row: ApprovalRow): string {
-  const resource =
-    row.resource_kind === "room"
-      ? `room:${row.room_id}`
-      : `equip:${row.equipment_id}`;
-  return `${resource}|${row.reservation_date}|${row.start_time}|${row.end_time}`;
-}
-
-/**
- * Sinaliza conflito quando ≥2 PENDENTES disputam o mesmo recurso+horário
- * (mockup 08). TODO(F-22 CA05/CA07): trocar por sobreposição parcial real via
- * RPC `check_resource_availability` contra reservas APROVADAS, reaproveitando a
- * mesma regra da busca de salas; aqui é só a heurística visual de fila.
- */
-function buildConflictKeys(rows: ApprovalRow[]): Set<string> {
-  const counts = new Map<string, number>();
-  for (const r of rows) {
-    if (r.status !== "pending") continue;
-    const k = conflictKey(r);
-    counts.set(k, (counts.get(k) ?? 0) + 1);
-  }
-  const dup = new Set<string>();
-  for (const [k, n] of counts) if (n > 1) dup.add(k);
-  return dup;
 }

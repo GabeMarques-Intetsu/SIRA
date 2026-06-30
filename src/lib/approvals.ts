@@ -179,6 +179,67 @@ export function applySearch(rows: ApprovalRow[], term: string): ApprovalRow[] {
   });
 }
 
+// ─────────────────────────── Conflitos de aprovação ─────────────────────────
+
+/** Recorte mínimo para checar conflito entre pendentes e aprovadas. */
+export interface ApprovalConflictRow {
+  id: string;
+  reservation_date: string;
+  start_time: string;
+  end_time: string;
+  status: ReservationStatus;
+  resource_kind: Database["public"]["Enums"]["resource_kind"];
+  room_id: string | null;
+  equipment_id: string | null;
+}
+
+function timeToMinutes(value: string): number {
+  const [hours = "0", minutes = "0"] = value.split(":");
+  return Number(hours) * 60 + Number(minutes);
+}
+
+/** Mesma regra de overlap usada pelo domínio: a.start < b.end && b.start < a.end. */
+export function approvalIntervalsOverlap(
+  a: Pick<ApprovalConflictRow, "start_time" | "end_time">,
+  b: Pick<ApprovalConflictRow, "start_time" | "end_time">,
+): boolean {
+  return (
+    timeToMinutes(a.start_time) < timeToMinutes(b.end_time) &&
+    timeToMinutes(b.start_time) < timeToMinutes(a.end_time)
+  );
+}
+
+function sameResource(
+  a: Pick<ApprovalConflictRow, "resource_kind" | "room_id" | "equipment_id">,
+  b: Pick<ApprovalConflictRow, "resource_kind" | "room_id" | "equipment_id">,
+): boolean {
+  if (a.resource_kind !== b.resource_kind) return false;
+  return a.resource_kind === "room"
+    ? Boolean(a.room_id && a.room_id === b.room_id)
+    : Boolean(a.equipment_id && a.equipment_id === b.equipment_id);
+}
+
+/** Retorna os ids das pendentes que conflitam com alguma reserva já aprovada. */
+export function findConflictingPendingIds(
+  rows: ApprovalConflictRow[],
+): Set<string> {
+  const approved = rows.filter((r) => r.status === "approved");
+  const conflicts = new Set<string>();
+
+  for (const pending of rows) {
+    if (pending.status !== "pending") continue;
+    const hasConflict = approved.some(
+      (r) =>
+        r.reservation_date === pending.reservation_date &&
+        sameResource(r, pending) &&
+        approvalIntervalsOverlap(r, pending),
+    );
+    if (hasConflict) conflicts.add(pending.id);
+  }
+
+  return conflicts;
+}
+
 // ─────────────────────────── Indicadores / KPIs (F-21 CA09/CA10) ────────────
 
 export interface ApprovalKpis {

@@ -34,6 +34,11 @@ const SELF_REVIEW_BLOCKED =
 export interface ActionResult {
   ok: boolean;
   error: string | null;
+  needsConfirmation?: boolean;
+}
+
+interface ApproveOptions {
+  confirmConflict?: boolean;
 }
 
 /** Revalida todas as superfícies que refletem o estado de uma reserva. */
@@ -50,12 +55,23 @@ async function loadPendingReservation(
   supabase: Awaited<ReturnType<typeof createClient>>,
   reservationId: string,
 ): Promise<
-  | { ok: true; userId: string; date: string; start: string }
+  | {
+      ok: true;
+      userId: string;
+      date: string;
+      start: string;
+      end: string;
+      resourceKind: "room" | "equipment";
+      roomId: string | null;
+      equipmentId: string | null;
+    }
   | { ok: false; error: string }
 > {
   const { data, error } = await supabase
     .from("reservations")
-    .select("id, status, user_id, reservation_date, start_time")
+    .select(
+      "id, status, user_id, reservation_date, start_time, end_time, resource_kind, room_id, equipment_id",
+    )
     .eq("id", reservationId)
     .single();
 
@@ -71,7 +87,39 @@ async function loadPendingReservation(
     userId: data.user_id,
     date: data.reservation_date,
     start: data.start_time,
+    end: data.end_time,
+    resourceKind: data.resource_kind,
+    roomId: data.room_id,
+    equipmentId: data.equipment_id,
   };
+}
+
+async function checkApprovalConflict(
+  supabase: Awaited<ReturnType<typeof createClient>>,
+  reservation: Extract<
+    Awaited<ReturnType<typeof loadPendingReservation>>,
+    { ok: true }
+  >,
+  reservationId: string,
+): Promise<{ ok: true; hasConflict: boolean } | { ok: false; error: string }> {
+  const { data, error } = await supabase.rpc("check_resource_availability", {
+    p_resource_kind: reservation.resourceKind,
+    p_room_id: reservation.roomId,
+    p_equipment_id: reservation.equipmentId,
+    p_date: reservation.date,
+    p_start: reservation.start,
+    p_end: reservation.end,
+    p_exclude_reservation: reservationId,
+  });
+
+  if (error) {
+    return {
+      ok: false,
+      error: "Não foi possível verificar conflitos antes da aprovação.",
+    };
+  }
+
+  return { ok: true, hasConflict: data === false };
 }
 
 /**
@@ -82,6 +130,7 @@ async function loadPendingReservation(
  */
 export async function approveReservationAction(
   reservationId: string,
+  options: ApproveOptions = {},
 ): Promise<ActionResult> {
   const admin = await requireAdmin();
   if (!reservationId) return { ok: false, error: "Reserva inválida." };
@@ -95,6 +144,21 @@ export async function approveReservationAction(
   // servidor — relemos o user_id da reserva, não confiamos no client).
   if (!canActOn({ user_id: current.userId }, admin.id)) {
     return { ok: false, error: SELF_REVIEW_BLOCKED };
+  }
+
+  const conflict = await checkApprovalConflict(
+    supabase,
+    current,
+    reservationId,
+  );
+  if (!conflict.ok) return { ok: false, error: conflict.error };
+  if (conflict.hasConflict && !options.confirmConflict) {
+    return {
+      ok: false,
+      error:
+        "Há conflito de horário com outra reserva. Confirme explicitamente para aprovar mesmo assim.",
+      needsConfirmation: true,
+    };
   }
 
   // Guarda anti-corrida: só atinge a linha se AINDA estiver pendente (CA01).

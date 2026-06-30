@@ -31,12 +31,15 @@ export function ApprovalActions({ reservationId, hasConflict = false }: Props) {
   const [confirmingApprove, setConfirmingApprove] = useState(false);
   const [rejectOpen, setRejectOpen] = useState(false);
 
-  const runApprove = () => {
+  const runApprove = (confirmConflict = false) => {
     setError(null);
     startTransition(async () => {
-      const res = await approveReservationAction(reservationId);
+      const res = await approveReservationAction(reservationId, {
+        confirmConflict,
+      });
       setConfirmingApprove(false);
       if (!res.ok) {
+        if (res.needsConfirmation) setConfirmingApprove(true);
         setError(res.error);
         return;
       }
@@ -85,7 +88,7 @@ export function ApprovalActions({ reservationId, hasConflict = false }: Props) {
             </span>
             <button
               type="button"
-              onClick={runApprove}
+              onClick={() => runApprove(true)}
               disabled={isPending}
               className="px-sm bg-secondary text-on-secondary text-label-sm rounded-lg py-1.5 disabled:opacity-60"
             >

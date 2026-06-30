@@ -17,4 +17,4 @@ Funcionalidade: Painel restrito e ordenação cronológica das solicitações
   Cenário: Fila vazia exibe mensagem
     Dado que não há solicitações pendentes
     Quando o administrador acessa a fila
-    Então o sistema exibe "Nenhuma solicitação pendente"
+    Então a fila exibe "Nenhuma solicitação pendente"
