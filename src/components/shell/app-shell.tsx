@@ -110,7 +110,7 @@ export function AppShell({
         />
         <main
           id="main-content"
-          className="p-md md:p-margin-desktop flex-1 overflow-y-auto"
+          className="p-md md:p-margin-desktop min-w-0 flex-1 overflow-x-hidden overflow-y-auto"
         >
           {children}
         </main>
