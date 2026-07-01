@@ -1,6 +1,17 @@
+# Dependências e artefatos de build
 node_modules
-dist
-dist-ssr
+.next
+out
+build
+coverage
+
+# Saídas de teste
+playwright-report
+test-results
+
+# Gerados / lockfiles
 package-lock.json
-LICENSE
-.husky
+next-env.d.ts
+
+# Sprint 1 (legado Vanilla JS + Vite) — preservado como histórico, não reformatar
+legacy

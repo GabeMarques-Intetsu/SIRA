@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIRA · Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./_shared/tokens.css" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="./_shared/tailwind-config.js"></script>
+    <script src="./_shared/theme-toggle.js"></script>
+  </head>
+
+  <body
+    class="bg-background text-on-background flex min-h-screen font-sans antialiased"
+  >
+    <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+
+    <div class="flex min-h-screen w-full">
+      <!-- ═══════════ SIDEBAR ═══════════ -->
+      <aside
+        class="bg-surface-container-low border-outline-variant px-md py-lg gap-md hidden w-[264px] flex-shrink-0 flex-col border-r md:flex"
+      >
+        <!-- Branding -->
+        <div class="gap-sm px-sm flex items-center">
+          <div
+            class="bg-primary flex h-10 w-10 items-center justify-center rounded-lg"
+          >
+            <span
+              class="material-symbols-outlined text-on-primary"
+              aria-hidden="true"
+              >domain</span
+            >
+          </div>
+          <div class="flex flex-col">
+            <span class="text-headline-sm text-on-surface leading-none"
+              >SIRA</span
+            >
+            <span class="text-label-sm text-on-surface-variant">IFPB</span>
+          </div>
+        </div>
+
+        <a
+          href="./04-nova-reserva.html"
+          class="gap-sm px-md bg-primary text-on-primary text-label-md hover:bg-surface-tint flex items-center justify-center rounded-lg py-2.5 shadow-sm transition-all active:scale-[0.98]"
+        >
+          <span class="material-symbols-outlined" aria-hidden="true">add</span>
+          <span>Nova Reserva</span>
+        </a>
+
+        <nav
+          aria-label="Navegação principal"
+          class="gap-xs flex flex-1 flex-col overflow-y-auto"
+        >
+          <a
+            href="./02-dashboard.html"
+            aria-current="page"
+            class="gap-md px-md py-sm bg-secondary-container text-on-secondary-container text-label-md flex items-center rounded-lg font-bold"
+          >
+            <span
+              class="material-symbols-outlined"
+              style="font-variation-settings: &quot;FILL&quot; 1"
+              aria-hidden="true"
+              >dashboard</span
+            >
+            <span>Dashboard</span>
+          </a>
+          <a
+            href="./03-calendario.html"
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex items-center rounded-lg transition-all"
+          >
+            <span class="material-symbols-outlined" aria-hidden="true"
+              >calendar_month</span
+            >
+            <span>Calendário</span>
+          </a>
+          <a
+            href="./06-minhas-reservas.html"
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex items-center rounded-lg transition-all"
+          >
+            <span class="material-symbols-outlined" aria-hidden="true"
+              >event_available</span
+            >
+            <span>Minhas Reservas</span>
+          </a>
+          <a
+            href="./08-aprovacoes.html"
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex items-center justify-between rounded-lg transition-all"
+          >
+            <span class="gap-md flex items-center">
+              <span class="material-symbols-outlined" aria-hidden="true"
+                >fact_check</span
+              >
+              <span>Aprovações</span>
+            </span>
+            <span
+              class="bg-error text-on-error text-label-sm rounded-full px-2 py-0.5"
+              aria-label="7 pendentes"
+              >7</span
+            >
+          </a>
+          <a
+            href="./05-gestao-recursos.html"
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex items-center rounded-lg transition-all"
+          >
+            <span class="material-symbols-outlined" aria-hidden="true"
+              >domain</span
+            >
+            <span>Recursos</span>
+          </a>
+          <a
+            href="./09-usuarios.html"
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex items-center rounded-lg transition-all"
+          >
+            <span class="material-symbols-outlined" aria-hidden="true"
+              >group</span
+            >
+            <span>Usuários</span>
+          </a>
+        </nav>
+
+        <div
+          class="gap-xs pt-md border-outline-variant mt-auto flex flex-col border-t"
+        >
+          <button
+            data-theme-toggle
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex w-full items-center rounded-lg text-left transition-all"
+            aria-label="Ativar tema escuro"
+            aria-pressed="false"
+          >
+            <span class="material-symbols-outlined" aria-hidden="true"
+              >dark_mode</span
+            >
+            <span>Tema</span>
+          </button>
+          <a
+            href="./11-configuracoes.html"
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex items-center rounded-lg transition-all"
+          >
+            <span class="material-symbols-outlined" aria-hidden="true"
+              >settings</span
+            >
+            <span>Configurações</span>
+          </a>
+          <a
+            href="./01-login.html"
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex items-center rounded-lg transition-all"
+          >
+            <span class="material-symbols-outlined" aria-hidden="true"
+              >logout</span
+            >
+            <span>Sair</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- ═══════════ MAIN ═══════════ -->
+      <div class="flex min-w-0 flex-1 flex-col">
+        <header
+          class="bg-surface/95 border-outline-variant px-md md:px-margin-desktop py-md gap-md sticky top-0 z-20 flex items-center border-b backdrop-blur"
+        >
+          <button
+            class="touch-target text-on-surface-variant hover:bg-surface-container rounded-full md:hidden"
+            aria-label="Abrir menu de navegação"
+          >
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+
+          <div class="flex-1">
+            <h1 class="text-headline-sm text-on-surface">Dashboard</h1>
+            <p class="text-body-sm text-on-surface-variant hidden md:block">
+              Visão geral de reservas e recursos do campus
+            </p>
+          </div>
+
+          <div class="gap-sm flex items-center">
+            <div class="relative hidden md:block">
+              <span
+                class="left-md material-symbols-outlined text-on-surface-variant absolute top-1/2 -translate-y-1/2"
+                aria-hidden="true"
+                >search</span
+              >
+              <input
+                type="search"
+                placeholder="Buscar reservas, salas…"
+                aria-label="Buscar"
+                class="pr-md border-outline-variant bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 focus:ring-primary focus:border-primary text-body-sm w-64 rounded-lg border py-2 pl-[44px] transition-all outline-none focus:ring-2 lg:w-72"
+              />
+            </div>
+
+            <a
+              href="./10-notificacoes.html"
+              class="touch-target text-on-surface-variant hover:bg-surface-container relative rounded-full transition-colors"
+              aria-label="Notificações (3 não lidas)"
+            >
+              <span class="material-symbols-outlined">notifications</span>
+              <span
+                class="bg-error ring-surface absolute top-1.5 right-1.5 h-2 w-2 rounded-full ring-2"
+                aria-hidden="true"
+              ></span>
+            </a>
+
+            <button
+              class="touch-target text-on-surface-variant hover:bg-surface-container rounded-full transition-colors"
+              aria-label="Ajuda"
+            >
+              <span class="material-symbols-outlined">help</span>
+            </button>
+
+            <button
+              class="ml-sm gap-sm hover:bg-surface-container px-sm flex items-center rounded-full py-1 transition-colors"
+              aria-label="Menu do usuário Ana Silva"
+            >
+              <div
+                class="bg-primary text-on-primary text-label-md flex h-9 w-9 items-center justify-center rounded-full font-bold"
+              >
+                AS
+              </div>
+              <div class="hidden flex-col items-start leading-tight lg:flex">
+                <span class="text-label-md text-on-surface">Ana Silva</span>
+                <span class="text-label-sm text-on-surface-variant"
+                  >Administradora</span
+                >
+              </div>
+              <span
+                class="material-symbols-outlined text-on-surface-variant hidden lg:inline"
+                aria-hidden="true"
+                >arrow_drop_down</span
+              >
+            </button>
+          </div>
+        </header>
+
+        <main
+          id="main-content"
+          class="p-md md:p-margin-desktop flex-1 overflow-y-auto"
+        >
+          <div class="gap-lg mx-auto flex max-w-[1280px] flex-col">
+            <!-- KPIs (agregados no TOPO conforme Klipfolio) -->
+            <section
+              aria-label="Indicadores principais"
+              class="gap-md grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4"
+            >
+              <article
+                class="bg-surface-container-lowest p-md border-outline-variant gap-sm flex flex-col rounded-xl border shadow-sm"
+              >
+                <div class="flex items-start justify-between">
+                  <span class="text-body-sm text-on-surface-variant"
+                    >Reservas hoje</span
+                  >
+                  <div
+                    class="bg-primary-fixed text-on-primary-fixed rounded-md p-1.5"
+                  >
+                    <span
+                      class="material-symbols-outlined"
+                      style="font-size: 20px"
+                      aria-hidden="true"
+                      >event</span
+                    >
+                  </div>
+                </div>
+                <div class="flex items-baseline gap-2">
+                  <span
+                    class="text-headline-lg text-on-surface"
+                    aria-label="42 reservas"
+                    >42</span
+                  >
+                  <span
+                    class="text-label-sm text-secondary flex items-center"
+                    aria-label="aumento de 12 por cento"
+                  >
+                    <span
+                      class="material-symbols-outlined"
+                      style="font-size: 14px"
+                      aria-hidden="true"
+                      >arrow_upward</span
+                    >12%
+                  </span>
+                </div>
+                <span class="text-body-sm text-on-surface-variant"
+                  >vs. ontem</span
+                >
+              </article>
+
+              <article
+                class="bg-surface-container-lowest p-md border-outline-variant gap-sm flex flex-col rounded-xl border shadow-sm"
+              >
+                <div class="flex items-start justify-between">
+                  <span class="text-body-sm text-on-surface-variant"
+                    >Salas ativas</span
+                  >
+                  <div
+                    class="bg-secondary-container text-on-secondary-container rounded-md p-1.5"
+                  >
+                    <span
+                      class="material-symbols-outlined"
+                      style="font-size: 20px"
+                      aria-hidden="true"
+                      >meeting_room</span
+                    >
+                  </div>
+                </div>
+                <div class="flex items-baseline gap-2">
+                  <span class="text-headline-lg text-on-surface">18</span>
+                  <span class="text-body-sm text-on-surface-variant"
+                    >/ 24 cadastradas</span
+                  >
+                </div>
+                <span class="text-body-sm text-on-surface-variant"
+                  >75% disponíveis</span
+                >
+              </article>
+
+              <article
+                class="bg-surface-container-lowest p-md border-outline-variant gap-sm flex flex-col rounded-xl border shadow-sm"
+              >
+                <div class="flex items-start justify-between">
+                  <span class="text-body-sm text-on-surface-variant"
+                    >Aprovações pendentes</span
+                  >
+                  <div
+                    class="bg-tertiary-fixed text-on-tertiary-fixed rounded-md p-1.5"
+                  >
+                    <span
+                      class="material-symbols-outlined"
+                      style="font-size: 20px"
+                      aria-hidden="true"
+                      >pending_actions</span
+                    >
+                  </div>
+                </div>
+                <div class="flex items-baseline gap-2">
+                  <span class="text-headline-lg text-on-surface">7</span>
+                  <span
+                    class="text-label-sm text-error flex items-center gap-1"
+                  >
+                    <span
+                      class="material-symbols-outlined"
+                      style="font-size: 14px"
+                      aria-hidden="true"
+                      >priority_high</span
+                    >Atenção
+                  </span>
+                </div>
+                <a
+                  href="./08-aprovacoes.html"
+                  class="text-body-sm text-primary hover:underline"
+                  >Revisar agora →</a
+                >
+              </article>
+
+              <article
+                class="bg-surface-container-lowest p-md border-outline-variant gap-sm flex flex-col rounded-xl border shadow-sm"
+              >
+                <div class="flex items-start justify-between">
+                  <span class="text-body-sm text-on-surface-variant"
+                    >Taxa de ocupação</span
+                  >
+                  <div
+                    class="bg-surface-container-highest text-on-surface rounded-md p-1.5"
+                  >
+                    <span
+                      class="material-symbols-outlined"
+                      style="font-size: 20px"
+                      aria-hidden="true"
+                      >analytics</span
+                    >
+                  </div>
+                </div>
+                <div class="flex items-baseline gap-2">
+                  <span class="text-headline-lg text-on-surface">75%</span>
+                  <span
+                    class="text-label-sm text-secondary flex items-center"
+                    aria-label="aumento de 5 por cento"
+                  >
+                    <span
+                      class="material-symbols-outlined"
+                      style="font-size: 14px"
+                      aria-hidden="true"
+                      >arrow_upward</span
+                    >5%
+                  </span>
+                </div>
+                <span class="text-body-sm text-on-surface-variant"
+                  >média 7 dias</span
+                >
+              </article>
+            </section>
+
+            <!-- Drill-down -->
+            <section class="gap-lg grid grid-cols-1 lg:grid-cols-3">
+              <article
+                class="bg-surface-container-lowest p-md border-outline-variant rounded-xl border shadow-sm lg:col-span-2"
+              >
+                <header class="gap-md mb-md flex items-start justify-between">
+                  <div>
+                    <h2 class="text-headline-sm text-on-surface">
+                      Ocupação por dia
+                    </h2>
+                    <p class="text-body-sm text-on-surface-variant">
+                      Últimos 7 dias · todas as salas
+                    </p>
+                  </div>
+                  <select
+                    aria-label="Período"
+                    class="text-body-sm border-outline-variant bg-surface-container-lowest text-on-surface px-md focus:ring-primary rounded-lg border py-1 outline-none focus:ring-2"
+                  >
+                    <option>7 dias</option>
+                    <option>30 dias</option>
+                    <option>Trimestre</option>
+                  </select>
+                </header>
+
+                <div
+                  role="img"
+                  aria-label="Ocupação semanal: Seg 62%, Ter 71%, Qua 88%, Qui 79%, Sex 92%, Sáb 35%, Dom 18%"
+                  class="gap-md pb-md border-outline-variant flex h-48 items-end border-b"
+                >
+                  <div class="gap-xs flex flex-1 flex-col items-center">
+                    <div
+                      class="bg-primary/80 w-full rounded-t-md"
+                      style="height: 62%"
+                    ></div>
+                    <span class="text-label-sm text-on-surface-variant"
+                      >Seg</span
+                    >
+                  </div>
+                  <div class="gap-xs flex flex-1 flex-col items-center">
+                    <div
+                      class="bg-primary/80 w-full rounded-t-md"
+                      style="height: 71%"
+                    ></div>
+                    <span class="text-label-sm text-on-surface-variant"
+                      >Ter</span
+                    >
+                  </div>
+                  <div class="gap-xs flex flex-1 flex-col items-center">
+                    <div
+                      class="bg-primary w-full rounded-t-md"
+                      style="height: 88%"
+                    ></div>
+                    <span class="text-label-sm text-on-surface-variant"
+                      >Qua</span
+                    >
+                  </div>
+                  <div class="gap-xs flex flex-1 flex-col items-center">
+                    <div
+                      class="bg-primary/80 w-full rounded-t-md"
+                      style="height: 79%"
+                    ></div>
+                    <span class="text-label-sm text-on-surface-variant"
+                      >Qui</span
+                    >
+                  </div>
+                  <div class="gap-xs flex flex-1 flex-col items-center">
+                    <div
+                      class="bg-primary w-full rounded-t-md"
+                      style="height: 92%"
+                    ></div>
+                    <span class="text-label-sm text-on-surface-variant"
+                      >Sex</span
+                    >
+                  </div>
+                  <div class="gap-xs flex flex-1 flex-col items-center">
+                    <div
+                      class="bg-tertiary-fixed-dim w-full rounded-t-md"
+                      style="height: 35%"
+                    ></div>
+                    <span class="text-label-sm text-on-surface-variant"
+                      >Sáb</span
+                    >
+                  </div>
+                  <div class="gap-xs flex flex-1 flex-col items-center">
+                    <div
+                      class="bg-tertiary-fixed-dim w-full rounded-t-md"
+                      style="height: 18%"
+                    ></div>
+                    <span class="text-label-sm text-on-surface-variant"
+                      >Dom</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="gap-md mt-md text-label-sm text-on-surface-variant flex items-center"
+                >
+                  <span class="gap-xs flex items-center"
+                    ><span class="bg-primary h-3 w-3 rounded-sm"></span>Dia
+                    útil</span
+                  >
+                  <span class="gap-xs flex items-center"
+                    ><span
+                      class="bg-tertiary-fixed-dim h-3 w-3 rounded-sm"
+                    ></span
+                    >Fim de semana</span
+                  >
+                </div>
+              </article>
+
+              <article
+                class="bg-surface-container-lowest p-md border-outline-variant flex flex-col rounded-xl border shadow-sm"
+              >
+                <header class="mb-md flex items-center justify-between">
+                  <h2 class="text-headline-sm text-on-surface">
+                    Próximas hoje
+                  </h2>
+                  <a
+                    href="./03-calendario.html"
+                    class="text-body-sm text-primary hover:underline"
+                    >Ver todas →</a
+                  >
+                </header>
+                <ul
+                  class="divide-outline-variant flex flex-1 flex-col divide-y"
+                >
+                  <li class="py-sm gap-sm flex items-start">
+                    <time class="text-label-md text-primary mt-0.5 w-16"
+                      >14:00</time
+                    >
+                    <div class="min-w-0 flex-1">
+                      <p class="text-body-md text-on-surface truncate">
+                        Lab. Programação 02
+                      </p>
+                      <p class="text-body-sm text-on-surface-variant truncate">
+                        Aula POO — Prof. Diego
+                      </p>
+                    </div>
+                    <span
+                      class="bg-secondary-container text-on-secondary-container text-label-sm rounded-full px-2 py-0.5 whitespace-nowrap"
+                      >Confirmada</span
+                    >
+                  </li>
+                  <li class="py-sm gap-sm flex items-start">
+                    <time class="text-label-md text-primary mt-0.5 w-16"
+                      >15:30</time
+                    >
+                    <div class="min-w-0 flex-1">
+                      <p class="text-body-md text-on-surface truncate">
+                        Auditório Bloco C
+                      </p>
+                      <p class="text-body-sm text-on-surface-variant truncate">
+                        Defesa TCC — Maria S.
+                      </p>
+                    </div>
+                    <span
+                      class="bg-tertiary-fixed text-on-tertiary-fixed-variant text-label-sm rounded-full px-2 py-0.5 whitespace-nowrap"
+                      >Pendente</span
+                    >
+                  </li>
+                  <li class="py-sm gap-sm flex items-start">
+                    <time class="text-label-md text-primary mt-0.5 w-16"
+                      >16:00</time
+                    >
+                    <div class="min-w-0 flex-1">
+                      <p class="text-body-md text-on-surface truncate">
+                        Sala 204
+                      </p>
+                      <p class="text-body-sm text-on-surface-variant truncate">
+                        Reunião Departamental
+                      </p>
+                    </div>
+                    <span
+                      class="bg-secondary-container text-on-secondary-container text-label-sm rounded-full px-2 py-0.5 whitespace-nowrap"
+                      >Confirmada</span
+                    >
+                  </li>
+                  <li class="py-sm gap-sm flex items-start">
+                    <time class="text-label-md text-primary mt-0.5 w-16"
+                      >19:00</time
+                    >
+                    <div class="min-w-0 flex-1">
+                      <p class="text-body-md text-on-surface truncate">
+                        Lab. Redes
+                      </p>
+                      <p class="text-body-sm text-on-surface-variant truncate">
+                        Aula CISCO — Prof. Paulo
+                      </p>
+                    </div>
+                    <span
+                      class="bg-secondary-container text-on-secondary-container text-label-sm rounded-full px-2 py-0.5 whitespace-nowrap"
+                      >Confirmada</span
+                    >
+                  </li>
+                </ul>
+              </article>
+            </section>
+
+            <section
+              class="bg-surface-container-lowest border-outline-variant overflow-hidden rounded-xl border shadow-sm"
+            >
+              <header
+                class="p-md border-outline-variant flex items-center justify-between border-b"
+              >
+                <div>
+                  <h2 class="text-headline-sm text-on-surface">
+                    Atividade recente
+                  </h2>
+                  <p class="text-body-sm text-on-surface-variant">
+                    Últimas ações no sistema
+                  </p>
+                </div>
+                <button class="text-body-sm text-primary hover:underline">
+                  Ver tudo
+                </button>
+              </header>
+
+              <div class="overflow-x-auto">
+                <table class="text-body-sm w-full">
+                  <thead
+                    class="text-label-sm text-on-surface-variant bg-surface-container-low text-left tracking-wider uppercase"
+                  >
+                    <tr>
+                      <th class="px-md py-sm font-medium">Quando</th>
+                      <th class="px-md py-sm font-medium">Quem</th>
+                      <th class="px-md py-sm font-medium">Ação</th>
+                      <th class="px-md py-sm font-medium">Recurso</th>
+                      <th class="px-md py-sm font-medium">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-outline-variant divide-y">
+                    <tr
+                      class="hover:bg-surface-container-low transition-colors"
+                    >
+                      <td class="px-md py-md text-on-surface-variant">
+                        há 2 min
+                      </td>
+                      <td class="px-md py-md text-on-surface">Diego Pessoa</td>
+                      <td class="px-md py-md text-on-surface">Criou reserva</td>
+                      <td class="px-md py-md text-on-surface">
+                        Lab. Programação 02
+                      </td>
+                      <td class="px-md py-md">
+                        <span
+                          class="bg-tertiary-fixed text-on-tertiary-fixed-variant text-label-sm rounded-full px-2 py-0.5"
+                          >Pendente</span
+                        >
+                      </td>
+                    </tr>
+                    <tr
+                      class="hover:bg-surface-container-low transition-colors"
+                    >
+                      <td class="px-md py-md text-on-surface-variant">
+                        há 15 min
+                      </td>
+                      <td class="px-md py-md text-on-surface">Ana Silva</td>
+                      <td class="px-md py-md text-on-surface">
+                        Aprovou reserva
+                      </td>
+                      <td class="px-md py-md text-on-surface">
+                        Auditório Bloco C
+                      </td>
+                      <td class="px-md py-md">
+                        <span
+                          class="bg-secondary-container text-on-secondary-container text-label-sm rounded-full px-2 py-0.5"
+                          >Aprovada</span
+                        >
+                      </td>
+                    </tr>
+                    <tr
+                      class="hover:bg-surface-container-low transition-colors"
+                    >
+                      <td class="px-md py-md text-on-surface-variant">há 1h</td>
+                      <td class="px-md py-md text-on-surface">Paulo Ditarso</td>
+                      <td class="px-md py-md text-on-surface">
+                        Adicionou equipamento
+                      </td>
+                      <td class="px-md py-md text-on-surface">
+                        Projetor Epson #12
+                      </td>
+                      <td class="px-md py-md">
+                        <span
+                          class="bg-primary-fixed text-on-primary-fixed-variant text-label-sm rounded-full px-2 py-0.5"
+                          >Cadastrado</span
+                        >
+                      </td>
+                    </tr>
+                    <tr
+                      class="hover:bg-surface-container-low transition-colors"
+                    >
+                      <td class="px-md py-md text-on-surface-variant">há 2h</td>
+                      <td class="px-md py-md text-on-surface">Maria Santos</td>
+                      <td class="px-md py-md text-on-surface">
+                        Cancelou reserva
+                      </td>
+                      <td class="px-md py-md text-on-surface">Sala 105</td>
+                      <td class="px-md py-md">
+                        <span
+                          class="bg-error-container text-on-error-container text-label-sm rounded-full px-2 py-0.5"
+                          >Cancelada</span
+                        >
+                      </td>
+                    </tr>
+                    <tr
+                      class="hover:bg-surface-container-low transition-colors"
+                    >
+                      <td class="px-md py-md text-on-surface-variant">há 3h</td>
+                      <td class="px-md py-md text-on-surface">João Costa</td>
+                      <td class="px-md py-md text-on-surface">
+                        Solicitou cadastro
+                      </td>
+                      <td class="px-md py-md text-on-surface">—</td>
+                      <td class="px-md py-md">
+                        <span
+                          class="bg-tertiary-fixed text-on-tertiary-fixed-variant text-label-sm rounded-full px-2 py-0.5"
+                          >Aguardando</span
+                        >
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

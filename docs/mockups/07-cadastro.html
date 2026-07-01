@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIRA · Solicitar cadastro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./_shared/tokens.css" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="./_shared/tailwind-config.js"></script>
+    <script src="./_shared/theme-toggle.js"></script>
+  </head>
+  <body
+    class="bg-surface text-on-surface flex min-h-screen font-sans antialiased"
+  >
+    <a href="#cadastro-form" class="skip-link">Pular para o formulário</a>
+
+    <main class="flex w-full flex-1">
+      <!-- Painel esquerdo: branding -->
+      <section
+        class="bg-secondary p-xxl relative hidden flex-col justify-between overflow-hidden lg:flex lg:w-2/5"
+      >
+        <div aria-hidden="true" class="absolute inset-0 opacity-20">
+          <svg
+            class="h-full w-full"
+            viewBox="0 0 800 800"
+            preserveAspectRatio="xMidYMid slice"
+          >
+            <defs>
+              <pattern
+                id="dots"
+                width="40"
+                height="40"
+                patternUnits="userSpaceOnUse"
+              >
+                <circle cx="20" cy="20" r="1.5" fill="white" />
+              </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#dots)" />
+          </svg>
+        </div>
+        <div class="relative z-10">
+          <div
+            class="bg-surface-container-lowest mb-lg flex h-16 w-16 items-center justify-center rounded-xl shadow-sm"
+          >
+            <span
+              class="material-symbols-outlined text-secondary"
+              style="font-size: 40px"
+              >person_add</span
+            >
+          </div>
+        </div>
+        <div class="relative z-10 max-w-lg">
+          <h2 class="text-headline-lg text-on-secondary mb-md">
+            Junte-se ao SIRA.
+          </h2>
+          <p class="text-body-lg text-on-secondary/90">
+            Solicite seu acesso e participe da gestão de reservas do IFPB.
+            Aprovação rápida pelo administrador.
+          </p>
+          <ol class="mt-xl space-y-md text-on-secondary/85 list-none">
+            <li class="gap-md flex items-start">
+              <span
+                class="bg-on-secondary/15 text-on-secondary text-label-md flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full font-bold"
+                >1</span
+              ><span class="text-body-md">Preencha o formulário ao lado</span>
+            </li>
+            <li class="gap-md flex items-start">
+              <span
+                class="bg-on-secondary/15 text-on-secondary text-label-md flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full font-bold"
+                >2</span
+              ><span class="text-body-md">Aguarde aprovação por e-mail</span>
+            </li>
+            <li class="gap-md flex items-start">
+              <span
+                class="bg-on-secondary/15 text-on-secondary text-label-md flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full font-bold"
+                >3</span
+              ><span class="text-body-md"
+                >Acesse com seu e-mail institucional</span
+              >
+            </li>
+          </ol>
+        </div>
+        <div class="text-on-secondary/70 text-body-sm relative z-10">
+          © 2025 IFPB · SIRA v1.0
+        </div>
+      </section>
+
+      <!-- Painel direito: form -->
+      <section
+        class="p-margin-mobile md:p-margin-desktop bg-surface relative flex w-full items-center justify-center lg:w-3/5"
+      >
+        <button
+          type="button"
+          data-theme-toggle
+          class="top-md right-md touch-target hover:bg-surface-container absolute rounded-full transition-colors"
+          aria-label="Ativar tema escuro"
+          aria-pressed="false"
+        >
+          <span class="material-symbols-outlined text-on-surface-variant"
+            >dark_mode</span
+          >
+        </button>
+
+        <div class="gap-xl flex w-full max-w-[560px] flex-col">
+          <header class="gap-sm flex flex-col">
+            <a
+              href="./01-login.html"
+              class="gap-xs text-primary text-label-md inline-flex w-fit items-center hover:underline"
+            >
+              <span
+                class="material-symbols-outlined"
+                style="font-size: 18px"
+                aria-hidden="true"
+                >arrow_back</span
+              >Voltar ao login
+            </a>
+            <h1 class="text-headline-lg text-on-surface mt-sm">
+              Solicitar acesso
+            </h1>
+            <p class="text-body-md text-on-surface-variant">
+              Preencha seus dados. O administrador será notificado.
+            </p>
+          </header>
+
+          <form id="cadastro-form" class="gap-lg flex flex-col" novalidate>
+            <div class="gap-md grid grid-cols-1 md:grid-cols-2">
+              <div class="gap-xs flex flex-col md:col-span-2">
+                <label for="nome" class="text-label-sm text-on-surface"
+                  >Nome completo *</label
+                >
+                <input
+                  id="nome"
+                  name="nome"
+                  type="text"
+                  required
+                  autocomplete="name"
+                  placeholder="Maria da Silva"
+                  class="px-md border-outline-variant bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 focus:ring-primary focus:border-primary text-body-md w-full rounded-lg border py-3 shadow-sm transition-all outline-none focus:ring-2"
+                />
+              </div>
+
+              <div class="gap-xs flex flex-col md:col-span-2">
+                <label for="email" class="text-label-sm text-on-surface"
+                  >E-mail institucional *</label
+                >
+                <div class="relative">
+                  <span
+                    class="left-md material-symbols-outlined text-on-surface-variant absolute top-1/2 -translate-y-1/2"
+                    aria-hidden="true"
+                    >mail</span
+                  >
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    autocomplete="email"
+                    placeholder="maria.silva@ifpb.edu.br"
+                    aria-describedby="email-hint"
+                    class="pr-md border-outline-variant bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 focus:ring-primary focus:border-primary text-body-md w-full rounded-lg border py-3 pl-[48px] shadow-sm transition-all outline-none focus:ring-2"
+                  />
+                </div>
+                <span
+                  id="email-hint"
+                  class="text-body-sm text-on-surface-variant"
+                  >Use seu e-mail @ifpb.edu.br</span
+                >
+              </div>
+
+              <div class="gap-xs flex flex-col">
+                <label for="matricula" class="text-label-sm text-on-surface"
+                  >Matrícula / SIAPE</label
+                >
+                <input
+                  id="matricula"
+                  name="matricula"
+                  type="text"
+                  placeholder="20231234567"
+                  class="px-md border-outline-variant bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 focus:ring-primary focus:border-primary text-body-md w-full rounded-lg border py-3 shadow-sm transition-all outline-none focus:ring-2"
+                />
+              </div>
+
+              <div class="gap-xs flex flex-col">
+                <label for="perfil" class="text-label-sm text-on-surface"
+                  >Perfil *</label
+                >
+                <select
+                  id="perfil"
+                  name="perfil"
+                  required
+                  class="px-md border-outline-variant bg-surface-container-lowest text-on-surface focus:ring-primary focus:border-primary text-body-md w-full rounded-lg border py-3 shadow-sm transition-all outline-none focus:ring-2"
+                >
+                  <option value="">Selecione…</option>
+                  <option>Professor</option>
+                  <option>Coordenador</option>
+                  <option>Técnico-administrativo</option>
+                  <option>Aluno</option>
+                </select>
+              </div>
+
+              <div class="gap-xs flex flex-col md:col-span-2">
+                <label for="departamento" class="text-label-sm text-on-surface"
+                  >Departamento / Coordenação</label
+                >
+                <input
+                  id="departamento"
+                  name="departamento"
+                  type="text"
+                  placeholder="Ex.: DTSI · Coordenação de Informática"
+                  class="px-md border-outline-variant bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 focus:ring-primary focus:border-primary text-body-md w-full rounded-lg border py-3 shadow-sm transition-all outline-none focus:ring-2"
+                />
+              </div>
+
+              <div class="gap-xs flex flex-col md:col-span-2">
+                <label for="motivo" class="text-label-sm text-on-surface"
+                  >Motivo do acesso (opcional)</label
+                >
+                <textarea
+                  id="motivo"
+                  name="motivo"
+                  rows="3"
+                  placeholder="Descreva brevemente como pretende usar o sistema."
+                  class="px-md border-outline-variant bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 focus:ring-primary focus:border-primary text-body-md w-full resize-none rounded-lg border py-3 shadow-sm transition-all outline-none focus:ring-2"
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- Estado de erro renderizado (variant) -->
+            <div
+              role="alert"
+              aria-live="polite"
+              id="form-error"
+              class="bg-error-container text-on-error-container p-md gap-sm flex hidden items-start rounded-lg"
+            >
+              <span class="material-symbols-outlined" aria-hidden="true"
+                >error</span
+              >
+              <span class="text-body-sm"
+                >Já existe uma solicitação pendente para este e-mail.</span
+              >
+            </div>
+
+            <label class="gap-sm flex cursor-pointer items-start">
+              <input
+                type="checkbox"
+                required
+                class="border-outline-variant text-primary focus:ring-primary mt-0.5 h-5 w-5 cursor-pointer rounded transition-all"
+              />
+              <span class="text-body-sm text-on-surface-variant"
+                >Aceito os
+                <a href="#" class="text-primary hover:underline"
+                  >termos de uso</a
+                >
+                e a
+                <a href="#" class="text-primary hover:underline"
+                  >política de privacidade</a
+                >
+                do SIRA-IFPB.</span
+              >
+            </label>
+
+            <div
+              class="gap-md flex flex-col-reverse sm:flex-row sm:justify-end"
+            >
+              <a
+                href="./01-login.html"
+                class="px-lg border-outline-variant text-on-surface hover:bg-surface-container text-label-md rounded-lg border py-3 text-center transition-colors"
+                >Cancelar</a
+              >
+              <button
+                type="submit"
+                class="px-lg bg-primary hover:bg-surface-tint text-on-primary text-label-md gap-sm flex items-center justify-center rounded-lg py-3 shadow-sm transition-all active:scale-[0.98]"
+              >
+                <span>Enviar solicitação</span>
+                <span class="material-symbols-outlined" aria-hidden="true"
+                  >send</span
+                >
+              </button>
+            </div>
+          </form>
+
+          <footer class="text-center">
+            <p class="text-body-sm text-on-surface-variant">
+              Já possui cadastro?
+              <a
+                href="./01-login.html"
+                class="text-primary font-medium hover:underline"
+                >Entrar</a
+              >
+            </p>
+          </footer>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

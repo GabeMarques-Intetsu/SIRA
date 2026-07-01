@@ -1,0 +1,15 @@
+{
+  "//": "tsconfig dedicado aos testes (unit + BDD). O tsconfig raiz exclui `tests/`, então o editor/`tsc` não resolveriam o alias `@/` aqui. Este reativa os paths para a árvore de testes, sem afetar o build do app (next build usa o tsconfig raiz). Em runtime quem resolve o alias é o tsx (BDD) e o loader.mjs (unit).",
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "jsx": "react-jsx",
+    "types": ["node", "vitest/globals", "@testing-library/jest-dom"],
+    "paths": {
+      "@/*": ["../src/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx", "../src/**/*.ts", "../src/**/*.tsx"],
+  "exclude": ["../node_modules", "../legacy"]
+}

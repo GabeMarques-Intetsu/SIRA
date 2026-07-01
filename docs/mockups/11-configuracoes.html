@@ -1,0 +1,833 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIRA · Configurações</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./_shared/tokens.css" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="./_shared/tailwind-config.js"></script>
+    <script src="./_shared/theme-toggle.js"></script>
+  </head>
+  <body
+    class="bg-background text-on-background flex min-h-screen font-sans antialiased"
+  >
+    <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+    <div class="flex min-h-screen w-full">
+      <aside
+        class="bg-surface-container-low border-outline-variant px-md py-lg gap-md hidden w-[264px] flex-shrink-0 flex-col border-r md:flex"
+      >
+        <div class="gap-sm px-sm flex items-center">
+          <div
+            class="bg-primary flex h-10 w-10 items-center justify-center rounded-lg"
+          >
+            <span
+              class="material-symbols-outlined text-on-primary"
+              aria-hidden="true"
+              >domain</span
+            >
+          </div>
+          <div class="flex flex-col">
+            <span class="text-headline-sm text-on-surface leading-none"
+              >SIRA</span
+            ><span class="text-label-sm text-on-surface-variant">IFPB</span>
+          </div>
+        </div>
+        <a
+          href="./04-nova-reserva.html"
+          class="gap-sm px-md bg-primary text-on-primary text-label-md hover:bg-surface-tint flex items-center justify-center rounded-lg py-2.5 shadow-sm transition-all active:scale-[0.98]"
+          ><span class="material-symbols-outlined" aria-hidden="true">add</span
+          ><span>Nova Reserva</span></a
+        >
+        <nav
+          aria-label="Navegação principal"
+          class="gap-xs flex flex-1 flex-col overflow-y-auto"
+        >
+          <a
+            href="./02-dashboard.html"
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex items-center rounded-lg transition-all"
+            ><span class="material-symbols-outlined" aria-hidden="true"
+              >dashboard</span
+            ><span>Dashboard</span></a
+          >
+          <a
+            href="./03-calendario.html"
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex items-center rounded-lg transition-all"
+            ><span class="material-symbols-outlined" aria-hidden="true"
+              >calendar_month</span
+            ><span>Calendário</span></a
+          >
+          <a
+            href="./06-minhas-reservas.html"
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex items-center rounded-lg transition-all"
+            ><span class="material-symbols-outlined" aria-hidden="true"
+              >event_available</span
+            ><span>Minhas Reservas</span></a
+          >
+          <a
+            href="./08-aprovacoes.html"
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex items-center justify-between rounded-lg transition-all"
+            ><span class="gap-md flex items-center"
+              ><span class="material-symbols-outlined" aria-hidden="true"
+                >fact_check</span
+              ><span>Aprovações</span></span
+            ><span
+              class="bg-error text-on-error text-label-sm rounded-full px-2 py-0.5"
+              >7</span
+            ></a
+          >
+          <a
+            href="./05-gestao-recursos.html"
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex items-center rounded-lg transition-all"
+            ><span class="material-symbols-outlined" aria-hidden="true"
+              >domain</span
+            ><span>Recursos</span></a
+          >
+          <a
+            href="./09-usuarios.html"
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex items-center rounded-lg transition-all"
+            ><span class="material-symbols-outlined" aria-hidden="true"
+              >group</span
+            ><span>Usuários</span></a
+          >
+        </nav>
+        <div
+          class="gap-xs pt-md border-outline-variant mt-auto flex flex-col border-t"
+        >
+          <button
+            data-theme-toggle
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex w-full items-center rounded-lg text-left transition-all"
+            aria-label="Ativar tema escuro"
+            aria-pressed="false"
+          >
+            <span class="material-symbols-outlined" aria-hidden="true"
+              >dark_mode</span
+            ><span>Tema</span>
+          </button>
+          <a
+            href="./11-configuracoes.html"
+            aria-current="page"
+            class="gap-md px-md py-sm bg-secondary-container text-on-secondary-container text-label-md flex items-center rounded-lg font-bold"
+            ><span
+              class="material-symbols-outlined"
+              style="font-variation-settings: &quot;FILL&quot; 1"
+              aria-hidden="true"
+              >settings</span
+            ><span>Configurações</span></a
+          >
+          <a
+            href="./01-login.html"
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex items-center rounded-lg transition-all"
+            ><span class="material-symbols-outlined" aria-hidden="true"
+              >logout</span
+            ><span>Sair</span></a
+          >
+        </div>
+      </aside>
+
+      <div class="flex min-w-0 flex-1 flex-col">
+        <header
+          class="bg-surface/95 border-outline-variant px-md md:px-margin-desktop py-md gap-md sticky top-0 z-20 flex items-center border-b backdrop-blur"
+        >
+          <button
+            class="touch-target text-on-surface-variant hover:bg-surface-container rounded-full md:hidden"
+            aria-label="Abrir menu"
+          >
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+          <div class="flex-1">
+            <h1 class="text-headline-sm text-on-surface">Configurações</h1>
+            <p class="text-body-sm text-on-surface-variant hidden md:block">
+              Gerencie seu perfil, preferências e segurança
+            </p>
+          </div>
+        </header>
+
+        <main
+          id="main-content"
+          class="p-md md:p-margin-desktop flex-1 overflow-y-auto"
+        >
+          <div class="gap-lg mx-auto flex max-w-5xl flex-col lg:flex-row">
+            <!-- Navegação interna -->
+            <aside class="flex-shrink-0 lg:w-56">
+              <nav
+                aria-label="Seções de configuração"
+                class="gap-xs flex overflow-x-auto lg:flex-col lg:overflow-visible"
+              >
+                <a
+                  href="#perfil"
+                  aria-current="page"
+                  class="px-md py-sm bg-secondary-container text-on-secondary-container text-label-md gap-sm flex items-center rounded-lg whitespace-nowrap"
+                  ><span
+                    class="material-symbols-outlined"
+                    style="font-size: 18px"
+                    aria-hidden="true"
+                    >account_circle</span
+                  >Perfil</a
+                >
+                <a
+                  href="#preferencias"
+                  class="px-md py-sm text-on-surface-variant hover:bg-surface-container text-label-md gap-sm flex items-center rounded-lg whitespace-nowrap"
+                  ><span
+                    class="material-symbols-outlined"
+                    style="font-size: 18px"
+                    aria-hidden="true"
+                    >tune</span
+                  >Preferências</a
+                >
+                <a
+                  href="#seguranca"
+                  class="px-md py-sm text-on-surface-variant hover:bg-surface-container text-label-md gap-sm flex items-center rounded-lg whitespace-nowrap"
+                  ><span
+                    class="material-symbols-outlined"
+                    style="font-size: 18px"
+                    aria-hidden="true"
+                    >lock</span
+                  >Segurança</a
+                >
+                <a
+                  href="#notif"
+                  class="px-md py-sm text-on-surface-variant hover:bg-surface-container text-label-md gap-sm flex items-center rounded-lg whitespace-nowrap"
+                  ><span
+                    class="material-symbols-outlined"
+                    style="font-size: 18px"
+                    aria-hidden="true"
+                    >notifications</span
+                  >Notificações</a
+                >
+                <a
+                  href="#integ"
+                  class="px-md py-sm text-on-surface-variant hover:bg-surface-container text-label-md gap-sm flex items-center rounded-lg whitespace-nowrap"
+                  ><span
+                    class="material-symbols-outlined"
+                    style="font-size: 18px"
+                    aria-hidden="true"
+                    >extension</span
+                  >Integrações</a
+                >
+              </nav>
+            </aside>
+
+            <div class="gap-lg flex flex-1 flex-col">
+              <!-- Perfil -->
+              <section
+                id="perfil"
+                aria-labelledby="perfil-h"
+                class="bg-surface-container-lowest border-outline-variant p-md md:p-lg rounded-xl border shadow-sm"
+              >
+                <h2
+                  id="perfil-h"
+                  class="text-headline-sm text-on-surface mb-md"
+                >
+                  Perfil
+                </h2>
+
+                <div
+                  class="gap-md mb-lg pb-lg border-outline-variant flex flex-col items-start border-b sm:flex-row sm:items-center"
+                >
+                  <div
+                    class="bg-primary text-on-primary text-headline-md flex h-20 w-20 items-center justify-center rounded-full font-bold"
+                  >
+                    AS
+                  </div>
+                  <div class="flex-1">
+                    <p class="text-body-md text-on-surface font-medium">
+                      Ana Silva
+                    </p>
+                    <p class="text-body-sm text-on-surface-variant">
+                      Administradora · DTSI
+                    </p>
+                    <p class="text-body-sm text-on-surface-variant">
+                      ana.silva@ifpb.edu.br
+                    </p>
+                  </div>
+                  <button
+                    class="px-md border-outline-variant text-on-surface hover:bg-surface-container text-label-md gap-xs flex items-center rounded-lg border py-2"
+                  >
+                    <span
+                      class="material-symbols-outlined"
+                      style="font-size: 18px"
+                      aria-hidden="true"
+                      >photo_camera</span
+                    >Alterar foto
+                  </button>
+                </div>
+
+                <div class="gap-md grid grid-cols-1 md:grid-cols-2">
+                  <div class="gap-xs flex flex-col">
+                    <label for="nome" class="text-label-sm text-on-surface"
+                      >Nome completo</label
+                    >
+                    <input
+                      id="nome"
+                      type="text"
+                      value="Ana Silva"
+                      class="px-md border-outline-variant bg-surface text-on-surface focus:ring-primary text-body-md rounded-lg border py-3 outline-none focus:ring-2"
+                    />
+                  </div>
+                  <div class="gap-xs flex flex-col">
+                    <label
+                      for="email-config"
+                      class="text-label-sm text-on-surface"
+                      >E-mail</label
+                    >
+                    <input
+                      id="email-config"
+                      type="email"
+                      value="ana.silva@ifpb.edu.br"
+                      disabled
+                      class="px-md border-outline-variant bg-surface-container text-on-surface-variant text-body-md cursor-not-allowed rounded-lg border py-3"
+                    />
+                    <span class="text-body-sm text-on-surface-variant"
+                      >E-mail institucional não pode ser alterado.</span
+                    >
+                  </div>
+                  <div class="gap-xs flex flex-col">
+                    <label for="tel" class="text-label-sm text-on-surface"
+                      >Telefone (opcional)</label
+                    >
+                    <input
+                      id="tel"
+                      type="tel"
+                      placeholder="(83) 99999-9999"
+                      class="px-md border-outline-variant bg-surface text-on-surface focus:ring-primary text-body-md rounded-lg border py-3 outline-none focus:ring-2"
+                    />
+                  </div>
+                  <div class="gap-xs flex flex-col">
+                    <label for="depto" class="text-label-sm text-on-surface"
+                      >Departamento</label
+                    >
+                    <input
+                      id="depto"
+                      type="text"
+                      value="DTSI"
+                      class="px-md border-outline-variant bg-surface text-on-surface focus:ring-primary text-body-md rounded-lg border py-3 outline-none focus:ring-2"
+                    />
+                  </div>
+                </div>
+
+                <div class="mt-md gap-sm flex justify-end">
+                  <button
+                    class="px-lg text-on-surface-variant hover:bg-surface-container text-label-md rounded-lg py-2"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    class="px-lg bg-primary text-on-primary hover:bg-surface-tint text-label-md rounded-lg py-2"
+                  >
+                    Salvar alterações
+                  </button>
+                </div>
+              </section>
+
+              <!-- Preferências -->
+              <section
+                id="preferencias"
+                aria-labelledby="pref-h"
+                class="bg-surface-container-lowest border-outline-variant p-md md:p-lg rounded-xl border shadow-sm"
+              >
+                <h2 id="pref-h" class="text-headline-sm text-on-surface mb-md">
+                  Preferências
+                </h2>
+
+                <div class="divide-outline-variant divide-y">
+                  <!-- Tema -->
+                  <div class="py-md gap-md flex items-start justify-between">
+                    <div>
+                      <p class="text-body-md text-on-surface font-medium">
+                        Tema da interface
+                      </p>
+                      <p class="text-body-sm text-on-surface-variant">
+                        Escolha entre claro, escuro ou usar a preferência do
+                        sistema
+                      </p>
+                    </div>
+                    <fieldset
+                      class="gap-xs flex"
+                      role="radiogroup"
+                      aria-label="Tema"
+                    >
+                      <button
+                        data-theme-toggle
+                        aria-label="Tema claro"
+                        class="px-md border-outline-variant text-on-surface-variant hover:bg-surface-container gap-xs flex items-center rounded-lg border py-2"
+                      >
+                        <span
+                          class="material-symbols-outlined"
+                          style="font-size: 18px"
+                          aria-hidden="true"
+                          >light_mode</span
+                        >Claro
+                      </button>
+                      <button
+                        data-theme-toggle
+                        aria-label="Tema escuro"
+                        class="px-md border-outline-variant text-on-surface-variant hover:bg-surface-container gap-xs flex items-center rounded-lg border py-2"
+                      >
+                        <span
+                          class="material-symbols-outlined"
+                          style="font-size: 18px"
+                          aria-hidden="true"
+                          >dark_mode</span
+                        >Escuro
+                      </button>
+                      <button
+                        class="px-md border-primary bg-primary-fixed text-on-primary-fixed-variant gap-xs flex items-center rounded-lg border py-2"
+                        aria-pressed="true"
+                      >
+                        <span
+                          class="material-symbols-outlined"
+                          style="font-size: 18px"
+                          aria-hidden="true"
+                          >contrast</span
+                        >Sistema
+                      </button>
+                    </fieldset>
+                  </div>
+
+                  <!-- Idioma -->
+                  <div class="py-md gap-md flex items-center justify-between">
+                    <div>
+                      <p class="text-body-md text-on-surface font-medium">
+                        Idioma
+                      </p>
+                      <p class="text-body-sm text-on-surface-variant">
+                        Idioma da interface e dos e-mails
+                      </p>
+                    </div>
+                    <select
+                      aria-label="Idioma"
+                      class="px-md border-outline-variant bg-surface text-on-surface focus:ring-primary text-body-sm rounded-lg border py-2 outline-none focus:ring-2"
+                    >
+                      <option>Português (Brasil)</option>
+                      <option>English (US)</option>
+                      <option>Español</option>
+                    </select>
+                  </div>
+
+                  <!-- Densidade -->
+                  <div class="py-md gap-md flex items-center justify-between">
+                    <div>
+                      <p class="text-body-md text-on-surface font-medium">
+                        Densidade da interface
+                      </p>
+                      <p class="text-body-sm text-on-surface-variant">
+                        Espaçamento entre elementos
+                      </p>
+                    </div>
+                    <select
+                      aria-label="Densidade"
+                      class="px-md border-outline-variant bg-surface text-on-surface focus:ring-primary text-body-sm rounded-lg border py-2 outline-none focus:ring-2"
+                    >
+                      <option>Confortável</option>
+                      <option>Compacta</option>
+                    </select>
+                  </div>
+
+                  <!-- Reduzir animações -->
+                  <div class="py-md gap-md flex items-center justify-between">
+                    <div>
+                      <p class="text-body-md text-on-surface font-medium">
+                        Reduzir animações
+                      </p>
+                      <p class="text-body-sm text-on-surface-variant">
+                        Diminui movimento para conforto visual
+                      </p>
+                    </div>
+                    <label
+                      class="relative inline-flex cursor-pointer items-center"
+                    >
+                      <input type="checkbox" class="peer sr-only" />
+                      <span
+                        class="bg-surface-container-high peer peer-checked:bg-primary peer-focus:ring-primary h-6 w-11 rounded-full transition-colors peer-focus:ring-2"
+                      ></span>
+                      <span
+                        class="bg-surface-container-lowest absolute top-0.5 left-0.5 h-5 w-5 rounded-full transition-transform peer-checked:translate-x-5"
+                      ></span>
+                    </label>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Segurança -->
+              <section
+                id="seguranca"
+                aria-labelledby="seg-h"
+                class="bg-surface-container-lowest border-outline-variant p-md md:p-lg rounded-xl border shadow-sm"
+              >
+                <h2 id="seg-h" class="text-headline-sm text-on-surface mb-md">
+                  Segurança
+                </h2>
+
+                <div class="divide-outline-variant divide-y">
+                  <div class="py-md gap-md flex items-center justify-between">
+                    <div>
+                      <p class="text-body-md text-on-surface font-medium">
+                        Senha
+                      </p>
+                      <p class="text-body-sm text-on-surface-variant">
+                        Última alteração: há 45 dias
+                      </p>
+                    </div>
+                    <button
+                      class="px-md border-outline-variant text-on-surface hover:bg-surface-container text-label-md rounded-lg border py-2"
+                    >
+                      Alterar senha
+                    </button>
+                  </div>
+                  <div class="py-md gap-md flex items-center justify-between">
+                    <div>
+                      <p class="text-body-md text-on-surface font-medium">
+                        Autenticação em dois fatores (2FA)
+                      </p>
+                      <p class="text-body-sm text-on-surface-variant">
+                        Camada extra de proteção via app TOTP
+                      </p>
+                    </div>
+                    <label
+                      class="relative inline-flex cursor-pointer items-center"
+                    >
+                      <input type="checkbox" class="peer sr-only" />
+                      <span
+                        class="bg-surface-container-high peer peer-checked:bg-primary peer-focus:ring-primary h-6 w-11 rounded-full transition-colors peer-focus:ring-2"
+                      ></span>
+                      <span
+                        class="bg-surface-container-lowest absolute top-0.5 left-0.5 h-5 w-5 rounded-full transition-transform peer-checked:translate-x-5"
+                      ></span>
+                    </label>
+                  </div>
+                  <div class="py-md gap-md flex items-center justify-between">
+                    <div>
+                      <p class="text-body-md text-on-surface font-medium">
+                        Sessões ativas
+                      </p>
+                      <p class="text-body-sm text-on-surface-variant">
+                        3 dispositivos conectados
+                      </p>
+                    </div>
+                    <button
+                      class="px-md border-outline-variant text-on-surface hover:bg-surface-container text-label-md rounded-lg border py-2"
+                    >
+                      Ver sessões
+                    </button>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Notificações -->
+              <section
+                id="notif"
+                aria-labelledby="notif-h"
+                class="bg-surface-container-lowest border-outline-variant p-md md:p-lg rounded-xl border shadow-sm"
+              >
+                <h2 id="notif-h" class="text-headline-sm text-on-surface mb-md">
+                  Notificações
+                </h2>
+                <p class="text-body-sm text-on-surface-variant mb-md">
+                  Defina como você quer ser avisada sobre cada tipo de evento.
+                </p>
+
+                <div class="overflow-x-auto">
+                  <table class="text-body-sm w-full">
+                    <thead
+                      class="text-label-sm text-on-surface-variant tracking-wider uppercase"
+                    >
+                      <tr class="border-outline-variant border-b">
+                        <th class="py-sm text-left font-medium">Evento</th>
+                        <th class="py-sm text-center font-medium">No app</th>
+                        <th class="py-sm text-center font-medium">
+                          Por e-mail
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-outline-variant divide-y">
+                      <tr>
+                        <td class="py-md text-on-surface">
+                          Sua reserva foi aprovada
+                        </td>
+                        <td class="py-md text-center">
+                          <input
+                            type="checkbox"
+                            checked
+                            class="text-primary h-5 w-5 rounded"
+                          />
+                        </td>
+                        <td class="py-md text-center">
+                          <input
+                            type="checkbox"
+                            checked
+                            class="text-primary h-5 w-5 rounded"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="py-md text-on-surface">
+                          Sua reserva foi recusada
+                        </td>
+                        <td class="py-md text-center">
+                          <input
+                            type="checkbox"
+                            checked
+                            class="text-primary h-5 w-5 rounded"
+                          />
+                        </td>
+                        <td class="py-md text-center">
+                          <input
+                            type="checkbox"
+                            checked
+                            class="text-primary h-5 w-5 rounded"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="py-md text-on-surface">
+                          Nova solicitação aguarda aprovação
+                        </td>
+                        <td class="py-md text-center">
+                          <input
+                            type="checkbox"
+                            checked
+                            class="text-primary h-5 w-5 rounded"
+                          />
+                        </td>
+                        <td class="py-md text-center">
+                          <input
+                            type="checkbox"
+                            class="text-primary h-5 w-5 rounded"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="py-md text-on-surface">
+                          Lembrete 1h antes da reserva
+                        </td>
+                        <td class="py-md text-center">
+                          <input
+                            type="checkbox"
+                            checked
+                            class="text-primary h-5 w-5 rounded"
+                          />
+                        </td>
+                        <td class="py-md text-center">
+                          <input
+                            type="checkbox"
+                            class="text-primary h-5 w-5 rounded"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="py-md text-on-surface">
+                          Recurso em manutenção
+                        </td>
+                        <td class="py-md text-center">
+                          <input
+                            type="checkbox"
+                            checked
+                            class="text-primary h-5 w-5 rounded"
+                          />
+                        </td>
+                        <td class="py-md text-center">
+                          <input
+                            type="checkbox"
+                            class="text-primary h-5 w-5 rounded"
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Integrações -->
+              <section
+                id="integ"
+                aria-labelledby="integ-h"
+                class="bg-surface-container-lowest border-outline-variant p-md md:p-lg rounded-xl border shadow-sm"
+              >
+                <h2 id="integ-h" class="text-headline-sm text-on-surface mb-sm">
+                  Integrações
+                </h2>
+                <p class="text-body-sm text-on-surface-variant mb-md">
+                  Conecte o SIRA a serviços institucionais e externos. Algumas
+                  integrações dependem de liberação da equipe de TI.
+                </p>
+
+                <ul class="gap-sm flex flex-col">
+                  <!-- SSO institucional (LDAP/AD do IFPB) — Conectado -->
+                  <li
+                    class="gap-md p-md border-outline-variant bg-surface-container-low flex flex-col rounded-lg border sm:flex-row sm:items-center"
+                  >
+                    <span
+                      class="bg-primary-fixed flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg"
+                      ><span
+                        class="material-symbols-outlined text-on-primary-fixed"
+                        aria-hidden="true"
+                        >badge</span
+                      ></span
+                    >
+                    <div class="min-w-0 flex-1">
+                      <div class="gap-sm flex flex-wrap items-center">
+                        <p class="text-body-md text-on-surface font-medium">
+                          SSO institucional (LDAP/AD do IFPB)
+                        </p>
+                        <span
+                          class="bg-secondary-container text-on-secondary-container text-label-sm gap-xs flex items-center rounded-full px-2 py-0.5"
+                          ><span
+                            class="material-symbols-outlined"
+                            style="font-size: 14px"
+                            aria-hidden="true"
+                            >check_circle</span
+                          >Conectado</span
+                        >
+                      </div>
+                      <p class="text-body-sm text-on-surface-variant mt-0.5">
+                        Login único com as credenciais do diretório
+                        institucional (suap.ifpb.edu.br).
+                      </p>
+                    </div>
+                    <button
+                      class="px-md border-outline-variant text-on-surface hover:bg-surface-container text-label-md gap-xs flex flex-shrink-0 items-center self-start rounded-lg border py-2 sm:self-center"
+                    >
+                      <span
+                        class="material-symbols-outlined"
+                        style="font-size: 18px"
+                        aria-hidden="true"
+                        >settings</span
+                      >Configurar
+                    </button>
+                  </li>
+
+                  <!-- Google Calendar — Desconectado -->
+                  <li
+                    class="gap-md p-md border-outline-variant bg-surface-container-low flex flex-col rounded-lg border sm:flex-row sm:items-center"
+                  >
+                    <span
+                      class="bg-tertiary-fixed flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg"
+                      ><span
+                        class="material-symbols-outlined text-on-tertiary-fixed-variant"
+                        aria-hidden="true"
+                        >calendar_month</span
+                      ></span
+                    >
+                    <div class="min-w-0 flex-1">
+                      <div class="gap-sm flex flex-wrap items-center">
+                        <p class="text-body-md text-on-surface font-medium">
+                          Sincronização com Google Calendar
+                        </p>
+                        <span
+                          class="bg-surface-container-high text-on-surface text-label-sm gap-xs flex items-center rounded-full px-2 py-0.5"
+                          ><span
+                            class="material-symbols-outlined"
+                            style="font-size: 14px"
+                            aria-hidden="true"
+                            >link_off</span
+                          >Desconectado</span
+                        >
+                      </div>
+                      <p class="text-body-sm text-on-surface-variant mt-0.5">
+                        Espelhe suas reservas aprovadas automaticamente na sua
+                        agenda do Google.
+                      </p>
+                    </div>
+                    <button
+                      class="px-md bg-primary text-on-primary hover:bg-surface-tint text-label-md gap-xs flex flex-shrink-0 items-center self-start rounded-lg py-2 sm:self-center"
+                    >
+                      <span
+                        class="material-symbols-outlined"
+                        style="font-size: 18px"
+                        aria-hidden="true"
+                        >link</span
+                      >Conectar
+                    </button>
+                  </li>
+
+                  <!-- Webhooks / notificações externas — Em breve -->
+                  <li
+                    class="gap-md p-md border-outline-variant bg-surface-container-low flex flex-col rounded-lg border opacity-90 sm:flex-row sm:items-center"
+                  >
+                    <span
+                      class="bg-surface-container-high flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg"
+                      ><span
+                        class="material-symbols-outlined text-on-surface-variant"
+                        aria-hidden="true"
+                        >webhook</span
+                      ></span
+                    >
+                    <div class="min-w-0 flex-1">
+                      <div class="gap-sm flex flex-wrap items-center">
+                        <p class="text-body-md text-on-surface font-medium">
+                          Webhooks e notificações externas
+                        </p>
+                        <span
+                          class="bg-tertiary-fixed text-on-tertiary-fixed-variant text-label-sm gap-xs flex items-center rounded-full px-2 py-0.5"
+                          ><span
+                            class="material-symbols-outlined"
+                            style="font-size: 14px"
+                            aria-hidden="true"
+                            >schedule</span
+                          >Em breve</span
+                        >
+                      </div>
+                      <p class="text-body-sm text-on-surface-variant mt-0.5">
+                        Envie eventos de reserva para sistemas externos (Slack,
+                        Teams, ou um endpoint HTTP).
+                      </p>
+                    </div>
+                    <button
+                      disabled
+                      aria-disabled="true"
+                      class="px-md border-outline-variant text-on-surface-variant text-label-md gap-xs flex flex-shrink-0 cursor-not-allowed items-center self-start rounded-lg border py-2 opacity-50 sm:self-center"
+                    >
+                      <span
+                        class="material-symbols-outlined"
+                        style="font-size: 18px"
+                        aria-hidden="true"
+                        >notifications_active</span
+                      >Configurar
+                    </button>
+                  </li>
+                </ul>
+              </section>
+
+              <!-- Zona de risco -->
+              <section
+                aria-labelledby="risco-h"
+                class="bg-error-container/30 border-error/40 p-md md:p-lg rounded-xl border"
+              >
+                <h2 id="risco-h" class="text-headline-sm text-error mb-sm">
+                  Zona de risco
+                </h2>
+                <p class="text-body-sm text-on-surface-variant mb-md">
+                  Ações irreversíveis. Procedimentos abaixo afetam
+                  permanentemente sua conta.
+                </p>
+                <div class="gap-sm flex flex-wrap">
+                  <button
+                    class="px-md border-error text-error hover:bg-error-container text-label-md rounded-lg border py-2"
+                  >
+                    Exportar meus dados
+                  </button>
+                  <button
+                    class="px-md bg-error text-on-error text-label-md rounded-lg py-2 hover:opacity-90"
+                  >
+                    Excluir minha conta
+                  </button>
+                </div>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
