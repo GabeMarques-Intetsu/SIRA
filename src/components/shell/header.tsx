@@ -47,7 +47,7 @@ export function Header({
       <button
         type="button"
         onClick={onOpenMenu}
-        className="touch-target text-on-surface-variant hover:bg-surface-container rounded-full lg:hidden"
+        className="text-on-surface-variant hover:bg-surface-container flex h-9 w-9 items-center justify-center rounded-full md:h-11 md:w-11 lg:hidden"
         aria-label="Abrir menu de navegação"
       >
         <span className="material-symbols-outlined">menu</span>
@@ -71,7 +71,7 @@ export function Header({
 
       <Link
         href="/notificacoes"
-        className="touch-target text-on-surface-variant hover:bg-surface-container relative flex items-center justify-center rounded-full"
+        className="text-on-surface-variant hover:bg-surface-container relative flex h-9 w-9 items-center justify-center rounded-full md:h-11 md:w-11"
         aria-label={
           notificationCount > 0
             ? `Notificações (${notificationCount} não lidas)`
