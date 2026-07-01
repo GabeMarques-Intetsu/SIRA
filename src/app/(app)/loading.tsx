@@ -16,7 +16,7 @@ export default function Loading() {
       {/* Título */}
       <div className="bg-surface-container-high h-8 w-64 rounded-lg" />
       {/* Faixa de filtros/KPIs */}
-      <div className="gap-md grid grid-cols-2 lg:grid-cols-4">
+      <div className="gap-md grid grid-cols-2 md:grid-cols-4">
         <div className="bg-surface-container-high h-24 rounded-xl" />
         <div className="bg-surface-container-high h-24 rounded-xl" />
         <div className="bg-surface-container-high h-24 rounded-xl" />

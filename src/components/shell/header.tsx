@@ -47,7 +47,7 @@ export function Header({
       <button
         type="button"
         onClick={onOpenMenu}
-        className="touch-target text-on-surface-variant hover:bg-surface-container rounded-full md:hidden"
+        className="touch-target text-on-surface-variant hover:bg-surface-container rounded-full lg:hidden"
         aria-label="Abrir menu de navegação"
       >
         <span className="material-symbols-outlined">menu</span>
@@ -59,7 +59,7 @@ export function Header({
         onClick={onToggleSidebar}
         aria-expanded={!sidebarCollapsed}
         aria-controls={sidebarId}
-        className="touch-target text-on-surface-variant hover:bg-surface-container hidden rounded-full md:inline-flex"
+        className="touch-target text-on-surface-variant hover:bg-surface-container hidden rounded-full lg:inline-flex"
         aria-label={sidebarCollapsed ? "Expandir menu" : "Recolher menu"}
       >
         <span className="material-symbols-outlined">menu</span>

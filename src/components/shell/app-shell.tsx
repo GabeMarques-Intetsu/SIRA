@@ -68,8 +68,8 @@ export function AppShell({
       <aside
         id={SIDEBAR_ID}
         aria-hidden={sidebarCollapsed || undefined}
-        className={`border-outline-variant hidden flex-shrink-0 overflow-hidden border-r transition-[width] duration-200 ease-out md:flex ${
-          sidebarCollapsed ? "md:w-0 md:border-r-0" : "md:w-[264px]"
+        className={`border-outline-variant hidden flex-shrink-0 overflow-hidden border-r transition-[width] duration-200 ease-out lg:flex ${
+          sidebarCollapsed ? "lg:w-0 lg:border-r-0" : "lg:w-[264px]"
         }`}
       >
         <Sidebar items={items} badges={badges} />
@@ -77,7 +77,7 @@ export function AppShell({
 
       {/* Drawer mobile */}
       {drawerOpen && (
-        <div className="fixed inset-0 z-40 md:hidden">
+        <div className="fixed inset-0 z-40 lg:hidden">
           <button
             type="button"
             aria-label="Fechar menu"
