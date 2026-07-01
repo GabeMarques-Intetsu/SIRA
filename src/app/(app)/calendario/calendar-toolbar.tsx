@@ -49,7 +49,7 @@ export function CalendarToolbar({
 
   return (
     <header className="p-md border-outline-variant gap-md flex flex-wrap items-center border-b">
-      <div className="gap-sm flex items-center">
+      <div className="gap-sm flex min-w-0 items-center">
         <button
           type="button"
           onClick={() => goToDate(prevIso)}
@@ -61,7 +61,7 @@ export function CalendarToolbar({
           </span>
         </button>
         <h2
-          className="text-headline-sm text-on-surface px-sm whitespace-nowrap"
+          className="text-body-lg md:text-headline-sm text-on-surface px-sm min-w-0"
           aria-live="polite"
         >
           {rangeLabel}
