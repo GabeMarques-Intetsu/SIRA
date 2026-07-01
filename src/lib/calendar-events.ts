@@ -10,6 +10,16 @@ import { FIRST_HOUR, LAST_HOUR, timeToHours } from "@/lib/calendar";
 export type ReservationStatus = Enums<"reservation_status">;
 export type ResourceKind = Enums<"resource_kind">;
 
+/**
+ * Só reservas ATIVAS ocupam a agenda: `pending` (tentativa) e `approved`
+ * (confirmada). `rejected`/`cancelled` NÃO aparecem na grade — uma reserva
+ * recusada ou cancelada deve SUMIR do calendário, não apenas mudar de cor.
+ */
+export const CALENDAR_VISIBLE_STATUSES: ReservationStatus[] = [
+  "pending",
+  "approved",
+];
+
 /** Linha de reserva com os nomes do recurso já resolvidos via join. */
 export interface ReservationRow {
   id: string;
@@ -66,6 +76,9 @@ export function reservationsToEvents(
   const dayIndexByIso = new Map(weekIsos.map((iso, i) => [iso, i]));
 
   return rows.flatMap((row): CalendarEvent[] => {
+    // Recusadas/canceladas não ocupam a grade (somem, não recolorem).
+    if (!CALENDAR_VISIBLE_STATUSES.includes(row.status)) return [];
+
     const dayIndex = dayIndexByIso.get(row.reservation_date);
     if (dayIndex === undefined) return [];
 

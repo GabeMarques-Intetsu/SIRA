@@ -50,12 +50,20 @@ async function loadPendingReservation(
   supabase: Awaited<ReturnType<typeof createClient>>,
   reservationId: string,
 ): Promise<
-  | { ok: true; userId: string; date: string; start: string }
+  | {
+      ok: true;
+      userId: string;
+      date: string;
+      start: string;
+      groupId: string | null;
+    }
   | { ok: false; error: string }
 > {
   const { data, error } = await supabase
     .from("reservations")
-    .select("id, status, user_id, reservation_date, start_time")
+    .select(
+      "id, status, user_id, reservation_date, start_time, recurrence_group_id",
+    )
     .eq("id", reservationId)
     .single();
 
@@ -71,7 +79,59 @@ async function loadPendingReservation(
     userId: data.user_id,
     date: data.reservation_date,
     start: data.start_time,
+    groupId: data.recurrence_group_id,
   };
+}
+
+/**
+ * Aplica a decisão (`approved`/`rejected`) à ocorrência OU à SÉRIE inteira:
+ * quando a reserva tem `recurrence_group_id`, TODAS as ocorrências ainda
+ * pendentes daquela série são decididas de uma vez (o usuário pediu "decidir a
+ * série inteira"). Mantém a guarda anti-corrida (`.eq("status","pending")`) e
+ * registra um `approval_event` por ocorrência decidida (trilha de auditoria).
+ * Retorna os ids decididos (≥1) ou um erro de corrida/DB.
+ */
+async function applyDecision(
+  supabase: Awaited<ReturnType<typeof createClient>>,
+  opts: {
+    reservationId: string;
+    groupId: string | null;
+    status: "approved" | "rejected";
+    adminId: string;
+    reason?: string;
+  },
+): Promise<{ ok: true; ids: string[] } | { ok: false; error: string }> {
+  const verb = opts.status === "approved" ? "aprovar" : "recusar";
+
+  let update = supabase
+    .from("reservations")
+    .update({ status: opts.status })
+    .eq("status", "pending");
+  update = opts.groupId
+    ? update.eq("recurrence_group_id", opts.groupId)
+    : update.eq("id", opts.reservationId);
+
+  const { data: updated, error } = await update.select("id");
+  if (error) {
+    return { ok: false, error: `Não foi possível ${verb} a reserva.` };
+  }
+  if (!updated || updated.length === 0) {
+    return {
+      ok: false,
+      error: "Esta solicitação já foi decidida por outra pessoa.",
+    };
+  }
+
+  const ids = updated.map((r) => r.id);
+  await supabase.from("approval_events").insert(
+    ids.map((id) => ({
+      reservation_id: id,
+      actor_id: opts.adminId,
+      action: opts.status,
+      reason: opts.reason ?? null,
+    })),
+  );
+  return { ok: true, ids };
 }
 
 /**
@@ -97,38 +157,24 @@ export async function approveReservationAction(
     return { ok: false, error: SELF_REVIEW_BLOCKED };
   }
 
-  // Guarda anti-corrida: só atinge a linha se AINDA estiver pendente (CA01).
-  const { data: updated, error: updateError } = await supabase
-    .from("reservations")
-    .update({ status: "approved" })
-    .eq("id", reservationId)
-    .eq("status", "pending")
-    .select("id");
-
-  if (updateError) {
-    return { ok: false, error: "Não foi possível aprovar a reserva." };
-  }
-  if (!updated || updated.length === 0) {
-    // Outra requisição venceu a corrida entre a leitura e o UPDATE.
-    return {
-      ok: false,
-      error: "Esta solicitação já foi decidida por outra pessoa.",
-    };
-  }
-
-  // Trilha de auditoria (RLS permite admin inserir).
-  await supabase.from("approval_events").insert({
-    reservation_id: reservationId,
-    actor_id: admin.id,
-    action: "approved",
+  // Decide a ocorrência OU a série inteira (guarda anti-corrida + auditoria).
+  const decided = await applyDecision(supabase, {
+    reservationId,
+    groupId: current.groupId,
+    status: "approved",
+    adminId: admin.id,
   });
+  if (!decided.ok) return { ok: false, error: decided.error };
 
-  // Notificação automática ao autor (F-22 CA03).
+  // Notificação automática ao autor (F-22 CA03) — UMA por decisão de série.
+  const isSeries = decided.ids.length > 1;
   await supabase.from("notifications").insert({
     user_id: current.userId,
     type: "reservation_approved",
     title: "Reserva aprovada",
-    message: `Sua solicitação para ${current.date} foi aprovada.`,
+    message: isSeries
+      ? `Sua solicitação recorrente (${decided.ids.length} datas) foi aprovada.`
+      : `Sua solicitação para ${current.date} foi aprovada.`,
     related_reservation_id: reservationId,
   });
 
@@ -174,36 +220,25 @@ export async function rejectReservationAction(
     return { ok: false, error: SELF_REVIEW_BLOCKED };
   }
 
-  const { data: updated, error: updateError } = await supabase
-    .from("reservations")
-    .update({ status: "rejected" })
-    .eq("id", reservationId)
-    .eq("status", "pending")
-    .select("id");
-
-  if (updateError) {
-    return { ok: false, error: "Não foi possível recusar a reserva." };
-  }
-  if (!updated || updated.length === 0) {
-    return {
-      ok: false,
-      error: "Esta solicitação já foi decidida por outra pessoa.",
-    };
-  }
-
-  await supabase.from("approval_events").insert({
-    reservation_id: reservationId,
-    actor_id: admin.id,
-    action: "rejected",
+  // Decide a ocorrência OU a série inteira (guarda anti-corrida + auditoria).
+  const decided = await applyDecision(supabase, {
+    reservationId,
+    groupId: current.groupId,
+    status: "rejected",
+    adminId: admin.id,
     reason: trimmed,
   });
+  if (!decided.ok) return { ok: false, error: decided.error };
 
-  // Notificação com o motivo (F-23 CA03).
+  // Notificação com o motivo (F-23 CA03) — UMA por decisão de série.
+  const isSeries = decided.ids.length > 1;
   await supabase.from("notifications").insert({
     user_id: current.userId,
     type: "reservation_rejected",
     title: "Reserva recusada",
-    message: `Sua solicitação para ${current.date} foi recusada. Motivo: ${trimmed}`,
+    message: isSeries
+      ? `Sua solicitação recorrente (${decided.ids.length} datas) foi recusada. Motivo: ${trimmed}`
+      : `Sua solicitação para ${current.date} foi recusada. Motivo: ${trimmed}`,
     related_reservation_id: reservationId,
   });
 
