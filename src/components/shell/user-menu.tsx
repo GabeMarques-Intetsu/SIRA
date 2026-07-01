@@ -16,7 +16,6 @@ import {
   DropdownItemLink,
   DropdownMenu,
   DropdownSeparator,
-  useDropdownClose,
 } from "@/components/ui/dropdown-menu";
 
 interface UserMenuProps {
@@ -63,13 +62,15 @@ export function UserMenu({ fullName, initials }: UserMenuProps) {
 
 /** "Sair" como `menuitem` que submete a server action de logout (F-04). */
 function LogoutMenuItem() {
-  const close = useDropdownClose();
+  // NÃO fechar o dropdown aqui: `close()` faz `setOpen(false)`, que DESMONTA o
+  // painel (portal) — e com ele este `<form>` — ANTES do React despachar a
+  // server action, abortando o logout (BUG: "Sair" não funcionava). O
+  // `redirect("/login")` da action já desmonta tudo ao navegar.
   return (
     <form action={signOutAction}>
       <button
         role="menuitem"
         type="submit"
-        onClick={() => close()}
         className="px-md py-sm text-body-sm text-on-surface hover:bg-surface-container-highest gap-sm flex w-full items-center text-left"
       >
         <span

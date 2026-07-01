@@ -72,6 +72,8 @@ export default async function CalendarioPage({
     )
     .gte("reservation_date", weekStartIso)
     .lte("reservation_date", weekEndIso)
+    // Só reservas ATIVAS na agenda: recusadas/canceladas somem (não recolorem).
+    .in("status", ["pending", "approved"])
     .order("start_time", { ascending: true });
 
   const rows = error ? [] : ((data ?? []) as unknown as ReservationRow[]);
@@ -138,13 +140,6 @@ export default async function CalendarioPage({
                 aria-hidden="true"
               />
               Pendente
-            </span>
-            <span className="gap-xs flex items-center">
-              <span
-                className="bg-error h-3 w-3 rounded-sm"
-                aria-hidden="true"
-              />
-              Recusada
             </span>
             <span className="ml-auto hidden md:inline">
               Sua agenda pessoal de reservas.

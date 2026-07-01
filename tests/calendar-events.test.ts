@@ -84,9 +84,16 @@ test("recorta reserva que ultrapassa o intervalo visível", () => {
   assert.equal(ev.span, 1);
 });
 
-test("status é preservado para colorização (CA03)", () => {
-  const [pending] = reservationsToEvents([row({ status: "pending" })], WEEK);
-  const [rejected] = reservationsToEvents([row({ status: "rejected" })], WEEK);
-  assert.equal(pending.status, "pending");
-  assert.equal(rejected.status, "rejected");
+// Ativas (pending/approved) aparecem e preservam o status p/ cor (CA03);
+// recusadas/canceladas SOMEM da agenda (não recolorem) — fix do bug reportado.
+test("recusadas e canceladas não aparecem; ativas preservam o status (CA03)", () => {
+  const pending = reservationsToEvents([row({ status: "pending" })], WEEK);
+  const approved = reservationsToEvents([row({ status: "approved" })], WEEK);
+  const rejected = reservationsToEvents([row({ status: "rejected" })], WEEK);
+  const cancelled = reservationsToEvents([row({ status: "cancelled" })], WEEK);
+
+  assert.equal(pending[0].status, "pending");
+  assert.equal(approved[0].status, "approved");
+  assert.equal(rejected.length, 0, "reserva recusada deve sumir da agenda");
+  assert.equal(cancelled.length, 0, "reserva cancelada deve sumir da agenda");
 });
