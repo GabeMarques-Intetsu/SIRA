@@ -1,4 +1,5 @@
 # Dependências
+node_modules
 node_modules/
 
 # Produção (Vite)
@@ -65,3 +66,6 @@ venv/
 next-env.d.ts
 *.tsbuildinfo
 .vercel
+
+# Config de tooling MCP (local)
+.mcp.json

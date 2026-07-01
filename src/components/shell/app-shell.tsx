@@ -18,6 +18,17 @@ const SIDEBAR_ID = "app-sidebar";
 
 /**
  * Shell responsivo: sidebar fixa ≥ md; vira drawer < md (F-07).
+ *
+ * O drawer (mobile) abre por botão no header, fecha ao tocar no overlay, ao
+ * navegar e com Esc. No desktop, o mesmo ☰ recolhe/expande a sidebar fixa
+ * (BUG 3): o estado `sidebarCollapsed` vive no STORE GLOBAL Zustand
+ * (`ui-store`), que controla a largura do `<aside>` e persiste a preferência em
+ * localStorage. Ao recolher, o conteúdo principal ocupa a largura liberada via
+ * `flex-1`, sem CLS brusco (a transição de largura é animada).
+ *
+ * SSR-safe: o store usa `skipHydration`, então o primeiro render (servidor e
+ * cliente) nasce expandido — sem mismatch. A reidratação do localStorage é
+ * disparada uma vez, após a montagem, via `rehydrate()`.
  */
 export function AppShell({
   fullName,
@@ -30,12 +41,14 @@ export function AppShell({
   const sidebarCollapsed = useUiStore((s) => s.sidebarCollapsed);
   const toggleSidebar = useUiStore((s) => s.toggleSidebar);
 
-  // Reidrata a preferência do localStorage uma vez, no cliente.
+  // Reidrata a preferência do localStorage uma vez, no cliente, após a
+  // montagem — o store foi criado com `skipHydration`, então até aqui o valor é
+  // o default (expandido) idêntico ao HTML do servidor. Evita flash/mismatch.
   useEffect(() => {
     void useUiStore.persist.rehydrate();
   }, []);
 
-  // Fecha o drawer com Esc.
+  // Fecha o drawer com Esc (a11y — WCAG 2.1.2 sem armadilha de teclado).
   useEffect(() => {
     if (!drawerOpen) return;
     const onKey = (e: KeyboardEvent) => {
@@ -51,7 +64,7 @@ export function AppShell({
         Pular para o conteúdo
       </a>
 
-      {/* Sidebar fixa (desktop) */}
+      {/* Sidebar fixa (desktop) — recolhe para largura 0 quando colapsada. */}
       <aside
         id={SIDEBAR_ID}
         aria-hidden={sidebarCollapsed || undefined}
@@ -86,7 +99,6 @@ export function AppShell({
         </div>
       )}
 
-      {/* Header e Conteúdo Principal */}
       <div className="flex min-w-0 flex-1 flex-col">
         <Header
           fullName={fullName}

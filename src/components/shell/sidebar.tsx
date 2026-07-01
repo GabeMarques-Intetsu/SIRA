@@ -80,7 +80,6 @@ export function Sidebar({ items, badges = {}, onNavigate }: SidebarProps) {
         })}
       </nav>
 
-      {/* Rodapé */}
       <div className="border-outline-variant gap-xs pt-md mt-auto flex flex-col border-t">
         <LogoutButton />
       </div>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIRA · Usuários</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./_shared/tokens.css" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="./_shared/tailwind-config.js"></script>
+  <script src="./_shared/theme-toggle.js"></script>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen flex font-sans">
+<a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+<div class="flex w-full min-h-screen">
+
+  <aside class="hidden md:flex w-[264px] flex-col bg-surface-container-low border-r border-outline-variant px-md py-lg gap-md flex-shrink-0">
+    <div class="flex items-center gap-sm px-sm">
+      <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center"><span class="material-symbols-outlined text-on-primary" aria-hidden="true">domain</span></div>
+      <div class="flex flex-col"><span class="text-headline-sm text-on-surface leading-none">SIRA</span><span class="text-label-sm text-on-surface-variant">IFPB</span></div>
+    </div>
+    <a href="./04-nova-reserva.html" class="flex items-center justify-center gap-sm px-md py-2.5 bg-primary text-on-primary rounded-lg text-label-md hover:bg-surface-tint shadow-sm transition-all active:scale-[0.98]"><span class="material-symbols-outlined" aria-hidden="true">add</span><span>Nova Reserva</span></a>
+    <nav aria-label="Navegação principal" class="flex-1 flex flex-col gap-xs overflow-y-auto">
+      <a href="./02-dashboard.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">dashboard</span><span>Dashboard</span></a>
+      <a href="./03-calendario.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">calendar_month</span><span>Calendário</span></a>
+      <a href="./06-minhas-reservas.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">event_available</span><span>Minhas Reservas</span></a>
+      <a href="./08-aprovacoes.html" class="flex items-center justify-between gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="flex items-center gap-md"><span class="material-symbols-outlined" aria-hidden="true">fact_check</span><span>Aprovações</span></span><span class="px-2 py-0.5 bg-error text-on-error rounded-full text-label-sm">7</span></a>
+      <a href="./05-gestao-recursos.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">domain</span><span>Recursos</span></a>
+      <a href="./09-usuarios.html" aria-current="page" class="flex items-center gap-md px-md py-sm bg-secondary-container text-on-secondary-container rounded-lg text-label-md font-bold"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1" aria-hidden="true">group</span><span>Usuários</span></a>
+    </nav>
+    <div class="mt-auto flex flex-col gap-xs pt-md border-t border-outline-variant">
+      <button data-theme-toggle class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md w-full text-left" aria-label="Ativar tema escuro" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">dark_mode</span><span>Tema</span></button>
+      <a href="./11-configuracoes.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">settings</span><span>Configurações</span></a>
+      <a href="./01-login.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">logout</span><span>Sair</span></a>
+    </div>
+  </aside>
+
+  <div class="flex-1 flex flex-col min-w-0">
+    <header class="sticky top-0 z-20 bg-surface/95 backdrop-blur border-b border-outline-variant px-md md:px-margin-desktop py-md flex items-center gap-md">
+      <button class="md:hidden touch-target rounded-full text-on-surface-variant hover:bg-surface-container" aria-label="Abrir menu"><span class="material-symbols-outlined">menu</span></button>
+      <div class="flex-1">
+        <h1 class="text-headline-sm text-on-surface">Usuários</h1>
+        <p class="text-body-sm text-on-surface-variant hidden md:block">128 ativos · 3 solicitações pendentes</p>
+      </div>
+      <div class="flex items-center gap-sm">
+        <a href="./10-notificacoes.html" class="relative touch-target rounded-full text-on-surface-variant hover:bg-surface-container" aria-label="Notificações"><span class="material-symbols-outlined">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full ring-2 ring-surface" aria-hidden="true"></span></a>
+        <button class="ml-sm flex items-center gap-sm rounded-full hover:bg-surface-container px-sm py-1" aria-label="Menu do usuário Ana Silva">
+          <div class="w-9 h-9 bg-primary text-on-primary rounded-full flex items-center justify-center text-label-md font-bold">AS</div>
+          <div class="hidden lg:flex flex-col items-start leading-tight"><span class="text-label-md text-on-surface">Ana Silva</span><span class="text-label-sm text-on-surface-variant">Administradora</span></div>
+        </button>
+      </div>
+    </header>
+
+    <main id="main-content" class="flex-1 p-md md:p-margin-desktop overflow-y-auto">
+      <div class="max-w-[1280px] mx-auto flex flex-col gap-lg">
+
+        <!-- Tabs Ativos / Solicitações -->
+        <section class="flex flex-wrap items-center justify-between gap-md">
+          <div role="tablist" aria-label="Categoria de usuários" class="flex border-b border-outline-variant w-full md:w-auto">
+            <button role="tab" aria-selected="true"
+                    class="relative px-md py-2 text-label-md text-primary flex items-center gap-sm border-b-2 border-primary -mb-px">
+              <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">group</span>Ativos
+              <span class="ml-1 px-2 py-0.5 bg-primary-fixed text-on-primary-fixed-variant rounded-full text-label-sm">128</span>
+            </button>
+            <button role="tab" aria-selected="false"
+                    class="relative px-md py-2 text-label-md text-on-surface-variant hover:text-on-surface flex items-center gap-sm">
+              <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">how_to_reg</span>Solicitações
+              <span class="ml-1 px-2 py-0.5 bg-error text-on-error rounded-full text-label-sm">3</span>
+            </button>
+            <button role="tab" aria-selected="false"
+                    class="relative px-md py-2 text-label-md text-on-surface-variant hover:text-on-surface flex items-center gap-sm">
+              <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">block</span>Inativos
+            </button>
+          </div>
+          <button class="px-md py-2 bg-primary text-on-primary rounded-lg text-label-md flex items-center gap-xs hover:bg-surface-tint">
+            <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">person_add</span>Adicionar usuário
+          </button>
+        </section>
+
+        <!-- Filtros -->
+        <section class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant flex flex-col md:flex-row items-stretch md:items-center gap-md">
+          <div class="relative flex-1">
+            <span class="absolute left-md top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant" aria-hidden="true">search</span>
+            <input type="search" placeholder="Buscar por nome, e-mail ou matrícula…" aria-label="Buscar"
+                   class="w-full pl-[44px] pr-md py-2 rounded-lg border border-outline-variant bg-surface text-on-surface placeholder:text-on-surface-variant/60 focus:ring-2 focus:ring-primary outline-none text-body-sm" />
+          </div>
+          <select aria-label="Filtrar por perfil" class="px-md py-2 rounded-lg border border-outline-variant bg-surface text-on-surface focus:ring-2 focus:ring-primary outline-none text-body-sm">
+            <option>Todos os perfis</option>
+            <option>Administrador</option>
+            <option>Coordenador</option>
+            <option>Professor</option>
+            <option>Aluno</option>
+          </select>
+          <select aria-label="Filtrar por departamento" class="px-md py-2 rounded-lg border border-outline-variant bg-surface text-on-surface focus:ring-2 focus:ring-primary outline-none text-body-sm">
+            <option>Todos os departamentos</option>
+            <option>DTSI</option>
+            <option>Engenharia</option>
+            <option>Letras</option>
+          </select>
+        </section>
+
+        <!-- Tabela usuários -->
+        <section class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-body-sm">
+              <thead class="text-left text-label-sm text-on-surface-variant uppercase tracking-wider bg-surface-container-low">
+                <tr>
+                  <th class="px-md py-sm font-medium">Usuário</th>
+                  <th class="px-md py-sm font-medium">Perfil</th>
+                  <th class="px-md py-sm font-medium">Departamento</th>
+                  <th class="px-md py-sm font-medium">Último acesso</th>
+                  <th class="px-md py-sm font-medium">Status</th>
+                  <th class="px-md py-sm font-medium text-right">Ações</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-outline-variant">
+                <tr class="hover:bg-surface-container-low transition-colors">
+                  <td class="px-md py-md">
+                    <div class="flex items-center gap-sm">
+                      <div class="w-9 h-9 bg-primary text-on-primary rounded-full flex items-center justify-center text-label-md font-bold">AS</div>
+                      <div>
+                        <div class="text-on-surface font-medium">Ana Silva</div>
+                        <div class="text-on-surface-variant text-body-sm">ana.silva@ifpb.edu.br</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-md py-md"><span class="px-2 py-0.5 bg-primary-fixed text-on-primary-fixed-variant rounded-full text-label-sm">Administradora</span></td>
+                  <td class="px-md py-md text-on-surface">DTSI</td>
+                  <td class="px-md py-md text-on-surface-variant">Agora</td>
+                  <td class="px-md py-md"><span class="inline-flex items-center gap-xs"><span class="w-2 h-2 bg-secondary rounded-full"></span>Ativa</span></td>
+                  <td class="px-md py-md text-right">
+                    <button class="touch-target rounded-full text-on-surface-variant hover:bg-surface-container" aria-label="Ações para Ana Silva"><span class="material-symbols-outlined">more_vert</span></button>
+                  </td>
+                </tr>
+                <tr class="hover:bg-surface-container-low transition-colors">
+                  <td class="px-md py-md">
+                    <div class="flex items-center gap-sm">
+                      <div class="w-9 h-9 bg-tertiary text-on-tertiary rounded-full flex items-center justify-center text-label-md font-bold">DP</div>
+                      <div>
+                        <div class="text-on-surface font-medium">Diego Pessoa</div>
+                        <div class="text-on-surface-variant text-body-sm">diego.pessoa@ifpb.edu.br</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-md py-md"><span class="px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full text-label-sm">Coordenador</span></td>
+                  <td class="px-md py-md text-on-surface">DTSI</td>
+                  <td class="px-md py-md text-on-surface-variant">há 2h</td>
+                  <td class="px-md py-md"><span class="inline-flex items-center gap-xs"><span class="w-2 h-2 bg-secondary rounded-full"></span>Ativo</span></td>
+                  <td class="px-md py-md text-right">
+                    <button class="touch-target rounded-full text-on-surface-variant hover:bg-surface-container" aria-label="Ações para Diego Pessoa"><span class="material-symbols-outlined">more_vert</span></button>
+                  </td>
+                </tr>
+                <tr class="hover:bg-surface-container-low transition-colors">
+                  <td class="px-md py-md">
+                    <div class="flex items-center gap-sm">
+                      <div class="w-9 h-9 bg-secondary text-on-secondary rounded-full flex items-center justify-center text-label-md font-bold">PD</div>
+                      <div>
+                        <div class="text-on-surface font-medium">Paulo Ditarso</div>
+                        <div class="text-on-surface-variant text-body-sm">paulo.ditarso@ifpb.edu.br</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-md py-md"><span class="px-2 py-0.5 bg-surface-container-high text-on-surface rounded-full text-label-sm">Professor</span></td>
+                  <td class="px-md py-md text-on-surface">DTSI</td>
+                  <td class="px-md py-md text-on-surface-variant">há 1 dia</td>
+                  <td class="px-md py-md"><span class="inline-flex items-center gap-xs"><span class="w-2 h-2 bg-secondary rounded-full"></span>Ativo</span></td>
+                  <td class="px-md py-md text-right">
+                    <button class="touch-target rounded-full text-on-surface-variant hover:bg-surface-container" aria-label="Ações para Paulo Ditarso"><span class="material-symbols-outlined">more_vert</span></button>
+                  </td>
+                </tr>
+                <tr class="hover:bg-surface-container-low transition-colors">
+                  <td class="px-md py-md">
+                    <div class="flex items-center gap-sm">
+                      <div class="w-9 h-9 bg-on-secondary-fixed-variant text-on-secondary rounded-full flex items-center justify-center text-label-md font-bold">MS</div>
+                      <div>
+                        <div class="text-on-surface font-medium">Maria Santos</div>
+                        <div class="text-on-surface-variant text-body-sm">maria.santos@academico.ifpb.edu.br</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-md py-md"><span class="px-2 py-0.5 bg-surface-container-high text-on-surface rounded-full text-label-sm">Aluna</span></td>
+                  <td class="px-md py-md text-on-surface">DTSI</td>
+                  <td class="px-md py-md text-on-surface-variant">há 3 dias</td>
+                  <td class="px-md py-md"><span class="inline-flex items-center gap-xs"><span class="w-2 h-2 bg-secondary rounded-full"></span>Ativa</span></td>
+                  <td class="px-md py-md text-right">
+                    <button class="touch-target rounded-full text-on-surface-variant hover:bg-surface-container" aria-label="Ações para Maria Santos"><span class="material-symbols-outlined">more_vert</span></button>
+                  </td>
+                </tr>
+                <tr class="hover:bg-surface-container-low transition-colors">
+                  <td class="px-md py-md">
+                    <div class="flex items-center gap-sm">
+                      <div class="w-9 h-9 bg-outline text-surface rounded-full flex items-center justify-center text-label-md font-bold">JC</div>
+                      <div>
+                        <div class="text-on-surface font-medium">João Costa</div>
+                        <div class="text-on-surface-variant text-body-sm">joao.costa@ifpb.edu.br</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-md py-md"><span class="px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full text-label-sm">Coordenador</span></td>
+                  <td class="px-md py-md text-on-surface">Engenharia</td>
+                  <td class="px-md py-md text-on-surface-variant">há 7 dias</td>
+                  <td class="px-md py-md"><span class="inline-flex items-center gap-xs"><span class="w-2 h-2 bg-outline rounded-full"></span>Inativo 7d</span></td>
+                  <td class="px-md py-md text-right">
+                    <button class="touch-target rounded-full text-on-surface-variant hover:bg-surface-container" aria-label="Ações para João Costa"><span class="material-symbols-outlined">more_vert</span></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Paginação -->
+          <div class="px-md py-md border-t border-outline-variant flex flex-wrap items-center gap-md justify-between text-body-sm text-on-surface-variant">
+            <span>Mostrando <strong class="text-on-surface">1–5</strong> de <strong class="text-on-surface">128</strong> usuários</span>
+            <div class="flex items-center gap-xs">
+              <button class="touch-target rounded-lg hover:bg-surface-container disabled:opacity-50" disabled aria-label="Página anterior"><span class="material-symbols-outlined">chevron_left</span></button>
+              <button aria-current="page" class="px-3 py-1 rounded-lg bg-primary text-on-primary text-label-md">1</button>
+              <button class="px-3 py-1 rounded-lg hover:bg-surface-container text-label-md">2</button>
+              <button class="px-3 py-1 rounded-lg hover:bg-surface-container text-label-md">3</button>
+              <span class="px-1">…</span>
+              <button class="px-3 py-1 rounded-lg hover:bg-surface-container text-label-md">26</button>
+              <button class="touch-target rounded-lg hover:bg-surface-container" aria-label="Próxima página"><span class="material-symbols-outlined">chevron_right</span></button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+</div>
+</body>
+</html>

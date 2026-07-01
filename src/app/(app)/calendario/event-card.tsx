@@ -4,10 +4,10 @@ import type { CalendarEvent } from "@/lib/calendar-events";
  * Cartão de uma reserva, posicionado como item de CSS grid (sem absolute →
  * sem layout shift, ordem de leitura preservada). A cor comunica o STATUS da
  * reserva (a agenda é pessoal — F-13 v1), com tokens M3:
- * - approved   → primary  (confirmada)
- * - pending    → tertiary (aguardando aprovação)
- * - rejected   → error    (recusada)
- * - cancelled  → surface  (esmaecida, riscada)
+ *  - approved  → primary  (confirmada)
+ *  - pending   → tertiary (aguardando aprovação)
+ *  - rejected  → error    (recusada)
+ *  - cancelled → surface  (esmaecida, riscada)
  * A borda esquerda reforça a distinção sem depender só de cor (WCAG 1.4.1).
  *
  * Colunas da grade: 1 = faixa de horário; 2..8 = dias SEG..DOM.

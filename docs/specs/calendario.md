@@ -1,7 +1,6 @@
 # Spec — Calendário (grade semanal)
 
 > **Rastreabilidade**
->
 > - **RF**: [RF-005 — Visualização semanal das reservas](../requirements/RF/RF-005-visualizacao-semanal-das-reservas.md)
 > - **Feature**: [F-13 — Grade semanal de reservas (7d × 12h)](../backlog/features/F-13-grade-semanal-de-reservas-7d-x-12h.md)
 > - **Código**: `src/app/(app)/calendario/page.tsx` · `week-grid.tsx` · `mini-calendar.tsx` · `calendar-toolbar.tsx` · `calendar-filters.tsx` · `event-card.tsx` · `src/lib/calendar.ts` · `src/lib/calendar-events.ts`
@@ -14,12 +13,12 @@
 
 ## Critérios de Aceitação
 
-| ID   | Critério                                                                          |
-| ---- | --------------------------------------------------------------------------------- |
-| CA01 | A grade mostra 7 dias (semana) × 12 faixas horárias.                              |
-| CA02 | Cada reserva aparece como bloco posicionado no dia/horário correto.               |
-| CA03 | É possível navegar para a semana anterior/seguinte e voltar para "hoje".          |
-| CA04 | O dia atual é destacado na grade.                                                 |
+| ID | Critério |
+| --- | --- |
+| CA01 | A grade mostra 7 dias (semana) × 12 faixas horárias. |
+| CA02 | Cada reserva aparece como bloco posicionado no dia/horário correto. |
+| CA03 | É possível navegar para a semana anterior/seguinte e voltar para "hoje". |
+| CA04 | O dia atual é destacado na grade. |
 | CA05 | O conteúdo respeita a RLS: o professor vê as próprias reservas; o admin vê todas. |
 
 > A matemática de semana (âncora, dias, faixa) é pura em `src/lib/calendar.ts`

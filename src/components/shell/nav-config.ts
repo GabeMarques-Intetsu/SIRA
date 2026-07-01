@@ -17,7 +17,7 @@ export interface NavItem {
  * Itens de navegação do shell. A sidebar filtra por `roles`:
  * - professor → Calendário, Nova Reserva, Minhas Reservas, Notificações
  * - admin → Calendário, Nova Reserva, Minhas Reservas (o admin também reserva),
- * Notificações, Painel, Salas, Equipamentos, Usuários, Aprovações
+ *   Notificações, Painel, Salas, Equipamentos, Usuários, Aprovações
  * (RF-002 / F-05)
  */
 export const NAV_ITEMS: NavItem[] = [

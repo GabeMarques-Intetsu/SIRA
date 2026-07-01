@@ -29,37 +29,12 @@ import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { getAdminClient } from "@/lib/supabase/admin";
 import { requireProfile } from "@/lib/auth";
-import type { Database } from "@/lib/supabase/database.types";
-type UserRole = Database["public"]["Enums"]["user_role"];
-type AccountStatus = Database["public"]["Enums"]["account_status"];
-
-function isLastActiveAdmin(
-  admins: { id: string; role: UserRole; status: AccountStatus }[],
-  targetId: string,
-): boolean {
-  const activeAdmins = admins.filter(
-    (a) => a.role === "admin" && a.status === "active",
-  );
-  return activeAdmins.length === 1 && activeAdmins[0]!.id === targetId;
-}
-
-function wouldRemoveLastAdmin(
-  admins: { id: string; role: UserRole; status: AccountStatus }[],
-  targetId: string,
-  next: { role?: UserRole; status?: AccountStatus; deleting?: boolean },
-): boolean {
-  if (!isLastActiveAdmin(admins, targetId)) return false;
-  if (next.deleting) return true;
-  const stillAdmin = (next.role ?? "admin") === "admin";
-  const stillActive = (next.status ?? "active") === "active";
-  return !(stillAdmin && stillActive);
-}
-
-function isProvisioningUnavailable(err: unknown): boolean {
-  const message =
-    err instanceof Error ? err.message : typeof err === "string" ? err : "";
-  return message.includes("SUPABASE_SERVICE_ROLE_KEY ausente");
-}
+import {
+  isProvisioningUnavailable,
+  wouldRemoveLastAdmin,
+  type AccountStatus,
+  type UserRole,
+} from "@/lib/users";
 import {
   isThemePref,
   isLanguagePref,
