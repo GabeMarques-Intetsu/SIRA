@@ -14,6 +14,10 @@
 
 A tela de configurações reúne tudo que pertence à conta da própria pessoa: dados de perfil (nome, foto, telefone, departamento — com o e-mail institucional apenas para leitura), preferências de uso (tema claro/escuro/sistema, idioma, densidade da interface e redução de animações), segurança (troca de senha, verificação em duas etapas e revisão das sessões abertas), notificações (escolha de como ser avisada para cada tipo de evento) e a zona de risco (exportar os próprios dados e excluir a conta). Dá autonomia à pessoa sobre seus dados e conforto de uso, alinhando-se à LGPD nos direitos de acesso, portabilidade e eliminação. A área de integrações com sistemas externos fica documentada como evolução futura, fora do escopo atual.
 
+## Regra de segurança — 2FA exigido no acesso
+
+Quando a pessoa ativa a **verificação em duas etapas**, ela passa a ser **exigida no acesso**: após validar a senha, o sistema pede o código do aplicativo autenticador **antes de liberar as áreas internas**. Enquanto o código não é confirmado, a pessoa não acessa o sistema. Sem essa exigência, o 2FA seria apenas _cadastrável_ e não protegeria de fato o acesso. Quem não tem 2FA ativo continua acessando direto após a senha. Detalhe verificável em [F-39](../../backlog/features/F-39-seguranca-da-conta.md); decisão de design em [ADR-010](../../planning/adrs/ADR-010-enforcement-de-2fa-no-acesso-aal2.md).
+
 ## Realizado por (rastreabilidade ↓)
 
 | Epic                                                         | Feature(s)                                                                                         | Status |

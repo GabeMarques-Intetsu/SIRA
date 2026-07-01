@@ -4,9 +4,11 @@
 
 > **Pasta-fonte do "QUEM faz O QUÊ, QUANDO".** O **porquê** vive em `../requirements/`. O **como** em `../specs/` + ADRs.
 >
-> Last requirements-document check: 27/06/2026 — RF-006/009/013 estendidos para
-> **imagem de recurso** (F-47/F-48) e **reserva temporária / hold** (F-49); novas
-> `RNF-imagem-de-recurso` e `RNF-reserva-temporaria`; ADR-008 e ADR-009.
+> Last requirements-document check: 01/07/2026 — RF-012 estendida com a regra
+> **"2FA exigido no acesso"**; F-39 ganhou o grupo de CAs de _enforcement_
+> (CA11–CA13) + US39.4 (BDD) + Tasks T39.4.1–3; novo ADR-010 (AAL2 via gate no
+> middleware + tela `/verificar-2fa`). _(anterior: 27/06 — imagem F-47/F-48,
+> reserva temporária F-49, ADR-008/009.)_
 > (atualize toda vez que conferir os requisitos antes de mexer no backlog — SKILL §2.1)
 
 > ⚠️ **Nota sobre as Tasks (TX):** as tabelas de Tasks deste backlog refletem a

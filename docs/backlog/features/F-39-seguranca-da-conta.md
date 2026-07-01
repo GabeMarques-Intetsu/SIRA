@@ -37,6 +37,14 @@ Na seção Segurança, a pessoa protege sua conta: altera a senha, ativa a verif
 | **CA06** | A ativação exige confirmar um código gerado pelo aplicativo antes de ficar válida.    | —              | 📝     |
 | **CA07** | A pessoa pode desativar a verificação em duas etapas.                                 | —              | 📝     |
 
+**Grupo:** `CA - Exigência do 2FA no acesso (enforcement)`
+
+| ID       | Critério                                                                                                                            | Como verificar | Status |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA11** | Com o 2FA ativo, após a senha correta o sistema **exige** o código do aplicativo antes de liberar o acesso às áreas internas.       | —              | 📝     |
+| **CA12** | Enquanto o código não é confirmado, a pessoa **não acessa** nenhuma área interna (só a tela de verificação e a saída da sessão).    | —              | 📝     |
+| **CA13** | Código incorreto no acesso barra a entrada e permite nova tentativa; quem **não** tem 2FA ativo acessa direto após a senha (CA04'). | —              | 📝     |
+
 **Grupo:** `CA - Sessões ativas`
 
 | ID       | Critério                                                                        | Como verificar | Status |
@@ -134,13 +142,52 @@ Funcionalidade: Sessões ativas
 - **Prioridade**: 🟡 Normal · **Estimativa**: _a estimar_ · **Status**: 📝
 - **CAs cobertos**: CA08, CA09, CA10
 
+### US39.4 — Exigência do 2FA no acesso
+
+> **Como** pessoa com a verificação em duas etapas ativa, **quero** que o sistema me peça o código do aplicativo ao acessar, **para** que apenas eu (com o aplicativo em mãos) consiga entrar, mesmo que alguém saiba minha senha.
+
+#### Cenários BDD (Gherkin)
+
+```gherkin
+# language: pt
+Funcionalidade: Exigência do 2FA no acesso
+
+  Cenário: Acesso com 2FA ativo pede o código
+    Dado que tenho a verificação em duas etapas ativa
+    Quando acesso o sistema com e-mail e senha corretos
+    Então o sistema pede o código do aplicativo autenticador
+    E ainda não libera as áreas internas
+
+  Cenário: Código correto libera o acesso
+    Dado que o sistema está pedindo o código de duas etapas
+    Quando informo o código correto do aplicativo
+    Então o acesso é liberado
+
+  Cenário: Código incorreto barra o acesso
+    Dado que o sistema está pedindo o código de duas etapas
+    Quando informo um código incorreto
+    Então sou avisada de que o código é inválido
+    E permaneço fora das áreas internas, podendo tentar de novo
+
+  Cenário: Sem 2FA ativo o acesso segue direto
+    Dado que não tenho a verificação em duas etapas ativa
+    Quando acesso o sistema com e-mail e senha corretos
+    Então o acesso é liberado sem pedir código
+```
+
+- **Prioridade**: 🔴 Imediato (segurança) · **Estimativa**: _a estimar_ · **Status**: 📝
+- **CAs cobertos**: CA11, CA12, CA13
+
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID      | Task                                                                                                                                   | Status |
-| ------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| T39.1.1 | Implementar formulário de troca de senha (senha atual, nova, confirmação) com validação de força e coincidência (CA01, CA02, CA03).    | ⏳     |
-| T39.1.2 | Validar a senha atual contra o provedor de autenticação antes de gravar a nova, exibindo aviso em caso de falha (CA04).                | ⏳     |
-| T39.2.1 | Implementar fluxo de ativação de 2FA TOTP (geração de segredo/QR, confirmação de código) e persistência do estado de 2FA (CA05, CA06). | ⏳     |
-| T39.2.2 | Implementar desativação de 2FA com confirmação (CA07).                                                                                 | ⏳     |
-| T39.3.1 | Listar sessões ativas com dispositivo e data, identificando a sessão atual (CA08, CA10).                                               | ⏳     |
-| T39.3.2 | Implementar encerramento de sessão remota via revogação de sessão no provedor de autenticação (CA09).                                  | ⏳     |
+| ID      | Task                                                                                                                                                                                    | Status |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T39.1.1 | Implementar formulário de troca de senha (senha atual, nova, confirmação) com validação de força e coincidência (CA01, CA02, CA03).                                                     | ⏳     |
+| T39.1.2 | Validar a senha atual contra o provedor de autenticação antes de gravar a nova, exibindo aviso em caso de falha (CA04).                                                                 | ⏳     |
+| T39.2.1 | Implementar fluxo de ativação de 2FA TOTP (geração de segredo/QR, confirmação de código) e persistência do estado de 2FA (CA05, CA06).                                                  | ⏳     |
+| T39.2.2 | Implementar desativação de 2FA com confirmação (CA07).                                                                                                                                  | ⏳     |
+| T39.3.1 | Listar sessões ativas com dispositivo e data, identificando a sessão atual (CA08, CA10).                                                                                                | ⏳     |
+| T39.3.2 | Implementar encerramento de sessão remota via revogação de sessão no provedor de autenticação (CA09).                                                                                   | ⏳     |
+| T39.4.1 | Após o login, checar o AAL (`getAuthenticatorAssuranceLevel`): se `nextLevel === "aal2"` e `currentLevel === "aal1"`, redirecionar para a tela de verificação (CA11).                   | ⏳     |
+| T39.4.2 | No middleware (`proxy.ts`/`updateSession`), bloquear as rotas do grupo `(app)` enquanto a sessão estiver AAL1 com `nextLevel = aal2`, permitindo só `/verificar-2fa` e o logout (CA12). | ⏳     |
+| T39.4.3 | Tela `/verificar-2fa`: `mfa.challenge` + `mfa.verify` do fator TOTP → eleva a sessão a AAL2 e libera o app; código inválido exibe erro e permite nova tentativa (CA13).                 | ⏳     |
