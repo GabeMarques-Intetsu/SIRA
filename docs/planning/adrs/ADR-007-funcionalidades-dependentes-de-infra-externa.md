@@ -10,14 +10,14 @@ ADR guarda-chuva que registra, num só lugar, as funcionalidades **persistidas/p
 
 Durante a implementação, vários requisitos foram levados até o limite do que o ambiente atual (apenas anon key + service-role, sem SMTP/storage/MFA configurados) permite. Em vez de fingir que estão completos ou removê-los, optou-se por **persistir o estado e marcar o gap** — o requisito fica rastreável e a habilitação vira uma tarefa de configuração, não de redesenho. As funcionalidades nessa situação:
 
-| # | Funcionalidade | Estado hoje | Depende de |
-|---|---|---|---|
-| a | **Envio de e-mails de senha** (recovery/definição) | `generateLink` gera o `action_link`; retornado server-side p/ repasse manual (`TODO(smtp)`) | SMTP no projeto Supabase |
-| b | **MFA / TOTP** (F-39 CA05–07) | flag `two_factor_enabled` persiste; UI avisa "habilitado pela equipe de TI" (`TODO(mfa)`) | fluxo Supabase Auth MFA (enroll → QR → challenge/verify, AAL) |
-| c | **Revisão/revogação de sessões** (F-39 CA08–10) | não implementado | Admin API `auth.admin.listUserSessions` / `signOut` (`TODO(sessions)`) |
-| d | **Upload de foto de perfil** (F-37) | não implementado | Supabase Storage (bucket + policy) |
-| e | **i18n** (F-38) | `language` persiste em `user_preferences`; UI sem troca real de textos | catálogo de mensagens + framework i18n |
-| f | **Dashboard "tempo real"** (RF-004 / F-12) | KPIs por re-fetch no Server Component a cada navegação | Supabase Realtime (subscriptions) p/ push verdadeiro |
+| #   | Funcionalidade                                     | Estado hoje                                                                                 | Depende de                                                             |
+| --- | -------------------------------------------------- | ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| a   | **Envio de e-mails de senha** (recovery/definição) | `generateLink` gera o `action_link`; retornado server-side p/ repasse manual (`TODO(smtp)`) | SMTP no projeto Supabase                                               |
+| b   | **MFA / TOTP** (F-39 CA05–07)                      | flag `two_factor_enabled` persiste; UI avisa "habilitado pela equipe de TI" (`TODO(mfa)`)   | fluxo Supabase Auth MFA (enroll → QR → challenge/verify, AAL)          |
+| c   | **Revisão/revogação de sessões** (F-39 CA08–10)    | não implementado                                                                            | Admin API `auth.admin.listUserSessions` / `signOut` (`TODO(sessions)`) |
+| d   | **Upload de foto de perfil** (F-37)                | não implementado                                                                            | Supabase Storage (bucket + policy)                                     |
+| e   | **i18n** (F-38)                                    | `language` persiste em `user_preferences`; UI sem troca real de textos                      | catálogo de mensagens + framework i18n                                 |
+| f   | **Dashboard "tempo real"** (RF-004 / F-12)         | KPIs por re-fetch no Server Component a cada navegação                                      | Supabase Realtime (subscriptions) p/ push verdadeiro                   |
 
 ## Decision
 

@@ -97,7 +97,9 @@ describe("ImageField (campo de imagem do recurso)", () => {
 
     const input = screen.getByLabelText(/imagem/i) as HTMLInputElement;
     fireEvent.change(input, {
-      target: { files: [makeFile("grande.png", "image/png", 2 * 1024 * 1024 + 1)] },
+      target: {
+        files: [makeFile("grande.png", "image/png", 2 * 1024 * 1024 + 1)],
+      },
     });
 
     expect(await screen.findByRole("alert")).toHaveTextContent(

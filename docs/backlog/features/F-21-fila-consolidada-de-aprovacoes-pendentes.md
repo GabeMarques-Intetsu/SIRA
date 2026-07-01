@@ -15,24 +15,24 @@ Tela do administrador que reúne todas as solicitações de reserva pendentes, d
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                                      | Requisito                                     | Relação |
+| --------------------------------------------------------------------------------------- | --------------------------------------------- | ------- |
 | [RF-008](../../requirements/RF/RF-008-aprovacao-e-recusa-de-solicitacoes-de-reserva.md) | Aprovação e recusa de solicitações de reserva | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Fila de aprovações`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | A fila é acessível apenas ao administrador. | — | 📝 |
-| **CA02** | Lista todas as reservas com status pendente. | — | 📝 |
-| **CA03** | Ordena por data de criação, das mais antigas para as mais recentes. | — | 📝 |
-| **CA04** | Cada item mostra autor, sala, horário e justificativa do solicitante. | — | 📝 |
-| **CA05** | Cada item oferece as ações de aprovar e recusar. | — | 📝 |
-| **CA06** | A contagem de pendências é atualizada ao aprovar ou recusar. | — | 📝 |
-| **CA07** | É possível filtrar por sala e buscar pelo nome do autor. | — | 📝 |
-| **CA08** | Quando não há pendências, exibe "Nenhuma solicitação pendente". | — | 📝 |
+| ID       | Critério                                                              | Como verificar | Status |
+| -------- | --------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | A fila é acessível apenas ao administrador.                           | —              | 📝     |
+| **CA02** | Lista todas as reservas com status pendente.                          | —              | 📝     |
+| **CA03** | Ordena por data de criação, das mais antigas para as mais recentes.   | —              | 📝     |
+| **CA04** | Cada item mostra autor, sala, horário e justificativa do solicitante. | —              | 📝     |
+| **CA05** | Cada item oferece as ações de aprovar e recusar.                      | —              | 📝     |
+| **CA06** | A contagem de pendências é atualizada ao aprovar ou recusar.          | —              | 📝     |
+| **CA07** | É possível filtrar por sala e buscar pelo nome do autor.              | —              | 📝     |
+| **CA08** | Quando não há pendências, exibe "Nenhuma solicitação pendente".       | —              | 📝     |
 
 ## User Stories
 
@@ -44,7 +44,7 @@ Tela do administrador que reúne todas as solicitações de reserva pendentes, d
 
 #### Cenários BDD
 
-```gherkin
+````gherkin
 # language: pt
 Funcionalidade: Painel restrito e ordenação cronológica das solicitações
 
@@ -90,16 +90,16 @@ Funcionalidade: Painel restrito e ordenação cronológica das solicitações
     Dado que não há solicitações pendentes
     Quando o administrador acessa a fila
     Então o sistema exibe "Nenhuma solicitação pendente"
-```
+````
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T21.1.1 | Em renderApprovals() de approvals.js, validar o papel do usuário (isAdmin/CURRENT_USER do store.js) e bloquear o acesso de não-administradores, exibindo aviso de acesso negado (CA01). | ⏳ |
-| T21.1.2 | Em refreshList(), obter os pendentes via getApprovals()/getReservations() filtrando status 'pendente' e ordenar por data de criação ascendente (mais antigas primeiro) (CA02, CA03). | ⏳ |
-| T21.1.3 | Em buildApprovalCard() de approvals.js, renderizar autor, sala, horário e justificativa do solicitante em cada item da fila (CA04). | ⏳ |
-| T21.1.4 | Em refreshList(), quando a lista de pendentes estiver vazia, renderizar a mensagem 'Nenhuma solicitação pendente' (CA08). | ⏳ |
+| ID      | Task                                                                                                                                                                                    | Status |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T21.1.1 | Em renderApprovals() de approvals.js, validar o papel do usuário (isAdmin/CURRENT_USER do store.js) e bloquear o acesso de não-administradores, exibindo aviso de acesso negado (CA01). | ⏳     |
+| T21.1.2 | Em refreshList(), obter os pendentes via getApprovals()/getReservations() filtrando status 'pendente' e ordenar por data de criação ascendente (mais antigas primeiro) (CA02, CA03).    | ⏳     |
+| T21.1.3 | Em buildApprovalCard() de approvals.js, renderizar autor, sala, horário e justificativa do solicitante em cada item da fila (CA04).                                                     | ⏳     |
+| T21.1.4 | Em refreshList(), quando a lista de pendentes estiver vazia, renderizar a mensagem 'Nenhuma solicitação pendente' (CA08).                                                               | ⏳     |
 
 ### US21.2 — Recursos de Filtragem, Pesquisa e Gatilhos de Ação na Fila
 
@@ -109,7 +109,7 @@ Funcionalidade: Painel restrito e ordenação cronológica das solicitações
 
 #### Cenários BDD
 
-```gherkin
+````gherkin
 # language: pt
 Funcionalidade: Filtragem, pesquisa e ações na fila
 
@@ -145,16 +145,16 @@ Funcionalidade: Filtragem, pesquisa e ações na fila
     Quando o administrador aprova uma delas
     Então o contador de pendências passa a indicar uma solicitação
     E a solicitação aprovada sai da fila
-```
+````
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T21.2.1 | Adicionar à topbar de renderApprovals() um campo de busca textual por nome do autor e um select de filtro por sala (populado via getRooms()) (CA07). | ⏳ |
-| T21.2.2 | Em refreshList(), aplicar os filtros de sala e o termo de busca por autor antes de montar os cards via buildApprovalCard() (CA07). | ⏳ |
-| T21.2.3 | Em buildApprovalCard(), incluir os botões de aprovar e recusar acionando resolveDecision(a, decision, list) (CA05). | ⏳ |
-| T21.2.4 | Após resolveDecision()/resolveApproval(), remover o item resolvido da fila e atualizar o contador de pendências exibido na topbar via refreshList() (CA06). | ⏳ |
+| ID      | Task                                                                                                                                                        | Status |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T21.2.1 | Adicionar à topbar de renderApprovals() um campo de busca textual por nome do autor e um select de filtro por sala (populado via getRooms()) (CA07).        | ⏳     |
+| T21.2.2 | Em refreshList(), aplicar os filtros de sala e o termo de busca por autor antes de montar os cards via buildApprovalCard() (CA07).                          | ⏳     |
+| T21.2.3 | Em buildApprovalCard(), incluir os botões de aprovar e recusar acionando resolveDecision(a, decision, list) (CA05).                                         | ⏳     |
+| T21.2.4 | Após resolveDecision()/resolveApproval(), remover o item resolvido da fila e atualizar o contador de pendências exibido na topbar via refreshList() (CA06). | ⏳     |
 
 ---
 
@@ -167,11 +167,11 @@ Funcionalidade: Filtragem, pesquisa e ações na fila
 
 **Grupo:** `CA - Indicadores da fila`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA09** | A tela exibe indicadores resumindo a fila: total de pendentes, aprovadas e recusadas no período. | — | 📝 |
-| **CA10** | A tela exibe o tempo médio de aprovação (intervalo médio entre criação e decisão). | — | 📝 |
-| **CA11** | Os indicadores se atualizam ao aprovar ou recusar, sem recarregar a página. | — | 📝 |
+| ID       | Critério                                                                                         | Como verificar | Status |
+| -------- | ------------------------------------------------------------------------------------------------ | -------------- | ------ |
+| **CA09** | A tela exibe indicadores resumindo a fila: total de pendentes, aprovadas e recusadas no período. | —              | 📝     |
+| **CA10** | A tela exibe o tempo médio de aprovação (intervalo médio entre criação e decisão).               | —              | 📝     |
+| **CA11** | Os indicadores se atualizam ao aprovar ou recusar, sem recarregar a página.                      | —              | 📝     |
 
 ### User Story adicional
 
@@ -199,8 +199,7 @@ Funcionalidade: Indicadores da fila de aprovações
 
 #### Tasks adicionais (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T21.3.1 | Calcular os indicadores da fila (pendentes/aprovadas/recusadas e tempo médio de aprovação) a partir de getApprovals()/getReservations() do período (CA09, CA10). | ⏳ |
-| T21.3.2 | Renderizar os KPIs no topo da tela e recomputá-los em refreshList() após cada decisão, sem reload (CA11). | ⏳ |
-
+| ID      | Task                                                                                                                                                             | Status |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T21.3.1 | Calcular os indicadores da fila (pendentes/aprovadas/recusadas e tempo médio de aprovação) a partir de getApprovals()/getReservations() do período (CA09, CA10). | ⏳     |
+| T21.3.2 | Renderizar os KPIs no topo da tela e recomputá-los em refreshList() após cada decisão, sem reload (CA11).                                                        | ⏳     |

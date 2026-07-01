@@ -15,20 +15,20 @@ Apresenta ao administrador as salas existentes com seus recursos e capacidade, p
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                    | Requisito                   | Relação |
+| --------------------------------------------------------------------- | --------------------------- | ------- |
 | [RF-009](../../requirements/RF/RF-009-gestao-do-catalogo-de-salas.md) | Gestão do catálogo de salas | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Listagem de salas`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | A listagem mostra todas as salas com capacidade e recursos. | — | 📝 |
-| **CA02** | É possível filtrar por status (ativa/inativa) e por recursos. | — | 📝 |
-| **CA03** | Cada sala indica a quantidade de reservas atuais/próximas. | — | 📝 |
-| **CA04** | Salas inativas são visualmente diferenciadas das ativas. | — | 📝 |
+| ID       | Critério                                                      | Como verificar | Status |
+| -------- | ------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | A listagem mostra todas as salas com capacidade e recursos.   | —              | 📝     |
+| **CA02** | É possível filtrar por status (ativa/inativa) e por recursos. | —              | 📝     |
+| **CA03** | Cada sala indica a quantidade de reservas atuais/próximas.    | —              | 📝     |
+| **CA04** | Salas inativas são visualmente diferenciadas das ativas.      | —              | 📝     |
 
 ## User Stories
 
@@ -90,11 +90,10 @@ Funcionalidade: Listagem de salas
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T25.1.1 | Em buildRoomCard() de rooms.js, exibir capacidade e lista de recursos de cada sala obtida via getRooms() (CA01). | ⏳ |
-| T25.1.2 | Adicionar à filterRow controles de filtro por status (ativa/inativa) e por recursos, reaplicados em refreshGrid() (CA02). | ⏳ |
-| T25.1.3 | Em refreshGrid(), quando o filtro não retornar salas, renderizar estado vazio informando que nenhuma sala atende ao filtro (CA02). | ⏳ |
-| T25.1.4 | Em buildRoomCard(), calcular e exibir a quantidade de reservas atuais/próximas da sala cruzando getReservations() pela sala (CA03). | ⏳ |
-| T25.1.5 | Aplicar diferenciação visual (status-dot/classe de inativa) em buildRoomCard() para salas inativas (CA04). | ⏳ |
-
+| ID      | Task                                                                                                                                | Status |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T25.1.1 | Em buildRoomCard() de rooms.js, exibir capacidade e lista de recursos de cada sala obtida via getRooms() (CA01).                    | ⏳     |
+| T25.1.2 | Adicionar à filterRow controles de filtro por status (ativa/inativa) e por recursos, reaplicados em refreshGrid() (CA02).           | ⏳     |
+| T25.1.3 | Em refreshGrid(), quando o filtro não retornar salas, renderizar estado vazio informando que nenhuma sala atende ao filtro (CA02).  | ⏳     |
+| T25.1.4 | Em buildRoomCard(), calcular e exibir a quantidade de reservas atuais/próximas da sala cruzando getReservations() pela sala (CA03). | ⏳     |
+| T25.1.5 | Aplicar diferenciação visual (status-dot/classe de inativa) em buildRoomCard() para salas inativas (CA04).                          | ⏳     |

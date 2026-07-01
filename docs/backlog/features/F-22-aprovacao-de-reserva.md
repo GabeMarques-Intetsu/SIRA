@@ -15,20 +15,20 @@ Ação do administrador que aprova uma reserva pendente: muda o status para apro
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                                      | Requisito                                     | Relação |
+| --------------------------------------------------------------------------------------- | --------------------------------------------- | ------- |
 | [RF-008](../../requirements/RF/RF-008-aprovacao-e-recusa-de-solicitacoes-de-reserva.md) | Aprovação e recusa de solicitações de reserva | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Aprovação de reserva`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | A aprovação só é possível sobre reservas pendentes e apenas pelo administrador. | — | 📝 |
-| **CA02** | Aprovar muda o status da reserva para aprovada. | — | 📝 |
-| **CA03** | Aprovar gera notificação automática ao autor informando a aprovação. | — | 📝 |
-| **CA04** | Aprovar atualiza imediatamente os demais módulos relacionados (calendário, painel, fila). | — | 📝 |
+| ID       | Critério                                                                                  | Como verificar | Status |
+| -------- | ----------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | A aprovação só é possível sobre reservas pendentes e apenas pelo administrador.           | —              | 📝     |
+| **CA02** | Aprovar muda o status da reserva para aprovada.                                           | —              | 📝     |
+| **CA03** | Aprovar gera notificação automática ao autor informando a aprovação.                      | —              | 📝     |
+| **CA04** | Aprovar atualiza imediatamente os demais módulos relacionados (calendário, painel, fila). | —              | 📝     |
 
 ## User Stories
 
@@ -90,13 +90,13 @@ Funcionalidade: Aprovação de reserva
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T22.1.1 | Em resolveDecision() de approvals.js, na decisão 'aprovar', validar que a reserva está pendente e que o usuário é admin antes de prosseguir (CA01). | ⏳ |
-| T22.1.2 | Chamar resolveApproval()/updateReservationStatusForApproval() do store.js para mudar o status da reserva para 'aprovada' e persistir (CA02). | ⏳ |
-| T22.1.3 | Gerar notificação automática ao autor via saveNotification()/upsertApprovalNotification() informando a aprovação (CA03). | ⏳ |
-| T22.1.4 | Após aprovar, chamar refreshList() e disparar a atualização das demais views (calendário, painel, fila) que leem getReservations() do store (CA04). | ⏳ |
-| T22.1.5 | Em buildApprovalCard(), não renderizar a ação de aprovar para reservas já aprovadas, mantendo o status inalterado (CA01). | ⏳ |
+| ID      | Task                                                                                                                                                | Status |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T22.1.1 | Em resolveDecision() de approvals.js, na decisão 'aprovar', validar que a reserva está pendente e que o usuário é admin antes de prosseguir (CA01). | ⏳     |
+| T22.1.2 | Chamar resolveApproval()/updateReservationStatusForApproval() do store.js para mudar o status da reserva para 'aprovada' e persistir (CA02).        | ⏳     |
+| T22.1.3 | Gerar notificação automática ao autor via saveNotification()/upsertApprovalNotification() informando a aprovação (CA03).                            | ⏳     |
+| T22.1.4 | Após aprovar, chamar refreshList() e disparar a atualização das demais views (calendário, painel, fila) que leem getReservations() do store (CA04). | ⏳     |
+| T22.1.5 | Em buildApprovalCard(), não renderizar a ação de aprovar para reservas já aprovadas, mantendo o status inalterado (CA01).                           | ⏳     |
 
 ---
 
@@ -109,11 +109,11 @@ Funcionalidade: Aprovação de reserva
 
 **Grupo:** `CA - Conflito na aprovação`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA05** | Ao analisar uma reserva pendente, o sistema sinaliza se ela conflita com outra reserva já aprovada no mesmo recurso e horário. | — | 📝 |
-| **CA06** | A aprovação de uma reserva em conflito exige confirmação explícita do administrador. | — | 📝 |
-| **CA07** | A detecção de conflito reutiliza a mesma regra aplicada na busca de recursos (sobreposição total ou parcial). | — | 📝 |
+| ID       | Critério                                                                                                                       | Como verificar | Status |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------ | -------------- | ------ |
+| **CA05** | Ao analisar uma reserva pendente, o sistema sinaliza se ela conflita com outra reserva já aprovada no mesmo recurso e horário. | —              | 📝     |
+| **CA06** | A aprovação de uma reserva em conflito exige confirmação explícita do administrador.                                           | —              | 📝     |
+| **CA07** | A detecção de conflito reutiliza a mesma regra aplicada na busca de recursos (sobreposição total ou parcial).                  | —              | 📝     |
 
 ### User Story adicional
 
@@ -142,8 +142,7 @@ Funcionalidade: Detecção de conflito na aprovação
 
 #### Tasks adicionais (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T22.2.1 | Em buildApprovalCard(), aplicar o predicado de conflito (mesmo de searchRooms()) entre a reserva pendente e as aprovadas do mesmo recurso/horário e exibir um selo de conflito (CA05, CA07). | ⏳ |
-| T22.2.2 | Em resolveDecision('aprovar'), quando houver conflito sinalizado, exigir confirmação explícita (modal) antes de chamar resolveApproval() (CA06). | ⏳ |
-
+| ID      | Task                                                                                                                                                                                         | Status |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T22.2.1 | Em buildApprovalCard(), aplicar o predicado de conflito (mesmo de searchRooms()) entre a reserva pendente e as aprovadas do mesmo recurso/horário e exibir um selo de conflito (CA05, CA07). | ⏳     |
+| T22.2.2 | Em resolveDecision('aprovar'), quando houver conflito sinalizado, exigir confirmação explícita (modal) antes de chamar resolveApproval() (CA06).                                             | ⏳     |

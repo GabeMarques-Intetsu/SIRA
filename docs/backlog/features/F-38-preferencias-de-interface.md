@@ -14,36 +14,36 @@ Na seção Preferências, a pessoa ajusta como a interface se comporta: o tema (
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                              | Requisito                             | Relação |
+| ------------------------------------------------------------------------------- | ------------------------------------- | ------- |
 | [RF-012](../../requirements/RF/RF-012-configuracoes-da-conta-e-preferencias.md) | Configurações da conta e preferências | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Tema`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | A pessoa escolhe entre tema claro, escuro ou o do sistema. | — | 📝 |
-| **CA02** | A opção "Sistema" acompanha a preferência de cor do sistema operacional em tempo real. | — | 📝 |
-| **CA03** | O tema escolhido é aplicado imediatamente, sem recarregar a página. | — | 📝 |
-| **CA04** | O tema escolhido persiste entre recargas e é mantido por usuário. | — | 📝 |
+| ID       | Critério                                                                               | Como verificar | Status |
+| -------- | -------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | A pessoa escolhe entre tema claro, escuro ou o do sistema.                             | —              | 📝     |
+| **CA02** | A opção "Sistema" acompanha a preferência de cor do sistema operacional em tempo real. | —              | 📝     |
+| **CA03** | O tema escolhido é aplicado imediatamente, sem recarregar a página.                    | —              | 📝     |
+| **CA04** | O tema escolhido persiste entre recargas e é mantido por usuário.                      | —              | 📝     |
 
 **Grupo:** `CA - Idioma e formato`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA05** | A pessoa escolhe o idioma entre português (Brasil), inglês e espanhol. | — | 📝 |
-| **CA06** | O idioma escolhido reflete-se em toda a interface sem recarregar a página manualmente. | — | 📝 |
-| **CA07** | Datas, horas e números seguem o formato do idioma ativo. | — | 📝 |
+| ID       | Critério                                                                               | Como verificar | Status |
+| -------- | -------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA05** | A pessoa escolhe o idioma entre português (Brasil), inglês e espanhol.                 | —              | 📝     |
+| **CA06** | O idioma escolhido reflete-se em toda a interface sem recarregar a página manualmente. | —              | 📝     |
+| **CA07** | Datas, horas e números seguem o formato do idioma ativo.                               | —              | 📝     |
 
 **Grupo:** `CA - Densidade e movimento`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA08** | A pessoa escolhe a densidade entre confortável e compacta, alterando o espaçamento da interface. | — | 📝 |
-| **CA09** | Ao ativar "reduzir animações", o movimento da interface é minimizado. | — | 📝 |
-| **CA10** | Quando o sistema operacional pede movimento reduzido, a interface respeita essa preferência. | — | 📝 |
+| ID       | Critério                                                                                         | Como verificar | Status |
+| -------- | ------------------------------------------------------------------------------------------------ | -------------- | ------ |
+| **CA08** | A pessoa escolhe a densidade entre confortável e compacta, alterando o espaçamento da interface. | —              | 📝     |
+| **CA09** | Ao ativar "reduzir animações", o movimento da interface é minimizado.                            | —              | 📝     |
+| **CA10** | Quando o sistema operacional pede movimento reduzido, a interface respeita essa preferência.     | —              | 📝     |
 
 ## User Stories
 
@@ -128,11 +128,11 @@ Funcionalidade: Densidade e movimento
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T38.1.1 | Implementar seletor de tema (claro/escuro/sistema) reaproveitando o aplicador de tema de theme-toggle.js e aplicando o atributo de tema antes do primeiro paint (CA01, CA03). | ⏳ |
-| T38.1.2 | Tratar o modo "Sistema" ouvindo `prefers-color-scheme` via matchMedia e persistir a escolha por usuário no store (CA02, CA04). | ⏳ |
-| T38.2.1 | Externalizar os textos de UI em dicionários pt-BR/en/es e aplicar o idioma ativo sem recarregar, atualizando o atributo `lang` do documento (CA05, CA06). | ⏳ |
-| T38.2.2 | Aplicar formatação regional de data/hora/número conforme o idioma ativo (Intl) (CA07). | ⏳ |
-| T38.3.1 | Aplicar a densidade selecionada via classe/atributo de densidade nos containers principais (CA08). | ⏳ |
-| T38.3.2 | Implementar o toggle "reduzir animações" e respeitar `prefers-reduced-motion` desativando transições (CA09, CA10). | ⏳ |
+| ID      | Task                                                                                                                                                                          | Status |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T38.1.1 | Implementar seletor de tema (claro/escuro/sistema) reaproveitando o aplicador de tema de theme-toggle.js e aplicando o atributo de tema antes do primeiro paint (CA01, CA03). | ⏳     |
+| T38.1.2 | Tratar o modo "Sistema" ouvindo `prefers-color-scheme` via matchMedia e persistir a escolha por usuário no store (CA02, CA04).                                                | ⏳     |
+| T38.2.1 | Externalizar os textos de UI em dicionários pt-BR/en/es e aplicar o idioma ativo sem recarregar, atualizando o atributo `lang` do documento (CA05, CA06).                     | ⏳     |
+| T38.2.2 | Aplicar formatação regional de data/hora/número conforme o idioma ativo (Intl) (CA07).                                                                                        | ⏳     |
+| T38.3.1 | Aplicar a densidade selecionada via classe/atributo de densidade nos containers principais (CA08).                                                                            | ⏳     |
+| T38.3.2 | Implementar o toggle "reduzir animações" e respeitar `prefers-reduced-motion` desativando transições (CA09, CA10).                                                            | ⏳     |

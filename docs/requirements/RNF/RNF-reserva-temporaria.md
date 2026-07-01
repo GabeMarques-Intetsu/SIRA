@@ -12,18 +12,18 @@ Enquanto um solicitante está montando uma solicitação de reserva, o recurso f
 
 ### Métricas obrigatórias (quantitativas)
 
-| Métrica | Alvo | Quando/como medir |
-| --- | --- | --- |
-| Prazo de expiração do bloqueio temporário | 10 minutos sem conclusão → libera | Teste do mecanismo de bloqueio com relógio controlado |
-| Concorrência sobre o mesmo recurso/horário | no máximo 1 bloqueio temporário ativo por recurso + data + faixa de horário | Teste de dois solicitantes simultâneos |
-| Liberação ao recusar/cancelar | imediata (≤ 1 navegação) | Teste do fluxo recusa/cancelamento |
-| Manutenção do bloqueio em pendência | permanece enquanto a solicitação está pendente, sem expirar | Teste de solicitação enviada e ainda não decidida |
-| Limpeza de bloqueios expirados | nenhum bloqueio vencido influencia a busca de disponibilidade | Teste da busca após o prazo vencer |
+| Métrica                                    | Alvo                                                                        | Quando/como medir                                     |
+| ------------------------------------------ | --------------------------------------------------------------------------- | ----------------------------------------------------- |
+| Prazo de expiração do bloqueio temporário  | 10 minutos sem conclusão → libera                                           | Teste do mecanismo de bloqueio com relógio controlado |
+| Concorrência sobre o mesmo recurso/horário | no máximo 1 bloqueio temporário ativo por recurso + data + faixa de horário | Teste de dois solicitantes simultâneos                |
+| Liberação ao recusar/cancelar              | imediata (≤ 1 navegação)                                                    | Teste do fluxo recusa/cancelamento                    |
+| Manutenção do bloqueio em pendência        | permanece enquanto a solicitação está pendente, sem expirar                 | Teste de solicitação enviada e ainda não decidida     |
+| Limpeza de bloqueios expirados             | nenhum bloqueio vencido influencia a busca de disponibilidade               | Teste da busca após o prazo vencer                    |
 
 ## Realizado por (rastreabilidade ↓)
 
-| Epic / Feature | Como atende |
-| --- | --- |
+| Epic / Feature                                                                                                                                     | Como atende                                                       |
+| -------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
 | EP-06 → [F-49 Reserva temporária do recurso durante a solicitação](../../backlog/features/F-49-reserva-temporaria-do-recurso-durante-a-solicit.md) | CAs de bloqueio, expiração, persistência em pendência e liberação |
 
 ## Restrições e fora-de-escopo

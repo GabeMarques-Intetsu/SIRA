@@ -1,4 +1,5 @@
 <!-- GENERIC TEMPLATE — copy to RF-NNN-<modulo>.md and fill for one real module of the system. -->
+
 # RF-NNN — <título de negócio, sem infinitivo, sem termo técnico>
 
 > **Tipo**: Requisito Funcional
@@ -17,14 +18,14 @@
 
 ## Realizado por (rastreabilidade ↓)
 
-| Epic | Feature(s) | Status |
-| --- | --- | --- |
-| [EP-NN ...](../../backlog/epics/EP-NN-....md) | [F-NN ...](../../backlog/features/F-NN-....md) | ⏳ |
+| Epic                                          | Feature(s)                                     | Status |
+| --------------------------------------------- | ---------------------------------------------- | ------ |
+| [EP-NN ...](../../backlog/epics/EP-NN-....md) | [F-NN ...](../../backlog/features/F-NN-....md) | ⏳     |
 
 ## Requisitos Não-Funcionais que limitam este RF
 
-| RNF | Limite imposto |
-| --- | --- |
+| RNF                            | Limite imposto     |
+| ------------------------------ | ------------------ |
 | [RNF-perf](../RNF/RNF-perf.md) | <ex.: p95 ≤ 300ms> |
 
 ## Restrições e fora-de-escopo

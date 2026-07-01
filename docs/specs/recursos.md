@@ -1,6 +1,7 @@
 # Spec — Recursos (Salas e Equipamentos)
 
 > **Rastreabilidade**
+>
 > - **RF**: [RF-009 — Gestão do catálogo de salas](../requirements/RF/RF-009-gestao-do-catalogo-de-salas.md) · [RF-013 — Gestão do catálogo de equipamentos](../requirements/RF/RF-013-gestao-do-catalogo-de-equipamentos.md)
 > - **RNF**: [RNF-imagem-de-recurso](../requirements/RNF/RNF-imagem-de-recurso.md)
 > - **ADR**: [ADR-008 — Armazenamento de imagens de recursos](../planning/adrs/ADR-008-armazenamento-de-imagens-de-recursos.md)
@@ -19,15 +20,15 @@
 
 ## Critérios de Aceitação
 
-| ID | Critério |
-| --- | --- |
-| CA01 | Acesso restrito a administradores (RLS `*_write` exige `is_admin()`). |
-| CA02 | Cadastro de sala valida nome, tipo, capacidade (inteiro > 0), bloco e recursos. |
-| CA03 | Cadastro de equipamento valida nome, tipo, bloco, sala associada e estado. |
-| CA04 | Estado do recurso: ativo / inativo / manutenção. |
-| CA05 | Listagem filtra por estado e por busca textual, com paginação. |
+| ID   | Critério                                                                                              |
+| ---- | ----------------------------------------------------------------------------------------------------- |
+| CA01 | Acesso restrito a administradores (RLS `*_write` exige `is_admin()`).                                 |
+| CA02 | Cadastro de sala valida nome, tipo, capacidade (inteiro > 0), bloco e recursos.                       |
+| CA03 | Cadastro de equipamento valida nome, tipo, bloco, sala associada e estado.                            |
+| CA04 | Estado do recurso: ativo / inativo / manutenção.                                                      |
+| CA05 | Listagem filtra por estado e por busca textual, com paginação.                                        |
 | CA06 | Recursos inativos não aparecem na busca de nova reserva (ver [nova-reserva](./nova-reserva.md) CA08). |
-| CA07 | Salas e equipamentos compartilham a mesma UI parametrizada (`_resources/`). |
+| CA07 | Salas e equipamentos compartilham a mesma UI parametrizada (`_resources/`).                           |
 
 > A validação canônica vive em `src/lib/resources.ts` (`validateRoomInput`,
 > `validateEquipmentInput`, `ROOM_TYPES`) e é expressa em Zod por `roomSchema` /
@@ -81,16 +82,16 @@ flowchart LR
 
 ### Critérios de Aceitação (imagem)
 
-| ID | Critério |
-| --- | --- |
-| IMG01 | Imagem opcional no cadastro e na edição (sala e equipamento). |
-| IMG02 | Formatos aceitos: apenas JPG, PNG ou WebP. |
-| IMG03 | Tamanho máximo: 2 MB; arquivos maiores são recusados. |
-| IMG04 | Uma imagem por recurso. |
-| IMG05 | Pré-visualização antes de salvar. |
+| ID    | Critério                                                               |
+| ----- | ---------------------------------------------------------------------- |
+| IMG01 | Imagem opcional no cadastro e na edição (sala e equipamento).          |
+| IMG02 | Formatos aceitos: apenas JPG, PNG ou WebP.                             |
+| IMG03 | Tamanho máximo: 2 MB; arquivos maiores são recusados.                  |
+| IMG04 | Uma imagem por recurso.                                                |
+| IMG05 | Pré-visualização antes de salvar.                                      |
 | IMG06 | Substituir/remover a imagem na edição (remover volta ao ícone padrão). |
-| IMG07 | Exibição no card (catálogo e busca) e no detalhe. |
-| IMG08 | Sem imagem (`image_path` nulo) → ícone padrão atual. |
+| IMG07 | Exibição no card (catálogo e busca) e no detalhe.                      |
+| IMG08 | Sem imagem (`image_path` nulo) → ícone padrão atual.                   |
 
 > A validação de tipo/tamanho (IMG02/IMG03) é expressa em `roomSchema`/`equipmentSchema`
 > (`src/schemas/resource.ts`) e na validação canônica (`src/lib/resources.ts`), no client

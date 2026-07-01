@@ -16,14 +16,14 @@ CRUD de usuários pelo admin (cadastro direto, listagem com busca textual, ediç
 
 ## Realizado por (rastreabilidade ↓)
 
-| Epic | Feature(s) | Status |
-| --- | --- | --- |
-| [EP-10](../../backlog/epics/EP-10-gestao-de-usuarios-admin.md) | [F-28 Cadastro de novo usuário pelo admin](../../backlog/features/F-28-cadastro-de-novo-usuario-pelo-admin.md) | 📝 |
-| [EP-10](../../backlog/epics/EP-10-gestao-de-usuarios-admin.md) | [F-29 Listagem de usuários com busca textual](../../backlog/features/F-29-listagem-de-usuarios-com-busca-textual.md) | 📝 |
-| [EP-10](../../backlog/epics/EP-10-gestao-de-usuarios-admin.md) | [F-30 Edição de usuário](../../backlog/features/F-30-edicao-de-usuario.md) | 📝 |
-| [EP-10](../../backlog/epics/EP-10-gestao-de-usuarios-admin.md) | [F-31 Exclusão de usuário](../../backlog/features/F-31-exclusao-de-usuario.md) | 📝 |
-| [EP-10](../../backlog/epics/EP-10-gestao-de-usuarios-admin.md) | [F-32 Aprovação de solicitação de cadastro](../../backlog/features/F-32-aprovacao-de-solicitacao-de-cadastro.md) | 📝 |
-| [EP-10](../../backlog/epics/EP-10-gestao-de-usuarios-admin.md) | [F-33 Recusa de solicitação de cadastro](../../backlog/features/F-33-recusa-de-solicitacao-de-cadastro.md) | 📝 |
+| Epic                                                           | Feature(s)                                                                                                           | Status |
+| -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ------ |
+| [EP-10](../../backlog/epics/EP-10-gestao-de-usuarios-admin.md) | [F-28 Cadastro de novo usuário pelo admin](../../backlog/features/F-28-cadastro-de-novo-usuario-pelo-admin.md)       | 📝     |
+| [EP-10](../../backlog/epics/EP-10-gestao-de-usuarios-admin.md) | [F-29 Listagem de usuários com busca textual](../../backlog/features/F-29-listagem-de-usuarios-com-busca-textual.md) | 📝     |
+| [EP-10](../../backlog/epics/EP-10-gestao-de-usuarios-admin.md) | [F-30 Edição de usuário](../../backlog/features/F-30-edicao-de-usuario.md)                                           | 📝     |
+| [EP-10](../../backlog/epics/EP-10-gestao-de-usuarios-admin.md) | [F-31 Exclusão de usuário](../../backlog/features/F-31-exclusao-de-usuario.md)                                       | 📝     |
+| [EP-10](../../backlog/epics/EP-10-gestao-de-usuarios-admin.md) | [F-32 Aprovação de solicitação de cadastro](../../backlog/features/F-32-aprovacao-de-solicitacao-de-cadastro.md)     | 📝     |
+| [EP-10](../../backlog/epics/EP-10-gestao-de-usuarios-admin.md) | [F-33 Recusa de solicitação de cadastro](../../backlog/features/F-33-recusa-de-solicitacao-de-cadastro.md)           | 📝     |
 
 ## Restrições e fora-de-escopo
 

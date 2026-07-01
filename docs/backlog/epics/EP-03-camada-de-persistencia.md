@@ -14,13 +14,13 @@ Camada de armazenamento local responsável por (a) isolar dados de cada usuário
 
 ## Requisitos realizados (rastreabilidade ↑)
 
-| RF | Requisito | Tipo |
-| --- | --- | --- |
+| RF                                                                                         | Requisito                                               | Tipo      |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------- | --------- |
 | [RF-003](../../requirements/RF/RF-003-isolamento-e-continuidade-dos-dados-pessoais-de-.md) | Isolamento e continuidade dos dados pessoais de reserva | Funcional |
 
 ## Features sob este Epic (rastreabilidade ↓)
 
-| ID | Nome | Status | Arquivo |
-| --- | --- | --- | --- |
+| ID   | Nome                                                       | Status      | Arquivo                                                                      |
+| ---- | ---------------------------------------------------------- | ----------- | ---------------------------------------------------------------------------- |
 | F-10 | Isolamento de Segurança e Privacidade de Dados por Usuário | 📝 Proposto | [F-10](../features/F-10-isolamento-de-seguranca-e-privacidade-de-dados-p.md) |
-| F-11 | Sincronização aprovação -> reserva -> notificacão | 📝 Proposto | [F-11](../features/F-11-sincronizacao-aprovacao-reserva-notificacao.md) |
+| F-11 | Sincronização aprovação -> reserva -> notificacão          | 📝 Proposto | [F-11](../features/F-11-sincronizacao-aprovacao-reserva-notificacao.md)      |

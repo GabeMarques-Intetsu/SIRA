@@ -15,20 +15,20 @@ Ação do administrador que recusa uma reserva pendente mediante justificativa o
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                                      | Requisito                                     | Relação |
+| --------------------------------------------------------------------------------------- | --------------------------------------------- | ------- |
 | [RF-008](../../requirements/RF/RF-008-aprovacao-e-recusa-de-solicitacoes-de-reserva.md) | Aprovação e recusa de solicitações de reserva | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Recusa de reserva`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | A recusa exige uma justificativa textual obrigatória. | — | 📝 |
-| **CA02** | Recusar muda o status da reserva para recusada. | — | 📝 |
-| **CA03** | A justificativa da recusa é enviada ao autor na notificação. | — | 📝 |
-| **CA04** | Após recusada, o autor pode criar uma nova reserva corrigida. | — | 📝 |
+| ID       | Critério                                                      | Como verificar | Status |
+| -------- | ------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | A recusa exige uma justificativa textual obrigatória.         | —              | 📝     |
+| **CA02** | Recusar muda o status da reserva para recusada.               | —              | 📝     |
+| **CA03** | A justificativa da recusa é enviada ao autor na notificação.  | —              | 📝     |
+| **CA04** | Após recusada, o autor pode criar uma nova reserva corrigida. | —              | 📝     |
 
 ## User Stories
 
@@ -90,11 +90,10 @@ Funcionalidade: Recusa de reserva
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T23.1.1 | Em resolveDecision() de approvals.js, na decisão 'recusar', abrir modal via createModal() com textarea obrigatório de justificativa (CA01). | ⏳ |
-| T23.1.2 | Validar que a justificativa não esteja vazia antes de confirmar; caso vazia, exibir toast() de motivo obrigatório e manter a reserva pendente (CA01). | ⏳ |
-| T23.1.3 | Ao confirmar, mudar o status da reserva para 'recusada' via resolveApproval()/store e persistir (CA02). | ⏳ |
-| T23.1.4 | Gerar notificação ao autor via saveNotification() incluindo o texto da justificativa da recusa (CA03). | ⏳ |
-| T23.1.5 | Garantir que, após recusada, a reserva não bloqueie a criação de nova reserva pelo autor (fluxo de saveReservation permanece disponível) (CA04). | ⏳ |
-
+| ID      | Task                                                                                                                                                  | Status |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T23.1.1 | Em resolveDecision() de approvals.js, na decisão 'recusar', abrir modal via createModal() com textarea obrigatório de justificativa (CA01).           | ⏳     |
+| T23.1.2 | Validar que a justificativa não esteja vazia antes de confirmar; caso vazia, exibir toast() de motivo obrigatório e manter a reserva pendente (CA01). | ⏳     |
+| T23.1.3 | Ao confirmar, mudar o status da reserva para 'recusada' via resolveApproval()/store e persistir (CA02).                                               | ⏳     |
+| T23.1.4 | Gerar notificação ao autor via saveNotification() incluindo o texto da justificativa da recusa (CA03).                                                | ⏳     |
+| T23.1.5 | Garantir que, após recusada, a reserva não bloqueie a criação de nova reserva pelo autor (fluxo de saveReservation permanece disponível) (CA04).      | ⏳     |

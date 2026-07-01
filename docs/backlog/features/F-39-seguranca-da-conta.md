@@ -14,36 +14,36 @@ Na seção Segurança, a pessoa protege sua conta: altera a senha, ativa a verif
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                              | Requisito                             | Relação |
+| ------------------------------------------------------------------------------- | ------------------------------------- | ------- |
 | [RF-012](../../requirements/RF/RF-012-configuracoes-da-conta-e-preferencias.md) | Configurações da conta e preferências | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Alteração de senha`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | Para alterar a senha, a pessoa informa a senha atual e a nova senha. | — | 📝 |
-| **CA02** | A nova senha precisa atender aos critérios mínimos de força definidos. | — | 📝 |
-| **CA03** | A confirmação da nova senha deve coincidir com a nova senha; caso contrário, é exibido aviso. | — | 📝 |
-| **CA04** | Senha atual incorreta impede a alteração e exibe aviso. | — | 📝 |
+| ID       | Critério                                                                                      | Como verificar | Status |
+| -------- | --------------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | Para alterar a senha, a pessoa informa a senha atual e a nova senha.                          | —              | 📝     |
+| **CA02** | A nova senha precisa atender aos critérios mínimos de força definidos.                        | —              | 📝     |
+| **CA03** | A confirmação da nova senha deve coincidir com a nova senha; caso contrário, é exibido aviso. | —              | 📝     |
+| **CA04** | Senha atual incorreta impede a alteração e exibe aviso.                                       | —              | 📝     |
 
 **Grupo:** `CA - Verificação em duas etapas`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA05** | A pessoa pode ativar a verificação em duas etapas via aplicativo autenticador (TOTP). | — | 📝 |
-| **CA06** | A ativação exige confirmar um código gerado pelo aplicativo antes de ficar válida. | — | 📝 |
-| **CA07** | A pessoa pode desativar a verificação em duas etapas. | — | 📝 |
+| ID       | Critério                                                                              | Como verificar | Status |
+| -------- | ------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA05** | A pessoa pode ativar a verificação em duas etapas via aplicativo autenticador (TOTP). | —              | 📝     |
+| **CA06** | A ativação exige confirmar um código gerado pelo aplicativo antes de ficar válida.    | —              | 📝     |
+| **CA07** | A pessoa pode desativar a verificação em duas etapas.                                 | —              | 📝     |
 
 **Grupo:** `CA - Sessões ativas`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA08** | A pessoa visualiza a lista de sessões ativas com dispositivo e data de acesso. | — | 📝 |
-| **CA09** | A pessoa pode encerrar uma sessão de outro dispositivo. | — | 📝 |
-| **CA10** | A sessão atual fica identificada e não pode ser encerrada por engano sem aviso. | — | 📝 |
+| ID       | Critério                                                                        | Como verificar | Status |
+| -------- | ------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA08** | A pessoa visualiza a lista de sessões ativas com dispositivo e data de acesso.  | —              | 📝     |
+| **CA09** | A pessoa pode encerrar uma sessão de outro dispositivo.                         | —              | 📝     |
+| **CA10** | A sessão atual fica identificada e não pode ser encerrada por engano sem aviso. | —              | 📝     |
 
 ## User Stories
 
@@ -136,11 +136,11 @@ Funcionalidade: Sessões ativas
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T39.1.1 | Implementar formulário de troca de senha (senha atual, nova, confirmação) com validação de força e coincidência (CA01, CA02, CA03). | ⏳ |
-| T39.1.2 | Validar a senha atual contra o provedor de autenticação antes de gravar a nova, exibindo aviso em caso de falha (CA04). | ⏳ |
-| T39.2.1 | Implementar fluxo de ativação de 2FA TOTP (geração de segredo/QR, confirmação de código) e persistência do estado de 2FA (CA05, CA06). | ⏳ |
-| T39.2.2 | Implementar desativação de 2FA com confirmação (CA07). | ⏳ |
-| T39.3.1 | Listar sessões ativas com dispositivo e data, identificando a sessão atual (CA08, CA10). | ⏳ |
-| T39.3.2 | Implementar encerramento de sessão remota via revogação de sessão no provedor de autenticação (CA09). | ⏳ |
+| ID      | Task                                                                                                                                   | Status |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T39.1.1 | Implementar formulário de troca de senha (senha atual, nova, confirmação) com validação de força e coincidência (CA01, CA02, CA03).    | ⏳     |
+| T39.1.2 | Validar a senha atual contra o provedor de autenticação antes de gravar a nova, exibindo aviso em caso de falha (CA04).                | ⏳     |
+| T39.2.1 | Implementar fluxo de ativação de 2FA TOTP (geração de segredo/QR, confirmação de código) e persistência do estado de 2FA (CA05, CA06). | ⏳     |
+| T39.2.2 | Implementar desativação de 2FA com confirmação (CA07).                                                                                 | ⏳     |
+| T39.3.1 | Listar sessões ativas com dispositivo e data, identificando a sessão atual (CA08, CA10).                                               | ⏳     |
+| T39.3.2 | Implementar encerramento de sessão remota via revogação de sessão no provedor de autenticação (CA09).                                  | ⏳     |

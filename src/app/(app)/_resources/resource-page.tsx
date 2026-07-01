@@ -392,7 +392,7 @@ function ResourceImage({
         width={400}
         height={225}
         loading="lazy"
-        className="aspect-[16/9] w-full bg-surface-container object-cover"
+        className="bg-surface-container aspect-[16/9] w-full object-cover"
       />
     );
   }

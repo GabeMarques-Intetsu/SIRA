@@ -106,9 +106,7 @@ export const EMPTY_STATUS_COUNTS: StatusCounts = {
 
 /** Total de reservas do período (todos os status). */
 export function totalReservations(counts: StatusCounts): number {
-  return (
-    counts.pending + counts.approved + counts.rejected + counts.cancelled
-  );
+  return counts.pending + counts.approved + counts.rejected + counts.cancelled;
 }
 
 /**

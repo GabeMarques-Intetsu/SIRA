@@ -14,14 +14,14 @@ Caminho de decisão do administrador sobre as reservas solicitadas pelos profess
 
 ## Requisitos realizados (rastreabilidade ↑)
 
-| RF | Requisito | Tipo |
-| --- | --- | --- |
+| RF                                                                                      | Requisito                                     | Tipo      |
+| --------------------------------------------------------------------------------------- | --------------------------------------------- | --------- |
 | [RF-008](../../requirements/RF/RF-008-aprovacao-e-recusa-de-solicitacoes-de-reserva.md) | Aprovação e recusa de solicitações de reserva | Funcional |
 
 ## Features sob este Epic (rastreabilidade ↓)
 
-| ID | Nome | Status | Arquivo |
-| --- | --- | --- | --- |
+| ID   | Nome                                     | Status      | Arquivo                                                              |
+| ---- | ---------------------------------------- | ----------- | -------------------------------------------------------------------- |
 | F-21 | Fila consolidada de aprovações pendentes | 📝 Proposto | [F-21](../features/F-21-fila-consolidada-de-aprovacoes-pendentes.md) |
-| F-22 | Aprovação de reserva | 📝 Proposto | [F-22](../features/F-22-aprovacao-de-reserva.md) |
-| F-23 | Recusa de reserva | 📝 Proposto | [F-23](../features/F-23-recusa-de-reserva.md) |
+| F-22 | Aprovação de reserva                     | 📝 Proposto | [F-22](../features/F-22-aprovacao-de-reserva.md)                     |
+| F-23 | Recusa de reserva                        | 📝 Proposto | [F-23](../features/F-23-recusa-de-reserva.md)                        |

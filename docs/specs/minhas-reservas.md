@@ -1,6 +1,7 @@
 # Spec — Minhas Reservas
 
 > **Rastreabilidade**
+>
 > - **RF**: [RF-007 — Gestão das próprias reservas](../requirements/RF/RF-007-gestao-das-proprias-reservas.md)
 > - **Features**: [F-16 Listagem](../backlog/features/F-16-listagem-de-reservas-pessoais-com-filtros-e-busc.md) · [F-17 Detalhe](../backlog/features/F-17-visualizacao-de-detalhes-de-uma-reserva.md) · [F-18 Edição](../backlog/features/F-18-edicao-de-reserva-pendente.md) · [F-19 Cancelamento](../backlog/features/F-19-cancelamento-de-reserva-pendente.md) · [F-20 Exportação CSV](../backlog/features/F-20-exportacao-de-reservas-para-csv.md)
 > - **Código**: `src/app/(app)/minhas-reservas/page.tsx` · `[id]/page.tsx` · `reservations-list.tsx` · `reservation-filters.tsx` · `edit-reservation.tsx` · `cancel-button.tsx` · `actions.ts` · `src/lib/my-reservations.ts`
@@ -19,15 +20,15 @@
 
 ## Critérios de Aceitação (consolidados)
 
-| ID | Critério |
-| --- | --- |
-| CA01 | A lista mostra só as reservas do próprio usuário (RLS). |
-| CA02 | Ordenação padrão: data decrescente (mais recentes primeiro). |
-| CA03 | Filtros por status e busca textual combinam entre si. |
-| CA04 | Paginação respeita `PAGE_SIZE`. |
-| CA05 | Detalhe exibe dados + histórico (timeline) da reserva. |
-| CA06 | Edição e cancelamento só são permitidos enquanto a reserva está **pendente**. |
-| CA07 | Exportação gera CSV com as reservas filtradas. |
+| ID   | Critério                                                                               |
+| ---- | -------------------------------------------------------------------------------------- |
+| CA01 | A lista mostra só as reservas do próprio usuário (RLS).                                |
+| CA02 | Ordenação padrão: data decrescente (mais recentes primeiro).                           |
+| CA03 | Filtros por status e busca textual combinam entre si.                                  |
+| CA04 | Paginação respeita `PAGE_SIZE`.                                                        |
+| CA05 | Detalhe exibe dados + histórico (timeline) da reserva.                                 |
+| CA06 | Edição e cancelamento só são permitidos enquanto a reserva está **pendente**.          |
+| CA07 | Exportação gera CSV com as reservas filtradas.                                         |
 | CA08 | O estado "Concluída" é **derivado** (aprovada com horário já passado), não armazenado. |
 
 > Filtro/ordenação/paginação são puros em `src/lib/my-reservations.ts`

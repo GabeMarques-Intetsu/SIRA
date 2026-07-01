@@ -15,21 +15,21 @@ Calendário visual com os sete dias da semana e os horários das 7h às 19h. Cad
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                          | Requisito                         | Relação |
+| --------------------------------------------------------------------------- | --------------------------------- | ------- |
 | [RF-005](../../requirements/RF/RF-005-visualizacao-semanal-das-reservas.md) | Visualização semanal das reservas | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Calendário semanal`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | A grade mostra os 7 dias da semana e os horários das 7h às 19h. | — | 📝 |
-| **CA02** | Cada horário ocupado exibe a sala e o autor da reserva. | — | 📝 |
-| **CA03** | Horários livres são visualmente distintos dos ocupados. | — | 📝 |
-| **CA04** | É possível navegar para a semana anterior e para a próxima. | — | 📝 |
-| **CA05** | A semana atual é destacada visualmente. | — | 📝 |
+| ID       | Critério                                                        | Como verificar | Status |
+| -------- | --------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | A grade mostra os 7 dias da semana e os horários das 7h às 19h. | —              | 📝     |
+| **CA02** | Cada horário ocupado exibe a sala e o autor da reserva.         | —              | 📝     |
+| **CA03** | Horários livres são visualmente distintos dos ocupados.         | —              | 📝     |
+| **CA04** | É possível navegar para a semana anterior e para a próxima.     | —              | 📝     |
+| **CA05** | A semana atual é destacada visualmente.                         | —              | 📝     |
 
 ## User Stories
 
@@ -93,12 +93,12 @@ Funcionalidade: Calendário semanal
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T13.1.1 | Em renderCalendar(page)/buildFragment(page) (src/modules/calendar.js), montar com el() a grade de 7 colunas (dias) x horários das 7h às 19h usando getWeekDates(offset) para os dias da semana. | ⏳ |
-| T13.1.2 | Mapear reservas para a grade via reservationsToEvents(reservations, weekDates), preenchendo cada célula ocupada com sala e autor da reserva e aplicando classe visual distinta para horários livres vs ocupados. | ⏳ |
-| T13.1.3 | Implementar navegação entre semanas controlando o offset de getWeekDates() e chamando rebuildCalendar(page) ao avançar/voltar, atualizando a grade para a semana seguinte/anterior. | ⏳ |
-| T13.1.4 | Destacar visualmente a semana atual (offset 0) na grade comparando getWeekDates(0) com a semana renderizada e aplicando classe CSS de destaque via el(). | ⏳ |
+| ID      | Task                                                                                                                                                                                                             | Status |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T13.1.1 | Em renderCalendar(page)/buildFragment(page) (src/modules/calendar.js), montar com el() a grade de 7 colunas (dias) x horários das 7h às 19h usando getWeekDates(offset) para os dias da semana.                  | ⏳     |
+| T13.1.2 | Mapear reservas para a grade via reservationsToEvents(reservations, weekDates), preenchendo cada célula ocupada com sala e autor da reserva e aplicando classe visual distinta para horários livres vs ocupados. | ⏳     |
+| T13.1.3 | Implementar navegação entre semanas controlando o offset de getWeekDates() e chamando rebuildCalendar(page) ao avançar/voltar, atualizando a grade para a semana seguinte/anterior.                              | ⏳     |
+| T13.1.4 | Destacar visualmente a semana atual (offset 0) na grade comparando getWeekDates(0) com a semana renderizada e aplicando classe CSS de destaque via el().                                                         | ⏳     |
 
 ---
 
@@ -111,25 +111,25 @@ Funcionalidade: Calendário semanal
 
 **Grupo:** `CA - Mini-calendário`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA06** | Um mini-calendário lateral permite saltar rapidamente para uma data. | — | 📝 |
-| **CA07** | A data selecionada no mini-calendário sincroniza com a grade exibida. | — | 📝 |
+| ID       | Critério                                                              | Como verificar | Status |
+| -------- | --------------------------------------------------------------------- | -------------- | ------ |
+| **CA06** | Um mini-calendário lateral permite saltar rapidamente para uma data.  | —              | 📝     |
+| **CA07** | A data selecionada no mini-calendário sincroniza com a grade exibida. | —              | 📝     |
 
 **Grupo:** `CA - Filtros de calendário`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA08** | É possível filtrar o calendário por tipo de recurso (sala ou equipamento). | — | 📝 |
-| **CA09** | É possível filtrar o calendário por bloco. | — | 📝 |
-| **CA10** | Os filtros podem ser combinados e refletem-se imediatamente na grade. | — | 📝 |
+| ID       | Critério                                                                   | Como verificar | Status |
+| -------- | -------------------------------------------------------------------------- | -------------- | ------ |
+| **CA08** | É possível filtrar o calendário por tipo de recurso (sala ou equipamento). | —              | 📝     |
+| **CA09** | É possível filtrar o calendário por bloco.                                 | —              | 📝     |
+| **CA10** | Os filtros podem ser combinados e refletem-se imediatamente na grade.      | —              | 📝     |
 
 **Grupo:** `CA - Visões dia/semana/mês`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA11** | A pessoa pode alternar entre as visões de dia, semana e mês. | — | 📝 |
-| **CA12** | A visão escolhida preserva a data e os filtros ativos ao alternar. | — | 📝 |
+| ID       | Critério                                                           | Como verificar | Status |
+| -------- | ------------------------------------------------------------------ | -------------- | ------ |
+| **CA11** | A pessoa pode alternar entre as visões de dia, semana e mês.       | —              | 📝     |
+| **CA12** | A visão escolhida preserva a data e os filtros ativos ao alternar. | —              | 📝     |
 
 ### User Stories adicionais
 
@@ -180,9 +180,8 @@ Funcionalidade: Filtros do calendário
 
 #### Tasks adicionais (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T13.2.1 | Adicionar mini-calendário lateral que, ao selecionar uma data, ajusta o offset de getWeekDates() e chama rebuildCalendar(page) sincronizando com a grade (CA06, CA07). | ⏳ |
-| T13.2.2 | Implementar alternância de visão dia/semana/mês mantendo data e filtros ativos no estado do calendário (CA11, CA12). | ⏳ |
-| T13.3.1 | Adicionar filtros por tipo de recurso (sala/equipamento) e por bloco, aplicados em reservationsToEvents() antes de montar a grade, combináveis entre si (CA08, CA09, CA10). | ⏳ |
-
+| ID      | Task                                                                                                                                                                        | Status |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T13.2.1 | Adicionar mini-calendário lateral que, ao selecionar uma data, ajusta o offset de getWeekDates() e chama rebuildCalendar(page) sincronizando com a grade (CA06, CA07).      | ⏳     |
+| T13.2.2 | Implementar alternância de visão dia/semana/mês mantendo data e filtros ativos no estado do calendário (CA11, CA12).                                                        | ⏳     |
+| T13.3.1 | Adicionar filtros por tipo de recurso (sala/equipamento) e por bloco, aplicados em reservationsToEvents() antes de montar a grade, combináveis entre si (CA08, CA09, CA10). | ⏳     |

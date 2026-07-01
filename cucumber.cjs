@@ -11,10 +11,7 @@ require("tsx/cjs");
 module.exports = {
   default: {
     paths: ["tests/features/**/*.feature"],
-    require: [
-      "tests/features/support/**/*.ts",
-      "tests/features/steps/**/*.ts",
-    ],
+    require: ["tests/features/support/**/*.ts", "tests/features/steps/**/*.ts"],
     language: "pt",
     publishQuiet: true,
   },

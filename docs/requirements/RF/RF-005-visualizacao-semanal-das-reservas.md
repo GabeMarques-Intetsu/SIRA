@@ -16,9 +16,9 @@ Visualização em grade semanal (7 dias × 12 horários das 7h às 19h) das rese
 
 ## Realizado por (rastreabilidade ↓)
 
-| Epic | Feature(s) | Status |
-| --- | --- | --- |
-| [EP-05](../../backlog/epics/EP-05-calendario-home.md) | [F-13 Grade semanal de reservas (7d x 12h)](../../backlog/features/F-13-grade-semanal-de-reservas-7d-x-12h.md) | 📝 |
+| Epic                                                  | Feature(s)                                                                                                     | Status |
+| ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------ |
+| [EP-05](../../backlog/epics/EP-05-calendario-home.md) | [F-13 Grade semanal de reservas (7d x 12h)](../../backlog/features/F-13-grade-semanal-de-reservas-7d-x-12h.md) | 📝     |
 
 ## Restrições e fora-de-escopo
 

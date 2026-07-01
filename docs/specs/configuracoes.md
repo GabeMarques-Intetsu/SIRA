@@ -1,6 +1,7 @@
 # Spec — Configurações da conta
 
 > **Rastreabilidade**
+>
 > - **RF**: [RF-012 — Configurações da conta e preferências](../requirements/RF/RF-012-configuracoes-da-conta-e-preferencias.md)
 > - **Features**: [F-37 Perfil](../backlog/features/F-37-edicao-do-perfil-pessoal.md) · [F-38 Preferências de interface](../backlog/features/F-38-preferencias-de-interface.md) · [F-39 Segurança da conta](../backlog/features/F-39-seguranca-da-conta.md) · [F-40 Preferências de notificação](../backlog/features/F-40-preferencias-de-notificacao.md) · [F-41 Exportação de dados pessoais](../backlog/features/F-41-exportacao-dos-dados-pessoais.md) · [F-42 Exclusão da própria conta](../backlog/features/F-42-exclusao-da-propria-conta.md)
 > - **Código**: `src/app/(app)/configuracoes/page.tsx` · `profile-form.tsx` · `preferences-panel.tsx` · `security-panel.tsx` · `notification-matrix.tsx` · `danger-zone.tsx` · `actions.ts` · `src/lib/preferences.ts` · `src/lib/mfa.ts` · `src/schemas/profile.ts`
@@ -22,14 +23,14 @@
 
 ## Critérios de Aceitação
 
-| ID | Critério |
-| --- | --- |
-| CA01 | Perfil valida nome (≥ 2 chars) e telefone BR opcional (formato `(83) 99999-9999`). |
-| CA02 | A troca de senha exige força mínima e confirmação coincidente. |
+| ID   | Critério                                                                                |
+| ---- | --------------------------------------------------------------------------------------- |
+| CA01 | Perfil valida nome (≥ 2 chars) e telefone BR opcional (formato `(83) 99999-9999`).      |
+| CA02 | A troca de senha exige força mínima e confirmação coincidente.                          |
 | CA03 | Preferências de tema/densidade/redução de movimento aplicam sem flash (sem `<script>`). |
-| CA04 | A matriz de notificações define o que o usuário recebe por tipo. |
-| CA05 | Exportação entrega os dados pessoais do próprio usuário. |
-| CA06 | Exclusão da conta é uma ação destrutiva confirmada (zona de perigo). |
+| CA04 | A matriz de notificações define o que o usuário recebe por tipo.                        |
+| CA05 | Exportação entrega os dados pessoais do próprio usuário.                                |
+| CA06 | Exclusão da conta é uma ação destrutiva confirmada (zona de perigo).                    |
 
 > Validação de perfil/senha em `src/schemas/profile.ts` (`profileSchema`,
 > `BR_PHONE_RE`), delegando às regras de `src/lib/preferences.ts`

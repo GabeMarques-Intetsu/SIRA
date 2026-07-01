@@ -1,6 +1,7 @@
 # Spec — Nova Reserva (assistente + detecção de conflito)
 
 > **Rastreabilidade**
+>
 > - **RF**: [RF-006 — Solicitação de reserva com checagem de disponibilidade](../requirements/RF/RF-006-solicitacao-de-reserva-com-checagem-de-disponibi.md) · [RF-008 — Aprovação e recusa de solicitações](../requirements/RF/RF-008-aprovacao-e-recusa-de-solicitacoes-de-reserva.md) (continuidade do bloqueio na decisão)
 > - **RNF**: [RNF-reserva-temporaria](../requirements/RNF/RNF-reserva-temporaria.md)
 > - **Features**: [F-14 — Busca de salas com detecção de conflito](../backlog/features/F-14-busca-de-salas-com-deteccao-de-conflito-de-horar.md) · [F-15 — Reserva express (1 clique)](../backlog/features/F-15-reserva-express-com-1-clique-a-partir-do-detalhe.md) · [F-49 — Reserva temporária do recurso durante a solicitação](../backlog/features/F-49-reserva-temporaria-do-recurso-durante-a-solicit.md)
@@ -19,20 +20,20 @@
 
 ## Critérios de Aceitação (de F-14)
 
-| ID | Critério |
-| --- | --- |
-| CA01 | Formulário aceita data, início, fim e recursos desejados. |
-| CA02 | Início deve ser anterior ao fim (senão, aviso). |
-| CA03 | Data deve ser ≥ hoje. |
-| CA04 | Resultados não incluem salas com reserva **aprovada** conflitante. |
-| CA05 | Reservas **pendentes** também contam como conflito. |
-| CA06 | Reservas canceladas/recusadas **não** geram conflito. |
-| CA07 | Só aparecem salas com **todos** os recursos selecionados. |
-| CA08 | Salas inativas nunca aparecem. |
-| CA09 | Sobreposição **parcial** também elimina a sala. |
-| CA10 | Resultados ordenados por capacidade crescente. |
-| CA11 | Sem opção: "Nenhuma sala disponível para os critérios". |
-| CA12–14 | Assistente de 4 passos: tipo → data/horário → recurso → revisão. |
+| ID      | Critério                                                           |
+| ------- | ------------------------------------------------------------------ |
+| CA01    | Formulário aceita data, início, fim e recursos desejados.          |
+| CA02    | Início deve ser anterior ao fim (senão, aviso).                    |
+| CA03    | Data deve ser ≥ hoje.                                              |
+| CA04    | Resultados não incluem salas com reserva **aprovada** conflitante. |
+| CA05    | Reservas **pendentes** também contam como conflito.                |
+| CA06    | Reservas canceladas/recusadas **não** geram conflito.              |
+| CA07    | Só aparecem salas com **todos** os recursos selecionados.          |
+| CA08    | Salas inativas nunca aparecem.                                     |
+| CA09    | Sobreposição **parcial** também elimina a sala.                    |
+| CA10    | Resultados ordenados por capacidade crescente.                     |
+| CA11    | Sem opção: "Nenhuma sala disponível para os critérios".            |
+| CA12–14 | Assistente de 4 passos: tipo → data/horário → recurso → revisão.   |
 
 > A validação do slot (CA02/CA03) é pura em `src/lib/reservation.ts`
 > (`validateSlot`) e expressa em Zod por `slotSchema` em `src/schemas/reservation.ts`
@@ -92,18 +93,18 @@ O bloqueio é um **hold** com `expires_at` numa tabela dedicada `reservation_hol
 
 ### Critérios de Aceitação (reserva temporária)
 
-| ID | Critério |
-| --- | --- |
+| ID   | Critério                                                                                                 |
+| ---- | -------------------------------------------------------------------------------------------------------- |
 | CA01 | Iniciar a solicitação para um recurso/data/horário o torna indisponível aos demais para esse mesmo slot. |
-| CA02 | Dois solicitantes não conseguem garantir o mesmo recurso/data/horário ao mesmo tempo. |
-| CA03 | O bloqueio vale só para a data e faixa de horário escolhidas; outros horários do recurso seguem livres. |
-| CA04 | Sem conclusão em **10 minutos**, o bloqueio expira e o recurso volta a ficar livre. |
-| CA05 | Holds já expirados não influenciam a busca de disponibilidade. |
-| CA06 | Enquanto a solicitação está pendente de decisão, o recurso permanece indisponível e não expira. |
-| CA07 | Aprovada → o recurso segue indisponível até o fim da reserva. |
-| CA08 | Recusada ou cancelada → o recurso é liberado imediatamente. |
-| CA09 | O próprio solicitante vê o seu bloqueio em andamento. |
-| CA10 | Os demais apenas veem "indisponível", sem o autor do bloqueio. |
+| CA02 | Dois solicitantes não conseguem garantir o mesmo recurso/data/horário ao mesmo tempo.                    |
+| CA03 | O bloqueio vale só para a data e faixa de horário escolhidas; outros horários do recurso seguem livres.  |
+| CA04 | Sem conclusão em **10 minutos**, o bloqueio expira e o recurso volta a ficar livre.                      |
+| CA05 | Holds já expirados não influenciam a busca de disponibilidade.                                           |
+| CA06 | Enquanto a solicitação está pendente de decisão, o recurso permanece indisponível e não expira.          |
+| CA07 | Aprovada → o recurso segue indisponível até o fim da reserva.                                            |
+| CA08 | Recusada ou cancelada → o recurso é liberado imediatamente.                                              |
+| CA09 | O próprio solicitante vê o seu bloqueio em andamento.                                                    |
+| CA10 | Os demais apenas veem "indisponível", sem o autor do bloqueio.                                           |
 
 ### Cenários BDD (reserva temporária)
 

@@ -14,12 +14,12 @@ Painel administrativo com indicadores em tempo real (total de reservas no perío
 
 ## Requisitos realizados (rastreabilidade ↑)
 
-| RF | Requisito | Tipo |
-| --- | --- | --- |
+| RF                                                                                         | Requisito                                          | Tipo      |
+| ------------------------------------------------------------------------------------------ | -------------------------------------------------- | --------- |
 | [RF-004](../../requirements/RF/RF-004-painel-administrativo-de-indicadores-em-tempo-re.md) | Painel administrativo de indicadores em tempo real | Funcional |
 
 ## Features sob este Epic (rastreabilidade ↓)
 
-| ID | Nome | Status | Arquivo |
-| --- | --- | --- | --- |
+| ID   | Nome                                        | Status      | Arquivo                                                                 |
+| ---- | ------------------------------------------- | ----------- | ----------------------------------------------------------------------- |
 | F-12 | Painel administrativo de KPIs em tempo real | 📝 Proposto | [F-12](../features/F-12-painel-administrativo-de-kpis-em-tempo-real.md) |

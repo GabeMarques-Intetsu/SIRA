@@ -15,19 +15,19 @@ Permite marcar todas as notificações como lidas em uma única ação, zerando 
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                           | Requisito                          | Relação |
+| ---------------------------------------------------------------------------- | ---------------------------------- | ------- |
 | [RF-011](../../requirements/RF/RF-011-central-de-notificacoes-do-usuario.md) | Central de notificações do usuário | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Todas as notificações lidas`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | Há uma ação de marcar todas as notificações como lidas. | — | 📝 |
-| **CA02** | Após a ação, o contador de não lidas fica zerado. | — | 📝 |
-| **CA03** | A ação afeta apenas as notificações do usuário logado. | — | 📝 |
+| ID       | Critério                                                | Como verificar | Status |
+| -------- | ------------------------------------------------------- | -------------- | ------ |
+| **CA01** | Há uma ação de marcar todas as notificações como lidas. | —              | 📝     |
+| **CA02** | Após a ação, o contador de não lidas fica zerado.       | —              | 📝     |
+| **CA03** | A ação afeta apenas as notificações do usuário logado.  | —              | 📝     |
 
 ## User Stories
 
@@ -87,9 +87,8 @@ Funcionalidade: Todas as notificações lidas
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T36.1.1 | Adicionar em renderNotifications (src/modules/notifications.js) um botao 'Marcar todas como lidas' no cabecalho do painel. | ⏳ |
-| T36.1.2 | Implementar handler que mapeia getNotifications() para { ...n, read: true } e persiste via saveCollection('notifications', ...), afetando apenas as notificacoes do CURRENT_USER (escopo por email do store.js). | ⏳ |
-| T36.1.3 | Apos a acao, re-renderizar o painel e chamar window.updateSidebarBadges() para zerar o contador de nao lidas, mantendo idempotencia quando nao ha itens por ler. | ⏳ |
-
+| ID      | Task                                                                                                                                                                                                             | Status |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T36.1.1 | Adicionar em renderNotifications (src/modules/notifications.js) um botao 'Marcar todas como lidas' no cabecalho do painel.                                                                                       | ⏳     |
+| T36.1.2 | Implementar handler que mapeia getNotifications() para { ...n, read: true } e persiste via saveCollection('notifications', ...), afetando apenas as notificacoes do CURRENT_USER (escopo por email do store.js). | ⏳     |
+| T36.1.3 | Apos a acao, re-renderizar o painel e chamar window.updateSidebarBadges() para zerar o contador de nao lidas, mantendo idempotencia quando nao ha itens por ler.                                                 | ⏳     |

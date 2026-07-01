@@ -1,6 +1,7 @@
 # Spec — Usuários e solicitações de cadastro (admin)
 
 > **Rastreabilidade**
+>
 > - **RF**: [RF-010 — Gestão de usuários e solicitações de cadastro](../requirements/RF/RF-010-gestao-de-usuarios-e-solicitacoes-de-cadastro.md)
 > - **Features**: [F-28 Cadastro](../backlog/features/F-28-cadastro-de-novo-usuario-pelo-admin.md) · [F-29 Listagem](../backlog/features/F-29-listagem-de-usuarios-com-busca-textual.md) · [F-30 Edição](../backlog/features/F-30-edicao-de-usuario.md) · [F-31 Exclusão](../backlog/features/F-31-exclusao-de-usuario.md) · [F-32 Aprovação de cadastro](../backlog/features/F-32-aprovacao-de-solicitacao-de-cadastro.md) · [F-33 Recusa de cadastro](../backlog/features/F-33-recusa-de-solicitacao-de-cadastro.md)
 > - **Código**: `src/app/(app)/usuarios/page.tsx` · `user-form.tsx` · `user-filters.tsx` · `user-row-actions.tsx` · `new-user-button.tsx` · `signup-actions.tsx` · `actions.ts` · `src/lib/users.ts` · `src/schemas/user.ts` · `src/lib/supabase/admin.ts`
@@ -19,15 +20,15 @@
 
 ## Critérios de Aceitação
 
-| ID | Critério |
-| --- | --- |
-| CA01 | Acesso restrito a administradores. |
-| CA02 | Cadastro valida e-mail, papel (admin/professor) e SIAPE/matrícula (7–12 dígitos). |
-| CA03 | Na edição, a senha só muda se preenchida. |
-| CA04 | Na edição, o e-mail é **imutável**. |
+| ID   | Critério                                                                                                                              |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| CA01 | Acesso restrito a administradores.                                                                                                    |
+| CA02 | Cadastro valida e-mail, papel (admin/professor) e SIAPE/matrícula (7–12 dígitos).                                                     |
+| CA03 | Na edição, a senha só muda se preenchida.                                                                                             |
+| CA04 | Na edição, o e-mail é **imutável**.                                                                                                   |
 | CA05 | A criação **não** confia em `user_metadata.role`: o trigger força `professor` e a promoção a admin é um UPDATE explícito e auditável. |
-| CA06 | Aprovar uma solicitação cria a conta; recusar a descarta com aviso. |
-| CA07 | Provisionamento indisponível (sem service-role) degrada com mensagem amigável. |
+| CA06 | Aprovar uma solicitação cria a conta; recusar a descarta com aviso.                                                                   |
+| CA07 | Provisionamento indisponível (sem service-role) degrada com mensagem amigável.                                                        |
 
 > Regra de validação canônica em `src/lib/users.ts` (`validateUserInput`,
 > `PASSWORD_MIN`), expressa em Zod por `userSchema` em `src/schemas/user.ts`. O

@@ -1,4 +1,4 @@
-# EP — Melhorias (*Improvements*)
+# EP — Melhorias (_Improvements_)
 
 > **Tipo**: Epic (root, **obrigatório**) · **Status**: 🚧 Em andamento (contínuo)
 > **Prioridade global**: 🟢 Baixa (a menos que uma melhoria específica suba de prioridade)
@@ -14,9 +14,9 @@ Casa das **melhorias do produto** — refinamentos, otimizações e pequenos apr
 
 ## Itens sob este Epic (rastreabilidade ↓)
 
-| ID | Melhoria | Tipo | Origem |
-| --- | --- | --- | --- |
-| — | _(nenhuma melhoria registrada ainda — entram aqui refinamentos de coisas existentes vindos do uso real)_ | — | — |
+| ID  | Melhoria                                                                                                 | Tipo | Origem |
+| --- | -------------------------------------------------------------------------------------------------------- | ---- | ------ |
+| —   | _(nenhuma melhoria registrada ainda — entram aqui refinamentos de coisas existentes vindos do uso real)_ | —    | —      |
 
 ## ADRs relacionadas
 

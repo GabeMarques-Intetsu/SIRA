@@ -96,8 +96,7 @@ export function useMarkNotificationRead() {
       );
       queryClient.setQueryData<NotificationRow[]>(
         notificationKeys.lists(),
-        (rows) =>
-          rows?.map((n) => (n.id === id ? { ...n, is_read: true } : n)),
+        (rows) => rows?.map((n) => (n.id === id ? { ...n, is_read: true } : n)),
       );
       return { previous };
     },

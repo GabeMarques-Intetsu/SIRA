@@ -14,21 +14,21 @@ Na Zona de risco, a pessoa pode excluir a própria conta. Por ser ação irrever
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                              | Requisito                             | Relação |
+| ------------------------------------------------------------------------------- | ------------------------------------- | ------- |
 | [RF-012](../../requirements/RF/RF-012-configuracoes-da-conta-e-preferencias.md) | Configurações da conta e preferências | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Excluir minha conta`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | A exclusão da conta exige uma confirmação explícita antes de ser efetivada. | — | 📝 |
-| **CA02** | A confirmação deixa claro que a ação é irreversível. | — | 📝 |
-| **CA03** | Após a exclusão, a sessão é encerrada e a pessoa não consegue mais acessar. | — | 📝 |
-| **CA04** | A pessoa pode cancelar a confirmação e nada é excluído. | — | 📝 |
-| **CA05** | A exclusão remove os dados pessoais da pessoa do sistema. | — | 📝 |
+| ID       | Critério                                                                    | Como verificar | Status |
+| -------- | --------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | A exclusão da conta exige uma confirmação explícita antes de ser efetivada. | —              | 📝     |
+| **CA02** | A confirmação deixa claro que a ação é irreversível.                        | —              | 📝     |
+| **CA03** | Após a exclusão, a sessão é encerrada e a pessoa não consegue mais acessar. | —              | 📝     |
+| **CA04** | A pessoa pode cancelar a confirmação e nada é excluído.                     | —              | 📝     |
+| **CA05** | A exclusão remove os dados pessoais da pessoa do sistema.                   | —              | 📝     |
 
 ## User Stories
 
@@ -61,8 +61,8 @@ Funcionalidade: Exclusão da própria conta
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T42.1.1 | Implementar diálogo de confirmação irreversível para exclusão da conta, com opção de cancelar (CA01, CA02, CA04). | ⏳ |
-| T42.1.2 | Executar a exclusão dos dados pessoais do usuário e a remoção da conta no provedor de autenticação (CA05). | ⏳ |
-| T42.1.3 | Encerrar a sessão e redirecionar para o login após a exclusão (CA03). | ⏳ |
+| ID      | Task                                                                                                              | Status |
+| ------- | ----------------------------------------------------------------------------------------------------------------- | ------ |
+| T42.1.1 | Implementar diálogo de confirmação irreversível para exclusão da conta, com opção de cancelar (CA01, CA02, CA04). | ⏳     |
+| T42.1.2 | Executar a exclusão dos dados pessoais do usuário e a remoção da conta no provedor de autenticação (CA05).        | ⏳     |
+| T42.1.3 | Encerrar a sessão e redirecionar para o login após a exclusão (CA03).                                             | ⏳     |

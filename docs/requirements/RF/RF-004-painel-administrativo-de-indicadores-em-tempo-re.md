@@ -16,9 +16,9 @@ Painel administrativo com indicadores em tempo real (total de reservas no perío
 
 ## Realizado por (rastreabilidade ↓)
 
-| Epic | Feature(s) | Status |
-| --- | --- | --- |
-| [EP-04](../../backlog/epics/EP-04-dashboard-admin.md) | [F-12 Painel administrativo de KPIs em tempo real](../../backlog/features/F-12-painel-administrativo-de-kpis-em-tempo-real.md) | 📝 |
+| Epic                                                  | Feature(s)                                                                                                                     | Status |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------ |
+| [EP-04](../../backlog/epics/EP-04-dashboard-admin.md) | [F-12 Painel administrativo de KPIs em tempo real](../../backlog/features/F-12-painel-administrativo-de-kpis-em-tempo-real.md) | 📝     |
 
 ## Restrições e fora-de-escopo
 

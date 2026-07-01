@@ -1,6 +1,7 @@
 # Spec — Painel administrativo (KPIs)
 
 > **Rastreabilidade**
+>
 > - **RF**: [RF-004 — Painel administrativo de indicadores em tempo real](../requirements/RF/RF-004-painel-administrativo-de-indicadores-em-tempo-re.md)
 > - **Feature**: [F-12 — Painel administrativo de KPIs em tempo real](../backlog/features/F-12-painel-administrativo-de-kpis-em-tempo-real.md)
 > - **Código**: `src/app/(app)/painel/page.tsx` · `period-filter.tsx` · `src/lib/dashboard.ts`
@@ -14,15 +15,15 @@
 
 ## Critérios de Aceitação
 
-| ID | Critério |
-| --- | --- |
-| CA01 | Acesso restrito a administradores (`requireAdmin`). |
-| CA02 | Mostra total de reservas no período. |
-| CA03 | Mostra taxa de aprovação. |
-| CA04 | Mostra ocupação por dia da semana. |
-| CA05 | Mostra ranking de salas mais usadas. |
-| CA06 | Mostra atividade recente. |
-| CA07 | Filtro de período: hoje / semana / mês. |
+| ID   | Critério                                                                                         |
+| ---- | ------------------------------------------------------------------------------------------------ |
+| CA01 | Acesso restrito a administradores (`requireAdmin`).                                              |
+| CA02 | Mostra total de reservas no período.                                                             |
+| CA03 | Mostra taxa de aprovação.                                                                        |
+| CA04 | Mostra ocupação por dia da semana.                                                               |
+| CA05 | Mostra ranking de salas mais usadas.                                                             |
+| CA06 | Mostra atividade recente.                                                                        |
+| CA07 | Filtro de período: hoje / semana / mês.                                                          |
 | CA08 | A agregação ocorre sobre conjuntos já limitados pelo período (sem trazer linhas desnecessárias). |
 
 > A página é Server Component com `requireAdmin()`. As agregações são puras em

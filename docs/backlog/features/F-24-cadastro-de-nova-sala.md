@@ -15,21 +15,21 @@ Permite ao administrador cadastrar uma nova sala informando nome, capacidade, re
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                    | Requisito                   | Relação |
+| --------------------------------------------------------------------- | --------------------------- | ------- |
 | [RF-009](../../requirements/RF/RF-009-gestao-do-catalogo-de-salas.md) | Gestão do catálogo de salas | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Cadastro de sala`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | O cadastro é acessível apenas ao administrador. | — | 📝 |
-| **CA02** | Exige nome, capacidade, recursos disponíveis e localização. | — | 📝 |
-| **CA03** | A capacidade deve ser um número maior que zero. | — | 📝 |
-| **CA04** | Não é permitido cadastrar sala com nome já existente. | — | 📝 |
-| **CA05** | A sala recém-cadastrada fica imediatamente disponível para reserva. | — | 📝 |
+| ID       | Critério                                                            | Como verificar | Status |
+| -------- | ------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | O cadastro é acessível apenas ao administrador.                     | —              | 📝     |
+| **CA02** | Exige nome, capacidade, recursos disponíveis e localização.         | —              | 📝     |
+| **CA03** | A capacidade deve ser um número maior que zero.                     | —              | 📝     |
+| **CA04** | Não é permitido cadastrar sala com nome já existente.               | —              | 📝     |
+| **CA05** | A sala recém-cadastrada fica imediatamente disponível para reserva. | —              | 📝     |
 
 ## User Stories
 
@@ -93,11 +93,10 @@ Funcionalidade: Cadastro de sala
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T24.1.1 | Em openRoomModal() de rooms.js, restringir a abertura do cadastro a administradores (isAdmin/CURRENT_USER do store.js) (CA01). | ⏳ |
-| T24.1.2 | Montar o formulário com campos obrigatórios nome (nameInput), capacidade, recursos disponíveis e localização, bloqueando o salvamento se algum estiver vazio (CA02). | ⏳ |
-| T24.1.3 | Validar que a capacidade seja número inteiro maior que zero antes de salvar, exibindo toast() de erro caso contrário (CA03). | ⏳ |
-| T24.1.4 | Verificar contra getRooms() se já existe sala com o mesmo nome (case-insensitive) e impedir o cadastro duplicado com aviso (CA04). | ⏳ |
-| T24.1.5 | Ao validar, persistir a nova sala via saveRoom() com genId() e chamar refreshGrid(grid) para deixá-la imediatamente disponível para reserva (CA05). | ⏳ |
-
+| ID      | Task                                                                                                                                                                 | Status |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T24.1.1 | Em openRoomModal() de rooms.js, restringir a abertura do cadastro a administradores (isAdmin/CURRENT_USER do store.js) (CA01).                                       | ⏳     |
+| T24.1.2 | Montar o formulário com campos obrigatórios nome (nameInput), capacidade, recursos disponíveis e localização, bloqueando o salvamento se algum estiver vazio (CA02). | ⏳     |
+| T24.1.3 | Validar que a capacidade seja número inteiro maior que zero antes de salvar, exibindo toast() de erro caso contrário (CA03).                                         | ⏳     |
+| T24.1.4 | Verificar contra getRooms() se já existe sala com o mesmo nome (case-insensitive) e impedir o cadastro duplicado com aviso (CA04).                                   | ⏳     |
+| T24.1.5 | Ao validar, persistir a nova sala via saveRoom() com genId() e chamar refreshGrid(grid) para deixá-la imediatamente disponível para reserva (CA05).                  | ⏳     |

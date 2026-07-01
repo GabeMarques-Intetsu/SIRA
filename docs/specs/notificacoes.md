@@ -1,6 +1,7 @@
 # Spec — Central de Notificações
 
 > **Rastreabilidade**
+>
 > - **RF**: [RF-011 — Central de notificações do usuário](../requirements/RF/RF-011-central-de-notificacoes-do-usuario.md)
 > - **Features**: [F-34 Listagem](../backlog/features/F-34-listagem-de-notificacoes.md) · [F-35 Marcar individual como lida](../backlog/features/F-35-marcar-notificacao-individual-como-lida.md) · [F-36 Marcar todas como lidas](../backlog/features/F-36-marcar-todas-as-notificacoes-como-lidas.md)
 > - **Código**: `src/app/(app)/notificacoes/page.tsx` · `notification-item.tsx` · `notification-toolbar.tsx` · `actions.ts` · `src/lib/notifications.ts`
@@ -16,14 +17,14 @@
 
 ## Critérios de Aceitação
 
-| ID | Critério |
-| --- | --- |
-| CA01 | A lista mostra só as notificações do próprio usuário (RLS). |
+| ID   | Critério                                                                         |
+| ---- | -------------------------------------------------------------------------------- |
+| CA01 | A lista mostra só as notificações do próprio usuário (RLS).                      |
 | CA02 | Ordenação: mais recentes primeiro; agrupadas em Hoje / Esta semana / Anteriores. |
-| CA03 | O contador de não lidas alimenta o badge da sidebar. |
-| CA04 | Marcar individual atualiza o estado e o contador. |
-| CA05 | Marcar todas zera o contador de não lidas. |
-| CA06 | Cada tipo tem ícone Material Symbol + cor M3 (sem emoji). |
+| CA03 | O contador de não lidas alimenta o badge da sidebar.                             |
+| CA04 | Marcar individual atualiza o estado e o contador.                                |
+| CA05 | Marcar todas zera o contador de não lidas.                                       |
+| CA06 | Cada tipo tem ícone Material Symbol + cor M3 (sem emoji).                        |
 
 > Agrupamento por recência, ordenação reversa e contagem de não lidas são puros
 > em `src/lib/notifications.ts` (`groupByRecency`, `unreadCount`, `filterCounts`,

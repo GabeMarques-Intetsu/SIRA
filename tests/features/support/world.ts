@@ -212,7 +212,8 @@ export function ensureUser(
     u = {
       id: nextId("user"),
       name,
-      email: over.email ?? `${name.toLowerCase().replace(/\s+/g, ".")}@ifpb.edu.br`,
+      email:
+        over.email ?? `${name.toLowerCase().replace(/\s+/g, ".")}@ifpb.edu.br`,
       role: over.role ?? "professor",
       status: over.status ?? "active",
       ...over,

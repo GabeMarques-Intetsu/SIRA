@@ -14,20 +14,20 @@ Na Zona de risco, a pessoa pode exportar seus próprios dados (perfil e reservas
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                              | Requisito                             | Relação |
+| ------------------------------------------------------------------------------- | ------------------------------------- | ------- |
 | [RF-012](../../requirements/RF/RF-012-configuracoes-da-conta-e-preferencias.md) | Configurações da conta e preferências | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Exportar meus dados`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | A pessoa pode exportar seus dados pessoais em um arquivo para download. | — | 📝 |
-| **CA02** | A exportação inclui o perfil e as reservas da própria pessoa. | — | 📝 |
-| **CA03** | A exportação não inclui dados de outras pessoas. | — | 📝 |
-| **CA04** | O arquivo gerado tem nome e formato legíveis (ex.: contendo identificação e data da exportação). | — | 📝 |
+| ID       | Critério                                                                                         | Como verificar | Status |
+| -------- | ------------------------------------------------------------------------------------------------ | -------------- | ------ |
+| **CA01** | A pessoa pode exportar seus dados pessoais em um arquivo para download.                          | —              | 📝     |
+| **CA02** | A exportação inclui o perfil e as reservas da própria pessoa.                                    | —              | 📝     |
+| **CA03** | A exportação não inclui dados de outras pessoas.                                                 | —              | 📝     |
+| **CA04** | O arquivo gerado tem nome e formato legíveis (ex.: contendo identificação e data da exportação). | —              | 📝     |
 
 ## User Stories
 
@@ -58,8 +58,8 @@ Funcionalidade: Exportação dos dados pessoais
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T41.1.1 | Reunir os dados do usuário atual (perfil + reservas filtradas pelo seu id) e serializar em um arquivo para download (CA01, CA02). | ⏳ |
-| T41.1.2 | Garantir o isolamento por usuário na coleta dos dados, sem incluir registros de terceiros, conforme RNF-seguranca-privacidade (CA03). | ⏳ |
-| T41.1.3 | Nomear o arquivo com identificação do usuário e data da exportação (CA04). | ⏳ |
+| ID      | Task                                                                                                                                  | Status |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T41.1.1 | Reunir os dados do usuário atual (perfil + reservas filtradas pelo seu id) e serializar em um arquivo para download (CA01, CA02).     | ⏳     |
+| T41.1.2 | Garantir o isolamento por usuário na coleta dos dados, sem incluir registros de terceiros, conforme RNF-seguranca-privacidade (CA03). | ⏳     |
+| T41.1.3 | Nomear o arquivo com identificação do usuário e data da exportação (CA04).                                                            | ⏳     |

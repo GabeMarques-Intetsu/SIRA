@@ -1,181 +1,306 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SIRA · Login</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIRA · Login</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- SIRA design tokens (M3 + dark mode + a11y) -->
-  <link rel="stylesheet" href="./_shared/tokens.css" />
+    <!-- SIRA design tokens (M3 + dark mode + a11y) -->
+    <link rel="stylesheet" href="./_shared/tokens.css" />
 
-  <!-- Tailwind via CDN + config compartilhada -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <script src="./_shared/tailwind-config.js"></script>
+    <!-- Tailwind via CDN + config compartilhada -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="./_shared/tailwind-config.js"></script>
 
-  <!-- Theme toggle (aplica tema antes do render para evitar flash) -->
-  <script src="./_shared/theme-toggle.js"></script>
-</head>
+    <!-- Theme toggle (aplica tema antes do render para evitar flash) -->
+    <script src="./_shared/theme-toggle.js"></script>
+  </head>
 
-<body class="bg-surface text-on-surface antialiased min-h-screen flex selection:bg-primary selection:text-on-primary font-sans">
+  <body
+    class="bg-surface text-on-surface selection:bg-primary selection:text-on-primary flex min-h-screen font-sans antialiased"
+  >
+    <a href="#login-form" class="skip-link">Pular para o conteúdo</a>
 
-  <a href="#login-form" class="skip-link">Pular para o conteúdo</a>
-
-  <main class="flex-1 flex w-full">
-
-    <!-- ───── Painel esquerdo: branding + ilustração ───── -->
-    <section class="hidden lg:flex lg:w-1/2 relative bg-primary overflow-hidden flex-col justify-between p-xxl">
-      <!-- Padrão decorativo (sem imagem externa para offline) -->
-      <div aria-hidden="true" class="absolute inset-0 opacity-20">
-        <svg class="w-full h-full" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice" fill="none">
-          <defs>
-            <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
-              <path d="M 80 0 L 0 0 0 80" fill="none" stroke="white" stroke-width="0.5" />
-            </pattern>
-          </defs>
-          <rect width="800" height="800" fill="url(#grid)" />
-          <circle cx="200" cy="200" r="120" fill="white" fill-opacity="0.05" />
-          <circle cx="600" cy="600" r="180" fill="white" fill-opacity="0.05" />
-          <circle cx="650" cy="180" r="60" fill="white" fill-opacity="0.08" />
-        </svg>
-      </div>
-      <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-br from-primary via-primary to-primary-container mix-blend-multiply"></div>
-
-      <div class="relative z-10">
-        <div class="w-16 h-16 bg-surface-container-lowest rounded-xl flex items-center justify-center shadow-sm mb-lg">
-          <span class="material-symbols-outlined text-primary" style="font-size:40px">domain</span>
+    <main class="flex w-full flex-1">
+      <!-- ───── Painel esquerdo: branding + ilustração ───── -->
+      <section
+        class="bg-primary p-xxl relative hidden flex-col justify-between overflow-hidden lg:flex lg:w-1/2"
+      >
+        <!-- Padrão decorativo (sem imagem externa para offline) -->
+        <div aria-hidden="true" class="absolute inset-0 opacity-20">
+          <svg
+            class="h-full w-full"
+            viewBox="0 0 800 800"
+            preserveAspectRatio="xMidYMid slice"
+            fill="none"
+          >
+            <defs>
+              <pattern
+                id="grid"
+                width="80"
+                height="80"
+                patternUnits="userSpaceOnUse"
+              >
+                <path
+                  d="M 80 0 L 0 0 0 80"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="0.5"
+                />
+              </pattern>
+            </defs>
+            <rect width="800" height="800" fill="url(#grid)" />
+            <circle
+              cx="200"
+              cy="200"
+              r="120"
+              fill="white"
+              fill-opacity="0.05"
+            />
+            <circle
+              cx="600"
+              cy="600"
+              r="180"
+              fill="white"
+              fill-opacity="0.05"
+            />
+            <circle cx="650" cy="180" r="60" fill="white" fill-opacity="0.08" />
+          </svg>
         </div>
-      </div>
+        <div
+          aria-hidden="true"
+          class="from-primary via-primary to-primary-container absolute inset-0 bg-gradient-to-br mix-blend-multiply"
+        ></div>
 
-      <div class="relative z-10 max-w-lg">
-        <h2 class="text-headline-lg text-on-primary mb-md">Gestão de recursos simplificada.</h2>
-        <p class="text-body-lg text-on-primary/90">Acesse o SIRA para reservar laboratórios, auditórios e equipamentos do IFPB de forma rápida e segura.</p>
-
-        <ul class="mt-xl space-y-md text-on-primary/85">
-          <li class="flex items-start gap-sm">
-            <span class="material-symbols-outlined text-on-primary mt-0.5" aria-hidden="true">check_circle</span>
-            <span class="text-body-md">Calendário semanal sincronizado entre coordenações</span>
-          </li>
-          <li class="flex items-start gap-sm">
-            <span class="material-symbols-outlined text-on-primary mt-0.5" aria-hidden="true">check_circle</span>
-            <span class="text-body-md">Fluxo de aprovação com notificações em tempo real</span>
-          </li>
-          <li class="flex items-start gap-sm">
-            <span class="material-symbols-outlined text-on-primary mt-0.5" aria-hidden="true">check_circle</span>
-            <span class="text-body-md">Reserva única para salas + equipamentos</span>
-          </li>
-        </ul>
-      </div>
-
-      <div class="relative z-10 text-on-primary/70 text-body-sm">
-        © 2025 IFPB · SIRA v1.0
-      </div>
-    </section>
-
-    <!-- ───── Painel direito: formulário ───── -->
-    <section class="w-full lg:w-1/2 flex items-center justify-center p-margin-mobile md:p-margin-desktop bg-surface relative">
-
-      <!-- Toggle de tema no canto superior -->
-      <button type="button"
-              data-theme-toggle
-              class="absolute top-md right-md touch-target rounded-full hover:bg-surface-container transition-colors"
-              aria-label="Ativar tema escuro"
-              aria-pressed="false">
-        <span class="material-symbols-outlined text-on-surface-variant">dark_mode</span>
-      </button>
-
-      <div class="w-full max-w-[420px] flex flex-col gap-xl">
-
-        <header class="flex flex-col gap-sm">
-          <div class="flex items-center gap-xs text-primary mb-xs">
-            <span class="material-symbols-outlined" aria-hidden="true">school</span>
-            <span class="text-label-md uppercase tracking-widest">Instituto Federal da Paraíba</span>
+        <div class="relative z-10">
+          <div
+            class="bg-surface-container-lowest mb-lg flex h-16 w-16 items-center justify-center rounded-xl shadow-sm"
+          >
+            <span
+              class="material-symbols-outlined text-primary"
+              style="font-size: 40px"
+              >domain</span
+            >
           </div>
-          <h1 class="text-headline-lg text-on-surface">SIRA</h1>
-          <p class="text-body-md text-on-surface-variant">Sistema de Reserva de Salas · Acesse sua conta.</p>
-        </header>
+        </div>
 
-        <form id="login-form" action="#" method="POST" class="flex flex-col gap-lg" novalidate>
-
-          <div class="flex flex-col gap-md">
-
-            <!-- E-mail -->
-            <div class="flex flex-col gap-xs">
-              <label for="email" class="text-label-sm text-on-surface">E-mail institucional</label>
-              <div class="relative">
-                <span class="absolute left-md top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant" aria-hidden="true">mail</span>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  autocomplete="username"
-                  aria-describedby="email-hint"
-                  placeholder="usuario@ifpb.edu.br"
-                  class="w-full pl-[48px] pr-md py-3 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-body-md shadow-sm"
-                />
-              </div>
-              <span id="email-hint" class="text-body-sm text-on-surface-variant">Use seu e-mail @ifpb.edu.br</span>
-            </div>
-
-            <!-- Senha -->
-            <div class="flex flex-col gap-xs">
-              <label for="password" class="text-label-sm text-on-surface">Senha</label>
-              <div class="relative">
-                <span class="absolute left-md top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant" aria-hidden="true">lock</span>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  required
-                  autocomplete="current-password"
-                  placeholder="••••••••"
-                  class="w-full pl-[48px] pr-[48px] py-3 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-body-md shadow-sm"
-                />
-                <button type="button"
-                        class="absolute right-2 top-1/2 -translate-y-1/2 touch-target rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors"
-                        aria-label="Mostrar senha">
-                  <span class="material-symbols-outlined">visibility</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Variante: estado de erro renderizado (exemplo p/ avaliação) -->
-            <div role="alert" aria-live="polite" class="hidden bg-error-container text-on-error-container rounded-lg p-md flex items-start gap-sm" id="login-error">
-              <span class="material-symbols-outlined" aria-hidden="true">error</span>
-              <span class="text-body-sm">E-mail ou senha incorretos. Verifique e tente novamente.</span>
-            </div>
-          </div>
-
-          <div class="flex items-center justify-between">
-            <label class="flex items-center gap-sm cursor-pointer group">
-              <input type="checkbox"
-                     class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary transition-all cursor-pointer" />
-              <span class="text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Lembrar-me</span>
-            </label>
-            <a href="#" class="text-label-md text-primary hover:underline focus-visible:underline transition-all">Esqueceu a senha?</a>
-          </div>
-
-          <button type="submit"
-                  class="w-full py-3 px-lg bg-primary hover:bg-surface-tint text-on-primary text-label-md rounded-lg shadow-sm transition-all duration-200 flex items-center justify-center gap-sm mt-sm active:scale-[0.98]">
-            <span>Entrar</span>
-            <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
-          </button>
-        </form>
-
-        <footer class="text-center">
-          <p class="text-body-sm text-on-surface-variant">
-            Não possui acesso? <a href="./07-cadastro.html" class="text-primary hover:underline font-medium">Solicitar cadastro</a>.
+        <div class="relative z-10 max-w-lg">
+          <h2 class="text-headline-lg text-on-primary mb-md">
+            Gestão de recursos simplificada.
+          </h2>
+          <p class="text-body-lg text-on-primary/90">
+            Acesse o SIRA para reservar laboratórios, auditórios e equipamentos
+            do IFPB de forma rápida e segura.
           </p>
-        </footer>
 
-      </div>
-    </section>
-  </main>
+          <ul class="mt-xl space-y-md text-on-primary/85">
+            <li class="gap-sm flex items-start">
+              <span
+                class="material-symbols-outlined text-on-primary mt-0.5"
+                aria-hidden="true"
+                >check_circle</span
+              >
+              <span class="text-body-md"
+                >Calendário semanal sincronizado entre coordenações</span
+              >
+            </li>
+            <li class="gap-sm flex items-start">
+              <span
+                class="material-symbols-outlined text-on-primary mt-0.5"
+                aria-hidden="true"
+                >check_circle</span
+              >
+              <span class="text-body-md"
+                >Fluxo de aprovação com notificações em tempo real</span
+              >
+            </li>
+            <li class="gap-sm flex items-start">
+              <span
+                class="material-symbols-outlined text-on-primary mt-0.5"
+                aria-hidden="true"
+                >check_circle</span
+              >
+              <span class="text-body-md"
+                >Reserva única para salas + equipamentos</span
+              >
+            </li>
+          </ul>
+        </div>
 
-</body>
+        <div class="text-on-primary/70 text-body-sm relative z-10">
+          © 2025 IFPB · SIRA v1.0
+        </div>
+      </section>
+
+      <!-- ───── Painel direito: formulário ───── -->
+      <section
+        class="p-margin-mobile md:p-margin-desktop bg-surface relative flex w-full items-center justify-center lg:w-1/2"
+      >
+        <!-- Toggle de tema no canto superior -->
+        <button
+          type="button"
+          data-theme-toggle
+          class="top-md right-md touch-target hover:bg-surface-container absolute rounded-full transition-colors"
+          aria-label="Ativar tema escuro"
+          aria-pressed="false"
+        >
+          <span class="material-symbols-outlined text-on-surface-variant"
+            >dark_mode</span
+          >
+        </button>
+
+        <div class="gap-xl flex w-full max-w-[420px] flex-col">
+          <header class="gap-sm flex flex-col">
+            <div class="gap-xs text-primary mb-xs flex items-center">
+              <span class="material-symbols-outlined" aria-hidden="true"
+                >school</span
+              >
+              <span class="text-label-md tracking-widest uppercase"
+                >Instituto Federal da Paraíba</span
+              >
+            </div>
+            <h1 class="text-headline-lg text-on-surface">SIRA</h1>
+            <p class="text-body-md text-on-surface-variant">
+              Sistema de Reserva de Salas · Acesse sua conta.
+            </p>
+          </header>
+
+          <form
+            id="login-form"
+            action="#"
+            method="POST"
+            class="gap-lg flex flex-col"
+            novalidate
+          >
+            <div class="gap-md flex flex-col">
+              <!-- E-mail -->
+              <div class="gap-xs flex flex-col">
+                <label for="email" class="text-label-sm text-on-surface"
+                  >E-mail institucional</label
+                >
+                <div class="relative">
+                  <span
+                    class="left-md material-symbols-outlined text-on-surface-variant absolute top-1/2 -translate-y-1/2"
+                    aria-hidden="true"
+                    >mail</span
+                  >
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    autocomplete="username"
+                    aria-describedby="email-hint"
+                    placeholder="usuario@ifpb.edu.br"
+                    class="pr-md border-outline-variant bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 focus:ring-primary focus:border-primary text-body-md w-full rounded-lg border py-3 pl-[48px] shadow-sm transition-all outline-none focus:ring-2"
+                  />
+                </div>
+                <span
+                  id="email-hint"
+                  class="text-body-sm text-on-surface-variant"
+                  >Use seu e-mail @ifpb.edu.br</span
+                >
+              </div>
+
+              <!-- Senha -->
+              <div class="gap-xs flex flex-col">
+                <label for="password" class="text-label-sm text-on-surface"
+                  >Senha</label
+                >
+                <div class="relative">
+                  <span
+                    class="left-md material-symbols-outlined text-on-surface-variant absolute top-1/2 -translate-y-1/2"
+                    aria-hidden="true"
+                    >lock</span
+                  >
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    required
+                    autocomplete="current-password"
+                    placeholder="••••••••"
+                    class="border-outline-variant bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 focus:ring-primary focus:border-primary text-body-md w-full rounded-lg border py-3 pr-[48px] pl-[48px] shadow-sm transition-all outline-none focus:ring-2"
+                  />
+                  <button
+                    type="button"
+                    class="touch-target text-on-surface-variant hover:text-primary hover:bg-surface-container absolute top-1/2 right-2 -translate-y-1/2 rounded-full transition-colors"
+                    aria-label="Mostrar senha"
+                  >
+                    <span class="material-symbols-outlined">visibility</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Variante: estado de erro renderizado (exemplo p/ avaliação) -->
+              <div
+                role="alert"
+                aria-live="polite"
+                class="bg-error-container text-on-error-container p-md gap-sm flex hidden items-start rounded-lg"
+                id="login-error"
+              >
+                <span class="material-symbols-outlined" aria-hidden="true"
+                  >error</span
+                >
+                <span class="text-body-sm"
+                  >E-mail ou senha incorretos. Verifique e tente
+                  novamente.</span
+                >
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <label class="gap-sm group flex cursor-pointer items-center">
+                <input
+                  type="checkbox"
+                  class="border-outline-variant text-primary focus:ring-primary h-5 w-5 cursor-pointer rounded transition-all"
+                />
+                <span
+                  class="text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors"
+                  >Lembrar-me</span
+                >
+              </label>
+              <a
+                href="#"
+                class="text-label-md text-primary transition-all hover:underline focus-visible:underline"
+                >Esqueceu a senha?</a
+              >
+            </div>
+
+            <button
+              type="submit"
+              class="px-lg bg-primary hover:bg-surface-tint text-on-primary text-label-md gap-sm mt-sm flex w-full items-center justify-center rounded-lg py-3 shadow-sm transition-all duration-200 active:scale-[0.98]"
+            >
+              <span>Entrar</span>
+              <span class="material-symbols-outlined" aria-hidden="true"
+                >arrow_forward</span
+              >
+            </button>
+          </form>
+
+          <footer class="text-center">
+            <p class="text-body-sm text-on-surface-variant">
+              Não possui acesso?
+              <a
+                href="./07-cadastro.html"
+                class="text-primary font-medium hover:underline"
+                >Solicitar cadastro</a
+              >.
+            </p>
+          </footer>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>

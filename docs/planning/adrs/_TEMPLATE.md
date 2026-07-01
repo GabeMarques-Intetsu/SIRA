@@ -1,4 +1,5 @@
 <!-- GENERIC TEMPLATE — copy to ADR-NNN-<slug>.md. Use the NEXT free number in the GLOBAL sequence. -->
+
 # ADR-NNN: <título imperativo da decisão>
 
 ## Status

@@ -14,36 +14,36 @@ Permite ao administrador anexar uma imagem opcional ao equipamento, tanto no cad
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF / RNF | Requisito | Relação |
-| --- | --- | --- |
-| [RF-013](../../requirements/RF/RF-013-gestao-do-catalogo-de-equipamentos.md) | Gestão do catálogo de equipamentos | Realiza |
-| [RNF-imagem-de-recurso](../../requirements/RNF/RNF-imagem-de-recurso.md) | Formato e tamanho da imagem | Restringe |
+| RF / RNF                                                                     | Requisito                          | Relação   |
+| ---------------------------------------------------------------------------- | ---------------------------------- | --------- |
+| [RF-013](../../requirements/RF/RF-013-gestao-do-catalogo-de-equipamentos.md) | Gestão do catálogo de equipamentos | Realiza   |
+| [RNF-imagem-de-recurso](../../requirements/RNF/RNF-imagem-de-recurso.md)     | Formato e tamanho da imagem        | Restringe |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Anexo da imagem`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | A imagem do equipamento é opcional, tanto no cadastro quanto na edição. | — | 📝 |
-| **CA02** | São aceitos apenas os formatos JPG, PNG ou WebP. | — | 📝 |
-| **CA03** | A imagem deve ter no máximo 2 MB; arquivos maiores são recusados com aviso. | — | 📝 |
-| **CA04** | Cada equipamento tem no máximo uma imagem. | — | 📝 |
-| **CA05** | Antes de salvar, o administrador vê uma pré-visualização da imagem escolhida. | — | 📝 |
+| ID       | Critério                                                                      | Como verificar | Status |
+| -------- | ----------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | A imagem do equipamento é opcional, tanto no cadastro quanto na edição.       | —              | 📝     |
+| **CA02** | São aceitos apenas os formatos JPG, PNG ou WebP.                              | —              | 📝     |
+| **CA03** | A imagem deve ter no máximo 2 MB; arquivos maiores são recusados com aviso.   | —              | 📝     |
+| **CA04** | Cada equipamento tem no máximo uma imagem.                                    | —              | 📝     |
+| **CA05** | Antes de salvar, o administrador vê uma pré-visualização da imagem escolhida. | —              | 📝     |
 
 **Grupo:** `CA - Substituir e remover`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA06** | Na edição, é possível substituir a imagem existente por outra. | — | 📝 |
-| **CA07** | Na edição, é possível remover a imagem, voltando o equipamento ao ícone padrão. | — | 📝 |
+| ID       | Critério                                                                        | Como verificar | Status |
+| -------- | ------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA06** | Na edição, é possível substituir a imagem existente por outra.                  | —              | 📝     |
+| **CA07** | Na edição, é possível remover a imagem, voltando o equipamento ao ícone padrão. | —              | 📝     |
 
 **Grupo:** `CA - Exibição`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA08** | A imagem do equipamento aparece no card (catálogo e busca) e no detalhe do equipamento. | — | 📝 |
-| **CA09** | Quando o equipamento não tem imagem, o card e o detalhe mostram o ícone padrão atual. | — | 📝 |
+| ID       | Critério                                                                                | Como verificar | Status |
+| -------- | --------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA08** | A imagem do equipamento aparece no card (catálogo e busca) e no detalhe do equipamento. | —              | 📝     |
+| **CA09** | Quando o equipamento não tem imagem, o card e o detalhe mostram o ícone padrão atual.   | —              | 📝     |
 
 ## User Stories
 
@@ -95,13 +95,13 @@ Funcionalidade: Imagem do equipamento
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T48.1.1 | Adicionar ao formulário de equipamento (`src/app/(app)/_resources/resource-form.tsx`, modo equipment) um campo de imagem opcional com `accept="image/jpeg,image/png,image/webp"` e validação client-side de tipo e tamanho ≤ 2 MB (CA01, CA02, CA03). | ⏳ |
-| T48.1.2 | Renderizar pré-visualização do arquivo escolhido via `URL.createObjectURL` antes do envio, com botão de remover (CA05, CA07). | ⏳ |
-| T48.1.3 | Estender `equipmentSchema` (`src/schemas/resource.ts`) e `validateEquipmentInput` (`src/lib/resources.ts`) com `imagePath` nullable e os limites de tipo/tamanho (CA01–CA04) — alinhado a [RNF-imagem-de-recurso](../../requirements/RNF/RNF-imagem-de-recurso.md). | ⏳ |
-| T48.1.4 | Em `resource-actions.ts`, no create/update do equipamento: upload server-side ao bucket `resource-images` via service-role e gravar `equipment.image_path`; em substituição/remoção, apagar o objeto anterior (CA06, CA07) — ver [ADR-008](../../planning/adrs/ADR-008-armazenamento-de-imagens-de-recursos.md). | ⏳ |
-| T48.1.5 | Exibir a imagem no card e no detalhe do equipamento, com fallback para o ícone padrão quando `image_path` é nulo (CA08, CA09). | ⏳ |
+| ID      | Task                                                                                                                                                                                                                                                                                                             | Status |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T48.1.1 | Adicionar ao formulário de equipamento (`src/app/(app)/_resources/resource-form.tsx`, modo equipment) um campo de imagem opcional com `accept="image/jpeg,image/png,image/webp"` e validação client-side de tipo e tamanho ≤ 2 MB (CA01, CA02, CA03).                                                            | ⏳     |
+| T48.1.2 | Renderizar pré-visualização do arquivo escolhido via `URL.createObjectURL` antes do envio, com botão de remover (CA05, CA07).                                                                                                                                                                                    | ⏳     |
+| T48.1.3 | Estender `equipmentSchema` (`src/schemas/resource.ts`) e `validateEquipmentInput` (`src/lib/resources.ts`) com `imagePath` nullable e os limites de tipo/tamanho (CA01–CA04) — alinhado a [RNF-imagem-de-recurso](../../requirements/RNF/RNF-imagem-de-recurso.md).                                              | ⏳     |
+| T48.1.4 | Em `resource-actions.ts`, no create/update do equipamento: upload server-side ao bucket `resource-images` via service-role e gravar `equipment.image_path`; em substituição/remoção, apagar o objeto anterior (CA06, CA07) — ver [ADR-008](../../planning/adrs/ADR-008-armazenamento-de-imagens-de-recursos.md). | ⏳     |
+| T48.1.5 | Exibir a imagem no card e no detalhe do equipamento, com fallback para o ícone padrão quando `image_path` é nulo (CA08, CA09).                                                                                                                                                                                   | ⏳     |
 
 ## Dependências técnicas (Tasks transversais)
 

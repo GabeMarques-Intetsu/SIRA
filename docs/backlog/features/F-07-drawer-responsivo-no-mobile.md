@@ -15,20 +15,20 @@ Em telas pequenas, o menu lateral recolhe e passa a abrir e fechar por um botão
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                                         | Requisito                                                  | Relação |
+| ------------------------------------------------------------------------------------------ | ---------------------------------------------------------- | ------- |
 | [RF-002](../../requirements/RF/RF-002-navegacao-contextual-por-perfil-e-adaptacao-ao-d.md) | Navegação contextual por perfil e adaptação ao dispositivo | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Menu em tela pequena`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | Em telas pequenas, o menu lateral recolhe e dá lugar ao conteúdo. | — | 📝 |
-| **CA02** | Um botão de menu abre e fecha o menu lateral em tela pequena. | — | 📝 |
-| **CA03** | Com o menu aberto em tela pequena, tocar fora dele o fecha. | — | 📝 |
-| **CA04** | Em telas grandes, o menu volta a ficar fixo e visível. | — | 📝 |
+| ID       | Critério                                                          | Como verificar | Status |
+| -------- | ----------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | Em telas pequenas, o menu lateral recolhe e dá lugar ao conteúdo. | —              | 📝     |
+| **CA02** | Um botão de menu abre e fecha o menu lateral em tela pequena.     | —              | 📝     |
+| **CA03** | Com o menu aberto em tela pequena, tocar fora dele o fecha.       | —              | 📝     |
+| **CA04** | Em telas grandes, o menu volta a ficar fixo e visível.            | —              | 📝     |
 
 ## User Stories
 
@@ -88,9 +88,8 @@ Funcionalidade: Menu em tela pequena
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T07.1.1 | Adicionar em src/style.css media queries para recolher .sidebar em telas pequenas (toggle via classe .open) e mantê-la fixa em telas grandes (CA01/CA04). | ⏳ |
-| T07.1.2 | Validar o botão hambúrguer injetado pelo MutationObserver em bootstrap() (src/main.js) que adiciona .open à .sidebar e ao .sidebar-overlay ao ser clicado (CA02). | ⏳ |
-| T07.1.3 | Confirmar o listener de click no .sidebar-overlay em bootstrap() que remove .open da sidebar e do overlay para fechar o drawer ao tocar fora (CA03). | ⏳ |
-
+| ID      | Task                                                                                                                                                              | Status |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T07.1.1 | Adicionar em src/style.css media queries para recolher .sidebar em telas pequenas (toggle via classe .open) e mantê-la fixa em telas grandes (CA01/CA04).         | ⏳     |
+| T07.1.2 | Validar o botão hambúrguer injetado pelo MutationObserver em bootstrap() (src/main.js) que adiciona .open à .sidebar e ao .sidebar-overlay ao ser clicado (CA02). | ⏳     |
+| T07.1.3 | Confirmar o listener de click no .sidebar-overlay em bootstrap() que remove .open da sidebar e do overlay para fechar o drawer ao tocar fora (CA03).              | ⏳     |

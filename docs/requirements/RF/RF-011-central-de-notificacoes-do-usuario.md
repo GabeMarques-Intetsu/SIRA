@@ -16,11 +16,11 @@ Caixa de notificações do usuário com listagem cronológica reversa, marcaçã
 
 ## Realizado por (rastreabilidade ↓)
 
-| Epic | Feature(s) | Status |
-| --- | --- | --- |
-| [EP-11](../../backlog/epics/EP-11-notificacoes.md) | [F-34 Listagem de notificações](../../backlog/features/F-34-listagem-de-notificacoes.md) | 📝 |
-| [EP-11](../../backlog/epics/EP-11-notificacoes.md) | [F-35 Marcar notificação individual como lida](../../backlog/features/F-35-marcar-notificacao-individual-como-lida.md) | 📝 |
-| [EP-11](../../backlog/epics/EP-11-notificacoes.md) | [F-36 Marcar todas as notificações como lidas](../../backlog/features/F-36-marcar-todas-as-notificacoes-como-lidas.md) | 📝 |
+| Epic                                               | Feature(s)                                                                                                             | Status |
+| -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------ |
+| [EP-11](../../backlog/epics/EP-11-notificacoes.md) | [F-34 Listagem de notificações](../../backlog/features/F-34-listagem-de-notificacoes.md)                               | 📝     |
+| [EP-11](../../backlog/epics/EP-11-notificacoes.md) | [F-35 Marcar notificação individual como lida](../../backlog/features/F-35-marcar-notificacao-individual-como-lida.md) | 📝     |
+| [EP-11](../../backlog/epics/EP-11-notificacoes.md) | [F-36 Marcar todas as notificações como lidas](../../backlog/features/F-36-marcar-todas-as-notificacoes-como-lidas.md) | 📝     |
 
 ## Restrições e fora-de-escopo
 

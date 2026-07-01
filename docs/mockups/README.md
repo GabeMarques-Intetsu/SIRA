@@ -8,28 +8,28 @@
 
 ## 📋 Lista de telas (12 mockups + 3 arquivos compartilhados)
 
-| # | Arquivo | Página | Status | Sidebar |
-|---|---|---|---|---|
-| 01 | [01-login.html](./01-login.html) | Login | ✏️ Refatorada v4 | ❌ N/A |
-| 02 | [02-dashboard.html](./02-dashboard.html) | Dashboard (admin) | ✏️ Refatorada v4 | ✅ |
-| 03 | [03-calendario.html](./03-calendario.html) | Calendário semanal | ✏️ Refatorada v4 | ✅ |
-| 04 | [04-nova-reserva.html](./04-nova-reserva.html) | Nova Reserva (wizard 4 etapas) | ✏️ Refatorada v4 — agora mostra todas as 4 etapas | ✅ |
-| 05 | [05-gestao-recursos.html](./05-gestao-recursos.html) | Recursos (Salas / **Equipamentos** com tipo/estado/vínculo) | ✏️ Atualizada P2 — aba Equipamentos real (RF-013 / F-43..46) | ✅ |
-| 06 | [06-minhas-reservas.html](./06-minhas-reservas.html) | Minhas Reservas (tabs + filtros + grupos) | ✏️ Refatorada v4 | ✅ |
-| **07** | [07-cadastro.html](./07-cadastro.html) | **Solicitar cadastro** (pré-login, US-04) | 🆕 Novo | ❌ N/A |
-| **08** | [08-aprovacoes.html](./08-aprovacoes.html) | **Aprovações admin** (US-19/20) | 🆕 Novo | ✅ |
-| **09** | [09-usuarios.html](./09-usuarios.html) | **Gestão de usuários** (US-22/23) | 🆕 Novo | ✅ |
-| **10** | [10-notificacoes.html](./10-notificacoes.html) | **Notificações** (US-12) | 🆕 Novo | ✅ |
-| 11 | [11-configuracoes.html](./11-configuracoes.html) | Configurações + Perfil (+ aba **Integrações** preenchida) | ✏️ Atualizada P2 — Integrações (SSO/LDAP, Google Calendar, Webhooks) | ✅ |
-| **12** | [12-detalhe-reserva.html](./12-detalhe-reserva.html) | **Detalhe da reserva** (recurso, horário, status, finalidade, recursos, histórico de aprovação) — F-17 | 🆕 Novo P2 | ✅ |
+| #      | Arquivo                                              | Página                                                                                                 | Status                                                               | Sidebar |
+| ------ | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------- | ------- |
+| 01     | [01-login.html](./01-login.html)                     | Login                                                                                                  | ✏️ Refatorada v4                                                     | ❌ N/A  |
+| 02     | [02-dashboard.html](./02-dashboard.html)             | Dashboard (admin)                                                                                      | ✏️ Refatorada v4                                                     | ✅      |
+| 03     | [03-calendario.html](./03-calendario.html)           | Calendário semanal                                                                                     | ✏️ Refatorada v4                                                     | ✅      |
+| 04     | [04-nova-reserva.html](./04-nova-reserva.html)       | Nova Reserva (wizard 4 etapas)                                                                         | ✏️ Refatorada v4 — agora mostra todas as 4 etapas                    | ✅      |
+| 05     | [05-gestao-recursos.html](./05-gestao-recursos.html) | Recursos (Salas / **Equipamentos** com tipo/estado/vínculo)                                            | ✏️ Atualizada P2 — aba Equipamentos real (RF-013 / F-43..46)         | ✅      |
+| 06     | [06-minhas-reservas.html](./06-minhas-reservas.html) | Minhas Reservas (tabs + filtros + grupos)                                                              | ✏️ Refatorada v4                                                     | ✅      |
+| **07** | [07-cadastro.html](./07-cadastro.html)               | **Solicitar cadastro** (pré-login, US-04)                                                              | 🆕 Novo                                                              | ❌ N/A  |
+| **08** | [08-aprovacoes.html](./08-aprovacoes.html)           | **Aprovações admin** (US-19/20)                                                                        | 🆕 Novo                                                              | ✅      |
+| **09** | [09-usuarios.html](./09-usuarios.html)               | **Gestão de usuários** (US-22/23)                                                                      | 🆕 Novo                                                              | ✅      |
+| **10** | [10-notificacoes.html](./10-notificacoes.html)       | **Notificações** (US-12)                                                                               | 🆕 Novo                                                              | ✅      |
+| 11     | [11-configuracoes.html](./11-configuracoes.html)     | Configurações + Perfil (+ aba **Integrações** preenchida)                                              | ✏️ Atualizada P2 — Integrações (SSO/LDAP, Google Calendar, Webhooks) | ✅      |
+| **12** | [12-detalhe-reserva.html](./12-detalhe-reserva.html) | **Detalhe da reserva** (recurso, horário, status, finalidade, recursos, histórico de aprovação) — F-17 | 🆕 Novo P2                                                           | ✅      |
 
 ### Arquivos compartilhados (`_shared/`)
 
-| Arquivo | Função |
-|---|---|
-| [_shared/tokens.css](./_shared/tokens.css) | Tokens semânticos M3 (light + dark) + Material Symbols + touch-target + focus-visible + skip-link + scrollbar |
-| [_shared/tailwind-config.js](./_shared/tailwind-config.js) | Config Tailwind compartilhada (sem duplicação inline) |
-| [_shared/theme-toggle.js](./_shared/theme-toggle.js) | Toggle dark/light com persistência localStorage + sync entre abas |
+| Arquivo                                                     | Função                                                                                                        |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| [\_shared/tokens.css](./_shared/tokens.css)                 | Tokens semânticos M3 (light + dark) + Material Symbols + touch-target + focus-visible + skip-link + scrollbar |
+| [\_shared/tailwind-config.js](./_shared/tailwind-config.js) | Config Tailwind compartilhada (sem duplicação inline)                                                         |
+| [\_shared/theme-toggle.js](./_shared/theme-toggle.js)       | Toggle dark/light com persistência localStorage + sync entre abas                                             |
 
 ---
 
@@ -121,6 +121,7 @@ Idêntica em **todos os mockups com sidebar** (02-06, 08-11). Itens com `aria-cu
 ### Dashboard (`02-dashboard.html`) — classificado como **Klipfolio (negócio)**
 
 Conforme [`referencias-dashboards`](~/.claude/skills/referencias-dashboards/SKILL.md):
+
 - ✅ Paleta ≤ 3 cores principais (primary azul + secondary verde + tertiary marrom; error como status)
 - ✅ Cartões com `rounded-xl` (suave, não pill, não sharp)
 - ✅ Filtros sempre visíveis no topo (não em modal)
@@ -130,6 +131,7 @@ Conforme [`referencias-dashboards`](~/.claude/skills/referencias-dashboards/SKIL
 ### Demais telas
 
 Conforme [`ecossistemas-ui-ux`](~/.claude/skills/ecossistemas-ui-ux/SKILL.md):
+
 - ✅ Material Design 3 como design system base
 - ✅ Inspirações: Notion/Linear (sidebar + topbar), Google Calendar (grade semanal), Mobbin (padrões reais)
 - ✅ Validação cruzada: WCAG 2.2 AA + Apple HIG (touch targets 44px) + tokens M3
@@ -194,23 +196,23 @@ open http://localhost:8080/02-dashboard.html
 
 ## 🔗 Cobertura das User Stories implementadas
 
-| US implementada (sprint 1) | Mockup correspondente |
-|---|---|
-| US-03 Login | `01-login.html` |
-| US-04 Cadastro auto-serviço | `07-cadastro.html` 🆕 |
-| US-05 Roles diferentes | sidebar com badge condicional |
-| US-08 Drawer mobile | `<button class="md:hidden">` em todos |
-| US-09 Tema escuro persistente | `_shared/theme-toggle.js` 🆕 |
-| US-12 Notificações | `10-notificacoes.html` 🆕 + badge no topbar |
-| US-13 Calendário semanal | `03-calendario.html` |
-| US-14 / US-15 Nova reserva c/ recorrência | `04-nova-reserva.html` (wizard) |
-| US-16 / US-17 / US-18 Minhas reservas | `06-minhas-reservas.html` |
-| F-17 Detalhe de uma reserva (RF-007) | `12-detalhe-reserva.html` 🆕 |
+| US implementada (sprint 1)                 | Mockup correspondente                        |
+| ------------------------------------------ | -------------------------------------------- |
+| US-03 Login                                | `01-login.html`                              |
+| US-04 Cadastro auto-serviço                | `07-cadastro.html` 🆕                        |
+| US-05 Roles diferentes                     | sidebar com badge condicional                |
+| US-08 Drawer mobile                        | `<button class="md:hidden">` em todos        |
+| US-09 Tema escuro persistente              | `_shared/theme-toggle.js` 🆕                 |
+| US-12 Notificações                         | `10-notificacoes.html` 🆕 + badge no topbar  |
+| US-13 Calendário semanal                   | `03-calendario.html`                         |
+| US-14 / US-15 Nova reserva c/ recorrência  | `04-nova-reserva.html` (wizard)              |
+| US-16 / US-17 / US-18 Minhas reservas      | `06-minhas-reservas.html`                    |
+| F-17 Detalhe de uma reserva (RF-007)       | `12-detalhe-reserva.html` 🆕                 |
 | RF-013 Catálogo de equipamentos (F-43..46) | `05-gestao-recursos.html` (aba Equipamentos) |
-| US-19 / US-20 Aprovações | `08-aprovacoes.html` 🆕 |
-| US-21 Salas e Espaços | `05-gestao-recursos.html` (tab Salas) |
-| US-22 / US-23 Usuários + Solicitações | `09-usuarios.html` 🆕 |
-| US-24 KPIs Dashboard | `02-dashboard.html` (4 KPIs no topo) |
+| US-19 / US-20 Aprovações                   | `08-aprovacoes.html` 🆕                      |
+| US-21 Salas e Espaços                      | `05-gestao-recursos.html` (tab Salas)        |
+| US-22 / US-23 Usuários + Solicitações      | `09-usuarios.html` 🆕                        |
+| US-24 KPIs Dashboard                       | `02-dashboard.html` (4 KPIs no topo)         |
 
 **Cobertura: 100% das US visíveis em mockup de referência.**
 

@@ -16,10 +16,10 @@ Camada de armazenamento local responsável por (a) isolar dados de cada usuário
 
 ## Realizado por (rastreabilidade ↓)
 
-| Epic | Feature(s) | Status |
-| --- | --- | --- |
-| [EP-03](../../backlog/epics/EP-03-camada-de-persistencia.md) | [F-10 Isolamento de Segurança e Privacidade de Dados por Usuário](../../backlog/features/F-10-isolamento-de-seguranca-e-privacidade-de-dados-p.md) | 📝 |
-| [EP-03](../../backlog/epics/EP-03-camada-de-persistencia.md) | [F-11 Sincronização aprovação -> reserva -> notificacão](../../backlog/features/F-11-sincronizacao-aprovacao-reserva-notificacao.md) | 📝 |
+| Epic                                                         | Feature(s)                                                                                                                                         | Status |
+| ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| [EP-03](../../backlog/epics/EP-03-camada-de-persistencia.md) | [F-10 Isolamento de Segurança e Privacidade de Dados por Usuário](../../backlog/features/F-10-isolamento-de-seguranca-e-privacidade-de-dados-p.md) | 📝     |
+| [EP-03](../../backlog/epics/EP-03-camada-de-persistencia.md) | [F-11 Sincronização aprovação -> reserva -> notificacão](../../backlog/features/F-11-sincronizacao-aprovacao-reserva-notificacao.md)               | 📝     |
 
 ## Restrições e fora-de-escopo
 

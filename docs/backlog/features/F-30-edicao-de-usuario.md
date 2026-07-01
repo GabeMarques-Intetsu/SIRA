@@ -15,20 +15,20 @@ Permite ao administrador atualizar nome e perfil de um usuário, promover ou reb
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                                      | Requisito                                     | Relação |
+| --------------------------------------------------------------------------------------- | --------------------------------------------- | ------- |
 | [RF-010](../../requirements/RF/RF-010-gestao-de-usuarios-e-solicitacoes-de-cadastro.md) | Gestão de usuários e solicitações de cadastro | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Edição de usuário`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | A edição permite alterar nome e perfil do usuário. | — | 📝 |
-| **CA02** | É possível promover um professor a administrador e vice-versa. | — | 📝 |
-| **CA03** | É possível redefinir a senha do usuário. | — | 📝 |
-| **CA04** | O e-mail não pode ser alterado após a criação. | — | 📝 |
+| ID       | Critério                                                       | Como verificar | Status |
+| -------- | -------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | A edição permite alterar nome e perfil do usuário.             | —              | 📝     |
+| **CA02** | É possível promover um professor a administrador e vice-versa. | —              | 📝     |
+| **CA03** | É possível redefinir a senha do usuário.                       | —              | 📝     |
+| **CA04** | O e-mail não pode ser alterado após a criação.                 | —              | 📝     |
 
 ## User Stories
 
@@ -90,10 +90,9 @@ Funcionalidade: Edição de usuário
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T30.1.1 | Em openUserModal (src/modules/users.js) no modo isEdit pre-popular nameInput, emailInput e roleSelect com os dados do user e marcar emailInput como readOnly/disabled. | ⏳ |
-| T30.1.2 | Permitir alterar role no roleSelect entre 'professor' e 'admin' e persistir a promocao/rebaixamento no saveUsers via all.map preservando id e email. | ⏳ |
-| T30.1.3 | Adicionar campo opcional de redefinicao de senha no modal de edicao; quando preenchido, mesclar { ...u, password } no objeto salvo por saveUsers. | ⏳ |
-| T30.1.4 | No onClick de salvar, montar o patch { ...u, name, email: u.email, role } ignorando qualquer mudanca de email e exibir toast('Usuario atualizado.', 'success') seguido de refreshTable(tbody). | ⏳ |
-
+| ID      | Task                                                                                                                                                                                           | Status |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T30.1.1 | Em openUserModal (src/modules/users.js) no modo isEdit pre-popular nameInput, emailInput e roleSelect com os dados do user e marcar emailInput como readOnly/disabled.                         | ⏳     |
+| T30.1.2 | Permitir alterar role no roleSelect entre 'professor' e 'admin' e persistir a promocao/rebaixamento no saveUsers via all.map preservando id e email.                                           | ⏳     |
+| T30.1.3 | Adicionar campo opcional de redefinicao de senha no modal de edicao; quando preenchido, mesclar { ...u, password } no objeto salvo por saveUsers.                                              | ⏳     |
+| T30.1.4 | No onClick de salvar, montar o patch { ...u, name, email: u.email, role } ignorando qualquer mudanca de email e exibir toast('Usuario atualizado.', 'success') seguido de refreshTable(tbody). | ⏳     |

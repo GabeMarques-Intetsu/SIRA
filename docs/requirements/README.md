@@ -1,4 +1,5 @@
 <!-- GENERIC TEMPLATE — adapt to your project. See references/10-estrutura-projeto.md §"Adaptation protocol". -->
+
 # Requisitos — <NOME DO PROJETO>
 
 > **Pasta-fonte do "o QUÊ".** Responde "que necessidade o sistema atende?", sem entrar no "como"
@@ -43,8 +44,8 @@ requirements/
 > Os requisitos individuais ficam como seções `### RF-NN` **dentro** do arquivo. Por isso, uma pasta que
 > mostra `RF-01, RF-05, RF-09…` **não** está sem o RF-02/03/04 — eles são seções do primeiro arquivo.
 > Os "saltos" nos **nomes dos arquivos** são fronteiras de módulo (faixas contíguas), nunca requisitos
-> faltando. *(Se preferir 1 arquivo por requisito, é uma variante válida — mas o padrão e o scaffolder
-> assumem 1-arquivo-por-módulo.)*
+> faltando. _(Se preferir 1 arquivo por requisito, é uma variante válida — mas o padrão e o scaffolder
+> assumem 1-arquivo-por-módulo.)_
 
 ## Convenções
 

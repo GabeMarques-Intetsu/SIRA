@@ -15,20 +15,20 @@ Em telas pequenas, as listagens (Minhas Reservas, Aprovações, Salas, Usuários
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                                         | Requisito                                                  | Relação |
+| ------------------------------------------------------------------------------------------ | ---------------------------------------------------------- | ------- |
 | [RF-002](../../requirements/RF/RF-002-navegacao-contextual-por-perfil-e-adaptacao-ao-d.md) | Navegação contextual por perfil e adaptação ao dispositivo | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Listas em tela pequena`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | Em telas pequenas, cada linha das listas é apresentada como um card empilhado. | — | 📝 |
-| **CA02** | Cada card mostra os mesmos campos da linha, com rótulo para cada valor. | — | 📝 |
-| **CA03** | Não há rolagem horizontal nas listas em telas pequenas. | — | 📝 |
-| **CA04** | Em telas grandes, as listas voltam ao formato de tabela. | — | 📝 |
+| ID       | Critério                                                                       | Como verificar | Status |
+| -------- | ------------------------------------------------------------------------------ | -------------- | ------ |
+| **CA01** | Em telas pequenas, cada linha das listas é apresentada como um card empilhado. | —              | 📝     |
+| **CA02** | Cada card mostra os mesmos campos da linha, com rótulo para cada valor.        | —              | 📝     |
+| **CA03** | Não há rolagem horizontal nas listas em telas pequenas.                        | —              | 📝     |
+| **CA04** | Em telas grandes, as listas voltam ao formato de tabela.                       | —              | 📝     |
 
 ## User Stories
 
@@ -88,9 +88,8 @@ Funcionalidade: Listas em tela pequena
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T08.1.1 | Garantir que addTableLabels(container) em src/main.js seja chamado após cada renderer em navigate() para preencher data-label em todos os <td> das listagens Minhas Reservas, Aprovações, Salas e Usuários (CA01/CA02). | ⏳ |
-| T08.1.2 | Adicionar em src/style.css media query mobile que converte table/thead/tbody/tr/td em cards empilhados usando o atributo data-label como rótulo via ::before e ocultando o thead (CA01/CA02). | ⏳ |
-| T08.1.3 | Garantir no CSS mobile que os cards eliminem rolagem horizontal (overflow-x evitado, largura 100%) e que em telas grandes as listas voltem ao display de tabela padrão (CA03/CA04). | ⏳ |
-
+| ID      | Task                                                                                                                                                                                                                    | Status |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T08.1.1 | Garantir que addTableLabels(container) em src/main.js seja chamado após cada renderer em navigate() para preencher data-label em todos os <td> das listagens Minhas Reservas, Aprovações, Salas e Usuários (CA01/CA02). | ⏳     |
+| T08.1.2 | Adicionar em src/style.css media query mobile que converte table/thead/tbody/tr/td em cards empilhados usando o atributo data-label como rótulo via ::before e ocultando o thead (CA01/CA02).                           | ⏳     |
+| T08.1.3 | Garantir no CSS mobile que os cards eliminem rolagem horizontal (overflow-x evitado, largura 100%) e que em telas grandes as listas voltem ao display de tabela padrão (CA03/CA04).                                     | ⏳     |

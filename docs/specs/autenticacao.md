@@ -1,6 +1,7 @@
 # Spec — Autenticação e sessão
 
 > **Rastreabilidade**
+>
 > - **RF**: [RF-001 — Acesso institucional e continuidade de sessão](../requirements/RF/RF-001-acesso-institucional-e-continuidade-de-sessao.md)
 > - **Features**: [F-01 Login](../backlog/features/F-01-login-institucional-por-e-mail.md) · [F-02 Sessão persistente](../backlog/features/F-02-persistencia-de-sessao-entre-recargas.md) · [F-03 Auto-cadastro de professor](../backlog/features/F-03-auto-servico-de-cadastro-de-professor.md) · [F-04 Logout](../backlog/features/F-04-encerramento-de-sessao-logout.md)
 > - **Código**: `src/app/(auth)/login/` · `src/app/(auth)/cadastro/` · `src/app/(auth)/redefinir-senha/` · `src/lib/auth.ts` · `src/lib/supabase/middleware.ts` · `src/proxy.ts` · `src/components/shell/logout-action.ts` · `src/schemas/auth.ts`
@@ -16,14 +17,14 @@
 
 ## Critérios de Aceitação (de F-01)
 
-| ID | Critério |
-| --- | --- |
-| CA01 | Acesso só com e-mail institucional (`@ifpb.edu.br`) e senha. |
-| CA02 | E-mail de outro domínio é rejeitado com aviso. |
-| CA03 | E-mail não cadastrado → mensagem de credenciais inválidas. |
-| CA04 | Senha incorreta → mensagem de credenciais inválidas. |
-| CA05 | Conta inativa não acessa, mesmo com senha correta (aviso de conta inativa). |
-| CA06 | E-mail e senha são obrigatórios; envio vazio é bloqueado. |
+| ID   | Critério                                                                                          |
+| ---- | ------------------------------------------------------------------------------------------------- |
+| CA01 | Acesso só com e-mail institucional (`@ifpb.edu.br`) e senha.                                      |
+| CA02 | E-mail de outro domínio é rejeitado com aviso.                                                    |
+| CA03 | E-mail não cadastrado → mensagem de credenciais inválidas.                                        |
+| CA04 | Senha incorreta → mensagem de credenciais inválidas.                                              |
+| CA05 | Conta inativa não acessa, mesmo com senha correta (aviso de conta inativa).                       |
+| CA06 | E-mail e senha são obrigatórios; envio vazio é bloqueado.                                         |
 | CA07 | Acesso bem-sucedido leva à tela inicial do perfil (admin → `/painel`, professor → `/calendario`). |
 
 > A regra de domínio institucional vive em `src/lib/validation.ts`

@@ -15,19 +15,19 @@ Ação do administrador que recusa uma solicitação de cadastro mediante justif
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                                      | Requisito                                     | Relação |
+| --------------------------------------------------------------------------------------- | --------------------------------------------- | ------- |
 | [RF-010](../../requirements/RF/RF-010-gestao-de-usuarios-e-solicitacoes-de-cadastro.md) | Gestão de usuários e solicitações de cadastro | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Recusa de cadastro`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | A recusa exige justificativa textual. | — | 📝 |
-| **CA02** | O solicitante é notificado do motivo da recusa. | — | 📝 |
-| **CA03** | A solicitação recusada sai da fila de pendentes e o usuário não é criado. | — | 📝 |
+| ID       | Critério                                                                  | Como verificar | Status |
+| -------- | ------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | A recusa exige justificativa textual.                                     | —              | 📝     |
+| **CA02** | O solicitante é notificado do motivo da recusa.                           | —              | 📝     |
+| **CA03** | A solicitação recusada sai da fila de pendentes e o usuário não é criado. | —              | 📝     |
 
 ## User Stories
 
@@ -91,10 +91,9 @@ Funcionalidade: Recusa de cadastro
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T33.1.1 | Adicionar no btn('Recusar') de renderSignupsModal (src/modules/users.js) um modal/prompt com textarea de justificativa, bloqueando a recusa com toast quando o motivo estiver vazio. | ⏳ |
-| T33.1.2 | Ao confirmar a recusa, remover o signup da fila com signups.filter((x) => x.id !== s.id) e persistir em localStorage 'sira:signups' sem chamar saveUsers (usuario nao e criado). | ⏳ |
-| T33.1.3 | Disparar saveNotification (src/data/store.js) para o solicitante contendo o motivo da recusa informado pelo admin. | ⏳ |
-| T33.1.4 | Atualizar a UI chamando refreshTable(tbody) e reabrindo renderSignupsModal(tbody) para refletir a fila sem o pedido recusado. | ⏳ |
-
+| ID      | Task                                                                                                                                                                                 | Status |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
+| T33.1.1 | Adicionar no btn('Recusar') de renderSignupsModal (src/modules/users.js) um modal/prompt com textarea de justificativa, bloqueando a recusa com toast quando o motivo estiver vazio. | ⏳     |
+| T33.1.2 | Ao confirmar a recusa, remover o signup da fila com signups.filter((x) => x.id !== s.id) e persistir em localStorage 'sira:signups' sem chamar saveUsers (usuario nao e criado).     | ⏳     |
+| T33.1.3 | Disparar saveNotification (src/data/store.js) para o solicitante contendo o motivo da recusa informado pelo admin.                                                                   | ⏳     |
+| T33.1.4 | Atualizar a UI chamando refreshTable(tbody) e reabrindo renderSignupsModal(tbody) para refletir a fila sem o pedido recusado.                                                        | ⏳     |

@@ -15,21 +15,21 @@ Painel acessível pelo ícone de notificações, com contador de não lidas, que
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                           | Requisito                          | Relação |
+| ---------------------------------------------------------------------------- | ---------------------------------- | ------- |
 | [RF-011](../../requirements/RF/RF-011-central-de-notificacoes-do-usuario.md) | Central de notificações do usuário | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Lista de notificações`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | O painel é acessível pelo ícone de notificações no topo, com contador de não lidas. | — | 📝 |
-| **CA02** | Lista as notificações do usuário da mais recente para a mais antiga. | — | 📝 |
-| **CA03** | Cada notificação mostra título, mensagem e data. | — | 📝 |
-| **CA04** | Notificações lidas e não lidas são visualmente diferenciadas. | — | 📝 |
-| **CA05** | Quando não há notificações, exibe aviso de caixa vazia. | — | 📝 |
+| ID       | Critério                                                                            | Como verificar | Status |
+| -------- | ----------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | O painel é acessível pelo ícone de notificações no topo, com contador de não lidas. | —              | 📝     |
+| **CA02** | Lista as notificações do usuário da mais recente para a mais antiga.                | —              | 📝     |
+| **CA03** | Cada notificação mostra título, mensagem e data.                                    | —              | 📝     |
+| **CA04** | Notificações lidas e não lidas são visualmente diferenciadas.                       | —              | 📝     |
+| **CA05** | Quando não há notificações, exibe aviso de caixa vazia.                             | —              | 📝     |
 
 ## User Stories
 
@@ -91,10 +91,9 @@ Funcionalidade: Lista de notificações
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T34.1.1 | Em renderNotifications (src/modules/notifications.js) carregar getNotifications() e ordenar por createdAt decrescente (new Date(b.createdAt) - new Date(a.createdAt)) antes de mapear os itens. | ⏳ |
-| T34.1.2 | Renderizar cada item via createNotificationItem mostrando titulo, message e formatDate(createdAt), com notif-dot diferenciando lidas (classe 'read') de nao lidas. | ⏳ |
-| T34.1.3 | Tratar caixa vazia em renderNotifications exibindo um aviso de caixa vazia quando getNotifications() retorna lista vazia (CA05). | ⏳ |
-| T34.1.4 | Em src/components/sidebar.js manter o badge do item de notificacoes via getNotifications().filter((n) => !n.read).length e garantir que window.updateSidebarBadges atualize o contador no topo. | ⏳ |
-
+| ID      | Task                                                                                                                                                                                            | Status |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T34.1.1 | Em renderNotifications (src/modules/notifications.js) carregar getNotifications() e ordenar por createdAt decrescente (new Date(b.createdAt) - new Date(a.createdAt)) antes de mapear os itens. | ⏳     |
+| T34.1.2 | Renderizar cada item via createNotificationItem mostrando titulo, message e formatDate(createdAt), com notif-dot diferenciando lidas (classe 'read') de nao lidas.                              | ⏳     |
+| T34.1.3 | Tratar caixa vazia em renderNotifications exibindo um aviso de caixa vazia quando getNotifications() retorna lista vazia (CA05).                                                                | ⏳     |
+| T34.1.4 | Em src/components/sidebar.js manter o badge do item de notificacoes via getNotifications().filter((n) => !n.read).length e garantir que window.updateSidebarBadges atualize o contador no topo. | ⏳     |

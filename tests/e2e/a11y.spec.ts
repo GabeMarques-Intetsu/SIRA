@@ -65,7 +65,9 @@ async function navigate(page: Page, route: string) {
   } else {
     await page.goto(route, { waitUntil: "domcontentloaded" });
   }
-  await page.locator("#main-content").waitFor({ state: "visible", timeout: 15_000 });
+  await page
+    .locator("#main-content")
+    .waitFor({ state: "visible", timeout: 15_000 });
   await page.waitForLoadState("networkidle").catch(() => {});
 }
 
@@ -138,7 +140,9 @@ test.describe("SIRA a11y audit (admin · WCAG 2.2 AA)", () => {
             await novo.click().catch(() => {});
             const dialog = page.getByRole("dialog").first();
             if (await dialog.count()) {
-              await dialog.waitFor({ state: "visible", timeout: 5_000 }).catch(() => {});
+              await dialog
+                .waitFor({ state: "visible", timeout: 5_000 })
+                .catch(() => {});
               await runAxe(page, screen, "modal:criar-recurso");
               await page.keyboard.press("Escape").catch(() => {});
             }
@@ -146,12 +150,16 @@ test.describe("SIRA a11y audit (admin · WCAG 2.2 AA)", () => {
         }
 
         if (route === "/aprovacoes") {
-          const recusar = page.getByRole("button", { name: /^Recusar$/i }).first();
+          const recusar = page
+            .getByRole("button", { name: /^Recusar$/i })
+            .first();
           if (await recusar.count()) {
             await recusar.click().catch(() => {});
             const dialog = page.getByRole("dialog").first();
             if (await dialog.count()) {
-              await dialog.waitFor({ state: "visible", timeout: 5_000 }).catch(() => {});
+              await dialog
+                .waitFor({ state: "visible", timeout: 5_000 })
+                .catch(() => {});
               await runAxe(page, screen, "modal:recusar");
               await page.keyboard.press("Escape").catch(() => {});
             }
@@ -168,7 +176,9 @@ test.describe("SIRA a11y audit (admin · WCAG 2.2 AA)", () => {
           }
         }
       } catch (e) {
-        console.log(`[AXE] ${route} estado-modal pulado: ${(e as Error).message.split("\n")[0]}`);
+        console.log(
+          `[AXE] ${route} estado-modal pulado: ${(e as Error).message.split("\n")[0]}`,
+        );
       }
     }
 
@@ -201,7 +211,8 @@ test.describe("SIRA a11y audit (admin · WCAG 2.2 AA)", () => {
       }
       a.totalNodes += v.nodes.length;
       a.screens[sKey] = (a.screens[sKey] ?? 0) + v.nodes.length;
-      if (!a.exampleSelector && v.nodes[0]) a.exampleSelector = v.nodes[0].target;
+      if (!a.exampleSelector && v.nodes[0])
+        a.exampleSelector = v.nodes[0].target;
     }
 
     const impactOrder = ["critical", "serious", "moderate", "minor", "unknown"];
@@ -213,7 +224,8 @@ test.describe("SIRA a11y audit (admin · WCAG 2.2 AA)", () => {
 
     const summaryByImpact: Record<string, number> = {};
     for (const v of allViolations)
-      summaryByImpact[v.impact] = (summaryByImpact[v.impact] ?? 0) + v.nodes.length;
+      summaryByImpact[v.impact] =
+        (summaryByImpact[v.impact] ?? 0) + v.nodes.length;
 
     const report = {
       generatedAt: new Date().toISOString(),
@@ -232,19 +244,27 @@ test.describe("SIRA a11y audit (admin · WCAG 2.2 AA)", () => {
     );
 
     // ───────── Resumo no stdout ─────────
-    console.log("\n================ A11Y REPORT (admin · WCAG 2.2 AA) ================");
+    console.log(
+      "\n================ A11Y REPORT (admin · WCAG 2.2 AA) ================",
+    );
     console.log(`Tags: ${AXE_TAGS.join(", ")}`);
     console.log(`Instâncias por impacto: ${JSON.stringify(summaryByImpact)}`);
-    console.log("---------------------------------------------------------------");
+    console.log(
+      "---------------------------------------------------------------",
+    );
     for (const a of agg) {
       console.log(
         `[${a.impact.toUpperCase()}] ${a.ruleId} — ${a.totalNodes} nós\n` +
           `   ${a.help}\n` +
-          `   telas: ${Object.entries(a.screens).map(([s, c]) => `${s}×${c}`).join(", ")}\n` +
+          `   telas: ${Object.entries(a.screens)
+            .map(([s, c]) => `${s}×${c}`)
+            .join(", ")}\n` +
           `   ex: ${a.exampleSelector}`,
       );
     }
-    console.log("================================================================\n");
+    console.log(
+      "================================================================\n",
+    );
 
     // Não falha o build por violações (é auditoria). Garante que rodou.
     expect(allViolations.length).toBeGreaterThanOrEqual(0);

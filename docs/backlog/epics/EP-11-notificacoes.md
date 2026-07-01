@@ -14,14 +14,14 @@ Caixa de notificações do usuário com listagem cronológica reversa, marcaçã
 
 ## Requisitos realizados (rastreabilidade ↑)
 
-| RF | Requisito | Tipo |
-| --- | --- | --- |
+| RF                                                                           | Requisito                          | Tipo      |
+| ---------------------------------------------------------------------------- | ---------------------------------- | --------- |
 | [RF-011](../../requirements/RF/RF-011-central-de-notificacoes-do-usuario.md) | Central de notificações do usuário | Funcional |
 
 ## Features sob este Epic (rastreabilidade ↓)
 
-| ID | Nome | Status | Arquivo |
-| --- | --- | --- | --- |
-| F-34 | Listagem de notificações | 📝 Proposto | [F-34](../features/F-34-listagem-de-notificacoes.md) |
+| ID   | Nome                                    | Status      | Arquivo                                                             |
+| ---- | --------------------------------------- | ----------- | ------------------------------------------------------------------- |
+| F-34 | Listagem de notificações                | 📝 Proposto | [F-34](../features/F-34-listagem-de-notificacoes.md)                |
 | F-35 | Marcar notificação individual como lida | 📝 Proposto | [F-35](../features/F-35-marcar-notificacao-individual-como-lida.md) |
 | F-36 | Marcar todas as notificações como lidas | 📝 Proposto | [F-36](../features/F-36-marcar-todas-as-notificacoes-como-lidas.md) |

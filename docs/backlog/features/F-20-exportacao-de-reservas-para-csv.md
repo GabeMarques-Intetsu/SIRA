@@ -15,20 +15,20 @@ Gera um arquivo de planilha com as reservas atualmente filtradas na listagem (da
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                     | Requisito                    | Relação |
+| ---------------------------------------------------------------------- | ---------------------------- | ------- |
 | [RF-007](../../requirements/RF/RF-007-gestao-das-proprias-reservas.md) | Gestão das próprias reservas | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Exportação das reservas`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | A exportação gera um arquivo com as reservas atualmente filtradas na lista. | — | 📝 |
-| **CA02** | O arquivo contém data, horário de início, horário de fim, sala, status e justificativa. | — | 📝 |
-| **CA03** | O arquivo abre corretamente em planilhas comuns, com acentuação preservada. | — | 📝 |
-| **CA04** | Se a lista filtrada estiver vazia, a exportação avisa que não há dados para exportar. | — | 📝 |
+| ID       | Critério                                                                                | Como verificar | Status |
+| -------- | --------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | A exportação gera um arquivo com as reservas atualmente filtradas na lista.             | —              | 📝     |
+| **CA02** | O arquivo contém data, horário de início, horário de fim, sala, status e justificativa. | —              | 📝     |
+| **CA03** | O arquivo abre corretamente em planilhas comuns, com acentuação preservada.             | —              | 📝     |
+| **CA04** | Se a lista filtrada estiver vazia, a exportação avisa que não há dados para exportar.   | —              | 📝     |
 
 ## User Stories
 
@@ -90,11 +90,10 @@ Funcionalidade: Exportação de reservas em planilha
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T20.1.1 | Em exportCSV() de reservations.js, montar o array de linhas a partir da lista atualmente filtrada (mesmo conjunto exibido em refreshTable), e não da coleção completa (CA01). | ⏳ |
-| T20.1.2 | Gerar o conteúdo CSV com colunas data, horário de início, horário de fim, sala, status e justificativa, escapando aspas/quebras de linha (CA02). | ⏳ |
-| T20.1.3 | Prefixar o conteúdo com BOM UTF-8 (\uFEFF) e criar o Blob com type 'text/csv;charset=utf-8' para preservar acentuação ao abrir em planilhas (CA03). | ⏳ |
-| T20.1.4 | Antes de gerar o arquivo, se a lista filtrada estiver vazia, exibir toast() avisando que não há dados e abortar sem criar o Blob (CA04). | ⏳ |
-| T20.1.5 | Disparar o download via URL.createObjectURL(blob) em link <a download>, e chamar URL.revokeObjectURL() após o clique para liberar memória (CA01). | ⏳ |
-
+| ID      | Task                                                                                                                                                                          | Status |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T20.1.1 | Em exportCSV() de reservations.js, montar o array de linhas a partir da lista atualmente filtrada (mesmo conjunto exibido em refreshTable), e não da coleção completa (CA01). | ⏳     |
+| T20.1.2 | Gerar o conteúdo CSV com colunas data, horário de início, horário de fim, sala, status e justificativa, escapando aspas/quebras de linha (CA02).                              | ⏳     |
+| T20.1.3 | Prefixar o conteúdo com BOM UTF-8 (\uFEFF) e criar o Blob com type 'text/csv;charset=utf-8' para preservar acentuação ao abrir em planilhas (CA03).                           | ⏳     |
+| T20.1.4 | Antes de gerar o arquivo, se a lista filtrada estiver vazia, exibir toast() avisando que não há dados e abortar sem criar o Blob (CA04).                                      | ⏳     |
+| T20.1.5 | Disparar o download via URL.createObjectURL(blob) em link <a download>, e chamar URL.revokeObjectURL() após o clique para liberar memória (CA01).                             | ⏳     |

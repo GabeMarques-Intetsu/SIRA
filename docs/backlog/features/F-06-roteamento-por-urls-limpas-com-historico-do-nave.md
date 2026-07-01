@@ -15,21 +15,21 @@ Cada tela do sistema passa a ter um endereço próprio e legível, com suporte a
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                                         | Requisito                                                  | Relação |
+| ------------------------------------------------------------------------------------------ | ---------------------------------------------------------- | ------- |
 | [RF-002](../../requirements/RF/RF-002-navegacao-contextual-por-perfil-e-adaptacao-ao-d.md) | Navegação contextual por perfil e adaptação ao dispositivo | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Navegação e endereços`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | Cada tela principal tem um endereço próprio e legível. | — | 📝 |
-| **CA02** | Os comandos de voltar e avançar do navegador funcionam entre as telas já visitadas. | — | 📝 |
-| **CA03** | Acessar diretamente o endereço de uma tela abre aquela tela. | — | 📝 |
-| **CA04** | Acessar um endereço inexistente leva a uma tela de página não encontrada. | — | 📝 |
-| **CA05** | Recarregar a página em qualquer endereço mantém o usuário na mesma tela. | — | 📝 |
+| ID       | Critério                                                                            | Como verificar | Status |
+| -------- | ----------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | Cada tela principal tem um endereço próprio e legível.                              | —              | 📝     |
+| **CA02** | Os comandos de voltar e avançar do navegador funcionam entre as telas já visitadas. | —              | 📝     |
+| **CA03** | Acessar diretamente o endereço de uma tela abre aquela tela.                        | —              | 📝     |
+| **CA04** | Acessar um endereço inexistente leva a uma tela de página não encontrada.           | —              | 📝     |
+| **CA05** | Recarregar a página em qualquer endereço mantém o usuário na mesma tela.            | —              | 📝     |
 
 ## User Stories
 
@@ -89,10 +89,9 @@ Funcionalidade: Endereços das telas
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T06.1.1 | Garantir em navigate() (src/main.js) que cada página do PAGE_RENDERERS atualize a URL via history.pushState com path legível (BASE+pageName), cobrindo todas as telas principais (CA01). | ⏳ |
-| T06.1.2 | Confirmar o handler de 'popstate' em bootstrap() que lê pathToPage(location.pathname) e re-renderiza a tela correspondente para suportar voltar/avançar do navegador (CA02). | ⏳ |
-| T06.1.3 | Resolver a página inicial em bootstrap() a partir de pathToPage(location.pathname) para que acesso direto por link e recarregamento mantenham a mesma tela (CA03/CA05). | ⏳ |
-| T06.1.4 | Implementar uma tela de 'página não encontrada' (renderNotFound) e fazer navigate()/popstate roteá-la quando pathToPage não casar com PAGE_RENDERERS, em vez do fallback silencioso para 'calendario' (CA04). | ⏳ |
-
+| ID      | Task                                                                                                                                                                                                          | Status |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T06.1.1 | Garantir em navigate() (src/main.js) que cada página do PAGE_RENDERERS atualize a URL via history.pushState com path legível (BASE+pageName), cobrindo todas as telas principais (CA01).                      | ⏳     |
+| T06.1.2 | Confirmar o handler de 'popstate' em bootstrap() que lê pathToPage(location.pathname) e re-renderiza a tela correspondente para suportar voltar/avançar do navegador (CA02).                                  | ⏳     |
+| T06.1.3 | Resolver a página inicial em bootstrap() a partir de pathToPage(location.pathname) para que acesso direto por link e recarregamento mantenham a mesma tela (CA03/CA05).                                       | ⏳     |
+| T06.1.4 | Implementar uma tela de 'página não encontrada' (renderNotFound) e fazer navigate()/popstate roteá-la quando pathToPage não casar com PAGE_RENDERERS, em vez do fallback silencioso para 'calendario' (CA04). | ⏳     |

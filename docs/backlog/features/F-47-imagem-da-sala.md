@@ -14,36 +14,36 @@ Permite ao administrador anexar uma imagem opcional à sala, tanto no cadastro q
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF / RNF | Requisito | Relação |
-| --- | --- | --- |
-| [RF-009](../../requirements/RF/RF-009-gestao-do-catalogo-de-salas.md) | Gestão do catálogo de salas | Realiza |
+| RF / RNF                                                                 | Requisito                   | Relação   |
+| ------------------------------------------------------------------------ | --------------------------- | --------- |
+| [RF-009](../../requirements/RF/RF-009-gestao-do-catalogo-de-salas.md)    | Gestão do catálogo de salas | Realiza   |
 | [RNF-imagem-de-recurso](../../requirements/RNF/RNF-imagem-de-recurso.md) | Formato e tamanho da imagem | Restringe |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Anexo da imagem`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | A imagem da sala é opcional, tanto no cadastro quanto na edição. | — | 📝 |
-| **CA02** | São aceitos apenas os formatos JPG, PNG ou WebP. | — | 📝 |
-| **CA03** | A imagem deve ter no máximo 2 MB; arquivos maiores são recusados com aviso. | — | 📝 |
-| **CA04** | Cada sala tem no máximo uma imagem. | — | 📝 |
-| **CA05** | Antes de salvar, o administrador vê uma pré-visualização da imagem escolhida. | — | 📝 |
+| ID       | Critério                                                                      | Como verificar | Status |
+| -------- | ----------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | A imagem da sala é opcional, tanto no cadastro quanto na edição.              | —              | 📝     |
+| **CA02** | São aceitos apenas os formatos JPG, PNG ou WebP.                              | —              | 📝     |
+| **CA03** | A imagem deve ter no máximo 2 MB; arquivos maiores são recusados com aviso.   | —              | 📝     |
+| **CA04** | Cada sala tem no máximo uma imagem.                                           | —              | 📝     |
+| **CA05** | Antes de salvar, o administrador vê uma pré-visualização da imagem escolhida. | —              | 📝     |
 
 **Grupo:** `CA - Substituir e remover`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA06** | Na edição, é possível substituir a imagem existente por outra. | — | 📝 |
-| **CA07** | Na edição, é possível remover a imagem, voltando a sala ao ícone padrão. | — | 📝 |
+| ID       | Critério                                                                 | Como verificar | Status |
+| -------- | ------------------------------------------------------------------------ | -------------- | ------ |
+| **CA06** | Na edição, é possível substituir a imagem existente por outra.           | —              | 📝     |
+| **CA07** | Na edição, é possível remover a imagem, voltando a sala ao ícone padrão. | —              | 📝     |
 
 **Grupo:** `CA - Exibição`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA08** | A imagem da sala aparece no card da sala (catálogo e busca) e no detalhe da sala. | — | 📝 |
-| **CA09** | Quando a sala não tem imagem, o card e o detalhe mostram o ícone padrão atual. | — | 📝 |
+| ID       | Critério                                                                          | Como verificar | Status |
+| -------- | --------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA08** | A imagem da sala aparece no card da sala (catálogo e busca) e no detalhe da sala. | —              | 📝     |
+| **CA09** | Quando a sala não tem imagem, o card e o detalhe mostram o ícone padrão atual.    | —              | 📝     |
 
 ## User Stories
 
@@ -95,13 +95,13 @@ Funcionalidade: Imagem da sala
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T47.1.1 | Adicionar ao formulário de sala (`src/app/(app)/_resources/resource-form.tsx`) um campo de imagem opcional com `accept="image/jpeg,image/png,image/webp"` e validação client-side de tipo e tamanho ≤ 2 MB (CA01, CA02, CA03). | ⏳ |
-| T47.1.2 | Renderizar pré-visualização do arquivo escolhido via `URL.createObjectURL` antes do envio, com botão de remover (CA05, CA07). | ⏳ |
-| T47.1.3 | Estender `roomSchema` (`src/schemas/resource.ts`) e a validação canônica (`validateRoomInput` em `src/lib/resources.ts`) com `imagePath` nullable e os limites de tipo/tamanho (CA01–CA04) — alinhado a [RNF-imagem-de-recurso](../../requirements/RNF/RNF-imagem-de-recurso.md). | ⏳ |
-| T47.1.4 | Em `resource-actions.ts`, no create/update da sala: upload server-side ao bucket `resource-images` via service-role e gravar `rooms.image_path`; em substituição/remoção, apagar o objeto anterior (CA06, CA07) — ver [ADR-008](../../planning/adrs/ADR-008-armazenamento-de-imagens-de-recursos.md). | ⏳ |
-| T47.1.5 | Exibir a imagem no card (`resource-page.tsx`/card) e no detalhe da sala, com fallback para o ícone padrão quando `image_path` é nulo (CA08, CA09). | ⏳ |
+| ID      | Task                                                                                                                                                                                                                                                                                                  | Status |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T47.1.1 | Adicionar ao formulário de sala (`src/app/(app)/_resources/resource-form.tsx`) um campo de imagem opcional com `accept="image/jpeg,image/png,image/webp"` e validação client-side de tipo e tamanho ≤ 2 MB (CA01, CA02, CA03).                                                                        | ⏳     |
+| T47.1.2 | Renderizar pré-visualização do arquivo escolhido via `URL.createObjectURL` antes do envio, com botão de remover (CA05, CA07).                                                                                                                                                                         | ⏳     |
+| T47.1.3 | Estender `roomSchema` (`src/schemas/resource.ts`) e a validação canônica (`validateRoomInput` em `src/lib/resources.ts`) com `imagePath` nullable e os limites de tipo/tamanho (CA01–CA04) — alinhado a [RNF-imagem-de-recurso](../../requirements/RNF/RNF-imagem-de-recurso.md).                     | ⏳     |
+| T47.1.4 | Em `resource-actions.ts`, no create/update da sala: upload server-side ao bucket `resource-images` via service-role e gravar `rooms.image_path`; em substituição/remoção, apagar o objeto anterior (CA06, CA07) — ver [ADR-008](../../planning/adrs/ADR-008-armazenamento-de-imagens-de-recursos.md). | ⏳     |
+| T47.1.5 | Exibir a imagem no card (`resource-page.tsx`/card) e no detalhe da sala, com fallback para o ícone padrão quando `image_path` é nulo (CA08, CA09).                                                                                                                                                    | ⏳     |
 
 ## Dependências técnicas (Tasks transversais)
 

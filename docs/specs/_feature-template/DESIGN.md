@@ -1,4 +1,5 @@
 <!-- GENERIC TEMPLATE — copy the _feature-template/ folder to <feature-slug>/ and fill. -->
+
 # DESIGN — <Feature>
 
 > **Spec de**: [F-NN](../../backlog/features/F-NN-....md) · **Requisito**: [RF-NNN](../../requirements/RF/RF-NNN-....md)
@@ -18,9 +19,9 @@
 
 ## Decisões (viram ADRs)
 
-| # | Decisão | ADR |
-| --- | --- | --- |
-| 1 | <decisão> | [ADR-NNN](./adrs/ADR-NNN-....md) |
+| #   | Decisão   | ADR                              |
+| --- | --------- | -------------------------------- |
+| 1   | <decisão> | [ADR-NNN](./adrs/ADR-NNN-....md) |
 
 ## Fora de escopo
 

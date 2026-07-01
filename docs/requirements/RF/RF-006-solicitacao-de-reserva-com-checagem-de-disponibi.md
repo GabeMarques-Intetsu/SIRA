@@ -20,17 +20,17 @@ A **reserva temporária** evita que dois professores garantam o mesmo recurso/ho
 
 ## Revisão (registro de mudança — o documento é a fonte da verdade)
 
-| Data | Mudança | Origem |
-| --- | --- | --- |
+| Data       | Mudança                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Origem                 |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
 | 2026-06-26 | Adicionado o enunciado de **reserva temporária / bloqueio durante a solicitação** com expiração por abandono. Cobre a Feature [F-49](../../backlog/features/F-49-reserva-temporaria-do-recurso-durante-a-solicit.md). Limites em [RNF-reserva-temporaria](../RNF/RNF-reserva-temporaria.md). Decisão técnica em [ADR-009](../../planning/adrs/ADR-009-mecanismo-de-reserva-temporaria-hold.md). Relação com a aprovação em [RF-008](./RF-008-aprovacao-e-recusa-de-solicitacoes-de-reserva.md). | Solicitação do produto |
 
 ## Realizado por (rastreabilidade ↓)
 
-| Epic | Feature(s) | Status |
-| --- | --- | --- |
-| [EP-06](../../backlog/epics/EP-06-nova-reserva.md) | [F-14 Busca de salas com detecção de conflito de horário](../../backlog/features/F-14-busca-de-salas-com-deteccao-de-conflito-de-horar.md) | 📝 |
-| [EP-06](../../backlog/epics/EP-06-nova-reserva.md) | [F-15 Reserva express com 1 clique a partir do detalhe](../../backlog/features/F-15-reserva-express-com-1-clique-a-partir-do-detalhe.md) | 📝 |
-| [EP-06](../../backlog/epics/EP-06-nova-reserva.md) | [F-49 Reserva temporária do recurso durante a solicitação](../../backlog/features/F-49-reserva-temporaria-do-recurso-durante-a-solicit.md) | 📝 |
+| Epic                                               | Feature(s)                                                                                                                                 | Status |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
+| [EP-06](../../backlog/epics/EP-06-nova-reserva.md) | [F-14 Busca de salas com detecção de conflito de horário](../../backlog/features/F-14-busca-de-salas-com-deteccao-de-conflito-de-horar.md) | 📝     |
+| [EP-06](../../backlog/epics/EP-06-nova-reserva.md) | [F-15 Reserva express com 1 clique a partir do detalhe](../../backlog/features/F-15-reserva-express-com-1-clique-a-partir-do-detalhe.md)   | 📝     |
+| [EP-06](../../backlog/epics/EP-06-nova-reserva.md) | [F-49 Reserva temporária do recurso durante a solicitação](../../backlog/features/F-49-reserva-temporaria-do-recurso-durante-a-solicit.md) | 📝     |
 
 ## RNFs que limitam
 

@@ -16,13 +16,13 @@ Define a estrutura de navegação do aplicativo: sidebar contextual cujo conteú
 
 ## Realizado por (rastreabilidade ↓)
 
-| Epic | Feature(s) | Status |
-| --- | --- | --- |
-| [EP-02](../../backlog/epics/EP-02-shell-navegacao-e-roteamento.md) | [F-05 Sidebar contextual por perfil](../../backlog/features/F-05-sidebar-contextual-por-perfil.md) | 📝 |
-| [EP-02](../../backlog/epics/EP-02-shell-navegacao-e-roteamento.md) | [F-06 Roteamento por URLs limpas com histórico do navegador](../../backlog/features/F-06-roteamento-por-urls-limpas-com-historico-do-nave.md) | 📝 |
-| [EP-02](../../backlog/epics/EP-02-shell-navegacao-e-roteamento.md) | [F-07 Drawer responsivo no mobile](../../backlog/features/F-07-drawer-responsivo-no-mobile.md) | 📝 |
-| [EP-02](../../backlog/epics/EP-02-shell-navegacao-e-roteamento.md) | [F-08 Tabelas adaptadas como cards no mobile](../../backlog/features/F-08-tabelas-adaptadas-como-cards-no-mobile.md) | 📝 |
-| [EP-02](../../backlog/epics/EP-02-shell-navegacao-e-roteamento.md) | [F-09 Tema claro/escuro persistente](../../backlog/features/F-09-tema-claro-escuro-persistente.md) | 📝 |
+| Epic                                                               | Feature(s)                                                                                                                                    | Status |
+| ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| [EP-02](../../backlog/epics/EP-02-shell-navegacao-e-roteamento.md) | [F-05 Sidebar contextual por perfil](../../backlog/features/F-05-sidebar-contextual-por-perfil.md)                                            | 📝     |
+| [EP-02](../../backlog/epics/EP-02-shell-navegacao-e-roteamento.md) | [F-06 Roteamento por URLs limpas com histórico do navegador](../../backlog/features/F-06-roteamento-por-urls-limpas-com-historico-do-nave.md) | 📝     |
+| [EP-02](../../backlog/epics/EP-02-shell-navegacao-e-roteamento.md) | [F-07 Drawer responsivo no mobile](../../backlog/features/F-07-drawer-responsivo-no-mobile.md)                                                | 📝     |
+| [EP-02](../../backlog/epics/EP-02-shell-navegacao-e-roteamento.md) | [F-08 Tabelas adaptadas como cards no mobile](../../backlog/features/F-08-tabelas-adaptadas-como-cards-no-mobile.md)                          | 📝     |
+| [EP-02](../../backlog/epics/EP-02-shell-navegacao-e-roteamento.md) | [F-09 Tema claro/escuro persistente](../../backlog/features/F-09-tema-claro-escuro-persistente.md)                                            | 📝     |
 
 ## Restrições e fora-de-escopo
 

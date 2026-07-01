@@ -14,22 +14,22 @@ Na aba Equipamentos da tela de Recursos, o administrador vê os equipamentos em 
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                           | Requisito                          | Relação |
+| ---------------------------------------------------------------------------- | ---------------------------------- | ------- |
 | [RF-013](../../requirements/RF/RF-013-gestao-do-catalogo-de-equipamentos.md) | Gestão do catálogo de equipamentos | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Listagem e filtros`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | Cada equipamento é exibido com nome, tipo, vínculo (bloco/sala) e estado. | — | 📝 |
-| **CA02** | É possível filtrar por estado: todos, ativos, inativos ou em manutenção. | — | 📝 |
-| **CA03** | A busca por nome reduz a lista aos equipamentos correspondentes. | — | 📝 |
-| **CA04** | O estado "em manutenção" é destacado visualmente (ex.: selo de manutenção). | — | 📝 |
-| **CA05** | Listas grandes são paginadas, mostrando o total e a faixa exibida. | — | 📝 |
-| **CA06** | A alternância entre as abas Salas e Equipamentos preserva os filtros próprios de cada aba. | — | 📝 |
+| ID       | Critério                                                                                   | Como verificar | Status |
+| -------- | ------------------------------------------------------------------------------------------ | -------------- | ------ |
+| **CA01** | Cada equipamento é exibido com nome, tipo, vínculo (bloco/sala) e estado.                  | —              | 📝     |
+| **CA02** | É possível filtrar por estado: todos, ativos, inativos ou em manutenção.                   | —              | 📝     |
+| **CA03** | A busca por nome reduz a lista aos equipamentos correspondentes.                           | —              | 📝     |
+| **CA04** | O estado "em manutenção" é destacado visualmente (ex.: selo de manutenção).                | —              | 📝     |
+| **CA05** | Listas grandes são paginadas, mostrando o total e a faixa exibida.                         | —              | 📝     |
+| **CA06** | A alternância entre as abas Salas e Equipamentos preserva os filtros próprios de cada aba. | —              | 📝     |
 
 ## User Stories
 
@@ -65,9 +65,9 @@ Funcionalidade: Listagem de equipamentos
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T44.1.1 | Renderizar os cards de equipamento a partir de getEquipments(), exibindo nome, tipo, vínculo e estado com selo visual de manutenção (CA01, CA04). | ⏳ |
-| T44.1.2 | Implementar os filtros por estado (todos/ativo/inativo/manutenção) e a busca textual por nome sobre a coleção (CA02, CA03). | ⏳ |
-| T44.1.3 | Aplicar paginação com indicador de total/faixa quando a lista exceder o limite por página (CA05). | ⏳ |
-| T44.1.4 | Manter o estado de filtro independente por aba (Salas/Equipamentos) ao alternar as tabs (CA06). | ⏳ |
+| ID      | Task                                                                                                                                              | Status |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T44.1.1 | Renderizar os cards de equipamento a partir de getEquipments(), exibindo nome, tipo, vínculo e estado com selo visual de manutenção (CA01, CA04). | ⏳     |
+| T44.1.2 | Implementar os filtros por estado (todos/ativo/inativo/manutenção) e a busca textual por nome sobre a coleção (CA02, CA03).                       | ⏳     |
+| T44.1.3 | Aplicar paginação com indicador de total/faixa quando a lista exceder o limite por página (CA05).                                                 | ⏳     |
+| T44.1.4 | Manter o estado de filtro independente por aba (Salas/Equipamentos) ao alternar as tabs (CA06).                                                   | ⏳     |

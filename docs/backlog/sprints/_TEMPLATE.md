@@ -1,4 +1,5 @@
 <!-- GENERIC TEMPLATE — copy to sprint-N-<slug>.md. -->
+
 # Sprint N — <slug>
 
 > **Período**: DD/MM — DD/MM · **Meta**: <objetivo único da sprint>
@@ -6,15 +7,15 @@
 
 ## Features na sprint
 
-| Feature | Epic | Status | Story Points |
-| --- | --- | --- | --- |
-| [F-NN](../features/F-NN-....md) | [EP-NN](../epics/EP-NN-....md) | ⏳ | <SP> |
+| Feature                         | Epic                           | Status | Story Points |
+| ------------------------------- | ------------------------------ | ------ | ------------ |
+| [F-NN](../features/F-NN-....md) | [EP-NN](../epics/EP-NN-....md) | ⏳     | <SP>         |
 
 ## User Stories / Tasks
 
 | US/Task | Feature | Status | Commit |
-| --- | --- | --- | --- |
-| US-NN.1 | F-NN | ⏳ | — |
+| ------- | ------- | ------ | ------ |
+| US-NN.1 | F-NN    | ⏳     | —      |
 
 ## Retrospectiva (preencher no fim)
 

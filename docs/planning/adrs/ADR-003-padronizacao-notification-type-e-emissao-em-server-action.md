@@ -4,7 +4,7 @@
 
 Accepted
 
-Refina o ADR-001, que definiu `notifications` com `type text` (vocabulário aberto) mas não fixou *quais* valores o sistema emite nem *onde* a emissão acontece.
+Refina o ADR-001, que definiu `notifications` com `type text` (vocabulário aberto) mas não fixou _quais_ valores o sistema emite nem _onde_ a emissão acontece.
 
 ## Context
 

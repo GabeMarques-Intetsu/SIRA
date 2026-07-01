@@ -15,22 +15,22 @@ Formulário acessível na tela de login onde um novo professor informa nome, e-m
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                                      | Requisito                                     | Relação |
+| --------------------------------------------------------------------------------------- | --------------------------------------------- | ------- |
 | [RF-001](../../requirements/RF/RF-001-acesso-institucional-e-continuidade-de-sessao.md) | Acesso institucional e continuidade de sessão | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Solicitação de cadastro`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | O formulário de solicitação é acessível a partir da tela de login, sem estar logado. | — | 📝 |
-| **CA02** | A solicitação exige nome, e-mail institucional, departamento e senha. | — | 📝 |
-| **CA03** | O e-mail informado deve ser institucional (@ifpb.edu.br); outro domínio é rejeitado. | — | 📝 |
-| **CA04** | Não é permitido solicitar cadastro com e-mail já cadastrado ou já solicitado. | — | 📝 |
-| **CA05** | Ao enviar, a solicitação fica pendente de aprovação do administrador e o solicitante é avisado. | — | 📝 |
-| **CA06** | Enquanto pendente, o solicitante não consegue acessar o sistema. | — | 📝 |
+| ID       | Critério                                                                                        | Como verificar | Status |
+| -------- | ----------------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | O formulário de solicitação é acessível a partir da tela de login, sem estar logado.            | —              | 📝     |
+| **CA02** | A solicitação exige nome, e-mail institucional, departamento e senha.                           | —              | 📝     |
+| **CA03** | O e-mail informado deve ser institucional (@ifpb.edu.br); outro domínio é rejeitado.            | —              | 📝     |
+| **CA04** | Não é permitido solicitar cadastro com e-mail já cadastrado ou já solicitado.                   | —              | 📝     |
+| **CA05** | Ao enviar, a solicitação fica pendente de aprovação do administrador e o solicitante é avisado. | —              | 📝     |
+| **CA06** | Enquanto pendente, o solicitante não consegue acessar o sistema.                                | —              | 📝     |
 
 ## User Stories
 
@@ -94,10 +94,9 @@ Funcionalidade: Solicitação de cadastro
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T03.1.1 | Adicionar validarEmailInstitucional() no onClick de 'Enviar solicitação' em renderSignup() (src/main.js), rejeitando domínio diferente de @ifpb.edu.br com toast antes de gravar. | ⏳ |
-| T03.1.2 | Adicionar campos obrigatórios departamento (id='signupDept') e senha (id='signupPassword') em renderSignup() e incluí-los no objeto persistido em localStorage['sira:signups']. | ⏳ |
-| T03.1.3 | Implementar checagem de duplicidade em renderSignup() comparando o e-mail contra getUsersGlobal()/logins.json e contra os pendentes em 'sira:signups', bloqueando cadastro repetido (CA04). | ⏳ |
-| T03.1.4 | Manter approved:false ao gravar a solicitação em 'sira:signups' e ajustar login() em src/data/store.js para negar acesso a e-mail com solicitação pendente, informando que aguarda aprovação (CA05/CA06). | ⏳ |
-
+| ID      | Task                                                                                                                                                                                                      | Status |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T03.1.1 | Adicionar validarEmailInstitucional() no onClick de 'Enviar solicitação' em renderSignup() (src/main.js), rejeitando domínio diferente de @ifpb.edu.br com toast antes de gravar.                         | ⏳     |
+| T03.1.2 | Adicionar campos obrigatórios departamento (id='signupDept') e senha (id='signupPassword') em renderSignup() e incluí-los no objeto persistido em localStorage['sira:signups'].                           | ⏳     |
+| T03.1.3 | Implementar checagem de duplicidade em renderSignup() comparando o e-mail contra getUsersGlobal()/logins.json e contra os pendentes em 'sira:signups', bloqueando cadastro repetido (CA04).               | ⏳     |
+| T03.1.4 | Manter approved:false ao gravar a solicitação em 'sira:signups' e ajustar login() em src/data/store.js para negar acesso a e-mail com solicitação pendente, informando que aguarda aprovação (CA05/CA06). | ⏳     |

@@ -15,20 +15,20 @@ Painel do administrador com indicadores do período — total de reservas, taxa 
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                                         | Requisito                                          | Relação |
+| ------------------------------------------------------------------------------------------ | -------------------------------------------------- | ------- |
 | [RF-004](../../requirements/RF/RF-004-painel-administrativo-de-indicadores-em-tempo-re.md) | Painel administrativo de indicadores em tempo real | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Indicadores do painel`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | O painel é acessível apenas ao administrador. | — | 📝 |
-| **CA02** | Exibe total de reservas do período, taxa de aprovação, salas mais ocupadas e professores ativos. | — | 📝 |
-| **CA03** | Os indicadores refletem os dados atuais e mudam quando as reservas mudam, sem recarregar a página. | — | 📝 |
-| **CA04** | Quando não há dados no período, o painel mostra indicadores zerados com aviso de ausência de dados. | — | 📝 |
+| ID       | Critério                                                                                            | Como verificar | Status |
+| -------- | --------------------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | O painel é acessível apenas ao administrador.                                                       | —              | 📝     |
+| **CA02** | Exibe total de reservas do período, taxa de aprovação, salas mais ocupadas e professores ativos.    | —              | 📝     |
+| **CA03** | Os indicadores refletem os dados atuais e mudam quando as reservas mudam, sem recarregar a página.  | —              | 📝     |
+| **CA04** | Quando não há dados no período, o painel mostra indicadores zerados com aviso de ausência de dados. | —              | 📝     |
 
 ## User Stories
 
@@ -88,12 +88,12 @@ Funcionalidade: Indicadores do painel
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T12.1.1 | Restringir renderDashboard(page) (src/modules/dashboard.js) ao admin, verificando CURRENT_USER.email === 'admin@ifpb.edu.br' antes de montar o painel de KPIs. | ⏳ |
-| T12.1.2 | Calcular os indicadores do período (total de reservas, taxa de aprovação, salas mais ocupadas, professores ativos) com computeStats() de src/utils/fp.js sobre getReservations()/getRooms()/getApprovals() consolidados do admin. | ⏳ |
-| T12.1.3 | Re-renderizar o painel quando os dados mudam sem reload: após cada saveApproval()/saveReservation(), reexecutar renderDashboard(page) recomputando computeStats() para refletir a mudança imediatamente. | ⏳ |
-| T12.1.4 | Tratar período sem dados em renderDashboard(): quando getReservations() do período retornar vazio, exibir KPIs zerados e um aviso de ausência de dados via el() (src/utils/dom.js). | ⏳ |
+| ID      | Task                                                                                                                                                                                                                              | Status |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T12.1.1 | Restringir renderDashboard(page) (src/modules/dashboard.js) ao admin, verificando CURRENT_USER.email === 'admin@ifpb.edu.br' antes de montar o painel de KPIs.                                                                    | ⏳     |
+| T12.1.2 | Calcular os indicadores do período (total de reservas, taxa de aprovação, salas mais ocupadas, professores ativos) com computeStats() de src/utils/fp.js sobre getReservations()/getRooms()/getApprovals() consolidados do admin. | ⏳     |
+| T12.1.3 | Re-renderizar o painel quando os dados mudam sem reload: após cada saveApproval()/saveReservation(), reexecutar renderDashboard(page) recomputando computeStats() para refletir a mudança imediatamente.                          | ⏳     |
+| T12.1.4 | Tratar período sem dados em renderDashboard(): quando getReservations() do período retornar vazio, exibir KPIs zerados e um aviso de ausência de dados via el() (src/utils/dom.js).                                               | ⏳     |
 
 ---
 
@@ -106,24 +106,24 @@ Funcionalidade: Indicadores do painel
 
 **Grupo:** `CA - Gráfico de ocupação`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA05** | O painel exibe um gráfico de ocupação ao longo do período selecionado. | — | 📝 |
-| **CA06** | O gráfico tem alternativa textual/acessível com os mesmos números (acessibilidade). | — | 📝 |
+| ID       | Critério                                                                            | Como verificar | Status |
+| -------- | ----------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA05** | O painel exibe um gráfico de ocupação ao longo do período selecionado.              | —              | 📝     |
+| **CA06** | O gráfico tem alternativa textual/acessível com os mesmos números (acessibilidade). | —              | 📝     |
 
 **Grupo:** `CA - Filtro de período`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA07** | É possível escolher o período (ex.: hoje, esta semana, este mês ou intervalo personalizado). | — | 📝 |
-| **CA08** | Todos os indicadores, o gráfico e a tabela respeitam o período selecionado. | — | 📝 |
+| ID       | Critério                                                                                     | Como verificar | Status |
+| -------- | -------------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA07** | É possível escolher o período (ex.: hoje, esta semana, este mês ou intervalo personalizado). | —              | 📝     |
+| **CA08** | Todos os indicadores, o gráfico e a tabela respeitam o período selecionado.                  | —              | 📝     |
 
 **Grupo:** `CA - Tabela de atividade recente`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA09** | O painel mostra uma tabela com a atividade recente (reservas criadas, aprovadas, recusadas) do período. | — | 📝 |
-| **CA10** | A tabela é reapresentada como cards no celular, conforme a responsividade do sistema. | — | 📝 |
+| ID       | Critério                                                                                                | Como verificar | Status |
+| -------- | ------------------------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA09** | O painel mostra uma tabela com a atividade recente (reservas criadas, aprovadas, recusadas) do período. | —              | 📝     |
+| **CA10** | A tabela é reapresentada como cards no celular, conforme a responsividade do sistema.                   | —              | 📝     |
 
 ### User Stories adicionais
 
@@ -173,9 +173,8 @@ Funcionalidade: Tabela de atividade recente
 
 #### Tasks adicionais (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T12.2.1 | Adicionar seletor de período (hoje/semana/mês/personalizado) e fazer computeStats() recalcular indicadores, gráfico e tabela pelo período escolhido (CA07, CA08). | ⏳ |
-| T12.2.2 | Renderizar o gráfico de ocupação do período com alternativa textual acessível dos mesmos valores (CA05, CA06). | ⏳ |
-| T12.3.1 | Montar a tabela de atividade recente (criadas/aprovadas/recusadas) do período, com fallback para cards no mobile conforme RNF-responsividade-mobile (CA09, CA10). | ⏳ |
-
+| ID      | Task                                                                                                                                                              | Status |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T12.2.1 | Adicionar seletor de período (hoje/semana/mês/personalizado) e fazer computeStats() recalcular indicadores, gráfico e tabela pelo período escolhido (CA07, CA08). | ⏳     |
+| T12.2.2 | Renderizar o gráfico de ocupação do período com alternativa textual acessível dos mesmos valores (CA05, CA06).                                                    | ⏳     |
+| T12.3.1 | Montar a tabela de atividade recente (criadas/aprovadas/recusadas) do período, com fallback para cards no mobile conforme RNF-responsividade-mobile (CA09, CA10). | ⏳     |

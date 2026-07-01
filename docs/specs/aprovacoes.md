@@ -1,6 +1,7 @@
 # Spec — Fila de aprovações
 
 > **Rastreabilidade**
+>
 > - **RF**: [RF-008 — Aprovação e recusa de solicitações de reserva](../requirements/RF/RF-008-aprovacao-e-recusa-de-solicitacoes-de-reserva.md)
 > - **Features**: [F-21 Fila consolidada](../backlog/features/F-21-fila-consolidada-de-aprovacoes-pendentes.md) · [F-22 Aprovação](../backlog/features/F-22-aprovacao-de-reserva.md) · [F-23 Recusa](../backlog/features/F-23-recusa-de-reserva.md) · [F-11 Sincronização reserva↔aprovação↔notificação](../backlog/features/F-11-sincronizacao-aprovacao-reserva-notificacao.md)
 > - **Código**: `src/app/(app)/aprovacoes/page.tsx` · `approval-actions.tsx` · `approval-filters.tsx` · `actions.ts` · `src/lib/approvals.ts`
@@ -17,14 +18,14 @@
 
 ## Critérios de Aceitação
 
-| ID | Critério |
-| --- | --- |
-| CA01 | Acesso restrito a administradores. |
-| CA02 | A fila lista solicitações **pendentes**, em ordem cronológica. |
-| CA03 | Aprovar muda o status para aprovada e notifica o solicitante. |
-| CA04 | A decisão sincroniza fila, painel, calendário e lista pessoal. |
-| CA05 | Recusar exige/permite motivo (até `REJECT_REASON_MAX`) e notifica. |
-| CA06 | **Segregação de funções**: o admin **não** pode avaliar a **própria** solicitação. |
+| ID   | Critério                                                                                |
+| ---- | --------------------------------------------------------------------------------------- |
+| CA01 | Acesso restrito a administradores.                                                      |
+| CA02 | A fila lista solicitações **pendentes**, em ordem cronológica.                          |
+| CA03 | Aprovar muda o status para aprovada e notifica o solicitante.                           |
+| CA04 | A decisão sincroniza fila, painel, calendário e lista pessoal.                          |
+| CA05 | Recusar exige/permite motivo (até `REJECT_REASON_MAX`) e notifica.                      |
+| CA06 | **Segregação de funções**: o admin **não** pode avaliar a **própria** solicitação.      |
 | CA07 | **Idempotência**: uma reserva já decidida não pode ser decidida de novo (anti-corrida). |
 
 > Regras puras em `src/lib/approvals.ts` (`canActOn`, `computeKpis`,

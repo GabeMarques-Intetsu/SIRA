@@ -90,7 +90,9 @@ async function measure(page: Page, route: string): Promise<PerfMetrics> {
   } else {
     await page.goto(route, { waitUntil: "domcontentloaded" });
   }
-  await page.locator("#main-content").waitFor({ state: "visible", timeout: 15_000 });
+  await page
+    .locator("#main-content")
+    .waitFor({ state: "visible", timeout: 15_000 });
   await page.waitForLoadState("networkidle").catch(() => {});
   // dá tempo para layout-shift tardio (imagens/listas) e LCP estabilizar
   await page.waitForTimeout(1500);
@@ -106,7 +108,10 @@ async function measure(page: Page, route: string): Promise<PerfMetrics> {
       | undefined;
     const transfer = performance
       .getEntriesByType("resource")
-      .reduce((n, r) => n + ((r as PerformanceResourceTiming).transferSize || 0), 0);
+      .reduce(
+        (n, r) => n + ((r as PerformanceResourceTiming).transferSize || 0),
+        0,
+      );
     return {
       lcp: w.__perf?.lcp ?? 0,
       cls: w.__perf?.cls ?? 0,
@@ -132,7 +137,12 @@ async function measure(page: Page, route: string): Promise<PerfMetrics> {
   return m;
 }
 
-const PERF_ROUTES = ["/painel", "/calendario", "/configuracoes", "/minhas-reservas"];
+const PERF_ROUTES = [
+  "/painel",
+  "/calendario",
+  "/configuracoes",
+  "/minhas-reservas",
+];
 
 test.describe("SIRA perf check (admin · dev-server)", () => {
   test.skip(
@@ -157,21 +167,31 @@ test.describe("SIRA perf check (admin · dev-server)", () => {
     fs.writeFileSync(
       path.join(OUT_DIR, "perf.json"),
       JSON.stringify(
-        { generatedAt: new Date().toISOString(), note: "dev-server, indicative", metrics: all },
+        {
+          generatedAt: new Date().toISOString(),
+          note: "dev-server, indicative",
+          metrics: all,
+        },
         null,
         2,
       ),
     );
 
-    console.log("\n================ PERF REPORT (dev-server, indicativo) ================");
-    console.log(`${"ROUTE".padEnd(18)} ${"LCP~".padStart(8)} ${"CLS".padStart(7)} ${"longTasks".padStart(10)} ${"TBT".padStart(7)}`);
+    console.log(
+      "\n================ PERF REPORT (dev-server, indicativo) ================",
+    );
+    console.log(
+      `${"ROUTE".padEnd(18)} ${"LCP~".padStart(8)} ${"CLS".padStart(7)} ${"longTasks".padStart(10)} ${"TBT".padStart(7)}`,
+    );
     for (const m of all) {
       const clsFlag = m.cls > 0.1 ? " ⚠CLS" : "";
       console.log(
         `${m.route.padEnd(18)} ${String(m.lcpMs ?? "—").padStart(6)}ms ${m.cls.toFixed(3).padStart(7)} ${String(m.longTasks).padStart(10)} ${String(m.totalBlockingMs).padStart(5)}ms${clsFlag}`,
       );
     }
-    console.log("=====================================================================\n");
+    console.log(
+      "=====================================================================\n",
+    );
 
     expect(all.length).toBe(PERF_ROUTES.length);
   });

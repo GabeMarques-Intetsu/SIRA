@@ -15,20 +15,20 @@ Permite ao administrador atualizar nome, capacidade e recursos de uma sala, ou d
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                    | Requisito                   | Relação |
+| --------------------------------------------------------------------- | --------------------------- | ------- |
 | [RF-009](../../requirements/RF/RF-009-gestao-do-catalogo-de-salas.md) | Gestão do catálogo de salas | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Edição de sala`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | A edição permite alterar nome, capacidade e recursos da sala. | — | 📝 |
-| **CA02** | É possível desativar uma sala existente. | — | 📝 |
-| **CA03** | Desativar uma sala impede novas reservas, mas não altera reservas já existentes. | — | 📝 |
-| **CA04** | A capacidade alterada deve continuar sendo um número maior que zero. | — | 📝 |
+| ID       | Critério                                                                         | Como verificar | Status |
+| -------- | -------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | A edição permite alterar nome, capacidade e recursos da sala.                    | —              | 📝     |
+| **CA02** | É possível desativar uma sala existente.                                         | —              | 📝     |
+| **CA03** | Desativar uma sala impede novas reservas, mas não altera reservas já existentes. | —              | 📝     |
+| **CA04** | A capacidade alterada deve continuar sendo um número maior que zero.             | —              | 📝     |
 
 ## User Stories
 
@@ -90,11 +90,10 @@ Funcionalidade: Edição de sala
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T26.1.1 | Reutilizar openRoomModal() de rooms.js em modo de edição, pré-preenchendo nameInput, capacidade e recursos a partir da sala recebida (CA01). | ⏳ |
-| T26.1.2 | Validar na edição que a capacidade permaneça número inteiro maior que zero, abortando com toast() se inválida (CA04). | ⏳ |
-| T26.1.3 | Adicionar ao modal a ação de desativar a sala, setando uma flag de status (ex.: active=false) persistida via saveRoom() (CA02). | ⏳ |
-| T26.1.4 | Garantir que a desativação apenas impeça novas reservas (checagem no fluxo de saveReservation/seleção de sala) sem alterar reservas existentes em getReservations() (CA03). | ⏳ |
-| T26.1.5 | Após salvar, persistir via saveRoom()/saveRooms() e chamar refreshGrid(grid) para refletir os novos dados (CA01). | ⏳ |
-
+| ID      | Task                                                                                                                                                                        | Status |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T26.1.1 | Reutilizar openRoomModal() de rooms.js em modo de edição, pré-preenchendo nameInput, capacidade e recursos a partir da sala recebida (CA01).                                | ⏳     |
+| T26.1.2 | Validar na edição que a capacidade permaneça número inteiro maior que zero, abortando com toast() se inválida (CA04).                                                       | ⏳     |
+| T26.1.3 | Adicionar ao modal a ação de desativar a sala, setando uma flag de status (ex.: active=false) persistida via saveRoom() (CA02).                                             | ⏳     |
+| T26.1.4 | Garantir que a desativação apenas impeça novas reservas (checagem no fluxo de saveReservation/seleção de sala) sem alterar reservas existentes em getReservations() (CA03). | ⏳     |
+| T26.1.5 | Após salvar, persistir via saveRoom()/saveRooms() e chamar refreshGrid(grid) para refletir os novos dados (CA01).                                                           | ⏳     |

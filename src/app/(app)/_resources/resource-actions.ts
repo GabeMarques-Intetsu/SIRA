@@ -167,7 +167,9 @@ export async function createRoomAction(
     };
   }
   const v = { ...parsed.data, block: parsed.data.block ?? "" };
-  const intent = imageForm ? parseImageIntent(imageForm) : { kind: "keep" as const };
+  const intent = imageForm
+    ? parseImageIntent(imageForm)
+    : { kind: "keep" as const };
 
   const supabase = await createClient();
 
@@ -229,7 +231,9 @@ export async function updateRoomAction(
     };
   }
   const v = { ...parsed.data, block: parsed.data.block ?? "" };
-  const intent = imageForm ? parseImageIntent(imageForm) : { kind: "keep" as const };
+  const intent = imageForm
+    ? parseImageIntent(imageForm)
+    : { kind: "keep" as const };
 
   const supabase = await createClient();
 
@@ -248,7 +252,12 @@ export async function updateRoomAction(
     .select("image_path")
     .eq("id", id)
     .single();
-  const img = await applyImageIntent("room", id, row?.image_path ?? null, intent);
+  const img = await applyImageIntent(
+    "room",
+    id,
+    row?.image_path ?? null,
+    intent,
+  );
   if ("error" in img) {
     return { ok: false, error: img.error, fieldErrors: { image: img.error } };
   }
@@ -337,7 +346,9 @@ export async function createEquipmentAction(
     block: parsed.data.block ?? "",
     roomId: parsed.data.roomId ?? null,
   };
-  const intent = imageForm ? parseImageIntent(imageForm) : { kind: "keep" as const };
+  const intent = imageForm
+    ? parseImageIntent(imageForm)
+    : { kind: "keep" as const };
 
   const supabase = await createClient();
   const { data: existing } = await supabase
@@ -402,7 +413,9 @@ export async function updateEquipmentAction(
     block: parsed.data.block ?? "",
     roomId: parsed.data.roomId ?? null,
   };
-  const intent = imageForm ? parseImageIntent(imageForm) : { kind: "keep" as const };
+  const intent = imageForm
+    ? parseImageIntent(imageForm)
+    : { kind: "keep" as const };
 
   const supabase = await createClient();
   const { data: existing } = await supabase

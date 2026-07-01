@@ -1,4 +1,5 @@
 <!-- GENERIC TEMPLATE — adapt to your project. Derive personas from the system's real roles/auth tiers. -->
+
 # Personas e cenários de uso — <NOME DO PROJETO>
 
 > Personas canônicas do produto. Toda US referencia uma destas: `Como [persona], quero ...`.

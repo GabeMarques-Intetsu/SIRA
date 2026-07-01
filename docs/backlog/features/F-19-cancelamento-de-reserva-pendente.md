@@ -15,20 +15,20 @@ Permite ao usuário cancelar uma reserva própria ainda pendente, com confirmaç
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                     | Requisito                    | Relação |
+| ---------------------------------------------------------------------- | ---------------------------- | ------- |
 | [RF-007](../../requirements/RF/RF-007-gestao-das-proprias-reservas.md) | Gestão das próprias reservas | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Cancelamento de reserva`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | O cancelamento só é permitido para reservas próprias ainda pendentes. | — | 📝 |
-| **CA02** | O cancelamento exige confirmação explícita do usuário. | — | 📝 |
-| **CA03** | A reserva cancelada muda para o status cancelada e libera o horário da sala. | — | 📝 |
-| **CA04** | A reserva cancelada permanece visível apenas como histórico. | — | 📝 |
+| ID       | Critério                                                                     | Como verificar | Status |
+| -------- | ---------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | O cancelamento só é permitido para reservas próprias ainda pendentes.        | —              | 📝     |
+| **CA02** | O cancelamento exige confirmação explícita do usuário.                       | —              | 📝     |
+| **CA03** | A reserva cancelada muda para o status cancelada e libera o horário da sala. | —              | 📝     |
+| **CA04** | A reserva cancelada permanece visível apenas como histórico.                 | —              | 📝     |
 
 ## User Stories
 
@@ -94,10 +94,9 @@ Funcionalidade: Cancelamento de reserva
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T19.1.1 | Em buildRow()/actionsCell de reservations.js, exibir o botão de cancelar somente quando r.status === 'pendente' (CA01). | ⏳ |
-| T19.1.2 | No clique de cancelar, disparar confirm() de utils/dom.js exigindo confirmação explícita antes de prosseguir; sem confirmação, manter a reserva pendente (CA02). | ⏳ |
-| T19.1.3 | Em deleteReservation()/handler de cancelamento, ao confirmar, alterar status para 'cancelada' e persistir via saveReservations(), liberando o horário da sala (CA03). | ⏳ |
-| T19.1.4 | Garantir que a reserva cancelada continue na coleção (não removida) e seja exibida como histórico em refreshTable(), com badge de status cancelada (CA04). | ⏳ |
-
+| ID      | Task                                                                                                                                                                  | Status |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T19.1.1 | Em buildRow()/actionsCell de reservations.js, exibir o botão de cancelar somente quando r.status === 'pendente' (CA01).                                               | ⏳     |
+| T19.1.2 | No clique de cancelar, disparar confirm() de utils/dom.js exigindo confirmação explícita antes de prosseguir; sem confirmação, manter a reserva pendente (CA02).      | ⏳     |
+| T19.1.3 | Em deleteReservation()/handler de cancelamento, ao confirmar, alterar status para 'cancelada' e persistir via saveReservations(), liberando o horário da sala (CA03). | ⏳     |
+| T19.1.4 | Garantir que a reserva cancelada continue na coleção (não removida) e seja exibida como histórico em refreshTable(), com badge de status cancelada (CA04).            | ⏳     |

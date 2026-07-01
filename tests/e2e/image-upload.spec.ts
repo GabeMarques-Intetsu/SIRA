@@ -92,9 +92,7 @@ test.describe("F-47 — imagem da sala (upload + exibição)", () => {
     await expect(dialog.getByRole("alert")).toHaveCount(0);
 
     // Salva — o diálogo fecha ao concluir (Server Action faz o upload).
-    await dialog
-      .getByRole("button", { name: /salvar alterações/i })
-      .click();
+    await dialog.getByRole("button", { name: /salvar alterações/i }).click();
     await expect(dialog).toBeHidden({ timeout: 20_000 });
 
     // Confirma no banco que o image_path foi gravado (verdade autoritativa).
@@ -127,6 +125,8 @@ test.describe("F-47 — imagem da sala (upload + exibição)", () => {
     const cardImg = page.getByRole("img", { name: TARGET_ROOM });
     await expect(cardImg).toBeVisible({ timeout: 15_000 });
     const src = await cardImg.getAttribute("src");
-    expect(src).toContain(`/storage/v1/object/public/${RESOURCE_IMAGES_BUCKET}/`);
+    expect(src).toContain(
+      `/storage/v1/object/public/${RESOURCE_IMAGES_BUCKET}/`,
+    );
   });
 });

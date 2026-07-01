@@ -15,20 +15,20 @@ Ao aprovar ou recusar uma reserva, o sistema atualiza de uma só vez o status da
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                                         | Requisito                                               | Relação |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------- | ------- |
 | [RF-003](../../requirements/RF/RF-003-isolamento-e-continuidade-dos-dados-pessoais-de-.md) | Isolamento e continuidade dos dados pessoais de reserva | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Propagação da decisão de reserva`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | Ao aprovar ou recusar uma reserva, o novo status aparece imediatamente em todas as telas relacionadas. | — | 📝 |
-| **CA02** | Aprovar ou recusar gera automaticamente a notificação correspondente ao autor da reserva. | — | 📝 |
-| **CA03** | Os contadores de pendências (menu, painel, fila de aprovações) são atualizados na mesma ação. | — | 📝 |
-| **CA04** | Não fica estado inconsistente: a decisão é aplicada em todos os lugares ou em nenhum. | — | 📝 |
+| ID       | Critério                                                                                               | Como verificar | Status |
+| -------- | ------------------------------------------------------------------------------------------------------ | -------------- | ------ |
+| **CA01** | Ao aprovar ou recusar uma reserva, o novo status aparece imediatamente em todas as telas relacionadas. | —              | 📝     |
+| **CA02** | Aprovar ou recusar gera automaticamente a notificação correspondente ao autor da reserva.              | —              | 📝     |
+| **CA03** | Os contadores de pendências (menu, painel, fila de aprovações) são atualizados na mesma ação.          | —              | 📝     |
+| **CA04** | Não fica estado inconsistente: a decisão é aplicada em todos os lugares ou em nenhum.                  | —              | 📝     |
 
 ## User Stories
 
@@ -94,10 +94,9 @@ Funcionalidade: Propagação da decisão de reserva
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T11.1.1 | Em saveApproval()/resolveApproval() (src/data/store.js), encadear updateReservationStatusForApproval() e upsertApprovalNotification() na mesma ação, propagando o novo status à reserva do autor (loadCollection('reservations', approval.userEmail)) e gerando a notificação correspondente (approved/rejected). | ⏳ |
-| T11.1.2 | Recalcular e re-renderizar os contadores de pendências (menu, painel via renderDashboard e fila de aprovações) na mesma operação de aprovar/recusar, lendo getReservations()/getApprovals() atualizados para evitar telas desatualizadas. | ⏳ |
-| T11.1.3 | Tornar a decisão atômica em saveApproval(): validar approval.userEmail e approval.reservationId antes de gravar e, em caso de falha em qualquer etapa (reserva, notificação ou contador), não persistir nenhuma alteração, mantendo o estado anterior. | ⏳ |
-| T11.1.4 | Diferenciar a mensagem da notificação em upsertApprovalNotification() conforme approval.status ('Sua reserva foi aprovada...' vs '...recusada...'), gravando-a na coleção notifications do autor da reserva. | ⏳ |
-
+| ID      | Task                                                                                                                                                                                                                                                                                                              | Status |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T11.1.1 | Em saveApproval()/resolveApproval() (src/data/store.js), encadear updateReservationStatusForApproval() e upsertApprovalNotification() na mesma ação, propagando o novo status à reserva do autor (loadCollection('reservations', approval.userEmail)) e gerando a notificação correspondente (approved/rejected). | ⏳     |
+| T11.1.2 | Recalcular e re-renderizar os contadores de pendências (menu, painel via renderDashboard e fila de aprovações) na mesma operação de aprovar/recusar, lendo getReservations()/getApprovals() atualizados para evitar telas desatualizadas.                                                                         | ⏳     |
+| T11.1.3 | Tornar a decisão atômica em saveApproval(): validar approval.userEmail e approval.reservationId antes de gravar e, em caso de falha em qualquer etapa (reserva, notificação ou contador), não persistir nenhuma alteração, mantendo o estado anterior.                                                            | ⏳     |
+| T11.1.4 | Diferenciar a mensagem da notificação em upsertApprovalNotification() conforme approval.status ('Sua reserva foi aprovada...' vs '...recusada...'), gravando-a na coleção notifications do autor da reserva.                                                                                                      | ⏳     |

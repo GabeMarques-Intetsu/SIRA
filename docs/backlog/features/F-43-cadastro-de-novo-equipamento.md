@@ -14,22 +14,22 @@ Permite ao administrador cadastrar um novo equipamento informando nome, tipo, es
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                           | Requisito                          | Relação |
+| ---------------------------------------------------------------------------- | ---------------------------------- | ------- |
 | [RF-013](../../requirements/RF/RF-013-gestao-do-catalogo-de-equipamentos.md) | Gestão do catálogo de equipamentos | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Cadastro de equipamento`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | O cadastro é acessível apenas ao administrador. | — | 📝 |
-| **CA02** | Exige nome, tipo, estado de disponibilidade e o vínculo a um bloco ou sala. | — | 📝 |
-| **CA03** | O estado deve ser um entre: ativo, inativo ou em manutenção. | — | 📝 |
-| **CA04** | Não é permitido cadastrar equipamento com nome já existente. | — | 📝 |
-| **CA05** | Equipamento cadastrado como ativo fica imediatamente disponível para reserva. | — | 📝 |
-| **CA06** | Equipamento cadastrado como inativo ou em manutenção não aparece como disponível para reserva. | — | 📝 |
+| ID       | Critério                                                                                       | Como verificar | Status |
+| -------- | ---------------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | O cadastro é acessível apenas ao administrador.                                                | —              | 📝     |
+| **CA02** | Exige nome, tipo, estado de disponibilidade e o vínculo a um bloco ou sala.                    | —              | 📝     |
+| **CA03** | O estado deve ser um entre: ativo, inativo ou em manutenção.                                   | —              | 📝     |
+| **CA04** | Não é permitido cadastrar equipamento com nome já existente.                                   | —              | 📝     |
+| **CA05** | Equipamento cadastrado como ativo fica imediatamente disponível para reserva.                  | —              | 📝     |
+| **CA06** | Equipamento cadastrado como inativo ou em manutenção não aparece como disponível para reserva. | —              | 📝     |
 
 ## User Stories
 
@@ -67,9 +67,9 @@ Funcionalidade: Cadastro de equipamento
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T43.1.1 | Restringir a abertura do cadastro de equipamento a administradores (isAdmin/CURRENT_USER do store) (CA01). | ⏳ |
-| T43.1.2 | Montar o formulário com campos obrigatórios nome, tipo, estado (ativo/inativo/manutenção) e vínculo a bloco/sala, bloqueando o salvamento se algum estiver vazio (CA02, CA03). | ⏳ |
-| T43.1.3 | Verificar contra getEquipments() se já existe equipamento com o mesmo nome (case-insensitive) e impedir cadastro duplicado com aviso (CA04). | ⏳ |
-| T43.1.4 | Persistir o novo equipamento via saveEquipment() com genId() e refletir na grade; garantir que apenas estado "ativo" o torne reservável (CA05, CA06). | ⏳ |
+| ID      | Task                                                                                                                                                                           | Status |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
+| T43.1.1 | Restringir a abertura do cadastro de equipamento a administradores (isAdmin/CURRENT_USER do store) (CA01).                                                                     | ⏳     |
+| T43.1.2 | Montar o formulário com campos obrigatórios nome, tipo, estado (ativo/inativo/manutenção) e vínculo a bloco/sala, bloqueando o salvamento se algum estiver vazio (CA02, CA03). | ⏳     |
+| T43.1.3 | Verificar contra getEquipments() se já existe equipamento com o mesmo nome (case-insensitive) e impedir cadastro duplicado com aviso (CA04).                                   | ⏳     |
+| T43.1.4 | Persistir o novo equipamento via saveEquipment() com genId() e refletir na grade; garantir que apenas estado "ativo" o torne reservável (CA05, CA06).                          | ⏳     |

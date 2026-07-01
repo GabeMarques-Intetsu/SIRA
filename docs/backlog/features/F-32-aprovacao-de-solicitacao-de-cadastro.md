@@ -15,20 +15,20 @@ Ação do administrador que aprova uma solicitação de cadastro pendente, crian
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                                      | Requisito                                     | Relação |
+| --------------------------------------------------------------------------------------- | --------------------------------------------- | ------- |
 | [RF-010](../../requirements/RF/RF-010-gestao-de-usuarios-e-solicitacoes-de-cadastro.md) | Gestão de usuários e solicitações de cadastro | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Aprovação de cadastro`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | A ação é acessível apenas ao administrador. | — | 📝 |
-| **CA02** | Aprovar uma solicitação cria efetivamente o usuário e o habilita a acessar. | — | 📝 |
-| **CA03** | O solicitante é notificado de que já pode entrar. | — | 📝 |
-| **CA04** | A solicitação aprovada sai da fila de pendentes. | — | 📝 |
+| ID       | Critério                                                                    | Como verificar | Status |
+| -------- | --------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | A ação é acessível apenas ao administrador.                                 | —              | 📝     |
+| **CA02** | Aprovar uma solicitação cria efetivamente o usuário e o habilita a acessar. | —              | 📝     |
+| **CA03** | O solicitante é notificado de que já pode entrar.                           | —              | 📝     |
+| **CA04** | A solicitação aprovada sai da fila de pendentes.                            | —              | 📝     |
 
 ## User Stories
 
@@ -90,10 +90,9 @@ Funcionalidade: Aprovação de cadastro
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T32.1.1 | Restringir o botao 'Solicitacoes de Cadastro' em renderUsers e a chamada renderSignupsModal(tbody) a CURRENT_USER.role === 'admin'. | ⏳ |
-| T32.1.2 | No btn('Aprovar') de renderSignupsModal (src/modules/users.js) criar o usuario com saveUsers([...allUsers, { id: genId('u'), name, email, role }]) e marcar s.approved=true persistindo em localStorage 'sira:signups'. | ⏳ |
-| T32.1.3 | Emitir notificacao ao solicitante via saveNotification (src/data/store.js) informando que o cadastro foi aprovado e ja pode acessar. | ⏳ |
-| T32.1.4 | Apos aprovar, remover o item da fila de pendentes (filter por !approved) e reabrir renderSignupsModal(tbody); quando pending.length === 0 exibir toast('Nenhum cadastro pendente.'). | ⏳ |
-
+| ID      | Task                                                                                                                                                                                                                    | Status |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T32.1.1 | Restringir o botao 'Solicitacoes de Cadastro' em renderUsers e a chamada renderSignupsModal(tbody) a CURRENT_USER.role === 'admin'.                                                                                     | ⏳     |
+| T32.1.2 | No btn('Aprovar') de renderSignupsModal (src/modules/users.js) criar o usuario com saveUsers([...allUsers, { id: genId('u'), name, email, role }]) e marcar s.approved=true persistindo em localStorage 'sira:signups'. | ⏳     |
+| T32.1.3 | Emitir notificacao ao solicitante via saveNotification (src/data/store.js) informando que o cadastro foi aprovado e ja pode acessar.                                                                                    | ⏳     |
+| T32.1.4 | Apos aprovar, remover o item da fila de pendentes (filter por !approved) e reabrir renderSignupsModal(tbody); quando pending.length === 0 exibir toast('Nenhum cadastro pendente.').                                    | ⏳     |

@@ -1,227 +1,797 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SIRA · Calendário</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./_shared/tokens.css" />
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <script src="./_shared/tailwind-config.js"></script>
-  <script src="./_shared/theme-toggle.js"></script>
-</head>
-<body class="bg-background text-on-background antialiased min-h-screen flex font-sans">
-<a href="#main-content" class="skip-link">Pular para o conteúdo</a>
-<div class="flex w-full min-h-screen">
-
-  <aside class="hidden md:flex w-[264px] flex-col bg-surface-container-low border-r border-outline-variant px-md py-lg gap-md flex-shrink-0">
-    <div class="flex items-center gap-sm px-sm">
-      <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center"><span class="material-symbols-outlined text-on-primary" aria-hidden="true">domain</span></div>
-      <div class="flex flex-col"><span class="text-headline-sm text-on-surface leading-none">SIRA</span><span class="text-label-sm text-on-surface-variant">IFPB</span></div>
-    </div>
-    <a href="./04-nova-reserva.html" class="flex items-center justify-center gap-sm px-md py-2.5 bg-primary text-on-primary rounded-lg text-label-md hover:bg-surface-tint shadow-sm transition-all active:scale-[0.98]"><span class="material-symbols-outlined" aria-hidden="true">add</span><span>Nova Reserva</span></a>
-    <nav aria-label="Navegação principal" class="flex-1 flex flex-col gap-xs overflow-y-auto">
-      <a href="./02-dashboard.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">dashboard</span><span>Dashboard</span></a>
-      <a href="./03-calendario.html" aria-current="page" class="flex items-center gap-md px-md py-sm bg-secondary-container text-on-secondary-container rounded-lg text-label-md font-bold"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1" aria-hidden="true">calendar_month</span><span>Calendário</span></a>
-      <a href="./06-minhas-reservas.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">event_available</span><span>Minhas Reservas</span></a>
-      <a href="./08-aprovacoes.html" class="flex items-center justify-between gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="flex items-center gap-md"><span class="material-symbols-outlined" aria-hidden="true">fact_check</span><span>Aprovações</span></span><span class="px-2 py-0.5 bg-error text-on-error rounded-full text-label-sm">7</span></a>
-      <a href="./05-gestao-recursos.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">domain</span><span>Recursos</span></a>
-      <a href="./09-usuarios.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">group</span><span>Usuários</span></a>
-    </nav>
-    <div class="mt-auto flex flex-col gap-xs pt-md border-t border-outline-variant">
-      <button data-theme-toggle class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md w-full text-left" aria-label="Ativar tema escuro" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">dark_mode</span><span>Tema</span></button>
-      <a href="./11-configuracoes.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">settings</span><span>Configurações</span></a>
-      <a href="./01-login.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">logout</span><span>Sair</span></a>
-    </div>
-  </aside>
-
-  <div class="flex-1 flex flex-col min-w-0">
-    <header class="sticky top-0 z-20 bg-surface/95 backdrop-blur border-b border-outline-variant px-md md:px-margin-desktop py-md flex items-center gap-md">
-      <button class="md:hidden touch-target rounded-full text-on-surface-variant hover:bg-surface-container" aria-label="Abrir menu"><span class="material-symbols-outlined">menu</span></button>
-      <div class="flex-1">
-        <h1 class="text-headline-sm text-on-surface">Calendário</h1>
-        <p class="text-body-sm text-on-surface-variant hidden md:block">Visão semanal · 13 a 19 de Janeiro</p>
-      </div>
-      <div class="flex items-center gap-sm">
-        <a href="./10-notificacoes.html" class="relative touch-target rounded-full text-on-surface-variant hover:bg-surface-container" aria-label="Notificações"><span class="material-symbols-outlined">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full ring-2 ring-surface" aria-hidden="true"></span></a>
-        <button class="ml-sm flex items-center gap-sm rounded-full hover:bg-surface-container px-sm py-1" aria-label="Menu do usuário">
-          <div class="w-9 h-9 bg-primary text-on-primary rounded-full flex items-center justify-center text-label-md font-bold">AS</div>
-        </button>
-      </div>
-    </header>
-
-    <main id="main-content" class="flex-1 p-md md:p-margin-desktop overflow-y-auto">
-      <div class="max-w-[1280px] mx-auto flex flex-col lg:flex-row gap-lg">
-
-        <aside class="lg:w-64 flex-shrink-0 flex flex-col gap-md">
-          <section class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-md">
-            <div class="flex items-center justify-between mb-md">
-              <h2 class="text-label-md text-on-surface">Janeiro 2025</h2>
-              <div class="flex gap-xs">
-                <button class="touch-target rounded-full text-on-surface-variant hover:bg-surface-container" aria-label="Mês anterior"><span class="material-symbols-outlined" style="font-size:18px">chevron_left</span></button>
-                <button class="touch-target rounded-full text-on-surface-variant hover:bg-surface-container" aria-label="Próximo mês"><span class="material-symbols-outlined" style="font-size:18px">chevron_right</span></button>
-              </div>
-            </div>
-            <div class="grid grid-cols-7 gap-xs text-center text-label-sm text-on-surface-variant mb-xs">
-              <span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span>
-            </div>
-            <div class="grid grid-cols-7 gap-xs text-center text-body-sm">
-              <button class="aspect-square rounded text-on-surface-variant/40">29</button><button class="aspect-square rounded text-on-surface-variant/40">30</button><button class="aspect-square rounded text-on-surface-variant/40">31</button>
-              <button class="aspect-square rounded hover:bg-surface-container text-on-surface">1</button><button class="aspect-square rounded hover:bg-surface-container text-on-surface">2</button><button class="aspect-square rounded hover:bg-surface-container text-on-surface">3</button><button class="aspect-square rounded hover:bg-surface-container text-on-surface">4</button>
-              <button class="aspect-square rounded hover:bg-surface-container text-on-surface">5</button><button class="aspect-square rounded hover:bg-surface-container text-on-surface">6</button><button class="aspect-square rounded hover:bg-surface-container text-on-surface">7</button><button class="aspect-square rounded hover:bg-surface-container text-on-surface">8</button><button class="aspect-square rounded hover:bg-surface-container text-on-surface">9</button><button class="aspect-square rounded hover:bg-surface-container text-on-surface">10</button><button class="aspect-square rounded hover:bg-surface-container text-on-surface">11</button>
-              <button class="aspect-square rounded hover:bg-surface-container text-on-surface">12</button><button class="aspect-square rounded bg-primary-fixed text-on-primary-fixed">13</button><button class="aspect-square rounded bg-primary text-on-primary font-bold" aria-current="date">14</button><button class="aspect-square rounded bg-primary-fixed text-on-primary-fixed">15</button><button class="aspect-square rounded bg-primary-fixed text-on-primary-fixed">16</button><button class="aspect-square rounded bg-primary-fixed text-on-primary-fixed">17</button><button class="aspect-square rounded bg-primary-fixed text-on-primary-fixed">18</button>
-              <button class="aspect-square rounded bg-primary-fixed text-on-primary-fixed">19</button><button class="aspect-square rounded hover:bg-surface-container text-on-surface">20</button><button class="aspect-square rounded hover:bg-surface-container text-on-surface">21</button><button class="aspect-square rounded hover:bg-surface-container text-on-surface">22</button><button class="aspect-square rounded hover:bg-surface-container text-on-surface">23</button><button class="aspect-square rounded hover:bg-surface-container text-on-surface">24</button><button class="aspect-square rounded hover:bg-surface-container text-on-surface">25</button>
-              <button class="aspect-square rounded hover:bg-surface-container text-on-surface">26</button><button class="aspect-square rounded hover:bg-surface-container text-on-surface">27</button><button class="aspect-square rounded hover:bg-surface-container text-on-surface">28</button><button class="aspect-square rounded hover:bg-surface-container text-on-surface">29</button><button class="aspect-square rounded hover:bg-surface-container text-on-surface">30</button><button class="aspect-square rounded hover:bg-surface-container text-on-surface">31</button><button class="aspect-square rounded text-on-surface-variant/40">1</button>
-            </div>
-          </section>
-
-          <section class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-md flex flex-col gap-md">
-            <h2 class="text-label-md text-on-surface">Filtros</h2>
-            <div class="flex flex-col gap-sm">
-              <label class="flex items-center gap-sm cursor-pointer"><input type="checkbox" checked class="w-4 h-4 rounded text-primary" /><span class="text-body-sm text-on-surface flex items-center gap-xs"><span class="w-3 h-3 rounded-sm bg-primary"></span>Salas</span></label>
-              <label class="flex items-center gap-sm cursor-pointer"><input type="checkbox" checked class="w-4 h-4 rounded text-primary" /><span class="text-body-sm text-on-surface flex items-center gap-xs"><span class="w-3 h-3 rounded-sm bg-secondary"></span>Auditórios</span></label>
-              <label class="flex items-center gap-sm cursor-pointer"><input type="checkbox" checked class="w-4 h-4 rounded text-primary" /><span class="text-body-sm text-on-surface flex items-center gap-xs"><span class="w-3 h-3 rounded-sm bg-tertiary"></span>Equipamentos</span></label>
-            </div>
-            <div class="border-t border-outline-variant pt-md">
-              <label for="bloco" class="text-label-sm text-on-surface">Bloco</label>
-              <select id="bloco" class="mt-xs w-full px-md py-2 rounded-lg border border-outline-variant bg-surface text-on-surface focus:ring-2 focus:ring-primary outline-none text-body-sm">
-                <option>Todos</option><option>Bloco A</option><option>Bloco B</option><option>Bloco C</option>
-              </select>
-            </div>
-          </section>
-        </aside>
-
-        <section class="flex-1 bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant overflow-hidden">
-          <header class="p-md border-b border-outline-variant flex flex-wrap items-center gap-md">
-            <div class="flex items-center gap-sm">
-              <button class="touch-target rounded-full hover:bg-surface-container text-on-surface-variant" aria-label="Semana anterior"><span class="material-symbols-outlined">chevron_left</span></button>
-              <h2 class="text-headline-sm text-on-surface px-sm whitespace-nowrap">13 – 19 Janeiro</h2>
-              <button class="touch-target rounded-full hover:bg-surface-container text-on-surface-variant" aria-label="Próxima semana"><span class="material-symbols-outlined">chevron_right</span></button>
-            </div>
-            <button class="px-md py-1.5 rounded-lg border border-outline-variant text-on-surface hover:bg-surface-container text-label-md">Hoje</button>
-            <div class="md:ml-auto flex gap-xs bg-surface-container rounded-lg p-1">
-              <button class="px-md py-1 rounded text-label-md text-on-surface-variant hover:bg-surface-container-high">Dia</button>
-              <button aria-current="true" class="px-md py-1 rounded bg-surface-container-lowest text-on-surface shadow-sm text-label-md">Semana</button>
-              <button class="px-md py-1 rounded text-label-md text-on-surface-variant hover:bg-surface-container-high">Mês</button>
-            </div>
-          </header>
-
-          <div class="overflow-x-auto">
-            <div class="min-w-[800px]">
-              <div class="grid grid-cols-[60px_repeat(7,1fr)] border-b border-outline-variant">
-                <div class="px-sm py-sm"></div>
-                <div class="px-sm py-sm text-center"><div class="text-label-sm text-on-surface-variant">SEG</div><div class="text-body-md text-on-surface">13</div></div>
-                <div class="px-sm py-sm text-center"><div class="text-label-sm text-on-surface-variant">TER</div><div class="text-body-md text-primary font-bold">14</div></div>
-                <div class="px-sm py-sm text-center"><div class="text-label-sm text-on-surface-variant">QUA</div><div class="text-body-md text-on-surface">15</div></div>
-                <div class="px-sm py-sm text-center"><div class="text-label-sm text-on-surface-variant">QUI</div><div class="text-body-md text-on-surface">16</div></div>
-                <div class="px-sm py-sm text-center"><div class="text-label-sm text-on-surface-variant">SEX</div><div class="text-body-md text-on-surface">17</div></div>
-                <div class="px-sm py-sm text-center bg-surface-container-low"><div class="text-label-sm text-on-surface-variant">SÁB</div><div class="text-body-md text-on-surface-variant">18</div></div>
-                <div class="px-sm py-sm text-center bg-surface-container-low"><div class="text-label-sm text-on-surface-variant">DOM</div><div class="text-body-md text-on-surface-variant">19</div></div>
-              </div>
-
-              <div class="grid grid-cols-[60px_repeat(7,1fr)] text-body-sm">
-                <div class="text-on-surface-variant text-right pr-sm py-md border-r border-outline-variant">07:00</div>
-                <div class="border-r border-b border-outline-variant min-h-[60px]"></div>
-                <div class="border-r border-b border-outline-variant min-h-[60px]"></div>
-                <div class="border-r border-b border-outline-variant min-h-[60px]"></div>
-                <div class="border-r border-b border-outline-variant min-h-[60px]"></div>
-                <div class="border-r border-b border-outline-variant min-h-[60px]"></div>
-                <div class="border-r border-b border-outline-variant min-h-[60px] bg-surface-container-low/40"></div>
-                <div class="border-b border-outline-variant min-h-[60px] bg-surface-container-low/40"></div>
-
-                <div class="text-on-surface-variant text-right pr-sm py-md border-r border-outline-variant">08:00</div>
-                <div class="border-r border-b border-outline-variant min-h-[60px]"></div>
-                <div class="border-r border-b border-outline-variant min-h-[60px] relative p-1">
-                  <div class="absolute inset-1 bg-primary-fixed border-l-4 border-primary rounded p-1.5 text-on-primary-fixed">
-                    <div class="font-bold text-label-sm">Lab. Prog. 02</div><div class="text-label-sm opacity-80">08:00 – 10:00</div>
-                  </div>
-                </div>
-                <div class="border-r border-b border-outline-variant min-h-[60px]"></div>
-                <div class="border-r border-b border-outline-variant min-h-[60px]"></div>
-                <div class="border-r border-b border-outline-variant min-h-[60px] relative p-1">
-                  <div class="absolute inset-1 bg-secondary-container border-l-4 border-secondary rounded p-1.5 text-on-secondary-container">
-                    <div class="font-bold text-label-sm">Auditório C</div><div class="text-label-sm opacity-80">08:00 – 11:00</div>
-                  </div>
-                </div>
-                <div class="border-r border-b border-outline-variant min-h-[60px] bg-surface-container-low/40"></div>
-                <div class="border-b border-outline-variant min-h-[60px] bg-surface-container-low/40"></div>
-
-                <div class="text-on-surface-variant text-right pr-sm py-md border-r border-outline-variant">10:00</div>
-                <div class="border-r border-b border-outline-variant min-h-[60px] relative p-1">
-                  <div class="absolute inset-1 bg-tertiary-fixed border-l-4 border-tertiary rounded p-1.5 text-on-tertiary-fixed-variant">
-                    <div class="font-bold text-label-sm">Sala 105</div><div class="text-label-sm opacity-80">10:00 – 12:00</div>
-                  </div>
-                </div>
-                <div class="border-r border-b border-outline-variant min-h-[60px]"></div>
-                <div class="border-r border-b border-outline-variant min-h-[60px] relative p-1">
-                  <div class="absolute inset-1 bg-primary-fixed border-l-4 border-primary rounded p-1.5 text-on-primary-fixed">
-                    <div class="font-bold text-label-sm">Lab. Redes</div><div class="text-label-sm opacity-80">10:00 – 12:00</div>
-                  </div>
-                </div>
-                <div class="border-r border-b border-outline-variant min-h-[60px]"></div>
-                <div class="border-r border-b border-outline-variant min-h-[60px]"></div>
-                <div class="border-r border-b border-outline-variant min-h-[60px] bg-surface-container-low/40"></div>
-                <div class="border-b border-outline-variant min-h-[60px] bg-surface-container-low/40"></div>
-
-                <div class="text-on-surface-variant text-right pr-sm py-md border-r border-outline-variant">12:00</div>
-                <div class="border-r border-b border-outline-variant min-h-[60px] bg-surface-container-low/30 text-center pt-3 text-on-surface-variant/60 text-label-sm">Almoço</div>
-                <div class="border-r border-b border-outline-variant min-h-[60px] bg-surface-container-low/30"></div>
-                <div class="border-r border-b border-outline-variant min-h-[60px] bg-surface-container-low/30"></div>
-                <div class="border-r border-b border-outline-variant min-h-[60px] bg-surface-container-low/30"></div>
-                <div class="border-r border-b border-outline-variant min-h-[60px] bg-surface-container-low/30"></div>
-                <div class="border-r border-b border-outline-variant min-h-[60px] bg-surface-container-low/40"></div>
-                <div class="border-b border-outline-variant min-h-[60px] bg-surface-container-low/40"></div>
-
-                <div class="text-on-surface-variant text-right pr-sm py-md border-r border-outline-variant">14:00</div>
-                <div class="border-r border-b border-outline-variant min-h-[60px] relative p-1">
-                  <div class="absolute inset-1 bg-primary-fixed border-l-4 border-primary rounded p-1.5 text-on-primary-fixed">
-                    <div class="font-bold text-label-sm">Lab. Prog. 02</div><div class="text-label-sm opacity-80">14:00 – 16:00</div>
-                  </div>
-                </div>
-                <div class="border-r border-b border-outline-variant min-h-[60px]"></div>
-                <div class="border-r border-b border-outline-variant min-h-[60px] relative p-1">
-                  <div class="absolute inset-1 bg-tertiary-fixed border-l-4 border-tertiary rounded p-1.5 text-on-tertiary-fixed-variant">
-                    <div class="font-bold text-label-sm">Sala 204</div><div class="text-label-sm opacity-80">14:00 – 16:00</div>
-                  </div>
-                </div>
-                <div class="border-r border-b border-outline-variant min-h-[60px] relative p-1">
-                  <div class="absolute inset-1 bg-secondary-container border-l-4 border-secondary rounded p-1.5 text-on-secondary-container">
-                    <div class="font-bold text-label-sm">Auditório C</div><div class="text-label-sm opacity-80">14:30 – 16:30</div>
-                  </div>
-                </div>
-                <div class="border-r border-b border-outline-variant min-h-[60px]"></div>
-                <div class="border-r border-b border-outline-variant min-h-[60px] bg-surface-container-low/40"></div>
-                <div class="border-b border-outline-variant min-h-[60px] bg-surface-container-low/40"></div>
-
-                <div class="text-on-surface-variant text-right pr-sm py-md border-r border-outline-variant">16:00</div>
-                <div class="border-r border-b border-outline-variant min-h-[60px]"></div>
-                <div class="border-r border-b border-outline-variant min-h-[60px] relative p-1">
-                  <div class="absolute inset-1 bg-primary-fixed border-l-4 border-primary rounded p-1.5 text-on-primary-fixed">
-                    <div class="font-bold text-label-sm">Lab. Redes</div><div class="text-label-sm opacity-80">16:00 – 18:00</div>
-                  </div>
-                </div>
-                <div class="border-r border-b border-outline-variant min-h-[60px]"></div>
-                <div class="border-r border-b border-outline-variant min-h-[60px]"></div>
-                <div class="border-r border-b border-outline-variant min-h-[60px]"></div>
-                <div class="border-r border-b border-outline-variant min-h-[60px] bg-surface-container-low/40"></div>
-                <div class="border-b border-outline-variant min-h-[60px] bg-surface-container-low/40"></div>
-              </div>
-            </div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIRA · Calendário</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./_shared/tokens.css" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="./_shared/tailwind-config.js"></script>
+    <script src="./_shared/theme-toggle.js"></script>
+  </head>
+  <body
+    class="bg-background text-on-background flex min-h-screen font-sans antialiased"
+  >
+    <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+    <div class="flex min-h-screen w-full">
+      <aside
+        class="bg-surface-container-low border-outline-variant px-md py-lg gap-md hidden w-[264px] flex-shrink-0 flex-col border-r md:flex"
+      >
+        <div class="gap-sm px-sm flex items-center">
+          <div
+            class="bg-primary flex h-10 w-10 items-center justify-center rounded-lg"
+          >
+            <span
+              class="material-symbols-outlined text-on-primary"
+              aria-hidden="true"
+              >domain</span
+            >
           </div>
+          <div class="flex flex-col">
+            <span class="text-headline-sm text-on-surface leading-none"
+              >SIRA</span
+            ><span class="text-label-sm text-on-surface-variant">IFPB</span>
+          </div>
+        </div>
+        <a
+          href="./04-nova-reserva.html"
+          class="gap-sm px-md bg-primary text-on-primary text-label-md hover:bg-surface-tint flex items-center justify-center rounded-lg py-2.5 shadow-sm transition-all active:scale-[0.98]"
+          ><span class="material-symbols-outlined" aria-hidden="true">add</span
+          ><span>Nova Reserva</span></a
+        >
+        <nav
+          aria-label="Navegação principal"
+          class="gap-xs flex flex-1 flex-col overflow-y-auto"
+        >
+          <a
+            href="./02-dashboard.html"
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex items-center rounded-lg transition-all"
+            ><span class="material-symbols-outlined" aria-hidden="true"
+              >dashboard</span
+            ><span>Dashboard</span></a
+          >
+          <a
+            href="./03-calendario.html"
+            aria-current="page"
+            class="gap-md px-md py-sm bg-secondary-container text-on-secondary-container text-label-md flex items-center rounded-lg font-bold"
+            ><span
+              class="material-symbols-outlined"
+              style="font-variation-settings: &quot;FILL&quot; 1"
+              aria-hidden="true"
+              >calendar_month</span
+            ><span>Calendário</span></a
+          >
+          <a
+            href="./06-minhas-reservas.html"
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex items-center rounded-lg transition-all"
+            ><span class="material-symbols-outlined" aria-hidden="true"
+              >event_available</span
+            ><span>Minhas Reservas</span></a
+          >
+          <a
+            href="./08-aprovacoes.html"
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex items-center justify-between rounded-lg transition-all"
+            ><span class="gap-md flex items-center"
+              ><span class="material-symbols-outlined" aria-hidden="true"
+                >fact_check</span
+              ><span>Aprovações</span></span
+            ><span
+              class="bg-error text-on-error text-label-sm rounded-full px-2 py-0.5"
+              >7</span
+            ></a
+          >
+          <a
+            href="./05-gestao-recursos.html"
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex items-center rounded-lg transition-all"
+            ><span class="material-symbols-outlined" aria-hidden="true"
+              >domain</span
+            ><span>Recursos</span></a
+          >
+          <a
+            href="./09-usuarios.html"
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex items-center rounded-lg transition-all"
+            ><span class="material-symbols-outlined" aria-hidden="true"
+              >group</span
+            ><span>Usuários</span></a
+          >
+        </nav>
+        <div
+          class="gap-xs pt-md border-outline-variant mt-auto flex flex-col border-t"
+        >
+          <button
+            data-theme-toggle
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex w-full items-center rounded-lg text-left transition-all"
+            aria-label="Ativar tema escuro"
+            aria-pressed="false"
+          >
+            <span class="material-symbols-outlined" aria-hidden="true"
+              >dark_mode</span
+            ><span>Tema</span>
+          </button>
+          <a
+            href="./11-configuracoes.html"
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex items-center rounded-lg transition-all"
+            ><span class="material-symbols-outlined" aria-hidden="true"
+              >settings</span
+            ><span>Configurações</span></a
+          >
+          <a
+            href="./01-login.html"
+            class="gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest text-label-md flex items-center rounded-lg transition-all"
+            ><span class="material-symbols-outlined" aria-hidden="true"
+              >logout</span
+            ><span>Sair</span></a
+          >
+        </div>
+      </aside>
 
-          <footer class="p-md border-t border-outline-variant flex flex-wrap items-center gap-md text-label-sm text-on-surface-variant">
-            <span class="flex items-center gap-xs"><span class="w-3 h-3 rounded-sm bg-primary"></span>Salas</span>
-            <span class="flex items-center gap-xs"><span class="w-3 h-3 rounded-sm bg-secondary"></span>Auditórios</span>
-            <span class="flex items-center gap-xs"><span class="w-3 h-3 rounded-sm bg-tertiary"></span>Equipamentos</span>
-            <span class="ml-auto hidden md:inline">Clique em um bloco para detalhes; em célula vazia para criar reserva.</span>
-          </footer>
-        </section>
+      <div class="flex min-w-0 flex-1 flex-col">
+        <header
+          class="bg-surface/95 border-outline-variant px-md md:px-margin-desktop py-md gap-md sticky top-0 z-20 flex items-center border-b backdrop-blur"
+        >
+          <button
+            class="touch-target text-on-surface-variant hover:bg-surface-container rounded-full md:hidden"
+            aria-label="Abrir menu"
+          >
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+          <div class="flex-1">
+            <h1 class="text-headline-sm text-on-surface">Calendário</h1>
+            <p class="text-body-sm text-on-surface-variant hidden md:block">
+              Visão semanal · 13 a 19 de Janeiro
+            </p>
+          </div>
+          <div class="gap-sm flex items-center">
+            <a
+              href="./10-notificacoes.html"
+              class="touch-target text-on-surface-variant hover:bg-surface-container relative rounded-full"
+              aria-label="Notificações"
+              ><span class="material-symbols-outlined">notifications</span
+              ><span
+                class="bg-error ring-surface absolute top-1.5 right-1.5 h-2 w-2 rounded-full ring-2"
+                aria-hidden="true"
+              ></span
+            ></a>
+            <button
+              class="ml-sm gap-sm hover:bg-surface-container px-sm flex items-center rounded-full py-1"
+              aria-label="Menu do usuário"
+            >
+              <div
+                class="bg-primary text-on-primary text-label-md flex h-9 w-9 items-center justify-center rounded-full font-bold"
+              >
+                AS
+              </div>
+            </button>
+          </div>
+        </header>
+
+        <main
+          id="main-content"
+          class="p-md md:p-margin-desktop flex-1 overflow-y-auto"
+        >
+          <div class="gap-lg mx-auto flex max-w-[1280px] flex-col lg:flex-row">
+            <aside class="gap-md flex flex-shrink-0 flex-col lg:w-64">
+              <section
+                class="bg-surface-container-lowest border-outline-variant p-md rounded-xl border shadow-sm"
+              >
+                <div class="mb-md flex items-center justify-between">
+                  <h2 class="text-label-md text-on-surface">Janeiro 2025</h2>
+                  <div class="gap-xs flex">
+                    <button
+                      class="touch-target text-on-surface-variant hover:bg-surface-container rounded-full"
+                      aria-label="Mês anterior"
+                    >
+                      <span
+                        class="material-symbols-outlined"
+                        style="font-size: 18px"
+                        >chevron_left</span
+                      >
+                    </button>
+                    <button
+                      class="touch-target text-on-surface-variant hover:bg-surface-container rounded-full"
+                      aria-label="Próximo mês"
+                    >
+                      <span
+                        class="material-symbols-outlined"
+                        style="font-size: 18px"
+                        >chevron_right</span
+                      >
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="gap-xs text-label-sm text-on-surface-variant mb-xs grid grid-cols-7 text-center"
+                >
+                  <span>D</span><span>S</span><span>T</span><span>Q</span
+                  ><span>Q</span><span>S</span><span>S</span>
+                </div>
+                <div class="gap-xs text-body-sm grid grid-cols-7 text-center">
+                  <button
+                    class="text-on-surface-variant/40 aspect-square rounded"
+                  >
+                    29</button
+                  ><button
+                    class="text-on-surface-variant/40 aspect-square rounded"
+                  >
+                    30</button
+                  ><button
+                    class="text-on-surface-variant/40 aspect-square rounded"
+                  >
+                    31
+                  </button>
+                  <button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    1</button
+                  ><button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    2</button
+                  ><button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    3</button
+                  ><button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    4
+                  </button>
+                  <button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    5</button
+                  ><button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    6</button
+                  ><button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    7</button
+                  ><button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    8</button
+                  ><button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    9</button
+                  ><button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    10</button
+                  ><button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    11
+                  </button>
+                  <button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    12</button
+                  ><button
+                    class="bg-primary-fixed text-on-primary-fixed aspect-square rounded"
+                  >
+                    13</button
+                  ><button
+                    class="bg-primary text-on-primary aspect-square rounded font-bold"
+                    aria-current="date"
+                  >
+                    14</button
+                  ><button
+                    class="bg-primary-fixed text-on-primary-fixed aspect-square rounded"
+                  >
+                    15</button
+                  ><button
+                    class="bg-primary-fixed text-on-primary-fixed aspect-square rounded"
+                  >
+                    16</button
+                  ><button
+                    class="bg-primary-fixed text-on-primary-fixed aspect-square rounded"
+                  >
+                    17</button
+                  ><button
+                    class="bg-primary-fixed text-on-primary-fixed aspect-square rounded"
+                  >
+                    18
+                  </button>
+                  <button
+                    class="bg-primary-fixed text-on-primary-fixed aspect-square rounded"
+                  >
+                    19</button
+                  ><button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    20</button
+                  ><button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    21</button
+                  ><button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    22</button
+                  ><button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    23</button
+                  ><button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    24</button
+                  ><button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    25
+                  </button>
+                  <button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    26</button
+                  ><button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    27</button
+                  ><button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    28</button
+                  ><button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    29</button
+                  ><button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    30</button
+                  ><button
+                    class="hover:bg-surface-container text-on-surface aspect-square rounded"
+                  >
+                    31</button
+                  ><button
+                    class="text-on-surface-variant/40 aspect-square rounded"
+                  >
+                    1
+                  </button>
+                </div>
+              </section>
+
+              <section
+                class="bg-surface-container-lowest border-outline-variant p-md gap-md flex flex-col rounded-xl border shadow-sm"
+              >
+                <h2 class="text-label-md text-on-surface">Filtros</h2>
+                <div class="gap-sm flex flex-col">
+                  <label class="gap-sm flex cursor-pointer items-center"
+                    ><input
+                      type="checkbox"
+                      checked
+                      class="text-primary h-4 w-4 rounded"
+                    /><span
+                      class="text-body-sm text-on-surface gap-xs flex items-center"
+                      ><span class="bg-primary h-3 w-3 rounded-sm"></span
+                      >Salas</span
+                    ></label
+                  >
+                  <label class="gap-sm flex cursor-pointer items-center"
+                    ><input
+                      type="checkbox"
+                      checked
+                      class="text-primary h-4 w-4 rounded"
+                    /><span
+                      class="text-body-sm text-on-surface gap-xs flex items-center"
+                      ><span class="bg-secondary h-3 w-3 rounded-sm"></span
+                      >Auditórios</span
+                    ></label
+                  >
+                  <label class="gap-sm flex cursor-pointer items-center"
+                    ><input
+                      type="checkbox"
+                      checked
+                      class="text-primary h-4 w-4 rounded"
+                    /><span
+                      class="text-body-sm text-on-surface gap-xs flex items-center"
+                      ><span class="bg-tertiary h-3 w-3 rounded-sm"></span
+                      >Equipamentos</span
+                    ></label
+                  >
+                </div>
+                <div class="border-outline-variant pt-md border-t">
+                  <label for="bloco" class="text-label-sm text-on-surface"
+                    >Bloco</label
+                  >
+                  <select
+                    id="bloco"
+                    class="mt-xs px-md border-outline-variant bg-surface text-on-surface focus:ring-primary text-body-sm w-full rounded-lg border py-2 outline-none focus:ring-2"
+                  >
+                    <option>Todos</option>
+                    <option>Bloco A</option>
+                    <option>Bloco B</option>
+                    <option>Bloco C</option>
+                  </select>
+                </div>
+              </section>
+            </aside>
+
+            <section
+              class="bg-surface-container-lowest border-outline-variant flex-1 overflow-hidden rounded-xl border shadow-sm"
+            >
+              <header
+                class="p-md border-outline-variant gap-md flex flex-wrap items-center border-b"
+              >
+                <div class="gap-sm flex items-center">
+                  <button
+                    class="touch-target hover:bg-surface-container text-on-surface-variant rounded-full"
+                    aria-label="Semana anterior"
+                  >
+                    <span class="material-symbols-outlined">chevron_left</span>
+                  </button>
+                  <h2
+                    class="text-headline-sm text-on-surface px-sm whitespace-nowrap"
+                  >
+                    13 – 19 Janeiro
+                  </h2>
+                  <button
+                    class="touch-target hover:bg-surface-container text-on-surface-variant rounded-full"
+                    aria-label="Próxima semana"
+                  >
+                    <span class="material-symbols-outlined">chevron_right</span>
+                  </button>
+                </div>
+                <button
+                  class="px-md border-outline-variant text-on-surface hover:bg-surface-container text-label-md rounded-lg border py-1.5"
+                >
+                  Hoje
+                </button>
+                <div
+                  class="gap-xs bg-surface-container flex rounded-lg p-1 md:ml-auto"
+                >
+                  <button
+                    class="px-md text-label-md text-on-surface-variant hover:bg-surface-container-high rounded py-1"
+                  >
+                    Dia
+                  </button>
+                  <button
+                    aria-current="true"
+                    class="px-md bg-surface-container-lowest text-on-surface text-label-md rounded py-1 shadow-sm"
+                  >
+                    Semana
+                  </button>
+                  <button
+                    class="px-md text-label-md text-on-surface-variant hover:bg-surface-container-high rounded py-1"
+                  >
+                    Mês
+                  </button>
+                </div>
+              </header>
+
+              <div class="overflow-x-auto">
+                <div class="min-w-[800px]">
+                  <div
+                    class="border-outline-variant grid grid-cols-[60px_repeat(7,1fr)] border-b"
+                  >
+                    <div class="px-sm py-sm"></div>
+                    <div class="px-sm py-sm text-center">
+                      <div class="text-label-sm text-on-surface-variant">
+                        SEG
+                      </div>
+                      <div class="text-body-md text-on-surface">13</div>
+                    </div>
+                    <div class="px-sm py-sm text-center">
+                      <div class="text-label-sm text-on-surface-variant">
+                        TER
+                      </div>
+                      <div class="text-body-md text-primary font-bold">14</div>
+                    </div>
+                    <div class="px-sm py-sm text-center">
+                      <div class="text-label-sm text-on-surface-variant">
+                        QUA
+                      </div>
+                      <div class="text-body-md text-on-surface">15</div>
+                    </div>
+                    <div class="px-sm py-sm text-center">
+                      <div class="text-label-sm text-on-surface-variant">
+                        QUI
+                      </div>
+                      <div class="text-body-md text-on-surface">16</div>
+                    </div>
+                    <div class="px-sm py-sm text-center">
+                      <div class="text-label-sm text-on-surface-variant">
+                        SEX
+                      </div>
+                      <div class="text-body-md text-on-surface">17</div>
+                    </div>
+                    <div
+                      class="px-sm py-sm bg-surface-container-low text-center"
+                    >
+                      <div class="text-label-sm text-on-surface-variant">
+                        SÁB
+                      </div>
+                      <div class="text-body-md text-on-surface-variant">18</div>
+                    </div>
+                    <div
+                      class="px-sm py-sm bg-surface-container-low text-center"
+                    >
+                      <div class="text-label-sm text-on-surface-variant">
+                        DOM
+                      </div>
+                      <div class="text-body-md text-on-surface-variant">19</div>
+                    </div>
+                  </div>
+
+                  <div class="text-body-sm grid grid-cols-[60px_repeat(7,1fr)]">
+                    <div
+                      class="text-on-surface-variant pr-sm py-md border-outline-variant border-r text-right"
+                    >
+                      07:00
+                    </div>
+                    <div
+                      class="border-outline-variant min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant bg-surface-container-low/40 min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant bg-surface-container-low/40 min-h-[60px] border-b"
+                    ></div>
+
+                    <div
+                      class="text-on-surface-variant pr-sm py-md border-outline-variant border-r text-right"
+                    >
+                      08:00
+                    </div>
+                    <div
+                      class="border-outline-variant min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant relative min-h-[60px] border-r border-b p-1"
+                    >
+                      <div
+                        class="bg-primary-fixed border-primary text-on-primary-fixed absolute inset-1 rounded border-l-4 p-1.5"
+                      >
+                        <div class="text-label-sm font-bold">Lab. Prog. 02</div>
+                        <div class="text-label-sm opacity-80">
+                          08:00 – 10:00
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="border-outline-variant min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant relative min-h-[60px] border-r border-b p-1"
+                    >
+                      <div
+                        class="bg-secondary-container border-secondary text-on-secondary-container absolute inset-1 rounded border-l-4 p-1.5"
+                      >
+                        <div class="text-label-sm font-bold">Auditório C</div>
+                        <div class="text-label-sm opacity-80">
+                          08:00 – 11:00
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="border-outline-variant bg-surface-container-low/40 min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant bg-surface-container-low/40 min-h-[60px] border-b"
+                    ></div>
+
+                    <div
+                      class="text-on-surface-variant pr-sm py-md border-outline-variant border-r text-right"
+                    >
+                      10:00
+                    </div>
+                    <div
+                      class="border-outline-variant relative min-h-[60px] border-r border-b p-1"
+                    >
+                      <div
+                        class="bg-tertiary-fixed border-tertiary text-on-tertiary-fixed-variant absolute inset-1 rounded border-l-4 p-1.5"
+                      >
+                        <div class="text-label-sm font-bold">Sala 105</div>
+                        <div class="text-label-sm opacity-80">
+                          10:00 – 12:00
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="border-outline-variant min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant relative min-h-[60px] border-r border-b p-1"
+                    >
+                      <div
+                        class="bg-primary-fixed border-primary text-on-primary-fixed absolute inset-1 rounded border-l-4 p-1.5"
+                      >
+                        <div class="text-label-sm font-bold">Lab. Redes</div>
+                        <div class="text-label-sm opacity-80">
+                          10:00 – 12:00
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="border-outline-variant min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant bg-surface-container-low/40 min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant bg-surface-container-low/40 min-h-[60px] border-b"
+                    ></div>
+
+                    <div
+                      class="text-on-surface-variant pr-sm py-md border-outline-variant border-r text-right"
+                    >
+                      12:00
+                    </div>
+                    <div
+                      class="border-outline-variant bg-surface-container-low/30 text-on-surface-variant/60 text-label-sm min-h-[60px] border-r border-b pt-3 text-center"
+                    >
+                      Almoço
+                    </div>
+                    <div
+                      class="border-outline-variant bg-surface-container-low/30 min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant bg-surface-container-low/30 min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant bg-surface-container-low/30 min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant bg-surface-container-low/30 min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant bg-surface-container-low/40 min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant bg-surface-container-low/40 min-h-[60px] border-b"
+                    ></div>
+
+                    <div
+                      class="text-on-surface-variant pr-sm py-md border-outline-variant border-r text-right"
+                    >
+                      14:00
+                    </div>
+                    <div
+                      class="border-outline-variant relative min-h-[60px] border-r border-b p-1"
+                    >
+                      <div
+                        class="bg-primary-fixed border-primary text-on-primary-fixed absolute inset-1 rounded border-l-4 p-1.5"
+                      >
+                        <div class="text-label-sm font-bold">Lab. Prog. 02</div>
+                        <div class="text-label-sm opacity-80">
+                          14:00 – 16:00
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="border-outline-variant min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant relative min-h-[60px] border-r border-b p-1"
+                    >
+                      <div
+                        class="bg-tertiary-fixed border-tertiary text-on-tertiary-fixed-variant absolute inset-1 rounded border-l-4 p-1.5"
+                      >
+                        <div class="text-label-sm font-bold">Sala 204</div>
+                        <div class="text-label-sm opacity-80">
+                          14:00 – 16:00
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="border-outline-variant relative min-h-[60px] border-r border-b p-1"
+                    >
+                      <div
+                        class="bg-secondary-container border-secondary text-on-secondary-container absolute inset-1 rounded border-l-4 p-1.5"
+                      >
+                        <div class="text-label-sm font-bold">Auditório C</div>
+                        <div class="text-label-sm opacity-80">
+                          14:30 – 16:30
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="border-outline-variant min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant bg-surface-container-low/40 min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant bg-surface-container-low/40 min-h-[60px] border-b"
+                    ></div>
+
+                    <div
+                      class="text-on-surface-variant pr-sm py-md border-outline-variant border-r text-right"
+                    >
+                      16:00
+                    </div>
+                    <div
+                      class="border-outline-variant min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant relative min-h-[60px] border-r border-b p-1"
+                    >
+                      <div
+                        class="bg-primary-fixed border-primary text-on-primary-fixed absolute inset-1 rounded border-l-4 p-1.5"
+                      >
+                        <div class="text-label-sm font-bold">Lab. Redes</div>
+                        <div class="text-label-sm opacity-80">
+                          16:00 – 18:00
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="border-outline-variant min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant bg-surface-container-low/40 min-h-[60px] border-r border-b"
+                    ></div>
+                    <div
+                      class="border-outline-variant bg-surface-container-low/40 min-h-[60px] border-b"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+
+              <footer
+                class="p-md border-outline-variant gap-md text-label-sm text-on-surface-variant flex flex-wrap items-center border-t"
+              >
+                <span class="gap-xs flex items-center"
+                  ><span class="bg-primary h-3 w-3 rounded-sm"></span
+                  >Salas</span
+                >
+                <span class="gap-xs flex items-center"
+                  ><span class="bg-secondary h-3 w-3 rounded-sm"></span
+                  >Auditórios</span
+                >
+                <span class="gap-xs flex items-center"
+                  ><span class="bg-tertiary h-3 w-3 rounded-sm"></span
+                  >Equipamentos</span
+                >
+                <span class="ml-auto hidden md:inline"
+                  >Clique em um bloco para detalhes; em célula vazia para criar
+                  reserva.</span
+                >
+              </footer>
+            </section>
+          </div>
+        </main>
       </div>
-    </main>
-  </div>
-</div>
-</body>
+    </div>
+  </body>
 </html>

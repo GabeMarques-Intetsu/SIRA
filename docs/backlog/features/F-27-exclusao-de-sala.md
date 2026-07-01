@@ -15,20 +15,20 @@ Permite ao administrador excluir uma sala, com confirmação. A exclusão é blo
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                    | Requisito                   | Relação |
+| --------------------------------------------------------------------- | --------------------------- | ------- |
 | [RF-009](../../requirements/RF/RF-009-gestao-do-catalogo-de-salas.md) | Gestão do catálogo de salas | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Exclusão de sala`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | A exclusão exige confirmação explícita. | — | 📝 |
-| **CA02** | A exclusão é bloqueada quando há reservas futuras associadas à sala. | — | 📝 |
-| **CA03** | O bloqueio orienta o administrador a migrar ou cancelar as reservas antes de excluir. | — | 📝 |
-| **CA04** | Uma sala excluída deixa de aparecer nas listagens e na busca. | — | 📝 |
+| ID       | Critério                                                                              | Como verificar | Status |
+| -------- | ------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | A exclusão exige confirmação explícita.                                               | —              | 📝     |
+| **CA02** | A exclusão é bloqueada quando há reservas futuras associadas à sala.                  | —              | 📝     |
+| **CA03** | O bloqueio orienta o administrador a migrar ou cancelar as reservas antes de excluir. | —              | 📝     |
+| **CA04** | Uma sala excluída deixa de aparecer nas listagens e na busca.                         | —              | 📝     |
 
 ## User Stories
 
@@ -90,10 +90,9 @@ Funcionalidade: Exclusão de sala
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T27.1.1 | Em buildRoomCard() de rooms.js, adicionar a ação de excluir sala que dispara confirm() de utils/dom.js exigindo confirmação explícita (CA01). | ⏳ |
-| T27.1.2 | Antes de excluir, verificar em getReservations() se há reservas futuras associadas à sala e bloquear a exclusão caso existam (CA02). | ⏳ |
-| T27.1.3 | Quando bloqueada, exibir mensagem orientando o admin a migrar ou cancelar as reservas antes de excluir (CA03). | ⏳ |
-| T27.1.4 | Ao confirmar e sem reservas futuras, remover a sala da coleção via saveRooms(getRooms() filtrado) e chamar refreshGrid(grid) para retirá-la das listagens e da busca (CA04). | ⏳ |
-
+| ID      | Task                                                                                                                                                                         | Status |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T27.1.1 | Em buildRoomCard() de rooms.js, adicionar a ação de excluir sala que dispara confirm() de utils/dom.js exigindo confirmação explícita (CA01).                                | ⏳     |
+| T27.1.2 | Antes de excluir, verificar em getReservations() se há reservas futuras associadas à sala e bloquear a exclusão caso existam (CA02).                                         | ⏳     |
+| T27.1.3 | Quando bloqueada, exibir mensagem orientando o admin a migrar ou cancelar as reservas antes de excluir (CA03).                                                               | ⏳     |
+| T27.1.4 | Ao confirmar e sem reservas futuras, remover a sala da coleção via saveRooms(getRooms() filtrado) e chamar refreshGrid(grid) para retirá-la das listagens e da busca (CA04). | ⏳     |

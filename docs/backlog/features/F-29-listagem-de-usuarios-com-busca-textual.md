@@ -15,20 +15,20 @@ Apresenta ao administrador todos os usuários cadastrados, com busca por nome ou
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                                      | Requisito                                     | Relação |
+| --------------------------------------------------------------------------------------- | --------------------------------------------- | ------- |
 | [RF-010](../../requirements/RF/RF-010-gestao-de-usuarios-e-solicitacoes-de-cadastro.md) | Gestão de usuários e solicitações de cadastro | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Listagem de usuários`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | A listagem mostra todos os usuários com nome, e-mail e perfil. | — | 📝 |
-| **CA02** | É possível buscar por nome ou e-mail. | — | 📝 |
-| **CA03** | É possível filtrar por perfil (administrador/professor). | — | 📝 |
-| **CA04** | Cada usuário oferece as ações de editar e excluir. | — | 📝 |
+| ID       | Critério                                                       | Como verificar | Status |
+| -------- | -------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | A listagem mostra todos os usuários com nome, e-mail e perfil. | —              | 📝     |
+| **CA02** | É possível buscar por nome ou e-mail.                          | —              | 📝     |
+| **CA03** | É possível filtrar por perfil (administrador/professor).       | —              | 📝     |
+| **CA04** | Cada usuário oferece as ações de editar e excluir.             | —              | 📝     |
 
 ## User Stories
 
@@ -92,11 +92,10 @@ Funcionalidade: Lista de usuários
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T29.1.1 | Em refreshTable (src/modules/users.js) renderizar todos os getUsers() via buildRow exibindo nome, e-mail e roleLabel(role) em cada tableRow. | ⏳ |
-| T29.1.2 | Ligar o searchInput addEventListener('input') de renderUsers a um filtro por nome ou e-mail (case-insensitive) que repopula a tabela via refreshTable. | ⏳ |
-| T29.1.3 | Adicionar select de filtro por perfil (ROLES) no header de renderUsers e combina-lo ao filtro textual em refreshTable para exibir apenas o perfil selecionado. | ⏳ |
-| T29.1.4 | Tratar lista vazia em refreshTable inserindo uma linha de aviso 'Nenhum usuario encontrado' quando filtered.length === 0. | ⏳ |
-| T29.1.5 | Garantir em buildRow os botoes btn('Editar', ...) -> openUserModal(u, tbody) e btn('Remover', ...) -> deleteUser(u.id, tbody) por linha. | ⏳ |
-
+| ID      | Task                                                                                                                                                           | Status |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T29.1.1 | Em refreshTable (src/modules/users.js) renderizar todos os getUsers() via buildRow exibindo nome, e-mail e roleLabel(role) em cada tableRow.                   | ⏳     |
+| T29.1.2 | Ligar o searchInput addEventListener('input') de renderUsers a um filtro por nome ou e-mail (case-insensitive) que repopula a tabela via refreshTable.         | ⏳     |
+| T29.1.3 | Adicionar select de filtro por perfil (ROLES) no header de renderUsers e combina-lo ao filtro textual em refreshTable para exibir apenas o perfil selecionado. | ⏳     |
+| T29.1.4 | Tratar lista vazia em refreshTable inserindo uma linha de aviso 'Nenhum usuario encontrado' quando filtered.length === 0.                                      | ⏳     |
+| T29.1.5 | Garantir em buildRow os botoes btn('Editar', ...) -> openUserModal(u, tbody) e btn('Remover', ...) -> deleteUser(u.id, tbody) por linha.                       | ⏳     |

@@ -15,27 +15,27 @@ Tela onde o usuário informa data, horário e recursos desejados e o sistema dev
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                                         | Requisito                                              | Relação |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------ | ------- |
 | [RF-006](../../requirements/RF/RF-006-solicitacao-de-reserva-com-checagem-de-disponibi.md) | Solicitação de reserva com checagem de disponibilidade | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Busca e disponibilidade`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | O formulário aceita data, horário de início, horário de fim e os recursos desejados. | — | 📝 |
-| **CA02** | O horário de início deve ser anterior ao de fim; caso contrário, é exibido aviso. | — | 📝 |
-| **CA03** | A data informada deve ser igual ou posterior ao dia atual. | — | 📝 |
-| **CA04** | Os resultados não incluem salas com reserva aprovada que conflite com o horário informado. | — | 📝 |
-| **CA05** | Reservas pendentes também são consideradas como conflito. | — | 📝 |
-| **CA06** | Reservas canceladas ou recusadas não geram conflito. | — | 📝 |
-| **CA07** | Só aparecem salas que possuam todos os recursos selecionados. | — | 📝 |
-| **CA08** | Salas inativas nunca aparecem nos resultados. | — | 📝 |
-| **CA09** | Conflito parcial de horário (sobreposição) também elimina a sala. | — | 📝 |
-| **CA10** | Os resultados aparecem ordenados por capacidade crescente por padrão. | — | 📝 |
-| **CA11** | Quando nenhuma sala atende, é exibida a mensagem "Nenhuma sala disponível para os critérios". | — | 📝 |
+| ID       | Critério                                                                                      | Como verificar | Status |
+| -------- | --------------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | O formulário aceita data, horário de início, horário de fim e os recursos desejados.          | —              | 📝     |
+| **CA02** | O horário de início deve ser anterior ao de fim; caso contrário, é exibido aviso.             | —              | 📝     |
+| **CA03** | A data informada deve ser igual ou posterior ao dia atual.                                    | —              | 📝     |
+| **CA04** | Os resultados não incluem salas com reserva aprovada que conflite com o horário informado.    | —              | 📝     |
+| **CA05** | Reservas pendentes também são consideradas como conflito.                                     | —              | 📝     |
+| **CA06** | Reservas canceladas ou recusadas não geram conflito.                                          | —              | 📝     |
+| **CA07** | Só aparecem salas que possuam todos os recursos selecionados.                                 | —              | 📝     |
+| **CA08** | Salas inativas nunca aparecem nos resultados.                                                 | —              | 📝     |
+| **CA09** | Conflito parcial de horário (sobreposição) também elimina a sala.                             | —              | 📝     |
+| **CA10** | Os resultados aparecem ordenados por capacidade crescente por padrão.                         | —              | 📝     |
+| **CA11** | Quando nenhuma sala atende, é exibida a mensagem "Nenhuma sala disponível para os critérios". | —              | 📝     |
 
 ## User Stories
 
@@ -47,7 +47,7 @@ Tela onde o usuário informa data, horário e recursos desejados e o sistema dev
 
 #### Cenários BDD
 
-```gherkin
+````gherkin
 # language: pt
 Funcionalidade: Interface de filtros e restrições básicas de horários
 
@@ -97,16 +97,16 @@ Funcionalidade: Interface de filtros e restrições básicas de horários
     Dado que o professor está na tela de nova reserva
     Quando informa uma data anterior ao dia atual
     Então o sistema exibe aviso de data inválida
-```
+````
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T14.1.1 | Montar o formulário de busca em renderNovaReserva(page) (src/modules/novaReserva.js) com campos de data, horário de início, horário de fim e checkboxes de recursos, usando el() e formField(). | ⏳ |
-| T14.1.2 | Validar antes de buscar: usar parseTimeStr() para barrar início >= fim com aviso de horário inválido, e parseDateLocal() para barrar data anterior ao dia atual com aviso de data inválida, sem disparar a busca. | ⏳ |
-| T14.1.3 | Em searchRooms(type, container, formData), filtrar getRooms() removendo salas inativas e mantendo apenas as que possuem todos os recursos selecionados em formData. | ⏳ |
-| T14.1.4 | Ordenar os resultados de searchRooms() por capacidade crescente e, quando o filtro resultar em lista vazia, renderizar a mensagem 'Nenhuma sala disponível para os critérios' via el(). | ⏳ |
+| ID      | Task                                                                                                                                                                                                              | Status |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T14.1.1 | Montar o formulário de busca em renderNovaReserva(page) (src/modules/novaReserva.js) com campos de data, horário de início, horário de fim e checkboxes de recursos, usando el() e formField().                   | ⏳     |
+| T14.1.2 | Validar antes de buscar: usar parseTimeStr() para barrar início >= fim com aviso de horário inválido, e parseDateLocal() para barrar data anterior ao dia atual com aviso de data inválida, sem disparar a busca. | ⏳     |
+| T14.1.3 | Em searchRooms(type, container, formData), filtrar getRooms() removendo salas inativas e mantendo apenas as que possuem todos os recursos selecionados em formData.                                               | ⏳     |
+| T14.1.4 | Ordenar os resultados de searchRooms() por capacidade crescente e, quando o filtro resultar em lista vazia, renderizar a mensagem 'Nenhuma sala disponível para os critérios' via el().                           | ⏳     |
 
 ### US14.2 — Motor Lógico de Detecção de Conflito e Ocupação
 
@@ -116,7 +116,7 @@ Funcionalidade: Interface de filtros e restrições básicas de horários
 
 #### Cenários BDD
 
-```gherkin
+````gherkin
 # language: pt
 Funcionalidade: Detecção de conflito e ocupação
 
@@ -160,16 +160,16 @@ Funcionalidade: Detecção de conflito e ocupação
     Dado que a sala "Lab 3" tem apenas uma reserva recusada das 14h às 16h
     Quando o professor busca salas para esse horário
     Então "Lab 3" aparece nos resultados
-```
+````
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T14.2.1 | Em searchRooms()/expandReservationDates() (src/modules/novaReserva.js), carregar as reservas existentes das salas candidatas e comparar intervalos com parseTimeStr() para detectar sobreposição total ou parcial de horário. | ⏳ |
-| T14.2.2 | Considerar como conflito apenas reservas com status 'approved' ou 'pending', excluindo a sala dos resultados; ignorar reservas com status 'rejected' ou 'cancelled' (não geram conflito). | ⏳ |
-| T14.2.3 | Implementar a checagem de sobreposição como predicado puro (início < fimExistente && fim > inícioExistente) aplicado via Array.filter, removendo qualquer sala com choque do conjunto retornado por searchRooms(). | ⏳ |
-| T14.2.4 | Garantir que o motor de conflito seja a mesma função reutilizável usada também pela reserva express (performReservation), mantendo regra única de detecção de ocupação. | ⏳ |
+| ID      | Task                                                                                                                                                                                                                          | Status |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T14.2.1 | Em searchRooms()/expandReservationDates() (src/modules/novaReserva.js), carregar as reservas existentes das salas candidatas e comparar intervalos com parseTimeStr() para detectar sobreposição total ou parcial de horário. | ⏳     |
+| T14.2.2 | Considerar como conflito apenas reservas com status 'approved' ou 'pending', excluindo a sala dos resultados; ignorar reservas com status 'rejected' ou 'cancelled' (não geram conflito).                                     | ⏳     |
+| T14.2.3 | Implementar a checagem de sobreposição como predicado puro (início < fimExistente && fim > inícioExistente) aplicado via Array.filter, removendo qualquer sala com choque do conjunto retornado por searchRooms().            | ⏳     |
+| T14.2.4 | Garantir que o motor de conflito seja a mesma função reutilizável usada também pela reserva express (performReservation), mantendo regra única de detecção de ocupação.                                                       | ⏳     |
 
 ---
 
@@ -182,26 +182,26 @@ Funcionalidade: Detecção de conflito e ocupação
 
 **Grupo:** `CA - Assistente em 4 passos`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA12** | A nova reserva é conduzida em um assistente de quatro passos: (1) escolher o tipo de recurso, (2) informar data e horário, (3) escolher o recurso disponível, (4) revisar e confirmar. | — | 📝 |
-| **CA13** | O passo seguinte só é liberado quando o passo atual está válido; é possível voltar ao passo anterior sem perder os dados já informados. | — | 📝 |
-| **CA14** | O passo de revisão mostra um resumo de tudo o que foi escolhido antes de confirmar. | — | 📝 |
+| ID       | Critério                                                                                                                                                                               | Como verificar | Status |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA12** | A nova reserva é conduzida em um assistente de quatro passos: (1) escolher o tipo de recurso, (2) informar data e horário, (3) escolher o recurso disponível, (4) revisar e confirmar. | —              | 📝     |
+| **CA13** | O passo seguinte só é liberado quando o passo atual está válido; é possível voltar ao passo anterior sem perder os dados já informados.                                                | —              | 📝     |
+| **CA14** | O passo de revisão mostra um resumo de tudo o que foi escolhido antes de confirmar.                                                                                                    | —              | 📝     |
 
 **Grupo:** `CA - Tipo de recurso`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA15** | No primeiro passo, a pessoa escolhe reservar uma sala ou um equipamento. | — | 📝 |
-| **CA16** | A busca do passo 3 lista apenas recursos do tipo escolhido e disponíveis (sem conflito, ativos). | — | 📝 |
+| ID       | Critério                                                                                         | Como verificar | Status |
+| -------- | ------------------------------------------------------------------------------------------------ | -------------- | ------ |
+| **CA15** | No primeiro passo, a pessoa escolhe reservar uma sala ou um equipamento.                         | —              | 📝     |
+| **CA16** | A busca do passo 3 lista apenas recursos do tipo escolhido e disponíveis (sem conflito, ativos). | —              | 📝     |
 
 **Grupo:** `CA - Recorrência`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA17** | A pessoa pode marcar a reserva como recorrente, escolhendo entre diária, semanal ou personalizada. | — | 📝 |
-| **CA18** | A recorrência gera as ocorrências dentro do intervalo definido; ocorrências em conflito são sinalizadas antes de confirmar. | — | 📝 |
-| **CA19** | A reserva sem recorrência (única) continua sendo o comportamento padrão. | — | 📝 |
+| ID       | Critério                                                                                                                    | Como verificar | Status |
+| -------- | --------------------------------------------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA17** | A pessoa pode marcar a reserva como recorrente, escolhendo entre diária, semanal ou personalizada.                          | —              | 📝     |
+| **CA18** | A recorrência gera as ocorrências dentro do intervalo definido; ocorrências em conflito são sinalizadas antes de confirmar. | —              | 📝     |
+| **CA19** | A reserva sem recorrência (única) continua sendo o comportamento padrão.                                                    | —              | 📝     |
 
 ### User Stories adicionais
 
@@ -263,10 +263,9 @@ Funcionalidade: Reserva recorrente
 
 #### Tasks adicionais (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T14.3.1 | Refatorar renderNovaReserva(page) para um assistente de 4 passos (stepper) com estado por passo e navegação avançar/voltar preservando formData (CA12, CA13, CA14). | ⏳ |
-| T14.3.2 | Adicionar no passo 1 a escolha de tipo (sala/equipamento) e fazer searchRooms()/searchEquipments() filtrar a busca do passo 3 pelo tipo escolhido (CA15, CA16). | ⏳ |
-| T14.4.1 | Implementar opções de recorrência (diária/semanal/personalizada) e expandir as ocorrências dentro do intervalo via expandReservationDates() (CA17, CA19). | ⏳ |
-| T14.4.2 | Aplicar o motor de conflito a cada ocorrência da recorrência e sinalizar as ocorrências em conflito no passo de revisão antes de confirmar (CA18). | ⏳ |
-
+| ID      | Task                                                                                                                                                                | Status |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T14.3.1 | Refatorar renderNovaReserva(page) para um assistente de 4 passos (stepper) com estado por passo e navegação avançar/voltar preservando formData (CA12, CA13, CA14). | ⏳     |
+| T14.3.2 | Adicionar no passo 1 a escolha de tipo (sala/equipamento) e fazer searchRooms()/searchEquipments() filtrar a busca do passo 3 pelo tipo escolhido (CA15, CA16).     | ⏳     |
+| T14.4.1 | Implementar opções de recorrência (diária/semanal/personalizada) e expandir as ocorrências dentro do intervalo via expandReservationDates() (CA17, CA19).           | ⏳     |
+| T14.4.2 | Aplicar o motor de conflito a cada ocorrência da recorrência e sinalizar as ocorrências em conflito no passo de revisão antes de confirmar (CA18).                  | ⏳     |

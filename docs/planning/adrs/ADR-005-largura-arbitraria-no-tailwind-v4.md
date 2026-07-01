@@ -11,7 +11,10 @@ Convenção de código transversal ao front. Decorre da escala de spacing M3 por
 No Tailwind v4, o theme namespace `--spacing-*` alimenta **não só** os utilitários de espaçamento (`p-*`, `gap-*`, `m-*`) **mas também** os de dimensionamento: `max-w-*`, `min-w-*`, `w-*`, `h-*`. O SIRA define a escala M3 com nomes semânticos:
 
 ```css
---spacing-sm: 8px;  --spacing-md: 16px;  --spacing-lg: 24px;  --spacing-xl: 32px;
+--spacing-sm: 8px;
+--spacing-md: 16px;
+--spacing-lg: 24px;
+--spacing-xl: 32px;
 ```
 
 Consequência traiçoeira: `max-w-lg` **não** resolve para os ~32rem que um dev espera do Tailwind padrão — resolve para `--spacing-lg` = **24px**. Um container que deveria ter 512px de largura máxima fica com 24px, quebrando o layout de forma silenciosa (sem erro de build). As opções:

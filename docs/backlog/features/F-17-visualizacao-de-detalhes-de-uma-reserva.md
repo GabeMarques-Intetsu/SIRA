@@ -15,20 +15,20 @@ Tela que mostra todos os dados de uma reserva — sala, horário, status, justif
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                     | Requisito                    | Relação |
+| ---------------------------------------------------------------------- | ---------------------------- | ------- |
 | [RF-007](../../requirements/RF/RF-007-gestao-das-proprias-reservas.md) | Gestão das próprias reservas | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Detalhe da reserva`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | O detalhe mostra sala, horário, status, justificativa e recursos solicitados. | — | 📝 |
-| **CA02** | O detalhe mostra o histórico de aprovação com responsável e data, quando houver. | — | 📝 |
-| **CA03** | O detalhe é acessível ao clicar em um item da listagem ou em uma notificação. | — | 📝 |
-| **CA04** | Um usuário só acessa o detalhe das próprias reservas (exceto o administrador). | — | 📝 |
+| ID       | Critério                                                                         | Como verificar | Status |
+| -------- | -------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | O detalhe mostra sala, horário, status, justificativa e recursos solicitados.    | —              | 📝     |
+| **CA02** | O detalhe mostra o histórico de aprovação com responsável e data, quando houver. | —              | 📝     |
+| **CA03** | O detalhe é acessível ao clicar em um item da listagem ou em uma notificação.    | —              | 📝     |
+| **CA04** | Um usuário só acessa o detalhe das próprias reservas (exceto o administrador).   | —              | 📝     |
 
 ## User Stories
 
@@ -90,10 +90,9 @@ Funcionalidade: Detalhe da reserva
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T17.1.1 | Em openViewModal(r) (src/modules/reservations.js), montar com createModal()/infoRow() (src/components/modal.js) a exibição de sala, horário, status, justificativa e recursos solicitados da reserva. | ⏳ |
-| T17.1.2 | Exibir no detalhe o histórico de aprovação (responsável e data) lendo a approval vinculada via getApprovals()/reservationId quando houver, renderizando-o com infoRow(). | ⏳ |
-| T17.1.3 | Permitir abrir o detalhe tanto ao clicar num item da listagem (buildRow -> openViewModal) quanto ao abrir uma notificação, resolvendo a reserva por reservationId e chamando openViewModal(r). | ⏳ |
-| T17.1.4 | Restringir o acesso ao detalhe às próprias reservas (isMine(r) em src/modules/reservations.js), liberando apenas para o admin; caso contrário, não exibir o modal e informar que só é possível acessar as próprias reservas. | ⏳ |
-
+| ID      | Task                                                                                                                                                                                                                         | Status |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T17.1.1 | Em openViewModal(r) (src/modules/reservations.js), montar com createModal()/infoRow() (src/components/modal.js) a exibição de sala, horário, status, justificativa e recursos solicitados da reserva.                        | ⏳     |
+| T17.1.2 | Exibir no detalhe o histórico de aprovação (responsável e data) lendo a approval vinculada via getApprovals()/reservationId quando houver, renderizando-o com infoRow().                                                     | ⏳     |
+| T17.1.3 | Permitir abrir o detalhe tanto ao clicar num item da listagem (buildRow -> openViewModal) quanto ao abrir uma notificação, resolvendo a reserva por reservationId e chamando openViewModal(r).                               | ⏳     |
+| T17.1.4 | Restringir o acesso ao detalhe às próprias reservas (isMine(r) em src/modules/reservations.js), liberando apenas para o admin; caso contrário, não exibir o modal e informar que só é possível acessar as próprias reservas. | ⏳     |

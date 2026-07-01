@@ -14,21 +14,21 @@ Na seção Notificações, a pessoa define como quer ser avisada sobre cada tipo
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                              | Requisito                             | Relação |
+| ------------------------------------------------------------------------------- | ------------------------------------- | ------- |
 | [RF-012](../../requirements/RF/RF-012-configuracoes-da-conta-e-preferencias.md) | Configurações da conta e preferências | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Matriz de notificações`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | Para cada tipo de evento, a pessoa escolhe receber aviso no app e/ou por e-mail, de forma independente. | — | 📝 |
-| **CA02** | A matriz lista no mínimo os eventos: reserva aprovada, reserva recusada, nova solicitação aguardando aprovação, lembrete antes da reserva e recurso em manutenção. | — | 📝 |
-| **CA03** | As escolhas são salvas e respeitadas no envio das notificações. | — | 📝 |
-| **CA04** | Eventos restritos a perfis (ex.: "nova solicitação aguarda aprovação") só aparecem para quem tem o papel correspondente. | — | 📝 |
-| **CA05** | Desmarcar um canal para um evento impede o envio daquele aviso por aquele canal. | — | 📝 |
+| ID       | Critério                                                                                                                                                           | Como verificar | Status |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------- | ------ |
+| **CA01** | Para cada tipo de evento, a pessoa escolhe receber aviso no app e/ou por e-mail, de forma independente.                                                            | —              | 📝     |
+| **CA02** | A matriz lista no mínimo os eventos: reserva aprovada, reserva recusada, nova solicitação aguardando aprovação, lembrete antes da reserva e recurso em manutenção. | —              | 📝     |
+| **CA03** | As escolhas são salvas e respeitadas no envio das notificações.                                                                                                    | —              | 📝     |
+| **CA04** | Eventos restritos a perfis (ex.: "nova solicitação aguarda aprovação") só aparecem para quem tem o papel correspondente.                                           | —              | 📝     |
+| **CA05** | Desmarcar um canal para um evento impede o envio daquele aviso por aquele canal.                                                                                   | —              | 📝     |
 
 ## User Stories
 
@@ -66,8 +66,8 @@ Funcionalidade: Matriz de notificações
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T40.1.1 | Renderizar a matriz evento × canal (app/e-mail) com checkboxes por célula, populada a partir das preferências do usuário (CA01, CA02). | ⏳ |
-| T40.1.2 | Filtrar os eventos exibidos conforme o papel do usuário, escondendo eventos restritos a aprovadores quando não aplicável (CA04). | ⏳ |
-| T40.1.3 | Persistir as preferências e consultá-las no ponto de envio de notificações, suprimindo o canal desmarcado (CA03, CA05). | ⏳ |
+| ID      | Task                                                                                                                                   | Status |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T40.1.1 | Renderizar a matriz evento × canal (app/e-mail) com checkboxes por célula, populada a partir das preferências do usuário (CA01, CA02). | ⏳     |
+| T40.1.2 | Filtrar os eventos exibidos conforme o papel do usuário, escondendo eventos restritos a aprovadores quando não aplicável (CA04).       | ⏳     |
+| T40.1.3 | Persistir as preferências e consultá-las no ponto de envio de notificações, suprimindo o canal desmarcado (CA03, CA05).                | ⏳     |

@@ -15,20 +15,20 @@ A seção **Integrações** com sistemas externos é placeholder de evolução f
 
 ## Requisitos realizados (rastreabilidade ↑)
 
-| RF | Requisito | Tipo |
-| --- | --- | --- |
+| RF                                                                              | Requisito                             | Tipo      |
+| ------------------------------------------------------------------------------- | ------------------------------------- | --------- |
 | [RF-012](../../requirements/RF/RF-012-configuracoes-da-conta-e-preferencias.md) | Configurações da conta e preferências | Funcional |
 
 ## Features sob este Epic (rastreabilidade ↓)
 
-| ID | Nome | Status | Arquivo |
-| --- | --- | --- | --- |
-| F-37 | Edição do perfil pessoal | 📝 Proposto | [F-37](../features/F-37-edicao-do-perfil-pessoal.md) |
-| F-38 | Preferências de interface | 📝 Proposto | [F-38](../features/F-38-preferencias-de-interface.md) |
-| F-39 | Segurança da conta | 📝 Proposto | [F-39](../features/F-39-seguranca-da-conta.md) |
-| F-40 | Preferências de notificação | 📝 Proposto | [F-40](../features/F-40-preferencias-de-notificacao.md) |
+| ID   | Nome                          | Status      | Arquivo                                                   |
+| ---- | ----------------------------- | ----------- | --------------------------------------------------------- |
+| F-37 | Edição do perfil pessoal      | 📝 Proposto | [F-37](../features/F-37-edicao-do-perfil-pessoal.md)      |
+| F-38 | Preferências de interface     | 📝 Proposto | [F-38](../features/F-38-preferencias-de-interface.md)     |
+| F-39 | Segurança da conta            | 📝 Proposto | [F-39](../features/F-39-seguranca-da-conta.md)            |
+| F-40 | Preferências de notificação   | 📝 Proposto | [F-40](../features/F-40-preferencias-de-notificacao.md)   |
 | F-41 | Exportação dos dados pessoais | 📝 Proposto | [F-41](../features/F-41-exportacao-dos-dados-pessoais.md) |
-| F-42 | Exclusão da própria conta | 📝 Proposto | [F-42](../features/F-42-exclusao-da-propria-conta.md) |
+| F-42 | Exclusão da própria conta     | 📝 Proposto | [F-42](../features/F-42-exclusao-da-propria-conta.md)     |
 
 ## Fora-de-escopo
 

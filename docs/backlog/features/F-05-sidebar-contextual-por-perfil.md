@@ -15,21 +15,21 @@ Menu lateral cujo conteúdo muda conforme o perfil: o administrador vê as seç�
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                                         | Requisito                                                  | Relação |
+| ------------------------------------------------------------------------------------------ | ---------------------------------------------------------- | ------- |
 | [RF-002](../../requirements/RF/RF-002-navegacao-contextual-por-perfil-e-adaptacao-ao-d.md) | Navegação contextual por perfil e adaptação ao dispositivo | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Menu por perfil`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | O administrador vê as seções de gestão (Salas, Usuários, Aprovações, Painel). | — | 📝 |
-| **CA02** | O professor vê apenas Minhas Reservas, Nova Reserva, Calendário e Notificações. | — | 📝 |
-| **CA03** | Seções restritas ao administrador não aparecem para o professor. | — | 📝 |
-| **CA04** | O item da seção atual fica destacado no menu. | — | 📝 |
-| **CA05** | O contador de pendências/notificações aparece junto ao item correspondente e reflete a quantidade real. | — | 📝 |
+| ID       | Critério                                                                                                | Como verificar | Status |
+| -------- | ------------------------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | O administrador vê as seções de gestão (Salas, Usuários, Aprovações, Painel).                           | —              | 📝     |
+| **CA02** | O professor vê apenas Minhas Reservas, Nova Reserva, Calendário e Notificações.                         | —              | 📝     |
+| **CA03** | Seções restritas ao administrador não aparecem para o professor.                                        | —              | 📝     |
+| **CA04** | O item da seção atual fica destacado no menu.                                                           | —              | 📝     |
+| **CA05** | O contador de pendências/notificações aparece junto ao item correspondente e reflete a quantidade real. | —              | 📝     |
 
 ## User Stories
 
@@ -91,10 +91,9 @@ Funcionalidade: Menu por perfil
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T05.1.1 | Revisar o filtro RBAC de NAV_ITEMS em createSidebar() (src/components/sidebar.js) para que professor veja apenas reservas, calendario, novaReserva e notificacoes, e admin veja salas, usuarios, aprovacoes e dashboard/painel (CA01/CA02/CA03). | ⏳ |
-| T05.1.2 | Corrigir o item 'notificacoes' em NAV_ITEMS removendo roles:['admin'] para que o professor também veja Notificações conforme CA02. | ⏳ |
-| T05.1.3 | Garantir o destaque do item ativo aplicando a classe 'active' no nav-item correspondente à página atual no onClick e na renderização inicial de createSidebar() (CA04). | ⏳ |
-| T05.1.4 | Validar os badges via getReservations()/getApprovals()/getNotifications() e window.updateSidebarBadges() para refletir a contagem real de pendências ao lado do item (CA05). | ⏳ |
-
+| ID      | Task                                                                                                                                                                                                                                             | Status |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
+| T05.1.1 | Revisar o filtro RBAC de NAV_ITEMS em createSidebar() (src/components/sidebar.js) para que professor veja apenas reservas, calendario, novaReserva e notificacoes, e admin veja salas, usuarios, aprovacoes e dashboard/painel (CA01/CA02/CA03). | ⏳     |
+| T05.1.2 | Corrigir o item 'notificacoes' em NAV_ITEMS removendo roles:['admin'] para que o professor também veja Notificações conforme CA02.                                                                                                               | ⏳     |
+| T05.1.3 | Garantir o destaque do item ativo aplicando a classe 'active' no nav-item correspondente à página atual no onClick e na renderização inicial de createSidebar() (CA04).                                                                          | ⏳     |
+| T05.1.4 | Validar os badges via getReservations()/getApprovals()/getNotifications() e window.updateSidebarBadges() para refletir a contagem real de pendências ao lado do item (CA05).                                                                     | ⏳     |

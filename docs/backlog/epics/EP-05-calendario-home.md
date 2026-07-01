@@ -14,12 +14,12 @@ Visualização em grade semanal (7 dias × 12 horários das 7h às 19h) das rese
 
 ## Requisitos realizados (rastreabilidade ↑)
 
-| RF | Requisito | Tipo |
-| --- | --- | --- |
+| RF                                                                          | Requisito                         | Tipo      |
+| --------------------------------------------------------------------------- | --------------------------------- | --------- |
 | [RF-005](../../requirements/RF/RF-005-visualizacao-semanal-das-reservas.md) | Visualização semanal das reservas | Funcional |
 
 ## Features sob este Epic (rastreabilidade ↓)
 
-| ID | Nome | Status | Arquivo |
-| --- | --- | --- | --- |
+| ID   | Nome                                 | Status      | Arquivo                                                        |
+| ---- | ------------------------------------ | ----------- | -------------------------------------------------------------- |
 | F-13 | Grade semanal de reservas (7d x 12h) | 📝 Proposto | [F-13](../features/F-13-grade-semanal-de-reservas-7d-x-12h.md) |

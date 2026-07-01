@@ -234,7 +234,11 @@ test("isCompleted: aprovada que já terminou é concluída (ADR-006)", () => {
   // NOW = 2026-06-13T12:00Z; término 11:00 do mesmo dia já passou.
   assert.equal(
     isCompleted(
-      { status: "approved", reservation_date: "2026-06-13", end_time: "11:00:00" },
+      {
+        status: "approved",
+        reservation_date: "2026-06-13",
+        end_time: "11:00:00",
+      },
       NOW,
     ),
     true,
@@ -244,7 +248,11 @@ test("isCompleted: aprovada que já terminou é concluída (ADR-006)", () => {
 test("isCompleted: aprovada com término futuro NÃO é concluída (ADR-006)", () => {
   assert.equal(
     isCompleted(
-      { status: "approved", reservation_date: "2026-06-20", end_time: "16:00:00" },
+      {
+        status: "approved",
+        reservation_date: "2026-06-20",
+        end_time: "16:00:00",
+      },
       NOW,
     ),
     false,
@@ -254,7 +262,11 @@ test("isCompleted: aprovada com término futuro NÃO é concluída (ADR-006)", (
 test("isCompleted: só vale para approved (pending passada não conclui)", () => {
   assert.equal(
     isCompleted(
-      { status: "pending", reservation_date: "2026-06-01", end_time: "11:00:00" },
+      {
+        status: "pending",
+        reservation_date: "2026-06-01",
+        end_time: "11:00:00",
+      },
       NOW,
     ),
     false,
@@ -263,13 +275,21 @@ test("isCompleted: só vale para approved (pending passada não conclui)", () =>
 
 test("displayStatus: badge vira 'Concluída' só quando aprovada já terminou (ADR-006)", () => {
   const done = displayStatus(
-    { status: "approved", reservation_date: "2026-06-13", end_time: "11:00:00" },
+    {
+      status: "approved",
+      reservation_date: "2026-06-13",
+      end_time: "11:00:00",
+    },
     NOW,
   );
   assert.equal(done.label, COMPLETED_META.label);
 
   const future = displayStatus(
-    { status: "approved", reservation_date: "2026-06-20", end_time: "16:00:00" },
+    {
+      status: "approved",
+      reservation_date: "2026-06-20",
+      end_time: "16:00:00",
+    },
     NOW,
   );
   assert.equal(future.label, STATUS_META.approved.label);

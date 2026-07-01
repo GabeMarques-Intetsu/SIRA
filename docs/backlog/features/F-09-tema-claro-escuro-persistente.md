@@ -15,20 +15,20 @@ Permite ao usuário alternar entre tema claro e escuro. A escolha é lembrada no
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                                         | Requisito                                                  | Relação |
+| ------------------------------------------------------------------------------------------ | ---------------------------------------------------------- | ------- |
 | [RF-002](../../requirements/RF/RF-002-navegacao-contextual-por-perfil-e-adaptacao-ao-d.md) | Navegação contextual por perfil e adaptação ao dispositivo | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Tema da interface`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | Há um controle para alternar entre tema claro e escuro. | — | 📝 |
-| **CA02** | A escolha de tema é mantida no próximo acesso do usuário. | — | 📝 |
-| **CA03** | O tema escolhido é aplicado já no carregamento, sem piscar a cor errada. | — | 📝 |
-| **CA04** | A troca de tema afeta todas as telas de forma consistente. | — | 📝 |
+| ID       | Critério                                                                 | Como verificar | Status |
+| -------- | ------------------------------------------------------------------------ | -------------- | ------ |
+| **CA01** | Há um controle para alternar entre tema claro e escuro.                  | —              | 📝     |
+| **CA02** | A escolha de tema é mantida no próximo acesso do usuário.                | —              | 📝     |
+| **CA03** | O tema escolhido é aplicado já no carregamento, sem piscar a cor errada. | —              | 📝     |
+| **CA04** | A troca de tema afeta todas as telas de forma consistente.               | —              | 📝     |
 
 ## User Stories
 
@@ -90,9 +90,8 @@ Funcionalidade: Tema da interface
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T09.1.1 | Validar o callback onToggleDark em bootstrap() (src/main.js) que faz document.documentElement.classList.toggle('dark') e persiste em localStorage['sira-theme'] ('dark'/'light') (CA01/CA02). | ⏳ |
-| T09.1.2 | Aplicar o tema persistido já no carregamento lendo localStorage['sira-theme'] e adicionando a classe 'dark' ao <html> em um script inline no index.html (antes do bundle) para evitar flash de cor errada (CA03). | ⏳ |
-| T09.1.3 | Garantir no src/style.css que todas as variáveis de cor (--text-*, --border-color, fundos) tenham contraparte sob .dark no <html> para troca consistente em todas as telas (CA04). | ⏳ |
-
+| ID      | Task                                                                                                                                                                                                              | Status |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T09.1.1 | Validar o callback onToggleDark em bootstrap() (src/main.js) que faz document.documentElement.classList.toggle('dark') e persiste em localStorage['sira-theme'] ('dark'/'light') (CA01/CA02).                     | ⏳     |
+| T09.1.2 | Aplicar o tema persistido já no carregamento lendo localStorage['sira-theme'] e adicionando a classe 'dark' ao <html> em um script inline no index.html (antes do bundle) para evitar flash de cor errada (CA03). | ⏳     |
+| T09.1.3 | Garantir no src/style.css que todas as variáveis de cor (--text-\*, --border-color, fundos) tenham contraparte sob .dark no <html> para troca consistente em todas as telas (CA04).                               | ⏳     |

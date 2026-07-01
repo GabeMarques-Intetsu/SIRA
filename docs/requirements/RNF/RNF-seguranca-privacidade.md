@@ -12,18 +12,18 @@ Os dados pessoais de reserva de cada usuário ficam isolados dos demais no mesmo
 
 ### Métricas obrigatórias (quantitativas)
 
-| Métrica | Alvo | Quando/como medir |
-| --- | --- | --- |
-| Vazamento de dados entre usuários | 0 ocorrências | Teste: usuário A logado nunca enxerga reservas/dados do usuário B no mesmo navegador |
+| Métrica                                | Alvo                                            | Quando/como medir                                                                      |
+| -------------------------------------- | ----------------------------------------------- | -------------------------------------------------------------------------------------- |
+| Vazamento de dados entre usuários      | 0 ocorrências                                   | Teste: usuário A logado nunca enxerga reservas/dados do usuário B no mesmo navegador   |
 | Chaves pessoais prefixadas por usuário | 100% das chaves pessoais com prefixo de usuário | Inspeção do armazenamento local + teste de getStore() validando o id antes de retornar |
-| Acesso a chave de outro usuário | retorna vazio silenciosamente | Teste unitário de acesso cruzado |
-| Excesso de quota de armazenamento | tratado com mensagem amigável (sem quebra) | Teste de estouro de quota |
+| Acesso a chave de outro usuário        | retorna vazio silenciosamente                   | Teste unitário de acesso cruzado                                                       |
+| Excesso de quota de armazenamento      | tratado com mensagem amigável (sem quebra)      | Teste de estouro de quota                                                              |
 
 ## Realizado por (rastreabilidade ↓)
 
-| Epic / Feature | Como atende |
-| --- | --- |
-| EP-03 → F-10 | ver CAs da feature | 
+| Epic / Feature | Como atende        |
+| -------------- | ------------------ |
+| EP-03 → F-10   | ver CAs da feature |
 
 ## Observações
 

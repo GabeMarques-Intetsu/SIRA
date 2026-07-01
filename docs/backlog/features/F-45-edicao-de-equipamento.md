@@ -14,21 +14,21 @@ Permite ao administrador editar um equipamento existente, alterando nome, tipo, 
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                           | Requisito                          | Relação |
+| ---------------------------------------------------------------------------- | ---------------------------------- | ------- |
 | [RF-013](../../requirements/RF/RF-013-gestao-do-catalogo-de-equipamentos.md) | Gestão do catálogo de equipamentos | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Edição de equipamento`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | A edição é acessível apenas ao administrador. | — | 📝 |
-| **CA02** | É possível alterar nome, tipo, estado e vínculo a bloco/sala. | — | 📝 |
-| **CA03** | Não é permitido renomear para um nome já usado por outro equipamento. | — | 📝 |
-| **CA04** | Alterar o estado para inativo ou em manutenção remove o equipamento da disponibilidade para novas reservas. | — | 📝 |
-| **CA05** | As reservas já aprovadas não são apagadas ao mudar o estado; apenas novas reservas ficam bloqueadas. | — | 📝 |
+| ID       | Critério                                                                                                    | Como verificar | Status |
+| -------- | ----------------------------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | A edição é acessível apenas ao administrador.                                                               | —              | 📝     |
+| **CA02** | É possível alterar nome, tipo, estado e vínculo a bloco/sala.                                               | —              | 📝     |
+| **CA03** | Não é permitido renomear para um nome já usado por outro equipamento.                                       | —              | 📝     |
+| **CA04** | Alterar o estado para inativo ou em manutenção remove o equipamento da disponibilidade para novas reservas. | —              | 📝     |
+| **CA05** | As reservas já aprovadas não são apagadas ao mudar o estado; apenas novas reservas ficam bloqueadas.        | —              | 📝     |
 
 ## User Stories
 
@@ -65,8 +65,8 @@ Funcionalidade: Edição de equipamento
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T45.1.1 | Restringir a edição a administradores e pré-popular o formulário com os dados do equipamento selecionado (CA01, CA02). | ⏳ |
-| T45.1.2 | Validar unicidade de nome (excluindo o próprio registro) antes de salvar (CA03). | ⏳ |
-| T45.1.3 | Persistir as alterações via saveEquipment() garantindo que estado inativo/manutenção exclua o equipamento das buscas de disponibilidade, sem remover reservas aprovadas existentes (CA04, CA05). | ⏳ |
+| ID      | Task                                                                                                                                                                                             | Status |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
+| T45.1.1 | Restringir a edição a administradores e pré-popular o formulário com os dados do equipamento selecionado (CA01, CA02).                                                                           | ⏳     |
+| T45.1.2 | Validar unicidade de nome (excluindo o próprio registro) antes de salvar (CA03).                                                                                                                 | ⏳     |
+| T45.1.3 | Persistir as alterações via saveEquipment() garantindo que estado inativo/manutenção exclua o equipamento das buscas de disponibilidade, sem remover reservas aprovadas existentes (CA04, CA05). | ⏳     |

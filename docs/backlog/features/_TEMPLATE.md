@@ -1,4 +1,5 @@
 <!-- GENERIC TEMPLATE — copy to F-NN-<slug>.md. Feature has a paragraph description; BDD lives in the User Story. -->
+
 # F-NN — <nome de negócio>
 
 > **Tipo**: Feature
@@ -15,15 +16,15 @@
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| ID | Requisito | Relação |
-| --- | --- | --- |
+| ID                                            | Requisito   | Relação             |
+| --------------------------------------------- | ----------- | ------------------- |
 | [RF-NNN](../../requirements/RF/RF-NNN-....md) | <enunciado> | Realiza diretamente |
 
 ## Critérios de Aceitação (CAs)
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | <estado verificável em booleano> | <teste> | ⏳ |
+| ID       | Critério                         | Como verificar | Status |
+| -------- | -------------------------------- | -------------- | ------ |
+| **CA01** | <estado verificável em booleano> | <teste>        | ⏳     |
 
 ## User Stories
 
@@ -48,6 +49,6 @@ Funcionalidade: <nome>
 
 ## Tasks (único nível com termo técnico)
 
-| ID | Task | Commit | Status |
-| --- | --- | --- | --- |
-| T-NN.1.1 | <descrição técnica> | — | ⏳ |
+| ID       | Task                | Commit | Status |
+| -------- | ------------------- | ------ | ------ |
+| T-NN.1.1 | <descrição técnica> | —      | ⏳     |

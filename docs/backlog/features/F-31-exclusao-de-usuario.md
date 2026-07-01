@@ -15,20 +15,20 @@ Permite ao administrador excluir um usuário, com confirmação. As reservas ass
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                                      | Requisito                                     | Relação |
+| --------------------------------------------------------------------------------------- | --------------------------------------------- | ------- |
 | [RF-010](../../requirements/RF/RF-010-gestao-de-usuarios-e-solicitacoes-de-cadastro.md) | Gestão de usuários e solicitações de cadastro | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Exclusão de usuário`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | A exclusão exige confirmação explícita. | — | 📝 |
-| **CA02** | As reservas do usuário excluído são preservadas e marcadas, não apagadas. | — | 📝 |
-| **CA03** | O sistema recomenda desativar em vez de excluir quando há histórico extenso. | — | 📝 |
-| **CA04** | Um usuário excluído não consegue mais acessar o sistema. | — | 📝 |
+| ID       | Critério                                                                     | Como verificar | Status |
+| -------- | ---------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | A exclusão exige confirmação explícita.                                      | —              | 📝     |
+| **CA02** | As reservas do usuário excluído são preservadas e marcadas, não apagadas.    | —              | 📝     |
+| **CA03** | O sistema recomenda desativar em vez de excluir quando há histórico extenso. | —              | 📝     |
+| **CA04** | Um usuário excluído não consegue mais acessar o sistema.                     | —              | 📝     |
 
 ## User Stories
 
@@ -90,10 +90,9 @@ Funcionalidade: Exclusão de usuário
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T31.1.1 | Em deleteUser (src/modules/users.js) manter o confirm() de src/utils/dom.js exigindo confirmacao explicita antes de qualquer remocao. | ⏳ |
-| T31.1.2 | Ao confirmar, remover o usuario com saveUsers(getUsers().filter((u) => u.id !== id)) e marcar suas reservas via getReservations()/saveReservations adicionando flag { ownerDeleted: true } em vez de apaga-las. | ⏳ |
-| T31.1.3 | Antes de abrir o confirm, contar as reservas do usuario em getReservations() e, se exceder um limite, exibir mensagem recomendando desativar em vez de excluir. | ⏳ |
-| T31.1.4 | Atualizar a UI apos a exclusao chamando refreshTable(tbody) para que o usuario removido deixe de constar na listagem. | ⏳ |
-
+| ID      | Task                                                                                                                                                                                                            | Status |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T31.1.1 | Em deleteUser (src/modules/users.js) manter o confirm() de src/utils/dom.js exigindo confirmacao explicita antes de qualquer remocao.                                                                           | ⏳     |
+| T31.1.2 | Ao confirmar, remover o usuario com saveUsers(getUsers().filter((u) => u.id !== id)) e marcar suas reservas via getReservations()/saveReservations adicionando flag { ownerDeleted: true } em vez de apaga-las. | ⏳     |
+| T31.1.3 | Antes de abrir o confirm, contar as reservas do usuario em getReservations() e, se exceder um limite, exibir mensagem recomendando desativar em vez de excluir.                                                 | ⏳     |
+| T31.1.4 | Atualizar a UI apos a exclusao chamando refreshTable(tbody) para que o usuario removido deixe de constar na listagem.                                                                                           | ⏳     |

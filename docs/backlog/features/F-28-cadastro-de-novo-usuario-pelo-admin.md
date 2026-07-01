@@ -15,20 +15,20 @@ Permite ao administrador criar diretamente um usuário informando nome, e-mail, 
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                                      | Requisito                                     | Relação |
+| --------------------------------------------------------------------------------------- | --------------------------------------------- | ------- |
 | [RF-010](../../requirements/RF/RF-010-gestao-de-usuarios-e-solicitacoes-de-cadastro.md) | Gestão de usuários e solicitações de cadastro | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Cadastro de usuário`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | O cadastro é acessível apenas ao administrador. | — | 📝 |
-| **CA02** | Exige nome, e-mail, perfil (administrador/professor) e senha inicial. | — | 📝 |
-| **CA03** | Não é permitido cadastrar usuário com e-mail já existente. | — | 📝 |
-| **CA04** | O usuário criado por esse caminho já fica ativo, sem passar pela aprovação de solicitação. | — | 📝 |
+| ID       | Critério                                                                                   | Como verificar | Status |
+| -------- | ------------------------------------------------------------------------------------------ | -------------- | ------ |
+| **CA01** | O cadastro é acessível apenas ao administrador.                                            | —              | 📝     |
+| **CA02** | Exige nome, e-mail, perfil (administrador/professor) e senha inicial.                      | —              | 📝     |
+| **CA03** | Não é permitido cadastrar usuário com e-mail já existente.                                 | —              | 📝     |
+| **CA04** | O usuário criado por esse caminho já fica ativo, sem passar pela aprovação de solicitação. | —              | 📝     |
 
 ## User Stories
 
@@ -92,10 +92,9 @@ Funcionalidade: Cadastro de usuário
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T28.1.1 | Adicionar botao '+ Adicionar Usuario' em renderUsers (src/modules/users.js) que chama openUserModal(null, tbody) apenas quando CURRENT_USER.role === 'admin'. | ⏳ |
-| T28.1.2 | Estender openUserModal (src/modules/users.js) com um campo de senha inicial via formField, exigindo nome, e-mail, perfil (roleSelect com ROLES ['professor','admin']) e senha; bloquear submit com toast de erro quando perfil ou senha faltarem. | ⏳ |
-| T28.1.3 | No onClick de criacao do modal, validar e-mail duplicado contra getUsers() antes do saveUsers, exibindo toast('E-mail ja cadastrado.', 'error') e abortando a criacao. | ⏳ |
-| T28.1.4 | Persistir o novo usuario com saveUsers([...all, { id: genId('u'), name, email, role, password, active: true }]) garantindo status ativo imediato sem passar por sira:signups, e chamar refreshTable(tbody). | ⏳ |
-
+| ID      | Task                                                                                                                                                                                                                                              | Status |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T28.1.1 | Adicionar botao '+ Adicionar Usuario' em renderUsers (src/modules/users.js) que chama openUserModal(null, tbody) apenas quando CURRENT_USER.role === 'admin'.                                                                                     | ⏳     |
+| T28.1.2 | Estender openUserModal (src/modules/users.js) com um campo de senha inicial via formField, exigindo nome, e-mail, perfil (roleSelect com ROLES ['professor','admin']) e senha; bloquear submit com toast de erro quando perfil ou senha faltarem. | ⏳     |
+| T28.1.3 | No onClick de criacao do modal, validar e-mail duplicado contra getUsers() antes do saveUsers, exibindo toast('E-mail ja cadastrado.', 'error') e abortando a criacao.                                                                            | ⏳     |
+| T28.1.4 | Persistir o novo usuario com saveUsers([...all, { id: genId('u'), name, email, role, password, active: true }]) garantindo status ativo imediato sem passar por sira:signups, e chamar refreshTable(tbody).                                       | ⏳     |

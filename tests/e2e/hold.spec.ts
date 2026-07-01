@@ -40,7 +40,9 @@ const END = "16:00";
 
 test.describe("F-49 — hold com dois usuários", () => {
   test.skip(
-    !hasAdminCreds() || !hasServiceRole() || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    !hasAdminCreds() ||
+      !hasServiceRole() ||
+      !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     "Requer SMOKE_ADMIN_*, SUPABASE_SERVICE_ROLE_KEY e NEXT_PUBLIC_SUPABASE_ANON_KEY.",
   );
 
@@ -67,10 +69,7 @@ test.describe("F-49 — hold com dois usuários", () => {
     testUserId = created.user.id;
 
     // Garante o profile ativo (trigger handle_new_user cria como professor).
-    await sb
-      .from("profiles")
-      .update({ status: "active" })
-      .eq("id", testUserId);
+    await sb.from("profiles").update({ status: "active" }).eq("id", testUserId);
 
     // 2) Escolhe uma sala ATIVA estável para o cenário.
     const { data: room, error: roomErr } = await sb
@@ -209,9 +208,9 @@ test.describe("F-49 — hold com dois usuários", () => {
     // que é setado ao fim da mesma transição que desliga o aria-busy.
     const holdStatus = page.getByText(/reservado temporariamente para você/i);
     await expect(holdStatus).toBeVisible();
-    await expect(
-      page.locator('[role="status"][aria-busy="true"]'),
-    ).toHaveCount(0);
+    await expect(page.locator('[role="status"][aria-busy="true"]')).toHaveCount(
+      0,
+    );
     // Pequena folga p/ o React commitar `setHoldActive(true)` (mesma transição
     // que desliga o aria-busy) antes de Voltar — `releaseHold()` só dispara se
     // holdActive já é true. Sem isto há corrida de estado client.
@@ -242,7 +241,10 @@ test.describe("F-49 — hold com dois usuários", () => {
             .eq("reservation_date", FUTURE_DATE);
           return count ?? 0;
         },
-        { timeout: 15_000, message: "hold de A deveria ser liberado ao voltar" },
+        {
+          timeout: 15_000,
+          message: "hold de A deveria ser liberado ao voltar",
+        },
       )
       .toBe(0);
 

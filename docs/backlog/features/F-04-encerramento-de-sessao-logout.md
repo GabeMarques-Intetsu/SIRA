@@ -15,20 +15,20 @@ Permite ao usuário encerrar a sessão a qualquer momento, retirando da tela os 
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                                      | Requisito                                     | Relação |
+| --------------------------------------------------------------------------------------- | --------------------------------------------- | ------- |
 | [RF-001](../../requirements/RF/RF-001-acesso-institucional-e-continuidade-de-sessao.md) | Acesso institucional e continuidade de sessão | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Encerramento de sessão`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | A ação de sair encerra a sessão atual e leva o usuário à tela de login. | — | 📝 |
-| **CA02** | Após sair, os dados pessoais da sessão atual deixam de ficar acessíveis na tela. | — | 📝 |
-| **CA03** | Sair não remove os dados pessoais do usuário, que continuam disponíveis no próximo login dele. | — | 📝 |
-| **CA04** | Sair de um usuário não afeta os dados de outros usuários no mesmo navegador. | — | 📝 |
+| ID       | Critério                                                                                       | Como verificar | Status |
+| -------- | ---------------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | A ação de sair encerra a sessão atual e leva o usuário à tela de login.                        | —              | 📝     |
+| **CA02** | Após sair, os dados pessoais da sessão atual deixam de ficar acessíveis na tela.               | —              | 📝     |
+| **CA03** | Sair não remove os dados pessoais do usuário, que continuam disponíveis no próximo login dele. | —              | 📝     |
+| **CA04** | Sair de um usuário não afeta os dados de outros usuários no mesmo navegador.                   | —              | 📝     |
 
 ## User Stories
 
@@ -90,9 +90,8 @@ Funcionalidade: Encerramento de sessão
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T04.1.1 | Confirmar que o botão 'Sair' da userPill em createSidebar() (src/components/sidebar.js) chama logout() do store e em seguida location.reload() para retornar a renderLogin() (CA01). | ⏳ |
-| T04.1.2 | Garantir que logout() em src/data/store.js zere CURRENT_USER e remova apenas a chave de sessão 'sira-auth', sem apagar as coleções particionadas por e-mail (sira_db/<email>/*.json) (CA03/CA04). | ⏳ |
-| T04.1.3 | Após reload pós-logout, validar em bootstrap() que sem 'sira-auth' o shell (sidebar/main) não é montado e nenhum dado pessoal da sessão anterior fica no DOM (CA02). | ⏳ |
-
+| ID      | Task                                                                                                                                                                                               | Status |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T04.1.1 | Confirmar que o botão 'Sair' da userPill em createSidebar() (src/components/sidebar.js) chama logout() do store e em seguida location.reload() para retornar a renderLogin() (CA01).               | ⏳     |
+| T04.1.2 | Garantir que logout() em src/data/store.js zere CURRENT_USER e remova apenas a chave de sessão 'sira-auth', sem apagar as coleções particionadas por e-mail (sira_db/<email>/\*.json) (CA03/CA04). | ⏳     |
+| T04.1.3 | Após reload pós-logout, validar em bootstrap() que sem 'sira-auth' o shell (sidebar/main) não é montado e nenhum dado pessoal da sessão anterior fica no DOM (CA02).                               | ⏳     |

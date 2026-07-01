@@ -1,4 +1,5 @@
 <!-- GENERIC TEMPLATE — adapt to your project. Seed terms from the system's real domain entities/models. -->
+
 # Glossário de domínio — <NOME DO PROJETO>
 
 > Vocabulário canônico do produto. Toda US, CA, ADR e doc operacional **deve** usar estes termos consistentemente.

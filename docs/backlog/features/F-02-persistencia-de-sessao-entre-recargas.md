@@ -15,20 +15,20 @@ Mantém o usuário conectado entre recargas da página e entre fechamentos do na
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                                      | Requisito                                     | Relação |
+| --------------------------------------------------------------------------------------- | --------------------------------------------- | ------- |
 | [RF-001](../../requirements/RF/RF-001-acesso-institucional-e-continuidade-de-sessao.md) | Acesso institucional e continuidade de sessão | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Continuidade da sessão`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | Após acessar, recarregar a página mantém o usuário conectado sem novo login. | — | 📝 |
-| **CA02** | Fechar e reabrir o navegador mantém o usuário conectado enquanto a sessão for válida. | — | 📝 |
-| **CA03** | Encerrar a sessão impede a restauração automática no acesso seguinte. | — | 📝 |
-| **CA04** | A sessão restaurada preserva o perfil e as permissões do usuário. | — | 📝 |
+| ID       | Critério                                                                              | Como verificar | Status |
+| -------- | ------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | Após acessar, recarregar a página mantém o usuário conectado sem novo login.          | —              | 📝     |
+| **CA02** | Fechar e reabrir o navegador mantém o usuário conectado enquanto a sessão for válida. | —              | 📝     |
+| **CA03** | Encerrar a sessão impede a restauração automática no acesso seguinte.                 | —              | 📝     |
+| **CA04** | A sessão restaurada preserva o perfil e as permissões do usuário.                     | —              | 📝     |
 
 ## User Stories
 
@@ -90,10 +90,9 @@ Funcionalidade: Continuidade de sessão
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T02.1.1 | Garantir que tryRestoreSession() em src/data/store.js seja chamado no bootstrap() (src/main.js) antes de checar CURRENT_USER e revalide a conta ativa via logins.json ao restaurar a chave 'sira-auth'. | ⏳ |
-| T02.1.2 | Confirmar que a marcação de sessão use localStorage (não sessionStorage) na chave 'sira-auth' em login()/logout() de src/data/store.js para sobreviver ao fechamento do navegador (CA02). | ⏳ |
-| T02.1.3 | Repopular CURRENT_USER com role e permissões completas em tryRestoreSession()/login() ao restaurar, preservando o perfil usado pela sidebar e pelo RBAC de navigate() (CA04). | ⏳ |
-| T02.1.4 | Validar que logout() removendo 'sira-auth' impede a reconexão automática no próximo bootstrap(), caindo em renderLogin() (CA03). | ⏳ |
-
+| ID      | Task                                                                                                                                                                                                    | Status |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T02.1.1 | Garantir que tryRestoreSession() em src/data/store.js seja chamado no bootstrap() (src/main.js) antes de checar CURRENT_USER e revalide a conta ativa via logins.json ao restaurar a chave 'sira-auth'. | ⏳     |
+| T02.1.2 | Confirmar que a marcação de sessão use localStorage (não sessionStorage) na chave 'sira-auth' em login()/logout() de src/data/store.js para sobreviver ao fechamento do navegador (CA02).               | ⏳     |
+| T02.1.3 | Repopular CURRENT_USER com role e permissões completas em tryRestoreSession()/login() ao restaurar, preservando o perfil usado pela sidebar e pelo RBAC de navigate() (CA04).                           | ⏳     |
+| T02.1.4 | Validar que logout() removendo 'sira-auth' impede a reconexão automática no próximo bootstrap(), caindo em renderLogin() (CA03).                                                                        | ⏳     |

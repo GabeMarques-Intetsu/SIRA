@@ -16,14 +16,14 @@ A tela de configurações reúne tudo que pertence à conta da própria pessoa: 
 
 ## Realizado por (rastreabilidade ↓)
 
-| Epic | Feature(s) | Status |
-| --- | --- | --- |
-| [EP-12](../../backlog/epics/EP-12-configuracoes-da-conta.md) | [F-37 Edição do perfil pessoal](../../backlog/features/F-37-edicao-do-perfil-pessoal.md) | 📝 |
-| [EP-12](../../backlog/epics/EP-12-configuracoes-da-conta.md) | [F-38 Preferências de interface](../../backlog/features/F-38-preferencias-de-interface.md) | 📝 |
-| [EP-12](../../backlog/epics/EP-12-configuracoes-da-conta.md) | [F-39 Segurança da conta](../../backlog/features/F-39-seguranca-da-conta.md) | 📝 |
-| [EP-12](../../backlog/epics/EP-12-configuracoes-da-conta.md) | [F-40 Preferências de notificação](../../backlog/features/F-40-preferencias-de-notificacao.md) | 📝 |
-| [EP-12](../../backlog/epics/EP-12-configuracoes-da-conta.md) | [F-41 Exportação dos dados pessoais](../../backlog/features/F-41-exportacao-dos-dados-pessoais.md) | 📝 |
-| [EP-12](../../backlog/epics/EP-12-configuracoes-da-conta.md) | [F-42 Exclusão da própria conta](../../backlog/features/F-42-exclusao-da-propria-conta.md) | 📝 |
+| Epic                                                         | Feature(s)                                                                                         | Status |
+| ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------- | ------ |
+| [EP-12](../../backlog/epics/EP-12-configuracoes-da-conta.md) | [F-37 Edição do perfil pessoal](../../backlog/features/F-37-edicao-do-perfil-pessoal.md)           | 📝     |
+| [EP-12](../../backlog/epics/EP-12-configuracoes-da-conta.md) | [F-38 Preferências de interface](../../backlog/features/F-38-preferencias-de-interface.md)         | 📝     |
+| [EP-12](../../backlog/epics/EP-12-configuracoes-da-conta.md) | [F-39 Segurança da conta](../../backlog/features/F-39-seguranca-da-conta.md)                       | 📝     |
+| [EP-12](../../backlog/epics/EP-12-configuracoes-da-conta.md) | [F-40 Preferências de notificação](../../backlog/features/F-40-preferencias-de-notificacao.md)     | 📝     |
+| [EP-12](../../backlog/epics/EP-12-configuracoes-da-conta.md) | [F-41 Exportação dos dados pessoais](../../backlog/features/F-41-exportacao-dos-dados-pessoais.md) | 📝     |
+| [EP-12](../../backlog/epics/EP-12-configuracoes-da-conta.md) | [F-42 Exclusão da própria conta](../../backlog/features/F-42-exclusao-da-propria-conta.md)         | 📝     |
 
 ## RNFs que limitam
 

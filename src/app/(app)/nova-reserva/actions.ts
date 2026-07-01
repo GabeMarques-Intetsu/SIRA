@@ -325,7 +325,13 @@ export async function createReservationAction(
   await deleteOwnHolds(
     supabase,
     profile.id,
-    { kind: input.kind, resourceId: input.resourceId, dates, start: input.start, end: input.end },
+    {
+      kind: input.kind,
+      resourceId: input.resourceId,
+      dates,
+      start: input.start,
+      end: input.end,
+    },
     isRoom,
   );
 

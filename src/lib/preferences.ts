@@ -108,13 +108,15 @@ export const LANGUAGE_OPTIONS: {
     value: "en",
     label: "English (Canadá)",
     disabled: true,
-    title: "Tradução indisponível no momento — a interface está disponível apenas em Português.",
+    title:
+      "Tradução indisponível no momento — a interface está disponível apenas em Português.",
   },
   {
     value: "es",
     label: "Español (América Latina)",
     disabled: true,
-    title: "Tradução indisponível no momento — a interface está disponível apenas em Português.",
+    title:
+      "Tradução indisponível no momento — a interface está disponível apenas em Português.",
   },
 ];
 

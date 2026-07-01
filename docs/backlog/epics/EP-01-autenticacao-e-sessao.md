@@ -14,15 +14,15 @@ Garante que apenas professores cadastrados acessem o sistema. Inclui login pelo 
 
 ## Requisitos realizados (rastreabilidade ↑)
 
-| RF | Requisito | Tipo |
-| --- | --- | --- |
+| RF                                                                                      | Requisito                                     | Tipo      |
+| --------------------------------------------------------------------------------------- | --------------------------------------------- | --------- |
 | [RF-001](../../requirements/RF/RF-001-acesso-institucional-e-continuidade-de-sessao.md) | Acesso institucional e continuidade de sessão | Funcional |
 
 ## Features sob este Epic (rastreabilidade ↓)
 
-| ID | Nome | Status | Arquivo |
-| --- | --- | --- | --- |
-| F-01 | Login institucional por e-mail | 📝 Proposto | [F-01](../features/F-01-login-institucional-por-e-mail.md) |
+| ID   | Nome                                  | Status      | Arquivo                                                           |
+| ---- | ------------------------------------- | ----------- | ----------------------------------------------------------------- |
+| F-01 | Login institucional por e-mail        | 📝 Proposto | [F-01](../features/F-01-login-institucional-por-e-mail.md)        |
 | F-02 | Persistência de sessão entre recargas | 📝 Proposto | [F-02](../features/F-02-persistencia-de-sessao-entre-recargas.md) |
 | F-03 | Auto-servico de cadastro de professor | 📝 Proposto | [F-03](../features/F-03-auto-servico-de-cadastro-de-professor.md) |
-| F-04 | Encerramento de sessão (logout) | 📝 Proposto | [F-04](../features/F-04-encerramento-de-sessao-logout.md) |
+| F-04 | Encerramento de sessão (logout)       | 📝 Proposto | [F-04](../features/F-04-encerramento-de-sessao-logout.md)         |

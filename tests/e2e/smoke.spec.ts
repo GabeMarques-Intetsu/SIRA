@@ -107,7 +107,10 @@ async function assertRendered(page: Page): Promise<string> {
   }
   // Empty-state conta como render OK: basta o <main> ter algum texto.
   const text = (await main.innerText()).trim();
-  expect(text.length, "main deveria ter conteúdo (não tela em branco)").toBeGreaterThan(0);
+  expect(
+    text.length,
+    "main deveria ter conteúdo (não tela em branco)",
+  ).toBeGreaterThan(0);
   return heading || "(sem heading; main com conteúdo)";
 }
 
@@ -197,7 +200,10 @@ test.describe("SIRA smoke (admin)", () => {
       loginOk = false;
       loginErr = (e as Error).message.split("\n")[0];
       await page
-        .screenshot({ path: path.join(SHOT_DIR, "login-FAIL.png"), fullPage: true })
+        .screenshot({
+          path: path.join(SHOT_DIR, "login-FAIL.png"),
+          fullPage: true,
+        })
         .catch(() => {});
       // tenta capturar a mensagem de erro do formulário (role="alert")
       const alert = page.getByRole("alert");
@@ -212,7 +218,10 @@ test.describe("SIRA smoke (admin)", () => {
     expect(loginOk, `Login admin falhou: ${loginErr}`).toBe(true);
 
     await page
-      .screenshot({ path: path.join(SHOT_DIR, "_after-login.png"), fullPage: true })
+      .screenshot({
+        path: path.join(SHOT_DIR, "_after-login.png"),
+        fullPage: true,
+      })
       .catch(() => {});
 
     // 2) Percorrer as telas --------------------------------------------------
@@ -261,7 +270,9 @@ test.describe("SIRA smoke (admin)", () => {
     }
 
     // 3c) Alternar "Reduzir animações" (switch).
-    const reduceSwitch = page.getByRole("switch", { name: /Reduzir animações/i });
+    const reduceSwitch = page.getByRole("switch", {
+      name: /Reduzir animações/i,
+    });
     if (await reduceSwitch.count()) {
       const before = await reduceSwitch.getAttribute("aria-checked");
       await reduceSwitch.click();
@@ -275,7 +286,9 @@ test.describe("SIRA smoke (admin)", () => {
     // 3d) Alternar uma célula da matriz de notificações.
     const notifSection = page.locator("#notif");
     if (await notifSection.count()) {
-      const firstCheckbox = notifSection.locator('input[type="checkbox"]').first();
+      const firstCheckbox = notifSection
+        .locator('input[type="checkbox"]')
+        .first();
       if (await firstCheckbox.count()) {
         await firstCheckbox.click({ timeout: 5_000 }).catch(() => {});
       }
@@ -283,7 +296,10 @@ test.describe("SIRA smoke (admin)", () => {
 
     cfg.detach();
     await page
-      .screenshot({ path: path.join(SHOT_DIR, "configuracoes_interacted.png"), fullPage: true })
+      .screenshot({
+        path: path.join(SHOT_DIR, "configuracoes_interacted.png"),
+        fullPage: true,
+      })
       .catch(() => {});
 
     console.log(
@@ -304,7 +320,9 @@ test.describe("SIRA smoke (admin)", () => {
       console.log(
         `${r.rendered ? "OK  " : "FAIL"} | ${r.route.padEnd(16)} | via ${r.method.padEnd(5)} | console:${r.consoleErrors.length} pageerr:${r.pageErrors.length}` +
           (r.pageErrors[0] ? `\n        ↳ pageerror: ${r.pageErrors[0]}` : "") +
-          (r.consoleErrors[0] ? `\n        ↳ console:   ${r.consoleErrors[0]}` : ""),
+          (r.consoleErrors[0]
+            ? `\n        ↳ console:   ${r.consoleErrors[0]}`
+            : ""),
       );
     }
     console.log("======================================================\n");
@@ -315,7 +333,10 @@ test.describe("SIRA smoke (admin)", () => {
       .filter((r) => r.pageErrors.length)
       .map((r) => `${r.route}: ${r.pageErrors[0]}`);
 
-    expect(blank, `Telas que não renderizaram: ${blank.join(", ")}`).toHaveLength(0);
+    expect(
+      blank,
+      `Telas que não renderizaram: ${blank.join(", ")}`,
+    ).toHaveLength(0);
     expect(
       withPageErr,
       `Telas com pageerror: ${withPageErr.join(" | ")}`,
@@ -340,7 +361,13 @@ test.describe("SIRA RBAC (professor)", () => {
     await expect(nav).toBeVisible();
 
     // Itens admin NÃO devem aparecer.
-    for (const adminRoute of ["/painel", "/aprovacoes", "/salas", "/equipamentos", "/usuarios"]) {
+    for (const adminRoute of [
+      "/painel",
+      "/aprovacoes",
+      "/salas",
+      "/equipamentos",
+      "/usuarios",
+    ]) {
       await expect(
         nav.locator(`a[href="${adminRoute}"]`),
         `professor não deveria ver link ${adminRoute}`,
@@ -349,7 +376,9 @@ test.describe("SIRA RBAC (professor)", () => {
 
     // Acessar /usuarios deve redirecionar para /calendario (RF-002 / F-05 CA03).
     await page.goto("/usuarios");
-    await page.waitForURL((u) => u.pathname === "/calendario", { timeout: 15_000 });
+    await page.waitForURL((u) => u.pathname === "/calendario", {
+      timeout: 15_000,
+    });
     expect(new URL(page.url()).pathname).toBe("/calendario");
   });
 });

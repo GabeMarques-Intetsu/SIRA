@@ -15,19 +15,19 @@ Permite marcar uma notificação como lida ao clicar nela, reduzindo o contador 
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                           | Requisito                          | Relação |
+| ---------------------------------------------------------------------------- | ---------------------------------- | ------- |
 | [RF-011](../../requirements/RF/RF-011-central-de-notificacoes-do-usuario.md) | Central de notificações do usuário | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Notificação lida`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | Clicar em uma notificação a marca como lida. | — | 📝 |
-| **CA02** | O contador de não lidas diminui ao marcar uma como lida. | — | 📝 |
-| **CA03** | Ao clicar, quando aplicável, o usuário é levado ao item relacionado (ex.: detalhe da reserva). | — | 📝 |
+| ID       | Critério                                                                                       | Como verificar | Status |
+| -------- | ---------------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | Clicar em uma notificação a marca como lida.                                                   | —              | 📝     |
+| **CA02** | O contador de não lidas diminui ao marcar uma como lida.                                       | —              | 📝     |
+| **CA03** | Ao clicar, quando aplicável, o usuário é levado ao item relacionado (ex.: detalhe da reserva). | —              | 📝     |
 
 ## User Stories
 
@@ -89,10 +89,9 @@ Funcionalidade: Notificação lida
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T35.1.1 | Manter em createNotificationItem (src/modules/notifications.js) o addEventListener('click') que chama handleMarkAsRead(notification.id). | ⏳ |
-| T35.1.2 | Em handleMarkAsRead aplicar map imutavel ({ ...notif, read: true }) e persistir com saveCollection('notifications', updatedNotifications). | ⏳ |
-| T35.1.3 | Apos marcar como lida, re-renderizar o painel e chamar window.updateSidebarBadges() para decrementar o contador de nao lidas na sidebar. | ⏳ |
-| T35.1.4 | Quando a notificacao possuir reservationId, redirecionar ao detalhe da reserva relacionada no clique; caso contrario, apenas marcar como lida e permanecer no painel. | ⏳ |
-
+| ID      | Task                                                                                                                                                                  | Status |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T35.1.1 | Manter em createNotificationItem (src/modules/notifications.js) o addEventListener('click') que chama handleMarkAsRead(notification.id).                              | ⏳     |
+| T35.1.2 | Em handleMarkAsRead aplicar map imutavel ({ ...notif, read: true }) e persistir com saveCollection('notifications', updatedNotifications).                            | ⏳     |
+| T35.1.3 | Apos marcar como lida, re-renderizar o painel e chamar window.updateSidebarBadges() para decrementar o contador de nao lidas na sidebar.                              | ⏳     |
+| T35.1.4 | Quando a notificacao possuir reservationId, redirecionar ao detalhe da reserva relacionada no clique; caso contrario, apenas marcar como lida e permanecer no painel. | ⏳     |

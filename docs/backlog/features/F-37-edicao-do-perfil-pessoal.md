@@ -14,30 +14,30 @@ Na seção Perfil das configurações, a pessoa edita seus dados pessoais: nome 
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                              | Requisito                             | Relação |
+| ------------------------------------------------------------------------------- | ------------------------------------- | ------- |
 | [RF-012](../../requirements/RF/RF-012-configuracoes-da-conta-e-preferencias.md) | Configurações da conta e preferências | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Dados do perfil`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | A pessoa pode editar nome completo, telefone e departamento. | — | 📝 |
-| **CA02** | O e-mail institucional aparece apenas para leitura e não pode ser alterado. | — | 📝 |
-| **CA03** | O nome completo é obrigatório; não é possível salvar com nome vazio. | — | 📝 |
-| **CA04** | O telefone é opcional e, quando informado, segue um formato válido. | — | 📝 |
-| **CA05** | As alterações só são gravadas ao confirmar "Salvar alterações". | — | 📝 |
-| **CA06** | "Cancelar" descarta as alterações não salvas e restaura os valores anteriores. | — | 📝 |
+| ID       | Critério                                                                       | Como verificar | Status |
+| -------- | ------------------------------------------------------------------------------ | -------------- | ------ |
+| **CA01** | A pessoa pode editar nome completo, telefone e departamento.                   | —              | 📝     |
+| **CA02** | O e-mail institucional aparece apenas para leitura e não pode ser alterado.    | —              | 📝     |
+| **CA03** | O nome completo é obrigatório; não é possível salvar com nome vazio.           | —              | 📝     |
+| **CA04** | O telefone é opcional e, quando informado, segue um formato válido.            | —              | 📝     |
+| **CA05** | As alterações só são gravadas ao confirmar "Salvar alterações".                | —              | 📝     |
+| **CA06** | "Cancelar" descarta as alterações não salvas e restaura os valores anteriores. | —              | 📝     |
 
 **Grupo:** `CA - Foto de perfil`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA07** | A pessoa pode alterar sua foto de perfil. | — | 📝 |
-| **CA08** | Quando não há foto, são exibidas as iniciais do nome como avatar. | — | 📝 |
-| **CA09** | Apenas arquivos de imagem dentro do limite de tamanho são aceitos; caso contrário, é exibido aviso. | — | 📝 |
+| ID       | Critério                                                                                            | Como verificar | Status |
+| -------- | --------------------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA07** | A pessoa pode alterar sua foto de perfil.                                                           | —              | 📝     |
+| **CA08** | Quando não há foto, são exibidas as iniciais do nome como avatar.                                   | —              | 📝     |
+| **CA09** | Apenas arquivos de imagem dentro do limite de tamanho são aceitos; caso contrário, é exibido aviso. | —              | 📝     |
 
 ## User Stories
 
@@ -111,9 +111,9 @@ Funcionalidade: Atualização da foto de perfil
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T37.1.1 | Renderizar o formulário de perfil com campos nome, telefone, departamento e e-mail desabilitado, populados a partir do usuário atual do store. | ⏳ |
-| T37.1.2 | Validar nome obrigatório e formato de telefone antes de salvar, exibindo toast de erro caso inválido (CA03, CA04). | ⏳ |
-| T37.1.3 | Persistir as alterações apenas no clique de "Salvar alterações" e implementar "Cancelar" restaurando os valores originais (CA05, CA06). | ⏳ |
-| T37.2.1 | Implementar seleção de imagem com validação de tipo/tamanho e geração de avatar por iniciais como fallback (CA07, CA08, CA09). | ⏳ |
+| ID      | Task                                                                                                                                           | Status |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T37.1.1 | Renderizar o formulário de perfil com campos nome, telefone, departamento e e-mail desabilitado, populados a partir do usuário atual do store. | ⏳     |
+| T37.1.2 | Validar nome obrigatório e formato de telefone antes de salvar, exibindo toast de erro caso inválido (CA03, CA04).                             | ⏳     |
+| T37.1.3 | Persistir as alterações apenas no clique de "Salvar alterações" e implementar "Cancelar" restaurando os valores originais (CA05, CA06).        | ⏳     |
+| T37.2.1 | Implementar seleção de imagem com validação de tipo/tamanho e geração de avatar por iniciais como fallback (CA07, CA08, CA09).                 | ⏳     |

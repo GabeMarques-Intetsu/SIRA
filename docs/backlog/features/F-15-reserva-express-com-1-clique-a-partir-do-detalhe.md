@@ -15,20 +15,20 @@ A partir do detalhe de uma sala, permite reservar o horário escolhido em um ún
 
 ## Requisitos atendidos (rastreabilidade ↑)
 
-| RF | Requisito | Relação |
-| --- | --- | --- |
+| RF                                                                                         | Requisito                                              | Relação |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------ | ------- |
 | [RF-006](../../requirements/RF/RF-006-solicitacao-de-reserva-com-checagem-de-disponibi.md) | Solicitação de reserva com checagem de disponibilidade | Realiza |
 
 ## Critérios de Aceitação (CAs)
 
 **Grupo:** `CA - Reserva rápida`
 
-| ID | Critério | Como verificar | Status |
-| --- | --- | --- | --- |
-| **CA01** | A partir do detalhe de uma sala, é possível reservar o horário selecionado em um clique. | — | 📝 |
-| **CA02** | A reserva criada por esse caminho entra como pendente no fluxo de aprovação. | — | 📝 |
-| **CA03** | Após reservar, o usuário recebe confirmação visível da ação. | — | 📝 |
-| **CA04** | A reserva rápida respeita as mesmas regras de conflito de horário da busca. | — | 📝 |
+| ID       | Critério                                                                                 | Como verificar | Status |
+| -------- | ---------------------------------------------------------------------------------------- | -------------- | ------ |
+| **CA01** | A partir do detalhe de uma sala, é possível reservar o horário selecionado em um clique. | —              | 📝     |
+| **CA02** | A reserva criada por esse caminho entra como pendente no fluxo de aprovação.             | —              | 📝     |
+| **CA03** | Após reservar, o usuário recebe confirmação visível da ação.                             | —              | 📝     |
+| **CA04** | A reserva rápida respeita as mesmas regras de conflito de horário da busca.              | —              | 📝     |
 
 ## User Stories
 
@@ -90,10 +90,9 @@ Funcionalidade: Reserva rápida
 
 #### Tasks (nível técnico — termo técnico permitido)
 
-| ID | Task | Status |
-| --- | --- | --- |
-| T15.1.1 | Em showRoomDetailsModal(room, formData) (src/modules/novaReserva.js), adicionar botão de reserva em 1 clique que chama performReservation(room, formData) sem reabrir formulário, usando createModal()/openModal() de src/components/modal.js. | ⏳ |
-| T15.1.2 | Em performReservation(), criar a reserva com status 'pending' e id via generateId(), persistindo-a com saveReservation() (src/data/store.js) na coleção do usuário logado. | ⏳ |
-| T15.1.3 | Reaproveitar o predicado de detecção de conflito de searchRooms() dentro de performReservation() para bloquear a reserva express quando houver sobreposição com reserva approved/pending, informando o conflito ao usuário. | ⏳ |
-| T15.1.4 | Exibir confirmação visível da ação (toast/modal via src/components/modal.js) após gravar a reserva pendente com sucesso. | ⏳ |
-
+| ID      | Task                                                                                                                                                                                                                                           | Status |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| T15.1.1 | Em showRoomDetailsModal(room, formData) (src/modules/novaReserva.js), adicionar botão de reserva em 1 clique que chama performReservation(room, formData) sem reabrir formulário, usando createModal()/openModal() de src/components/modal.js. | ⏳     |
+| T15.1.2 | Em performReservation(), criar a reserva com status 'pending' e id via generateId(), persistindo-a com saveReservation() (src/data/store.js) na coleção do usuário logado.                                                                     | ⏳     |
+| T15.1.3 | Reaproveitar o predicado de detecção de conflito de searchRooms() dentro de performReservation() para bloquear a reserva express quando houver sobreposição com reserva approved/pending, informando o conflito ao usuário.                    | ⏳     |
+| T15.1.4 | Exibir confirmação visível da ação (toast/modal via src/components/modal.js) após gravar a reserva pendente com sucesso.                                                                                                                       | ⏳     |

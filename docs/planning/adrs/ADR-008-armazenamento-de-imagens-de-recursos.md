@@ -15,7 +15,7 @@ Forças em jogo:
 - **Apenas admin escreve recursos** (RLS `rooms_write`/`equipment_write` exige `is_admin()`, ADR-001). O upload da imagem deve herdar essa mesma restrição.
 - **Leitura ampla**: qualquer autenticado lê o catálogo; a imagem precisa carregar rápido no card e na busca ([RNF-imagem-de-recurso](../../requirements/RNF/RNF-imagem-de-recurso.md): JPG/PNG/WebP ≤ 2 MB).
 - **Service-role já existe** server-side ([ADR-002](./ADR-002-provisionamento-de-contas-via-service-role.md)) — caminho natural para a escrita privilegiada do binário.
-- **ADR-007** já antecipou Storage como dependência externa (item *d*, upload de foto de perfil); este ADR concretiza a adoção para recursos.
+- **ADR-007** já antecipou Storage como dependência externa (item _d_, upload de foto de perfil); este ADR concretiza a adoção para recursos.
 
 Opções consideradas:
 
@@ -63,6 +63,6 @@ Convenção de chave: `<kind>/<resource_id>.<ext>` (uma imagem por recurso, CA04
 
 - Requisitos: [RF-009](../../requirements/RF/RF-009-gestao-do-catalogo-de-salas.md), [RF-013](../../requirements/RF/RF-013-gestao-do-catalogo-de-equipamentos.md); [RNF-imagem-de-recurso](../../requirements/RNF/RNF-imagem-de-recurso.md).
 - Backlog: [F-47](../../backlog/features/F-47-imagem-da-sala.md), [F-48](../../backlog/features/F-48-imagem-do-equipamento.md); TX-09 (bucket+policy), TX-10 (`rooms.image_path`), TX-11 (`equipment.image_path`) em [EP-atividades-complementares](../../backlog/epics/EP-atividades-complementares.md).
-- Relacionado: [ADR-001](./ADR-001-schema-inicial-e-rls-supabase.md) (schema + RLS), [ADR-002](./ADR-002-provisionamento-de-contas-via-service-role.md) (service-role server-only), [ADR-007](./ADR-007-funcionalidades-dependentes-de-infra-externa.md) (Storage antecipado, item *d*).
+- Relacionado: [ADR-001](./ADR-001-schema-inicial-e-rls-supabase.md) (schema + RLS), [ADR-002](./ADR-002-provisionamento-de-contas-via-service-role.md) (service-role server-only), [ADR-007](./ADR-007-funcionalidades-dependentes-de-infra-externa.md) (Storage antecipado, item _d_).
 - Implementação prevista: `supabase/migrations/0007_*` (colunas + bucket/policy), `src/app/(app)/_resources/resource-form.tsx`, `resource-actions.ts`, `src/schemas/resource.ts`, `src/lib/resources.ts`.
 - Handoff: `backend-architect` (bucket/policy/upload server-side), `cyber-security-architect` (decisão público vs assinado, validação de tipo/tamanho no server).

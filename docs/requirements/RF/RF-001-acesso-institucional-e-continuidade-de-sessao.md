@@ -16,12 +16,12 @@ Garante que apenas professores cadastrados acessem o sistema. Inclui login pelo 
 
 ## Realizado por (rastreabilidade ↓)
 
-| Epic | Feature(s) | Status |
-| --- | --- | --- |
-| [EP-01](../../backlog/epics/EP-01-autenticacao-e-sessao.md) | [F-01 Login institucional por e-mail](../../backlog/features/F-01-login-institucional-por-e-mail.md) | 📝 |
-| [EP-01](../../backlog/epics/EP-01-autenticacao-e-sessao.md) | [F-02 Persistência de sessão entre recargas](../../backlog/features/F-02-persistencia-de-sessao-entre-recargas.md) | 📝 |
-| [EP-01](../../backlog/epics/EP-01-autenticacao-e-sessao.md) | [F-03 Auto-servico de cadastro de professor](../../backlog/features/F-03-auto-servico-de-cadastro-de-professor.md) | 📝 |
-| [EP-01](../../backlog/epics/EP-01-autenticacao-e-sessao.md) | [F-04 Encerramento de sessão (logout)](../../backlog/features/F-04-encerramento-de-sessao-logout.md) | 📝 |
+| Epic                                                        | Feature(s)                                                                                                         | Status |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------ |
+| [EP-01](../../backlog/epics/EP-01-autenticacao-e-sessao.md) | [F-01 Login institucional por e-mail](../../backlog/features/F-01-login-institucional-por-e-mail.md)               | 📝     |
+| [EP-01](../../backlog/epics/EP-01-autenticacao-e-sessao.md) | [F-02 Persistência de sessão entre recargas](../../backlog/features/F-02-persistencia-de-sessao-entre-recargas.md) | 📝     |
+| [EP-01](../../backlog/epics/EP-01-autenticacao-e-sessao.md) | [F-03 Auto-servico de cadastro de professor](../../backlog/features/F-03-auto-servico-de-cadastro-de-professor.md) | 📝     |
+| [EP-01](../../backlog/epics/EP-01-autenticacao-e-sessao.md) | [F-04 Encerramento de sessão (logout)](../../backlog/features/F-04-encerramento-de-sessao-logout.md)               | 📝     |
 
 ## Restrições e fora-de-escopo
 
