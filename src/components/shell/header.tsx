@@ -42,7 +42,7 @@ export function Header({
     .join("");
 
   return (
-    <header className="bg-surface/95 border-outline-variant gap-md px-md py-md md:px-margin-desktop sticky top-0 z-20 flex items-center border-b backdrop-blur">
+    <header className="bg-surface/95 border-outline-variant gap-sm px-md py-md md:gap-md md:px-margin-desktop sticky top-0 z-20 flex items-center border-b backdrop-blur">
       {/* Mobile: abre o drawer */}
       <button
         type="button"

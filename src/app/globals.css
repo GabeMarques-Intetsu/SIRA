@@ -220,6 +220,13 @@ body {
   color: var(--c-on-background);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  /* Guarda contra scroll horizontal no nível do documento (o <main> já clipa o
+     seu conteúdo, mas algo no shell/página pode transbordar o body). Seguro
+     aqui: o scroll vertical vive no <main> (o body fica em 100vh e não rola),
+     então esconder o eixo-x não cria barra vertical nem quebra sticky/fixed.
+     Conteúdo largo legítimo (calendário/tabelas/abas) tem overflow-x-auto
+     próprio e segue rolando internamente. */
+  overflow-x: hidden;
 }
 
 /* Material Symbols base (ícones M3) */
