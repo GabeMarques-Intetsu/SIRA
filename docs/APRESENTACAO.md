@@ -2,6 +2,14 @@
 
 Guia prático para a apresentação do produto + Q&A técnico (duração-alvo: **15–20 min de demo + 5–10 min de perguntas**).
 
+> ⚠️ **Nota (estado atual).** Este roteiro foi escrito na **Sprint 1** (protótipo
+> Vanilla JS + Vite). O produto **atual está em produção na Vercel** em
+> **<https://sira-jet.vercel.app>**, migrado para **Next.js (App Router) +
+> TypeScript + Supabase**. Trechos de Q&A que citam `fp.js`, `novaReserva.js`,
+> `vite build`, `dist/` ou `localhost:5173` referem-se ao **protótipo legado**
+> (preservado em `legacy/`); a stack e a estrutura atuais estão no
+> [`README.md`](../README.md) e no [`AGENTS.md`](../AGENTS.md).
+
 > **Audiência**: professor avaliador e colegas das disciplinas **PWEB2** e **Engenharia de Requisitos de Software**.
 > **Tom**: apresentar o produto **primeiro**, justificar tecnologia **depois**. Evitar mergulhar em código antes de mostrar o que o sistema faz.
 
@@ -9,7 +17,7 @@ Guia prático para a apresentação do produto + Q&A técnico (duração-alvo: *
 
 ## 0. Antes de começar (checklist 5 min antes da apresentação)
 
-- [ ] App carregando em <https://gabemarques-intetsu.github.io/SIRA/> (com HTTPS, abrir uma vez para "aquecer" o GitHub Pages).
+- [ ] App carregando em <https://sira-jet.vercel.app> (produção na Vercel; abrir uma vez para "aquecer").
 - [ ] Repo aberto em <https://github.com/GabeMarques-Intetsu/SIRA> em outra aba (lateral para mostrar PRs/release).
 - [ ] LocalStorage **limpo** no navegador da demo (DevTools → Application → Clear storage) — começa do zero.
 - [ ] Resolução do monitor confortável para projeção: **1366×768 mínimo**, fonte do navegador em 90–100%.
