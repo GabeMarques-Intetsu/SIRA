@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIRA · Notificações</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./_shared/tokens.css" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="./_shared/tailwind-config.js"></script>
+  <script src="./_shared/theme-toggle.js"></script>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen flex font-sans">
+<a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+<div class="flex w-full min-h-screen">
+
+  <aside class="hidden md:flex w-[264px] flex-col bg-surface-container-low border-r border-outline-variant px-md py-lg gap-md flex-shrink-0">
+    <div class="flex items-center gap-sm px-sm">
+      <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center"><span class="material-symbols-outlined text-on-primary" aria-hidden="true">domain</span></div>
+      <div class="flex flex-col"><span class="text-headline-sm text-on-surface leading-none">SIRA</span><span class="text-label-sm text-on-surface-variant">IFPB</span></div>
+    </div>
+    <a href="./04-nova-reserva.html" class="flex items-center justify-center gap-sm px-md py-2.5 bg-primary text-on-primary rounded-lg text-label-md hover:bg-surface-tint shadow-sm transition-all active:scale-[0.98]"><span class="material-symbols-outlined" aria-hidden="true">add</span><span>Nova Reserva</span></a>
+    <nav aria-label="Navegação principal" class="flex-1 flex flex-col gap-xs overflow-y-auto">
+      <a href="./02-dashboard.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">dashboard</span><span>Dashboard</span></a>
+      <a href="./03-calendario.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">calendar_month</span><span>Calendário</span></a>
+      <a href="./06-minhas-reservas.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">event_available</span><span>Minhas Reservas</span></a>
+      <a href="./08-aprovacoes.html" class="flex items-center justify-between gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="flex items-center gap-md"><span class="material-symbols-outlined" aria-hidden="true">fact_check</span><span>Aprovações</span></span><span class="px-2 py-0.5 bg-error text-on-error rounded-full text-label-sm">7</span></a>
+      <a href="./05-gestao-recursos.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">domain</span><span>Recursos</span></a>
+      <a href="./09-usuarios.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">group</span><span>Usuários</span></a>
+    </nav>
+    <div class="mt-auto flex flex-col gap-xs pt-md border-t border-outline-variant">
+      <button data-theme-toggle class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md w-full text-left" aria-label="Ativar tema escuro" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">dark_mode</span><span>Tema</span></button>
+      <a href="./11-configuracoes.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">settings</span><span>Configurações</span></a>
+      <a href="./01-login.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">logout</span><span>Sair</span></a>
+    </div>
+  </aside>
+
+  <div class="flex-1 flex flex-col min-w-0">
+    <header class="sticky top-0 z-20 bg-surface/95 backdrop-blur border-b border-outline-variant px-md md:px-margin-desktop py-md flex items-center gap-md">
+      <button class="md:hidden touch-target rounded-full text-on-surface-variant hover:bg-surface-container" aria-label="Abrir menu"><span class="material-symbols-outlined">menu</span></button>
+      <div class="flex-1">
+        <h1 class="text-headline-sm text-on-surface flex items-center gap-sm">Notificações<span class="px-2 py-0.5 bg-error text-on-error rounded-full text-label-sm">3 novas</span></h1>
+        <p class="text-body-sm text-on-surface-variant hidden md:block">Atualizações sobre suas reservas e ações no sistema</p>
+      </div>
+      <button class="text-label-md text-primary hover:underline focus-visible:underline flex items-center gap-xs px-md py-2 rounded-lg hover:bg-surface-container">
+        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">done_all</span>Marcar todas como lidas
+      </button>
+    </header>
+
+    <main id="main-content" class="flex-1 p-md md:p-margin-desktop overflow-y-auto">
+      <div class="max-w-3xl mx-auto flex flex-col gap-lg">
+
+        <!-- Filtros tipo chip -->
+        <section role="tablist" aria-label="Filtrar notificações" class="flex gap-xs overflow-x-auto pb-xs -mx-md md:mx-0 px-md md:px-0">
+          <button role="tab" aria-selected="true" class="px-md py-1.5 bg-primary text-on-primary rounded-full text-label-md whitespace-nowrap">Todas <span class="ml-1 px-1.5 py-0.5 bg-on-primary/20 rounded-full text-label-sm">12</span></button>
+          <button role="tab" aria-selected="false" class="px-md py-1.5 bg-surface-container text-on-surface-variant rounded-full text-label-md whitespace-nowrap hover:bg-surface-container-high">Não lidas <span class="ml-1 px-1.5 py-0.5 bg-error/20 text-error rounded-full text-label-sm">3</span></button>
+          <button role="tab" aria-selected="false" class="px-md py-1.5 bg-surface-container text-on-surface-variant rounded-full text-label-md whitespace-nowrap hover:bg-surface-container-high">Reservas</button>
+          <button role="tab" aria-selected="false" class="px-md py-1.5 bg-surface-container text-on-surface-variant rounded-full text-label-md whitespace-nowrap hover:bg-surface-container-high">Aprovações</button>
+          <button role="tab" aria-selected="false" class="px-md py-1.5 bg-surface-container text-on-surface-variant rounded-full text-label-md whitespace-nowrap hover:bg-surface-container-high">Sistema</button>
+        </section>
+
+        <!-- Hoje -->
+        <section aria-labelledby="grupo-hoje" class="flex flex-col gap-sm">
+          <h2 id="grupo-hoje" class="text-label-md uppercase tracking-wider text-on-surface-variant px-sm">Hoje</h2>
+
+          <article class="bg-surface-container-lowest border-l-4 border-primary rounded-lg shadow-sm hover:shadow-md transition-shadow">
+            <a href="./08-aprovacoes.html" class="block p-md flex items-start gap-md">
+              <div class="flex-shrink-0 w-10 h-10 bg-primary-fixed text-on-primary-fixed-variant rounded-full flex items-center justify-center">
+                <span class="material-symbols-outlined" aria-hidden="true">check_circle</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-body-md text-on-surface"><strong>Sua reserva foi aprovada</strong> — Lab. Programação 02 para 15/01 às 14:00</p>
+                <p class="text-body-sm text-on-surface-variant mt-xs">Ana Silva aprovou · há 15 min</p>
+              </div>
+              <span class="w-2.5 h-2.5 bg-primary rounded-full mt-2 flex-shrink-0" aria-label="Não lida"></span>
+            </a>
+          </article>
+
+          <article class="bg-surface-container-lowest border-l-4 border-tertiary rounded-lg shadow-sm hover:shadow-md transition-shadow">
+            <a href="./08-aprovacoes.html" class="block p-md flex items-start gap-md">
+              <div class="flex-shrink-0 w-10 h-10 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full flex items-center justify-center">
+                <span class="material-symbols-outlined" aria-hidden="true">pending_actions</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-body-md text-on-surface"><strong>Nova solicitação aguarda sua aprovação</strong> — Maria Santos pediu o Auditório Bloco C</p>
+                <p class="text-body-sm text-on-surface-variant mt-xs">há 15 min</p>
+              </div>
+              <span class="w-2.5 h-2.5 bg-primary rounded-full mt-2 flex-shrink-0" aria-label="Não lida"></span>
+            </a>
+          </article>
+
+          <article class="bg-surface-container-lowest border-l-4 border-secondary rounded-lg shadow-sm hover:shadow-md transition-shadow">
+            <a href="./09-usuarios.html" class="block p-md flex items-start gap-md">
+              <div class="flex-shrink-0 w-10 h-10 bg-secondary-container text-on-secondary-container rounded-full flex items-center justify-center">
+                <span class="material-symbols-outlined" aria-hidden="true">person_add</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-body-md text-on-surface"><strong>Novo usuário aguardando cadastro</strong> — Demo Professor (demo@ifpb.edu.br)</p>
+                <p class="text-body-sm text-on-surface-variant mt-xs">há 1h</p>
+              </div>
+              <span class="w-2.5 h-2.5 bg-primary rounded-full mt-2 flex-shrink-0" aria-label="Não lida"></span>
+            </a>
+          </article>
+        </section>
+
+        <!-- Ontem -->
+        <section aria-labelledby="grupo-ontem" class="flex flex-col gap-sm">
+          <h2 id="grupo-ontem" class="text-label-md uppercase tracking-wider text-on-surface-variant px-sm">Ontem</h2>
+
+          <article class="bg-surface-container-low rounded-lg shadow-sm hover:shadow-md transition-shadow opacity-80">
+            <a href="./06-minhas-reservas.html" class="block p-md flex items-start gap-md">
+              <div class="flex-shrink-0 w-10 h-10 bg-surface-container-high text-on-surface-variant rounded-full flex items-center justify-center">
+                <span class="material-symbols-outlined" aria-hidden="true">cancel</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-body-md text-on-surface">Sua reserva foi cancelada — Sala 204 (14/01)</p>
+                <p class="text-body-sm text-on-surface-variant mt-xs">Você cancelou · ontem às 18:32</p>
+              </div>
+            </a>
+          </article>
+
+          <article class="bg-surface-container-low rounded-lg shadow-sm hover:shadow-md transition-shadow opacity-80">
+            <a href="./05-gestao-recursos.html" class="block p-md flex items-start gap-md">
+              <div class="flex-shrink-0 w-10 h-10 bg-surface-container-high text-on-surface-variant rounded-full flex items-center justify-center">
+                <span class="material-symbols-outlined" aria-hidden="true">build</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-body-md text-on-surface">Projetor Epson #07 marcado como em manutenção</p>
+                <p class="text-body-sm text-on-surface-variant mt-xs">Sistema · ontem às 14:10</p>
+              </div>
+            </a>
+          </article>
+        </section>
+
+        <!-- Esta semana -->
+        <section aria-labelledby="grupo-semana" class="flex flex-col gap-sm">
+          <h2 id="grupo-semana" class="text-label-md uppercase tracking-wider text-on-surface-variant px-sm">Esta semana</h2>
+
+          <article class="bg-surface-container-low rounded-lg shadow-sm opacity-70">
+            <a href="#" class="block p-md flex items-start gap-md">
+              <div class="flex-shrink-0 w-10 h-10 bg-surface-container-high text-on-surface-variant rounded-full flex items-center justify-center"><span class="material-symbols-outlined" aria-hidden="true">info</span></div>
+              <div class="flex-1 min-w-0">
+                <p class="text-body-md text-on-surface">Lembrete: reserva amanhã às 09:00 — Sala 105</p>
+                <p class="text-body-sm text-on-surface-variant mt-xs">Sistema · 13/01</p>
+              </div>
+            </a>
+          </article>
+
+          <article class="bg-surface-container-low rounded-lg shadow-sm opacity-70">
+            <a href="#" class="block p-md flex items-start gap-md">
+              <div class="flex-shrink-0 w-10 h-10 bg-surface-container-high text-on-surface-variant rounded-full flex items-center justify-center"><span class="material-symbols-outlined" aria-hidden="true">check_circle</span></div>
+              <div class="flex-1 min-w-0">
+                <p class="text-body-md text-on-surface">Reserva concluída — Lab. Redes (12/01 às 19:00)</p>
+                <p class="text-body-sm text-on-surface-variant mt-xs">Sistema · 12/01</p>
+              </div>
+            </a>
+          </article>
+        </section>
+
+        <button class="self-center mt-md px-lg py-2 text-primary hover:bg-surface-container rounded-lg text-label-md flex items-center gap-sm">
+          <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>Carregar mais
+        </button>
+
+      </div>
+    </main>
+  </div>
+</div>
+</body>
+</html>

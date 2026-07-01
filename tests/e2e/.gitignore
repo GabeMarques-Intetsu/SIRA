@@ -1,0 +1,9 @@
+# Artefatos do Playwright — não versionar.
+# Screenshots do smoke vão para /tmp/sira-smoke (fora do repo), mas garantimos
+# que qualquer artefato local também fique de fora.
+.auth/
+*.png
+*.zip
+trace/
+test-results/
+playwright-report/

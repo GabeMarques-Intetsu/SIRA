@@ -1,5 +1,6 @@
 /**
  * Testes do mapeamento reserva → evento (F-13 · CA02/CA03).
+ * Execução: `node --test --experimental-strip-types tests/calendar-events.test.ts`
  */
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -9,8 +10,13 @@ import {
 } from "../src/lib/calendar-events.ts";
 
 const WEEK = [
-  "2025-01-13", "2025-01-14", "2025-01-15", "2025-01-16",
-  "2025-01-17", "2025-01-18", "2025-01-19",
+  "2025-01-13",
+  "2025-01-14",
+  "2025-01-15",
+  "2025-01-16",
+  "2025-01-17",
+  "2025-01-18",
+  "2025-01-19",
 ];
 
 function row(over: Partial<ReservationRow>): ReservationRow {

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIRA · Aprovações</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./_shared/tokens.css" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="./_shared/tailwind-config.js"></script>
+  <script src="./_shared/theme-toggle.js"></script>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen flex font-sans">
+<a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+<div class="flex w-full min-h-screen">
+
+  <!-- ═════ SIDEBAR (canônica) ═════ -->
+  <aside class="hidden md:flex w-[264px] flex-col bg-surface-container-low border-r border-outline-variant px-md py-lg gap-md flex-shrink-0">
+    <div class="flex items-center gap-sm px-sm">
+      <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center"><span class="material-symbols-outlined text-on-primary" aria-hidden="true">domain</span></div>
+      <div class="flex flex-col"><span class="text-headline-sm text-on-surface leading-none">SIRA</span><span class="text-label-sm text-on-surface-variant">IFPB</span></div>
+    </div>
+    <a href="./04-nova-reserva.html" class="flex items-center justify-center gap-sm px-md py-2.5 bg-primary text-on-primary rounded-lg text-label-md hover:bg-surface-tint shadow-sm transition-all active:scale-[0.98]"><span class="material-symbols-outlined" aria-hidden="true">add</span><span>Nova Reserva</span></a>
+    <nav aria-label="Navegação principal" class="flex-1 flex flex-col gap-xs overflow-y-auto">
+      <a href="./02-dashboard.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">dashboard</span><span>Dashboard</span></a>
+      <a href="./03-calendario.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">calendar_month</span><span>Calendário</span></a>
+      <a href="./06-minhas-reservas.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">event_available</span><span>Minhas Reservas</span></a>
+      <a href="./08-aprovacoes.html" aria-current="page" class="flex items-center justify-between gap-md px-md py-sm bg-secondary-container text-on-secondary-container rounded-lg text-label-md font-bold">
+        <span class="flex items-center gap-md"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1" aria-hidden="true">fact_check</span><span>Aprovações</span></span>
+        <span class="px-2 py-0.5 bg-error text-on-error rounded-full text-label-sm" aria-label="7 pendentes">7</span>
+      </a>
+      <a href="./05-gestao-recursos.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">domain</span><span>Recursos</span></a>
+      <a href="./09-usuarios.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">group</span><span>Usuários</span></a>
+    </nav>
+    <div class="mt-auto flex flex-col gap-xs pt-md border-t border-outline-variant">
+      <button data-theme-toggle class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md w-full text-left" aria-label="Ativar tema escuro" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">dark_mode</span><span>Tema</span></button>
+      <a href="./11-configuracoes.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">settings</span><span>Configurações</span></a>
+      <a href="./01-login.html" class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all text-label-md"><span class="material-symbols-outlined" aria-hidden="true">logout</span><span>Sair</span></a>
+    </div>
+  </aside>
+
+  <!-- ═════ MAIN ═════ -->
+  <div class="flex-1 flex flex-col min-w-0">
+    <header class="sticky top-0 z-20 bg-surface/95 backdrop-blur border-b border-outline-variant px-md md:px-margin-desktop py-md flex items-center gap-md">
+      <button class="md:hidden touch-target rounded-full text-on-surface-variant hover:bg-surface-container" aria-label="Abrir menu"><span class="material-symbols-outlined">menu</span></button>
+      <div class="flex-1">
+        <h1 class="text-headline-sm text-on-surface">Aprovações</h1>
+        <p class="text-body-sm text-on-surface-variant hidden md:block">7 solicitações pendentes · 3 aprovadas hoje</p>
+      </div>
+      <div class="flex items-center gap-sm">
+        <a href="./10-notificacoes.html" class="relative touch-target rounded-full text-on-surface-variant hover:bg-surface-container" aria-label="Notificações"><span class="material-symbols-outlined">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full ring-2 ring-surface" aria-hidden="true"></span></a>
+        <button class="ml-sm flex items-center gap-sm rounded-full hover:bg-surface-container px-sm py-1" aria-label="Menu do usuário Ana Silva">
+          <div class="w-9 h-9 bg-primary text-on-primary rounded-full flex items-center justify-center text-label-md font-bold">AS</div>
+          <div class="hidden lg:flex flex-col items-start leading-tight"><span class="text-label-md text-on-surface">Ana Silva</span><span class="text-label-sm text-on-surface-variant">Administradora</span></div>
+        </button>
+      </div>
+    </header>
+
+    <main id="main-content" class="flex-1 p-md md:p-margin-desktop overflow-y-auto">
+      <div class="max-w-[1280px] mx-auto flex flex-col gap-lg">
+
+        <!-- KPIs de aprovação -->
+        <section aria-label="Indicadores de aprovação" class="grid grid-cols-2 lg:grid-cols-4 gap-md">
+          <article class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant">
+            <div class="flex items-center gap-sm text-on-surface-variant text-body-sm mb-xs"><span class="material-symbols-outlined" style="font-size:18px">pending_actions</span>Pendentes</div>
+            <div class="text-headline-lg text-error">7</div>
+          </article>
+          <article class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant">
+            <div class="flex items-center gap-sm text-on-surface-variant text-body-sm mb-xs"><span class="material-symbols-outlined" style="font-size:18px">check_circle</span>Aprovadas hoje</div>
+            <div class="text-headline-lg text-secondary">3</div>
+          </article>
+          <article class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant">
+            <div class="flex items-center gap-sm text-on-surface-variant text-body-sm mb-xs"><span class="material-symbols-outlined" style="font-size:18px">cancel</span>Recusadas hoje</div>
+            <div class="text-headline-lg text-on-surface">1</div>
+          </article>
+          <article class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant">
+            <div class="flex items-center gap-sm text-on-surface-variant text-body-sm mb-xs"><span class="material-symbols-outlined" style="font-size:18px">timer</span>Tempo médio</div>
+            <div class="text-headline-lg text-on-surface">2h 15min</div>
+          </article>
+        </section>
+
+        <!-- Filtros sempre visíveis (regra Klipfolio) -->
+        <section class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant flex flex-col md:flex-row items-stretch md:items-center gap-md">
+          <div role="tablist" aria-label="Filtro por status" class="flex gap-xs">
+            <button role="tab" aria-selected="true" class="px-md py-2 bg-primary text-on-primary rounded-full text-label-md">Pendentes <span class="ml-1 px-1.5 py-0.5 bg-on-primary/20 rounded-full text-label-sm">7</span></button>
+            <button role="tab" aria-selected="false" class="px-md py-2 bg-surface-container text-on-surface-variant rounded-full text-label-md hover:bg-surface-container-high">Aprovadas</button>
+            <button role="tab" aria-selected="false" class="px-md py-2 bg-surface-container text-on-surface-variant rounded-full text-label-md hover:bg-surface-container-high">Recusadas</button>
+            <button role="tab" aria-selected="false" class="px-md py-2 bg-surface-container text-on-surface-variant rounded-full text-label-md hover:bg-surface-container-high">Todas</button>
+          </div>
+          <div class="md:ml-auto relative flex-1 md:flex-initial">
+            <span class="absolute left-md top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant" aria-hidden="true">search</span>
+            <input type="search" placeholder="Buscar solicitante ou recurso…" aria-label="Buscar"
+                   class="w-full md:w-72 pl-[44px] pr-md py-2 rounded-lg border border-outline-variant bg-surface text-on-surface placeholder:text-on-surface-variant/60 focus:ring-2 focus:ring-primary outline-none text-body-sm" />
+          </div>
+        </section>
+
+        <!-- Lista de solicitações -->
+        <section aria-label="Solicitações pendentes" class="flex flex-col gap-md">
+
+          <article class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant overflow-hidden">
+            <div class="p-md md:p-lg flex flex-col md:flex-row gap-md md:gap-lg">
+              <div class="md:w-1 flex-shrink-0 hidden md:block bg-tertiary rounded-full"></div>
+              <div class="flex-1 flex flex-col gap-sm">
+                <div class="flex flex-wrap items-start justify-between gap-md">
+                  <div>
+                    <h2 class="text-headline-sm text-on-surface">Lab. Programação 02</h2>
+                    <p class="text-body-sm text-on-surface-variant">Solicitado por <strong class="text-on-surface">Diego Pessoa</strong> · Professor · há 2 min</p>
+                  </div>
+                  <span class="px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full text-label-sm">Pendente</span>
+                </div>
+                <dl class="grid grid-cols-2 md:grid-cols-4 gap-md text-body-sm mt-sm">
+                  <div><dt class="text-on-surface-variant">Data</dt><dd class="text-on-surface mt-0.5">Seg, 15/01/2025</dd></div>
+                  <div><dt class="text-on-surface-variant">Horário</dt><dd class="text-on-surface mt-0.5">14:00 – 16:00</dd></div>
+                  <div><dt class="text-on-surface-variant">Finalidade</dt><dd class="text-on-surface mt-0.5">Aula POO — Turma 2024.2</dd></div>
+                  <div><dt class="text-on-surface-variant">Recorrência</dt><dd class="text-on-surface mt-0.5">Toda segunda · 15 semanas</dd></div>
+                </dl>
+              </div>
+            </div>
+            <div class="bg-surface-container-low border-t border-outline-variant p-md flex flex-wrap items-center gap-sm justify-end">
+              <button class="px-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high text-label-md">Ver detalhes</button>
+              <button class="px-md py-2 rounded-lg border border-error text-error hover:bg-error-container text-label-md flex items-center gap-xs">
+                <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">close</span>Recusar
+              </button>
+              <button class="px-md py-2 rounded-lg bg-secondary text-on-secondary hover:bg-on-secondary-fixed-variant text-label-md flex items-center gap-xs">
+                <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">check</span>Aprovar
+              </button>
+            </div>
+          </article>
+
+          <article class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant overflow-hidden">
+            <div class="p-md md:p-lg flex flex-col md:flex-row gap-md md:gap-lg">
+              <div class="md:w-1 flex-shrink-0 hidden md:block bg-tertiary rounded-full"></div>
+              <div class="flex-1 flex flex-col gap-sm">
+                <div class="flex flex-wrap items-start justify-between gap-md">
+                  <div>
+                    <h2 class="text-headline-sm text-on-surface">Auditório Bloco C</h2>
+                    <p class="text-body-sm text-on-surface-variant">Solicitado por <strong class="text-on-surface">Maria Santos</strong> · Aluna · há 15 min</p>
+                  </div>
+                  <span class="px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full text-label-sm">Pendente</span>
+                </div>
+                <dl class="grid grid-cols-2 md:grid-cols-4 gap-md text-body-sm mt-sm">
+                  <div><dt class="text-on-surface-variant">Data</dt><dd class="text-on-surface mt-0.5">Qui, 18/01/2025</dd></div>
+                  <div><dt class="text-on-surface-variant">Horário</dt><dd class="text-on-surface mt-0.5">15:30 – 17:00</dd></div>
+                  <div><dt class="text-on-surface-variant">Finalidade</dt><dd class="text-on-surface mt-0.5">Defesa de TCC</dd></div>
+                  <div><dt class="text-on-surface-variant">Recorrência</dt><dd class="text-on-surface mt-0.5">Evento único</dd></div>
+                </dl>
+                <!-- Sinalizador de conflito potencial -->
+                <div class="flex items-center gap-sm mt-sm p-sm bg-error-container/40 border border-error/30 rounded-md">
+                  <span class="material-symbols-outlined text-error" style="font-size:18px" aria-hidden="true">warning</span>
+                  <span class="text-body-sm text-on-surface">Conflito potencial: outro pedido para o mesmo horário aguarda decisão.</span>
+                </div>
+              </div>
+            </div>
+            <div class="bg-surface-container-low border-t border-outline-variant p-md flex flex-wrap items-center gap-sm justify-end">
+              <button class="px-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high text-label-md">Ver detalhes</button>
+              <button class="px-md py-2 rounded-lg border border-error text-error hover:bg-error-container text-label-md flex items-center gap-xs"><span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">close</span>Recusar</button>
+              <button class="px-md py-2 rounded-lg bg-secondary text-on-secondary hover:bg-on-secondary-fixed-variant text-label-md flex items-center gap-xs"><span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">check</span>Aprovar</button>
+            </div>
+          </article>
+
+          <article class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant overflow-hidden">
+            <div class="p-md md:p-lg flex flex-col md:flex-row gap-md md:gap-lg">
+              <div class="md:w-1 flex-shrink-0 hidden md:block bg-tertiary rounded-full"></div>
+              <div class="flex-1 flex flex-col gap-sm">
+                <div class="flex flex-wrap items-start justify-between gap-md">
+                  <div>
+                    <h2 class="text-headline-sm text-on-surface">Projetor Epson #07 + Sala 105</h2>
+                    <p class="text-body-sm text-on-surface-variant">Solicitado por <strong class="text-on-surface">João Costa</strong> · Coordenador · há 1h</p>
+                  </div>
+                  <span class="px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full text-label-sm">Pendente</span>
+                </div>
+                <dl class="grid grid-cols-2 md:grid-cols-4 gap-md text-body-sm mt-sm">
+                  <div><dt class="text-on-surface-variant">Data</dt><dd class="text-on-surface mt-0.5">Sex, 19/01/2025</dd></div>
+                  <div><dt class="text-on-surface-variant">Horário</dt><dd class="text-on-surface mt-0.5">10:00 – 12:00</dd></div>
+                  <div><dt class="text-on-surface-variant">Finalidade</dt><dd class="text-on-surface mt-0.5">Apresentação Coordenação</dd></div>
+                  <div><dt class="text-on-surface-variant">Recorrência</dt><dd class="text-on-surface mt-0.5">Evento único</dd></div>
+                </dl>
+              </div>
+            </div>
+            <div class="bg-surface-container-low border-t border-outline-variant p-md flex flex-wrap items-center gap-sm justify-end">
+              <button class="px-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high text-label-md">Ver detalhes</button>
+              <button class="px-md py-2 rounded-lg border border-error text-error hover:bg-error-container text-label-md flex items-center gap-xs"><span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">close</span>Recusar</button>
+              <button class="px-md py-2 rounded-lg bg-secondary text-on-secondary hover:bg-on-secondary-fixed-variant text-label-md flex items-center gap-xs"><span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">check</span>Aprovar</button>
+            </div>
+          </article>
+
+          <!-- Carregar mais -->
+          <button class="self-center mt-md px-lg py-2 text-primary hover:bg-surface-container rounded-lg text-label-md flex items-center gap-sm">
+            <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>Carregar mais 4 pendentes
+          </button>
+        </section>
+
+        <!-- Empty state (variant — quando filtro retorna nada) -->
+        <section aria-hidden="true" class="hidden bg-surface-container-lowest p-xxl rounded-xl shadow-sm border border-outline-variant flex flex-col items-center text-center gap-md" data-state="empty">
+          <div class="w-16 h-16 bg-secondary-container rounded-full flex items-center justify-center">
+            <span class="material-symbols-outlined text-on-secondary-container" style="font-size:32px" aria-hidden="true">task_alt</span>
+          </div>
+          <h2 class="text-headline-sm text-on-surface">Nada para aprovar agora!</h2>
+          <p class="text-body-md text-on-surface-variant max-w-md">Quando houver novas solicitações de reserva, elas aparecerão aqui.</p>
+        </section>
+
+      </div>
+    </main>
+  </div>
+</div>
+</body>
+</html>

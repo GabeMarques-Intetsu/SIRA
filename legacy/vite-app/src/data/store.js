@@ -1,0 +1,410 @@
+// src/data/store.js
+// ─────────────────────────────────────────────────────────────
+// Camada de dados: persistência via LocalStorage usando JSON
+// ESM: este módulo exporta funções puras (programação funcional)
+// ─────────────────────────────────────────────────────────────
+
+import loginsData from './logins.json';
+import seedData from './seed.json';
+
+// Prefixo usado para todas as chaves de armazenamento no LocalStorage.
+// Isso permite separar o banco de dados do SIRA de outras chaves que o app
+// ou o navegador possa gravar no localStorage.
+const DB_PREFIX = 'sira_db';
+
+// Constrói a chave de armazenamento a partir do e-mail do usuário e da coleção.
+// Exemplo: sira_db/admin@ifpb.edu.br/rooms.json
+const buildCollectionKey = (email, collection) =>
+  `${DB_PREFIX}/${email}/${collection}.json`;
+
+// Chave global para coleções compartilhadas entre todos os usuários
+// (salas são um recurso compartilhado: o admin cadastra e todos enxergam).
+const GLOBAL_ROOMS_KEY = `${DB_PREFIX}/_global/rooms.json`;
+
+// Estado global atual do usuário logado. Esse valor é atualizado no login
+// e usado como fallback em loadCollection/saveCollection quando o e-mail não
+// é passado explicitamente.
+export let CURRENT_USER = null;
+
+// Carrega uma coleção específica do LocalStorage para um usuário.
+// Se não houver usuário logado, retorna o valor do seed correspondente.
+export function loadCollection(collection, email = CURRENT_USER?.email) {
+  if (!collection) return [];
+
+  // Quando não há usuário logado, retornamos o seed como fallback.
+  if (!email) {
+    return seedData[collection] ?? [];
+  }
+
+  // Constrói a chave com base no usuário e coleção solicitados.
+  const key = buildCollectionKey(email, collection);
+
+  // Tenta ler o JSON armazenado.
+  const raw = localStorage.getItem(key);
+  if (!raw) {
+    // Se não existir registro para o usuário, retorna array vazio.
+    return [];
+  }
+
+  try {
+    // Se o JSON estiver válido, converte para um valor JS.
+    return JSON.parse(raw);
+  } catch {
+    // Se houve erro de parse, evita crash e retorna uma coleção limpa.
+    return [];
+  }
+}
+
+// Persiste uma coleção no LocalStorage para um usuário.
+// O retorno é o mesmo objeto enviado, o que facilita encadeamento nas chamadas.
+export function saveCollection(collection, data, email = CURRENT_USER?.email) {
+  if (!email || !collection) return null;
+
+  // Garante que a chave seja sempre construída da mesma maneira.
+  const key = buildCollectionKey(email, collection);
+
+  // Serializa o payload em JSON antes de gravar.
+  const payload = JSON.stringify(data);
+  localStorage.setItem(key, payload);
+
+  // Retorna os dados gravados para conveniência.
+  return data;
+}
+
+export function login(email) {
+  // Sempre procuramos primeiro na fonte da verdade nativa (loginsData),
+  // pois o LocalStorage pode conter dados de sessão obsoletos ou inválidos.
+  let users = loginsData;
+  let user = users.find((u) => u.email === email);
+
+  if (!user) {
+    // Se não encontrou no seed local, usamos o cache global de usuários.
+    // Isso permite suportar futuros cadastros que persistam na aplicação.
+    users = getUsersGlobal();
+    user = users.find((u) => u.email === email);
+  }
+
+  if (user) {
+    // Se o usuário existe, define a sessão atual e grava a conta no storage.
+    CURRENT_USER = user;
+    localStorage.setItem('sira-auth', email);
+    return true;
+  }
+
+  return false;
+}
+
+export function logout() {
+  // Limpa a sessão atual em memória e remove a marcação do storage.
+  CURRENT_USER = null;
+  localStorage.removeItem('sira-auth');
+}
+
+export function tryRestoreSession() {
+  // Tenta restaurar a sessão com base no e-mail persistido anteriormente.
+  const email = localStorage.getItem('sira-auth');
+  if (email) login(email);
+}
+
+// Retorna a lista de salas. Salas são um recurso global: o admin as cadastra
+// uma única vez e todos os usuários (professores) precisam vê-las para reservar.
+// Lê de uma chave global, com migração automática a partir de coleções
+// pré-existentes do admin (compatibilidade com instalações antigas).
+export function getRooms() {
+  migrateAdminRoomsToGlobalIfNeeded();
+  const raw = localStorage.getItem(GLOBAL_ROOMS_KEY);
+  if (!raw) return [];
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return [];
+  }
+}
+
+// Se a chave global ainda não existe mas o admin tem salas em sua coleção
+// privada (formato antigo), copia para o global de forma transparente.
+function migrateAdminRoomsToGlobalIfNeeded() {
+  if (localStorage.getItem(GLOBAL_ROOMS_KEY) !== null) return;
+
+  const adminRooms = loadCollection('rooms', 'admin@ifpb.edu.br');
+  if (Array.isArray(adminRooms) && adminRooms.length > 0) {
+    localStorage.setItem(GLOBAL_ROOMS_KEY, JSON.stringify(adminRooms));
+  }
+}
+
+// Retorna a lista de reservas. Se o usuário for admin, consolida reservas de todos os usuários.
+// Caso contrário, retorna apenas as reservas do usuário logado.
+export function getReservations() {
+  if (isAdmin()) {
+    // Admin vê todas as reservas do sistema, consolidadas de todos os usuários.
+    return consolidateCollection('reservations');
+  }
+
+  // Usuário comum vê apenas suas próprias reservas.
+  return loadCollection('reservations');
+}
+
+// Retorna a lista de notificações. Se o usuário for admin, consolida notificações de todos os usuários.
+// Caso contrário, retorna apenas as notificações do usuário logado.
+export function getNotifications() {
+  if (isAdmin()) {
+    // Admin vê todas as notificações do sistema, consolidadas de todos os usuários.
+    return consolidateCollection('notifications');
+  }
+
+  // Usuário comum vê apenas suas próprias notificações.
+  return loadCollection('notifications');
+}
+
+// Retorna a lista de aprovações. Se o usuário for admin, consolida aprovações de todos os usuários.
+// Caso contrário, retorna apenas as aprovações do usuário logado.
+export function getApprovals() {
+  if (isAdmin()) {
+    // Admin vê todas as aprovações do sistema, consolidadas de todos os usuários.
+    return consolidateCollection('approvals');
+  }
+
+  // Usuário comum vê apenas suas próprias aprovações.
+  return loadCollection('approvals');
+}
+
+// Verifica se o usuário atual é administrador.
+// O admin é identificado pelo e-mail 'admin@ifpb.edu.br'.
+function isAdmin() {
+  return CURRENT_USER?.email === 'admin@ifpb.edu.br';
+}
+
+// Consolida uma coleção específica de todos os usuários do sistema.
+// Usado apenas para o admin, que precisa ver dados agregados.
+function consolidateCollection(collection) {
+  const allUsers = getUsersGlobal();
+  const consolidated = [];
+
+  // Para cada usuário registrado, carrega a coleção e adiciona ao resultado consolidado.
+  for (const user of allUsers) {
+    const userData = loadCollection(collection, user.email);
+    consolidated.push(...userData);
+  }
+
+  return consolidated;
+}
+
+// Gera um ID único para entidades do sistema.
+// Combina timestamp atual com um sufixo aleatório para evitar colisões.
+export function generateId() {
+  const timestamp = Date.now();
+  const randomSuffix = Math.random().toString(36).substr(2, 9);
+  return `${timestamp}-${randomSuffix}`;
+}
+
+// Alias para compatibilidade
+export const genId = generateId;
+
+// Salva uma reserva. Se o usuário for admin, propaga a gravação para o usuário proprietário da reserva.
+// Caso contrário, salva na coleção do usuário logado.
+export function saveReservation(reservation) {
+  if (isAdmin() && reservation.userEmail) {
+    // Admin está salvando uma reserva de outro usuário; propaga para a coleção do proprietário.
+    const userReservations = loadCollection(
+      'reservations',
+      reservation.userEmail,
+    );
+    const existingIndex = userReservations.findIndex(
+      (r) => r.id === reservation.id,
+    );
+
+    if (existingIndex >= 0) {
+      // Atualiza reserva existente.
+      userReservations[existingIndex] = reservation;
+    } else {
+      // Adiciona nova reserva.
+      userReservations.push(reservation);
+    }
+
+    return saveCollection(
+      'reservations',
+      userReservations,
+      reservation.userEmail,
+    );
+  }
+
+  // Usuário comum ou admin salvando sua própria reserva.
+  const userReservations = loadCollection('reservations');
+  const existingIndex = userReservations.findIndex(
+    (r) => r.id === reservation.id,
+  );
+
+  if (existingIndex >= 0) {
+    userReservations[existingIndex] = reservation;
+  } else {
+    userReservations.push(reservation);
+  }
+
+  return saveCollection('reservations', userReservations);
+}
+
+// Persiste a lista inteira de reservas do usuário logado. Usada pelos
+// módulos que reescrevem o array de uma vez (rooms/reservations/calendar).
+// Distinta de saveReservation(), que aceita uma única reserva.
+export const saveReservations = (list) => saveCollection('reservations', list);
+
+// Salva uma aprovação. Se o usuário for admin, propaga a gravação para o usuário proprietário da aprovação.
+// Caso contrário, salva na coleção do usuário logado.
+export function saveApproval(approval) {
+  const approvalOwnerEmail = approval.userEmail || CURRENT_USER?.email;
+  if (!approvalOwnerEmail) return null;
+
+  // Se o admin salva a approval de outro usuário, grava no local correto.
+  const userApprovals = loadCollection('approvals', approvalOwnerEmail);
+  const existingIndex = userApprovals.findIndex((a) => a.id === approval.id);
+
+  if (existingIndex >= 0) {
+    userApprovals[existingIndex] = approval;
+  } else {
+    userApprovals.push(approval);
+  }
+
+  const savedApproval = saveCollection(
+    'approvals',
+    userApprovals,
+    approvalOwnerEmail,
+  );
+
+  if (isAdmin() && approval.status && approval.userEmail) {
+    updateReservationStatusForApproval(approval);
+    upsertApprovalNotification(approval);
+  }
+
+  return savedApproval;
+}
+
+// Persiste a lista inteira de aprovações do usuário logado. Distinta de
+// saveApproval(), que aceita uma única aprovação.
+export const saveApprovals = (list) => saveCollection('approvals', list);
+
+// Atualiza o status da reserva do solicitante vinculada à aprovação.
+function updateReservationStatusForApproval(approval) {
+  if (!approval?.reservationId || !approval?.userEmail) return null;
+
+  const userReservations = loadCollection('reservations', approval.userEmail);
+  const targetReservation = userReservations.find(
+    (reservation) => reservation.id === approval.reservationId,
+  );
+
+  if (!targetReservation) return null;
+
+  targetReservation.status = approval.status;
+  return saveCollection('reservations', userReservations, approval.userEmail);
+}
+
+// Cria ou atualiza uma notificação do solicitante relacionada à aprovação.
+function upsertApprovalNotification(approval) {
+  if (!approval?.userEmail) return null;
+
+  const notifications = loadCollection('notifications', approval.userEmail);
+  const existingIndex = notifications.findIndex(
+    (notification) =>
+      notification.approvalId === approval.id ||
+      notification.reservationId === approval.reservationId,
+  );
+
+  const message =
+    approval.status === 'approved'
+      ? 'Sua reserva foi aprovada pelo admin.'
+      : 'Sua solicitação de reserva foi recusada pelo admin.';
+
+  const notification = {
+    id: existingIndex >= 0 ? notifications[existingIndex].id : generateId(),
+    approvalId: approval.id,
+    reservationId: approval.reservationId,
+    type: 'approval',
+    status: approval.status,
+    message,
+    createdAt: new Date().toISOString(),
+    read: false,
+  };
+
+  if (existingIndex >= 0) {
+    notifications[existingIndex] = notification;
+  } else {
+    notifications.push(notification);
+  }
+
+  return saveCollection('notifications', notifications, approval.userEmail);
+}
+
+// Resolve uma aprovação como admin e propaga as mudanças para reserva e notificação do solicitante.
+export function resolveApproval(approval) {
+  if (!isAdmin() || !approval?.userEmail || !approval?.id) return null;
+
+  return saveApproval(approval);
+}
+
+// Salva uma sala (upsert) na coleção global de salas.
+export function saveRoom(room) {
+  const rooms = getRooms();
+  const existingIndex = rooms.findIndex((r) => r.id === room.id);
+
+  if (existingIndex >= 0) {
+    rooms[existingIndex] = room;
+  } else {
+    rooms.push(room);
+  }
+
+  return saveRooms(rooms);
+}
+
+// Persiste a lista inteira de salas no storage global.
+export const saveRooms = (list) => {
+  localStorage.setItem(GLOBAL_ROOMS_KEY, JSON.stringify(list));
+  return list;
+};
+
+// Salva uma notificação. Notificações são pessoais, então sempre na coleção do usuário logado.
+// Admin não propaga notificações para outros usuários.
+export function saveNotification(notification) {
+  const userNotifications = loadCollection('notifications');
+  const existingIndex = userNotifications.findIndex(
+    (n) => n.id === notification.id,
+  );
+
+  if (existingIndex >= 0) {
+    userNotifications[existingIndex] = notification;
+  } else {
+    userNotifications.push(notification);
+  }
+
+  return saveCollection('notifications', userNotifications);
+}
+
+// Retorna a lista global de usuários (consumida pelo módulo de Usuários).
+// Equivalente a getUsersGlobal, mas com o nome esperado pelos consumidores
+// (ver src/modules/users.js).
+export const getUsers = () => getUsersGlobal();
+
+// Grava a lista global de usuários (consumida pelo módulo de Usuários).
+// Persiste em localStorage['sira:users'] — esta é a fonte da verdade do
+// CRUD de usuários (US-22), mantida separada da partição por e-mail
+// usada pelas demais coleções.
+export const saveUsers = (list) => {
+  localStorage.setItem('sira:users', JSON.stringify(list));
+  return list;
+};
+
+// Global para seeds iniciais sem login.
+// Utilizado como fallback quando o app precisa da lista de usuários e não
+// existe um usuário autenticado ou a chave foi perdida.
+export const getUsersGlobal = () => {
+  const raw = localStorage.getItem('sira:users');
+  if (raw) {
+    try {
+      return JSON.parse(raw);
+    } catch {
+      // Se a chave existir e estiver corrompida, ignoramos e reconstruímos abaixo.
+    }
+  }
+
+  // Inicializa o LocalStorage com o seed de login padrão.
+  localStorage.setItem('sira:users', JSON.stringify(loginsData));
+  return loginsData;
+};

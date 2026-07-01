@@ -3,9 +3,9 @@
 /**
  * Menu do usuário no header (BUG 1 — mockup 02, header). Botão com avatar
  * (iniciais) + nome que abre um dropdown acessível com:
- * - "Configurações" → /configuracoes (torna a tela alcançável — antes não
- * havia entrada para ela em lugar nenhum);
- * - "Sair" (logout — reusa `signOutAction`).
+ *  - "Configurações" → /configuracoes (torna a tela alcançável — antes não
+ *    havia entrada para ela em lugar nenhum);
+ *  - "Sair" (logout — reusa `signOutAction`).
  *
  * Usa o `DropdownMenu` via portal (mesmo padrão do BUG 2): sobrepõe o header e
  * o conteúdo, fecha com Esc/clique-fora, gerencia foco e tem role=menu/menuitem
