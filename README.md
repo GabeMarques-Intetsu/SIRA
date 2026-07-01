@@ -114,59 +114,53 @@ O projeto tem **duas fases**, ambas preservadas para histórico:
 ```
 .
 ├── src/
-│   ├── app/                                 # App Router (RSC-first)
-│   │   ├── layout.tsx · globals.css          # raiz: fontes, ThemeProvider, Providers (TanStack), VLibras; tokens M3
-│   │   ├── (auth)/                           # grupo PÚBLICO (sem shell)
-│   │   │   ├── login/                        # page.tsx · login-form.tsx · actions.ts
-│   │   │   ├── cadastro/                     # auto-serviço de cadastro de professor
-│   │   │   └── redefinir-senha/
-│   │   ├── verificar-2fa/                    # desafio TOTP no acesso (enforcement AAL2 — F-39)
-│   │   └── (app)/                            # grupo PROTEGIDO (shell + RBAC)
-│   │       ├── layout.tsx · loading.tsx      # requireProfile() + navegação por perfil; skeleton de rota
-│   │       ├── calendario/                   # grade semanal 7d × 12h
-│   │       ├── nova-reserva/                 # assistente (wizard) em 4 passos + reserva temporária (hold)
-│   │       ├── minhas-reservas/              # lista + [id]/ (detalhe) + edição/cancelamento + CSV
-│   │       ├── notificacoes/                 # central de notificações
-│   │       ├── painel/                       # KPIs admin (dashboard)
-│   │       ├── aprovacoes/                   # fila admin — aprovar/recusar (decide série recorrente)
-│   │       ├── salas/ · equipamentos/        # catálogos (consomem _resources/) + imagem de recurso
-│   │       ├── usuarios/                     # gestão de usuários + solicitações de cadastro
-│   │       ├── configuracoes/                # perfil · preferências · segurança/2FA · notificações · zona de risco
-│   │       └── _resources/                   # componentes/actions compartilhados de salas + equipamentos
+│   ├── app/                     # App Router (RSC-first)
+│   │   ├── layout.tsx           # raiz: fontes, ThemeProvider, Providers (TanStack), VLibras
+│   │   ├── globals.css          # tokens Material Design 3
+│   │   ├── (auth)/              # grupo PÚBLICO — login, cadastro, redefinir-senha
+│   │   ├── verificar-2fa/       # desafio TOTP no acesso (enforcement AAL2 — F-39)
+│   │   └── (app)/               # grupo PROTEGIDO (shell + RBAC)
+│   │       ├── calendario/      # grade semanal 7d × 12h
+│   │       ├── nova-reserva/    # wizard em 4 passos + reserva temporária (hold)
+│   │       ├── minhas-reservas/ # lista + [id]/ detalhe + edição/cancelamento + CSV
+│   │       ├── notificacoes/    # central de notificações
+│   │       ├── painel/          # KPIs admin (dashboard)
+│   │       ├── aprovacoes/      # fila admin — aprovar/recusar (decide a série recorrente)
+│   │       ├── salas/           # catálogo de salas (+ imagem de recurso)
+│   │       ├── equipamentos/    # catálogo de equipamentos (+ imagem de recurso)
+│   │       ├── usuarios/        # gestão de usuários + solicitações de cadastro
+│   │       ├── configuracoes/   # perfil, preferências, segurança/2FA, notificações
+│   │       └── _resources/      # componentes/actions compartilhados de salas + equipamentos
 │   ├── components/
-│   │   ├── shell/                            # app-shell · sidebar · header · nav-config · user-menu · theme-toggle · logout
-│   │   ├── ui/                               # primitivos shadcn/Radix (button, input, label, form, dropdown-menu)
-│   │   └── providers.tsx · theme-provider.tsx · vlibras.tsx
-│   ├── lib/                                  # DOMÍNIO PURO (sem framework, testável com node:test)
-│   │   ├── auth.ts · validation.ts · utils.ts · mfa.ts
-│   │   ├── reservation.ts · my-reservations.ts · holds.ts · calendar.ts · calendar-events.ts
-│   │   ├── approvals.ts · dashboard.ts · notifications.ts · resources.ts · users.ts · preferences.ts
-│   │   └── supabase/                         # client · server · admin (service-role) · middleware · database.types
-│   ├── schemas/                             # Zod compartilhado client+servidor (auth, profile, reservation, resource, user)
-│   ├── hooks/                               # use-media-query · use-mounted · queries/ (TanStack Query)
-│   ├── stores/                              # Zustand — ui-store (colapso da sidebar, persistido)
-│   └── proxy.ts                             # middleware Next 16 — refresh de sessão + proteção de rota + gate AAL2
-├── supabase/migrations/                     # DDL versionada (idempotente, nunca reeditada)
-│   ├── 0001_initial_schema · 0002_harden_security_definer_grants · 0003_seed_reference_data
-│   ├── 0004_availability_functions · 0005_reservation_submitted_event_trigger
-│   └── 0006_reservation_count_aggregation_rpcs · 0007_resource_image_storage · 0008_reservation_holds
+│   │   ├── shell/               # app-shell, sidebar, header, nav-config, user-menu, theme-toggle, logout
+│   │   └── ui/                  # primitivos shadcn/Radix (button, input, label, form, dropdown-menu)
+│   ├── lib/                     # DOMÍNIO PURO (auth, reservation, holds, approvals, mfa, calendar…)
+│   │   └── supabase/            # client, server, admin (service-role), middleware, database.types
+│   ├── schemas/                 # validação Zod compartilhada client+servidor
+│   ├── hooks/                   # client hooks reutilizáveis + queries/ (TanStack Query)
+│   ├── stores/                  # Zustand — ui-store (colapso da sidebar, persistido)
+│   └── proxy.ts                 # middleware Next 16 — sessão + proteção de rota + gate AAL2
+├── supabase/
+│   └── migrations/              # DDL versionada 0001..0008 (schema, RLS, RPCs, Storage, holds)
 ├── tests/
-│   ├── *.test.ts                            # unitário (node:test) — regras puras de src/lib (+ loader.mjs, tsconfig.json)
-│   ├── components/                          # componente — Vitest + Testing Library
-│   ├── features/                            # BDD Cucumber (pt-BR): *.feature + steps/ + support/ (World em memória)
-│   └── e2e/                                 # Playwright — smoke, a11y, perf, image-upload, hold
-├── docs/                                    # espinha de rastreabilidade (o "porquê/o quê/como")
-│   ├── requirements/                        # RF-* / RNF-*
-│   ├── backlog/                             # epics/ · features/ · sprints/ · glossario.md
-│   ├── specs/                               # análise/projeto navegável por feature
-│   ├── planning/adrs/                       # ADR-001 … ADR-010 (decisões arquiteturais)
-│   └── runbooks/ · mockups/ · reports/
-├── public/screenshots/                      # capturas (login.png)
-├── legacy/vite-app/                         # Sprint 1 (histórico — não buildado)
-├── PRD.md · AGENTS.md (↔ CLAUDE.md symlink) # produto + contrato de desenvolvimento (humano/IA)
-├── .env.example                             # contrato de variáveis (Supabase + NEXT_PUBLIC_SITE_URL)
-└── next.config.ts · tsconfig.json · eslint.config.mjs · postcss.config.mjs
-    · vitest.config.ts · vitest.setup.ts · playwright.config.ts · cucumber.cjs
+│   ├── (raiz) *.test.ts         # unitário (node:test) — regras puras de src/lib
+│   ├── components/              # componente — Vitest + Testing Library
+│   ├── features/                # BDD Cucumber (pt-BR) — *.feature + steps/ + support/
+│   └── e2e/                     # Playwright — smoke, a11y, perf, image-upload, hold
+├── docs/                        # espinha de rastreabilidade (o porquê / o quê / como)
+│   ├── requirements/            # RF-* / RNF-*
+│   ├── backlog/                 # epics/, features/, sprints/, glossario
+│   ├── specs/                   # análise/projeto navegável por feature
+│   ├── planning/adrs/           # ADR-001 … ADR-010 (decisões arquiteturais)
+│   └── runbooks/                # procedimentos operacionais (deploy, etc.)
+├── public/
+│   └── screenshots/             # capturas de tela (login.png)
+├── legacy/
+│   └── vite-app/                # Sprint 1 (histórico — não buildado)
+├── PRD.md                       # documento de produto (síntese)
+├── AGENTS.md                    # convenções de desenvolvimento (↔ CLAUDE.md via symlink)
+├── .env.example                 # contrato de variáveis (Supabase + NEXT_PUBLIC_SITE_URL)
+└── (configs na raiz)            # next.config.ts, tsconfig.json, eslint, postcss, vitest, playwright, cucumber
 ```
 
 ### Sprint 1 — legado (Vanilla JS + Vite) · _histórico_
