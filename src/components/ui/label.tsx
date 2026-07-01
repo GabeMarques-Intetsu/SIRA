@@ -1,0 +1,25 @@
+/**
+ * Label — primitivo shadcn/ui sobre @radix-ui/react-label (associação correta
+ * via `htmlFor`, clique no rótulo foca o controle). Estilizado com tokens M3.
+ */
+import * as React from "react";
+import * as LabelPrimitive from "@radix-ui/react-label";
+
+import { cn } from "@/lib/utils";
+
+const Label = React.forwardRef<
+  React.ComponentRef<typeof LabelPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
+>(({ className, ...props }, ref) => (
+  <LabelPrimitive.Root
+    ref={ref}
+    className={cn(
+      "text-label-sm text-on-surface peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+      className,
+    )}
+    {...props}
+  />
+));
+Label.displayName = LabelPrimitive.Root.displayName;
+
+export { Label };

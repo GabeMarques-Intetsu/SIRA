@@ -1,0 +1,311 @@
+@import "tailwindcss";
+
+/* Material Design 3 — tokens institucionais IFPB (portados de docs/mockups/_shared/tokens.css).
+   Light em :root · Dark sob .dark (estratégia de classe do next-themes). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --c-background: #f8f9ff;
+  --c-surface: #f8f9ff;
+  --c-surface-bright: #f8f9ff;
+  --c-surface-dim: #cbdbf5;
+  --c-surface-container-lowest: #ffffff;
+  --c-surface-container-low: #eff4ff;
+  --c-surface-container: #e5eeff;
+  --c-surface-container-high: #dce9ff;
+  --c-surface-container-highest: #d3e4fe;
+  --c-surface-variant: #d3e4fe;
+  --c-surface-tint: #0060a8;
+  --c-on-background: #0b1c30;
+  --c-on-surface: #0b1c30;
+  --c-on-surface-variant: #414751;
+  --c-outline: #717783;
+  --c-outline-variant: #c0c7d3;
+  --c-primary: #005ea4;
+  --c-on-primary: #ffffff;
+  --c-primary-container: #1777c9;
+  --c-on-primary-container: #fdfcff;
+  --c-primary-fixed: #d2e4ff;
+  --c-on-primary-fixed: #001c38;
+  --c-primary-fixed-dim: #a1c9ff;
+  --c-on-primary-fixed-variant: #004880;
+  --c-secondary: #386a0e;
+  --c-on-secondary: #ffffff;
+  --c-secondary-container: #b5f086;
+  --c-on-secondary-container: #3d6f13;
+  --c-secondary-fixed: #b8f389;
+  --c-on-secondary-fixed: #0c2000;
+  --c-secondary-fixed-dim: #9dd770;
+  --c-on-secondary-fixed-variant: #265100;
+  --c-tertiary: #81511f;
+  --c-on-tertiary: #ffffff;
+  --c-tertiary-container: #9e6935;
+  --c-on-tertiary-container: #fffbff;
+  --c-tertiary-fixed: #ffdcc0;
+  --c-on-tertiary-fixed: #2d1600;
+  --c-tertiary-fixed-dim: #fab97e;
+  --c-on-tertiary-fixed-variant: #683c0a;
+  --c-error: #ba1a1a;
+  --c-on-error: #ffffff;
+  --c-error-container: #ffdad6;
+  --c-on-error-container: #93000a;
+  --c-inverse-surface: #213145;
+  --c-inverse-on-surface: #eaf1ff;
+  --c-inverse-primary: #a1c9ff;
+  --sira-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --sira-shadow-md:
+    0 4px 6px -1px rgb(0 0 0 / 0.06), 0 2px 4px -2px rgb(0 0 0 / 0.04);
+  --sira-shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.06), 0 4px 6px -4px rgb(0 0 0 / 0.04);
+}
+
+.dark {
+  --c-background: #0b1c30;
+  --c-surface: #0b1c30;
+  --c-surface-bright: #2b3b4d;
+  --c-surface-dim: #0b1c30;
+  --c-surface-container-lowest: #061421;
+  --c-surface-container-low: #131e2c;
+  --c-surface-container: #182532;
+  --c-surface-container-high: #232f3d;
+  --c-surface-container-highest: #2e3a48;
+  --c-surface-variant: #414751;
+  --c-surface-tint: #a1c9ff;
+  --c-on-background: #dce3ec;
+  --c-on-surface: #dce3ec;
+  --c-on-surface-variant: #c0c7d3;
+  --c-outline: #8b919d;
+  --c-outline-variant: #414751;
+  --c-primary: #a1c9ff;
+  --c-on-primary: #00325b;
+  --c-primary-container: #004880;
+  --c-on-primary-container: #d2e4ff;
+  --c-primary-fixed: #d2e4ff;
+  --c-on-primary-fixed: #001c38;
+  --c-primary-fixed-dim: #a1c9ff;
+  --c-on-primary-fixed-variant: #004880;
+  --c-secondary: #9dd770;
+  --c-on-secondary: #143800;
+  --c-secondary-container: #265100;
+  --c-on-secondary-container: #b8f389;
+  --c-secondary-fixed: #b8f389;
+  --c-on-secondary-fixed: #0c2000;
+  --c-secondary-fixed-dim: #9dd770;
+  --c-on-secondary-fixed-variant: #265100;
+  --c-tertiary: #fab97e;
+  --c-on-tertiary: #482900;
+  --c-tertiary-container: #683c0a;
+  --c-on-tertiary-container: #ffdcc0;
+  --c-tertiary-fixed: #ffdcc0;
+  --c-on-tertiary-fixed: #2d1600;
+  --c-tertiary-fixed-dim: #fab97e;
+  --c-on-tertiary-fixed-variant: #683c0a;
+  --c-error: #ffb4ab;
+  --c-on-error: #690005;
+  --c-error-container: #93000a;
+  --c-on-error-container: #ffdad6;
+  --c-inverse-surface: #dce3ec;
+  --c-inverse-on-surface: #213145;
+  --c-inverse-primary: #005ea4;
+}
+
+/* Expõe os tokens como utilitários Tailwind (bg-primary, text-on-surface, border-outline-variant, ...) */
+@theme inline {
+  --color-background: var(--c-background);
+  --color-surface: var(--c-surface);
+  --color-surface-bright: var(--c-surface-bright);
+  --color-surface-dim: var(--c-surface-dim);
+  --color-surface-container-lowest: var(--c-surface-container-lowest);
+  --color-surface-container-low: var(--c-surface-container-low);
+  --color-surface-container: var(--c-surface-container);
+  --color-surface-container-high: var(--c-surface-container-high);
+  --color-surface-container-highest: var(--c-surface-container-highest);
+  --color-surface-variant: var(--c-surface-variant);
+  --color-surface-tint: var(--c-surface-tint);
+  --color-on-background: var(--c-on-background);
+  --color-on-surface: var(--c-on-surface);
+  --color-on-surface-variant: var(--c-on-surface-variant);
+  --color-outline: var(--c-outline);
+  --color-outline-variant: var(--c-outline-variant);
+  --color-primary: var(--c-primary);
+  --color-on-primary: var(--c-on-primary);
+  --color-primary-container: var(--c-primary-container);
+  --color-on-primary-container: var(--c-on-primary-container);
+  --color-primary-fixed: var(--c-primary-fixed);
+  --color-on-primary-fixed: var(--c-on-primary-fixed);
+  --color-primary-fixed-dim: var(--c-primary-fixed-dim);
+  --color-on-primary-fixed-variant: var(--c-on-primary-fixed-variant);
+  --color-secondary: var(--c-secondary);
+  --color-on-secondary: var(--c-on-secondary);
+  --color-secondary-container: var(--c-secondary-container);
+  --color-on-secondary-container: var(--c-on-secondary-container);
+  --color-secondary-fixed: var(--c-secondary-fixed);
+  --color-on-secondary-fixed: var(--c-on-secondary-fixed);
+  --color-secondary-fixed-dim: var(--c-secondary-fixed-dim);
+  --color-on-secondary-fixed-variant: var(--c-on-secondary-fixed-variant);
+  --color-tertiary: var(--c-tertiary);
+  --color-on-tertiary: var(--c-on-tertiary);
+  --color-tertiary-container: var(--c-tertiary-container);
+  --color-on-tertiary-container: var(--c-on-tertiary-container);
+  --color-tertiary-fixed: var(--c-tertiary-fixed);
+  --color-on-tertiary-fixed: var(--c-on-tertiary-fixed);
+  --color-tertiary-fixed-dim: var(--c-tertiary-fixed-dim);
+  --color-on-tertiary-fixed-variant: var(--c-on-tertiary-fixed-variant);
+  --color-error: var(--c-error);
+  --color-on-error: var(--c-on-error);
+  --color-error-container: var(--c-error-container);
+  --color-on-error-container: var(--c-on-error-container);
+  --color-inverse-surface: var(--c-inverse-surface);
+  --color-inverse-on-surface: var(--c-inverse-on-surface);
+  --color-inverse-primary: var(--c-inverse-primary);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Spacing scale (portado de docs/mockups/_shared/tailwind-config.js)
+     AVISO Tailwind v4: estes nomes (sm, md, lg, xl) tambem alimentam os
+     utilitarios de tamanho (max-w, min-w, w, h). Logo `max-w-lg` resolveria
+     para 24px (--spacing-lg), e NAO 32rem. Para largura use SEMPRE valores
+     arbitrarios: ex. max-w-[32rem]. Nao use max-w-{sm,md,lg,xl}. */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  --spacing-gutter: 16px;
+  --spacing-margin-mobile: 16px;
+  --spacing-margin-desktop: 32px;
+
+  /* Border radius */
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+
+  /* Box shadow (mapeia para os tokens de sombra definidos em :root/.dark) */
+  --shadow-sm: var(--sira-shadow-sm);
+  --shadow-md: var(--sira-shadow-md);
+  --shadow-lg: var(--sira-shadow-lg);
+
+  /* Tipografia M3 (utilitários text-headline-lg, text-label-md, ...) */
+  --text-label-sm: 12px;
+  --text-label-sm--line-height: 1;
+  --text-label-sm--font-weight: 600;
+  --text-label-md: 14px;
+  --text-label-md--line-height: 1;
+  --text-label-md--letter-spacing: 0.05em;
+  --text-label-md--font-weight: 500;
+  --text-body-sm: 14px;
+  --text-body-sm--line-height: 1.5;
+  --text-body-md: 16px;
+  --text-body-md--line-height: 1.5;
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 1.6;
+  --text-headline-sm: 20px;
+  --text-headline-sm--line-height: 1.4;
+  --text-headline-sm--font-weight: 600;
+  --text-headline-md: 24px;
+  --text-headline-md--line-height: 1.3;
+  --text-headline-md--font-weight: 600;
+  --text-headline-lg: 32px;
+  --text-headline-lg--line-height: 1.2;
+  --text-headline-lg--letter-spacing: -0.02em;
+  --text-headline-lg--font-weight: 700;
+}
+
+* {
+  border-color: var(--c-outline-variant);
+}
+
+body {
+  background: var(--c-background);
+  color: var(--c-on-background);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Material Symbols base (ícones M3) */
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: "liga";
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Touch target mínimo 44×44px (WCAG 2.5.5 AA).
+   Em @layer components para que os utilitários de display do Tailwind
+   (hidden, md:hidden, md:inline-flex…) possam sobrepor o `display` daqui —
+   sem a camada, esta regra vence os utilitários e quebra o hide responsivo
+   (causava os DOIS botões ☰ aparecendo juntos no desktop). */
+@layer components {
+  .touch-target {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Focus ring acessível (WCAG 2.4.7 AA) */
+:focus-visible {
+  outline: 2px solid var(--c-primary);
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+/* Reduzir animações (F-38 CA09/CA10) — preferência explícita do usuário OU do
+   SO (prefers-reduced-motion). Minimiza transições/animações da interface. */
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Densidade compacta (F-38 CA08) — reduz o passo de espaçamento da escala M3.
+   Como os utilitários (p-md, gap-lg, ...) referenciam estes tokens, alterá-los
+   sob [data-density="compact"] aperta a interface inteira sem tocar no markup. */
+[data-density="compact"] {
+  --spacing-sm: 6px;
+  --spacing-md: 12px;
+  --spacing-lg: 18px;
+  --spacing-xl: 24px;
+  --spacing-xxl: 36px;
+}
+
+/* Skip link (a11y — navegação por landmark) */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--c-primary);
+  color: var(--c-on-primary);
+  padding: 8px 16px;
+  z-index: 999;
+  text-decoration: none;
+  border-radius: 0 0 0.5rem 0;
+}
+.skip-link:focus {
+  top: 0;
+}
