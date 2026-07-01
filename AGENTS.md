@@ -46,6 +46,7 @@ src/
 │   │   ├── login/                # page.tsx + login-form.tsx + actions.ts
 │   │   ├── cadastro/             # auto-serviço de cadastro de professor
 │   │   └── redefinir-senha/
+│   ├── verificar-2fa/            # desafio TOTP no acesso (enforcement AAL2 — F-39/ADR-010)
 │   └── (app)/                    # route group PROTEGIDO (com shell + RBAC)
 │       ├── layout.tsx            # requireProfile() + monta navegação por perfil
 │       ├── loading.tsx           # skeleton de navegação (Suspense de rota)
@@ -137,6 +138,10 @@ Os schemas em `src/schemas/` são a **fonte única** de validação:
   **verificar o JWT localmente** (chaves ES256, JWKS cacheado) — sem round-trip
   por navegação — e é envolto em `cache()` do React (uma vez por request).
 - Guards: `requireProfile()` (sessão) e `requireAdmin()` (papel). Ver `src/lib/auth.ts`.
+- **Enforcement de 2FA (AAL2)**: quando a conta tem fator TOTP verificado, o
+  `updateSession()` checa `mfa.getAuthenticatorAssuranceLevel()` e redireciona
+  para `/verificar-2fa` (desafio TOTP) antes de liberar qualquer rota do `(app)`
+  — `needsMfaChallenge()` em `src/lib/mfa.ts`. Ver [F-39 US39.4] + ADR-010.
 
 ### 3.5 Estado no client
 
@@ -192,7 +197,7 @@ Ver [ADR-005](docs/planning/adrs/ADR-005-largura-arbitraria-no-tailwind-v4.md).
 
 | Camada                             | Ferramenta                          | Qtd.             | Script                   |
 | ---------------------------------- | ----------------------------------- | ---------------- | ------------------------ |
-| Unitário (domínio puro `src/lib/`) | `node:test`                         | 145              | `npm run test:unit`      |
+| Unitário (domínio puro `src/lib/`) | `node:test`                         | 149              | `npm run test:unit`      |
 | Componente (React)                 | Vitest + Testing Library            | 17               | `npm run test:component` |
 | BDD (Gherkin pt-BR)                | Cucumber                            | 131 cenários     | `npm run test:bdd`       |
 | E2E                                | Playwright                          | 5 specs          | `npm run test:e2e`       |

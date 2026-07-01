@@ -6,7 +6,15 @@
 > - **Features**: [F-01 Login](../backlog/features/F-01-login-institucional-por-e-mail.md) · [F-02 Sessão persistente](../backlog/features/F-02-persistencia-de-sessao-entre-recargas.md) · [F-03 Auto-cadastro de professor](../backlog/features/F-03-auto-servico-de-cadastro-de-professor.md) · [F-04 Logout](../backlog/features/F-04-encerramento-de-sessao-logout.md)
 > - **Código**: `src/app/(auth)/login/` · `src/app/(auth)/cadastro/` · `src/app/(auth)/redefinir-senha/` · `src/lib/auth.ts` · `src/lib/supabase/middleware.ts` · `src/proxy.ts` · `src/components/shell/logout-action.ts` · `src/schemas/auth.ts`
 > - **Testes**: `tests/features/US01.1-login-institucional.feature` · `US02.1-continuidade-de-sessao.feature` · `US03.1-solicitacao-de-cadastro.feature` · `US04.1-encerramento-de-sessao.feature`
-> - **ADRs**: [ADR-002](../planning/adrs/ADR-002-provisionamento-de-contas-via-service-role.md) (provisionamento)
+> - **ADRs**: [ADR-002](../planning/adrs/ADR-002-provisionamento-de-contas-via-service-role.md) (provisionamento) · [ADR-010](../planning/adrs/ADR-010-enforcement-de-2fa-no-acesso-aal2.md) (2FA no acesso)
+
+> **Nota — 2FA no acesso (AAL2).** Quando a conta tem verificação em duas etapas
+> ativa, o login **não libera o app direto**: `updateSession()` (`src/proxy.ts`)
+> detecta `nextLevel = aal2` e redireciona para **`/verificar-2fa`** (desafio
+> TOTP) antes de qualquer rota do `(app)`. É o enforcement da
+> [F-39 US39.4](../backlog/features/F-39-seguranca-da-conta.md) — regra em
+> [RF-012](../requirements/RF/RF-012-configuracoes-da-conta-e-preferencias.md),
+> design em [ADR-010](../planning/adrs/ADR-010-enforcement-de-2fa-no-acesso-aal2.md).
 
 ## User Stories
 

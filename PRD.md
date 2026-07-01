@@ -9,10 +9,10 @@
 | Campo                            | Valor                                                                                                     |
 | -------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | Produto                          | SIRA — reserva de salas e equipamentos do campus                                                          |
-| Status                           | Sprint 2 (migração para Next.js + Supabase) — base funcional implementada                                 |
+| Status                           | ✅ **Em produção na Vercel** — <https://sira-jet.vercel.app> (Sprint 2 · Next.js + Supabase)              |
 | Stack                            | Next.js 16 (App Router) · TypeScript · Tailwind v4 (Material Design 3) · Supabase (Postgres + RLS + RPCs) |
 | Perfis                           | `professor`, `admin` (coordenação)                                                                        |
-| Última conferência de requisitos | 2026-06-15                                                                                                |
+| Última conferência de requisitos | 2026-07-01                                                                                                |
 
 ---
 
@@ -85,20 +85,23 @@ Derivadas dos papéis reais de autorização do sistema (`user_role`: `professor
   cadastro.
 - Central de notificações (lista + marcar como lida individual/em massa).
 - Configurações da conta (perfil, preferências, segurança, notificações, zona de risco).
+- **Verificação em duas etapas (2FA/TOTP) com exigência no acesso (AAL2)** — após a
+  senha, contas com 2FA ativo passam pela tela `/verificar-2fa` (F-39 / ADR-010).
+- **Imagem de recurso** (salas/equipamentos) via Supabase Storage e **reserva
+  temporária (hold)** que bloqueia o recurso durante a solicitação (F-47/F-48/F-49).
 
 ### Fora do MVP (preparado, não plenamente operante)
 
 Registrado de forma rastreável em [ADR-007](docs/planning/adrs/ADR-007-funcionalidades-dependentes-de-infra-externa.md) —
 cada item tem o estado persistido e o caminho de habilitação documentado:
 
-| Item                                 | Estado hoje                                   | Depende de              |
-| ------------------------------------ | --------------------------------------------- | ----------------------- |
-| Envio de e-mails de senha (recovery) | `action_link` gerado e repassado manualmente  | SMTP no Supabase        |
-| MFA / 2FA (TOTP)                     | flag `two_factor_enabled` persiste; UI avisa  | fluxo Supabase Auth MFA |
-| Revisão/revogação de sessões         | não implementado                              | Admin API de sessões    |
-| Upload de foto de perfil             | não implementado                              | Supabase Storage        |
-| Internacionalização (en/es)          | `language` persiste; sem troca real de textos | catálogo i18n           |
-| Painel em "tempo real" verdadeiro    | re-fetch por navegação                        | Supabase Realtime       |
+| Item                                 | Estado hoje                                   | Depende de           |
+| ------------------------------------ | --------------------------------------------- | -------------------- |
+| Envio de e-mails de senha (recovery) | `action_link` gerado e repassado manualmente  | SMTP no Supabase     |
+| Revisão/revogação de sessões         | não implementado                              | Admin API de sessões |
+| Upload de foto de perfil             | não implementado                              | Supabase Storage     |
+| Internacionalização (en/es)          | `language` persiste; sem troca real de textos | catálogo i18n        |
+| Painel em "tempo real" verdadeiro    | re-fetch por navegação                        | Supabase Realtime    |
 
 ## 5. Requisitos funcionais
 
