@@ -38,7 +38,7 @@ export function ThemeToggle() {
             aria-checked={active}
             aria-label={`Tema ${opt.label}`}
             onClick={() => setTheme(opt.value)}
-            className={`touch-target rounded-full transition-colors ${
+            className={`flex h-9 w-9 items-center justify-center rounded-full transition-colors md:h-11 md:w-11 ${
               active
                 ? "bg-primary text-on-primary"
                 : "text-on-surface-variant hover:bg-surface-container-high"
