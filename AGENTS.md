@@ -246,6 +246,15 @@ Ver [ADR-005](docs/planning/adrs/ADR-005-largura-arbitraria-no-tailwind-v4.md).
 6. **Validação em dois lados.** Toda Server Action de mutação revalida a entrada
    com `schema.safeParse` antes de tocar o banco — mesmo que o client já valide.
 7. **Não mexa em `PRD.md` nem nos artefatos de `docs/`** sem que a tarefa peça.
+8. **Uso obrigatório de agents e skills (contrato para IAs).** Toda IA que
+   trabalhar neste repositório **deve** aplicar o protocolo de **skills + agents**
+   definido nas instruções globais (`~/.claude/CLAUDE.md`): mapear os domínios da
+   tarefa → **invocar** as skills relevantes → **delegar** a agents especializados
+   quando a tarefa for multi-step (não apenas em conteúdo — vale também para
+   git/PR/CI/devops). Skills são o conhecimento; agents, o executor — compõem, não
+   se substituem. Este `AGENTS.md` é o contrato local e está **espelhado como
+   `CLAUDE.md` na raiz via symlink** (`ln -s AGENTS.md CLAUDE.md`), para que
+   qualquer ferramenta de IA que leia um ou outro veja o mesmo contrato.
 
 ---
 
