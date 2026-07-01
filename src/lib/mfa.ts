@@ -54,3 +54,22 @@ export function normalizeTotpCode(raw: string): string {
 export function isTotpCodeComplete(code: string): boolean {
   return /^\d{6}$/.test(code);
 }
+
+// ─────────────────────── Enforcement no acesso (AAL2 · F-39 US39.4) ──────────
+
+/** Níveis de garantia (AAL) da sessão atual, como o Supabase os expõe. */
+export interface AalState {
+  currentLevel: string | null;
+  nextLevel: string | null;
+}
+
+/**
+ * A sessão precisa do desafio de 2FA no acesso? (F-39 CA11) = está em `aal1`
+ * mas o usuário tem um fator TOTP verificado que a elevaria a `aal2`
+ * (`nextLevel === "aal2"`). Quem não tem 2FA (`nextLevel !== "aal2"`) nunca
+ * precisa; quem já está em `aal2` também não. Pura → testável e reusada no
+ * middleware (gate) e na Server Action de login.
+ */
+export function needsMfaChallenge(aal: AalState | null | undefined): boolean {
+  return aal?.currentLevel === "aal1" && aal?.nextLevel === "aal2";
+}

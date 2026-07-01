@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { loginSchema } from "@/schemas/auth";
 import { homeForRole } from "@/components/shell/nav-config";
+import { needsMfaChallenge } from "@/lib/mfa";
 
 export interface LoginState {
   error: string | null;
@@ -56,6 +57,14 @@ export async function loginAction(
     return {
       error: "Sua conta está inativa. Procure o administrador do sistema.",
     };
+  }
+
+  // F-39 US39.4 (CA11) — conta com 2FA ativo exige o desafio antes de entrar.
+  // O middleware é a rede de segurança; aqui damos o encaminhamento imediato.
+  const { data: aal } =
+    await supabase.auth.mfa.getAuthenticatorAssuranceLevel();
+  if (needsMfaChallenge(aal)) {
+    redirect("/verificar-2fa");
   }
 
   redirect(homeForRole(profile.role));
