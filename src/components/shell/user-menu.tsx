@@ -30,7 +30,7 @@ export function UserMenu({ fullName, initials }: UserMenuProps) {
       menuClassName="w-[14rem]"
       triggerLabel={`Menu do usuário ${fullName}`}
       menuLabel={`Menu do usuário ${fullName}`}
-      triggerClassName="gap-sm hover:bg-surface-container ml-sm flex items-center rounded-full px-sm py-1 transition-colors"
+      triggerClassName="gap-sm hover:bg-surface-container flex items-center rounded-full px-1 py-1 transition-colors sm:px-sm"
       trigger={
         <>
           <span

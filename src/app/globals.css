@@ -215,6 +215,13 @@
   border-color: var(--c-outline-variant);
 }
 
+/* O container de rolagem do documento é o <html> — a guarda contra scroll
+   horizontal precisa estar AQUI (não só no body): o scrollWidth medido é o do
+   documentElement. Seguro: o scroll vertical vive no <main>. */
+html {
+  overflow-x: hidden;
+}
+
 body {
   background: var(--c-background);
   color: var(--c-on-background);
